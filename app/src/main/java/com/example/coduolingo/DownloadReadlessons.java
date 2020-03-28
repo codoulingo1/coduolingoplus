@@ -47,11 +47,11 @@ public class DownloadReadlessons {
         HashMap<String, String> hashMap = new HashMap<>();
         String[] arr = content.split("\\]|\\[");
         Log.d("check", content.toString());
-        hashMap.put("type", arr[0]);
-        hashMap.put("qs", arr[2]);
-        hashMap.put("Content", arr[2]);
-        hashMap.put("Image", arr[3]);
-        hashMap.put("Answer", arr[4]);
+        hashMap.put("type", arr[1]);
+        hashMap.put("qs", arr[3]);
+        hashMap.put("Content", arr[5]);
+        hashMap.put("Image", arr[7]);
+        hashMap.put("Answer", arr[9]);
         return hashMap;
     }
 }
