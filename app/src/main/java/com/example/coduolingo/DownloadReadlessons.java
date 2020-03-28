@@ -48,7 +48,7 @@ public class DownloadReadlessons {
         String[] arr = content.split("\\]|\\[");
         Log.d("check", content.toString());
         hashMap.put("type", arr[0]);
-        hashMap.put("qs", arr[1]).substring(0, -1);
+        hashMap.put("qs", arr[2]);
         hashMap.put("Content", arr[2]);
         hashMap.put("Image", arr[3]);
         hashMap.put("Answer", arr[4]);
