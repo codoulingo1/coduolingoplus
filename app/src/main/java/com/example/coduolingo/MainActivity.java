@@ -24,9 +24,14 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        String lesson = DownloadReadlessons.downloadlesson("57933", MainActivity.this); // download lesson by ID
+        loadquestion("57933","Math", "1");
+
+
+    }
+    public void loadquestion(String id, String name, String qs_num){
+        String lesson = DownloadReadlessons.downloadlesson(id, MainActivity.this); // download lesson by ID
         Log.d("gojo", "h"); // pro vi estas gojo
-        final HashMap<String, String> hashMap = DownloadReadlessons.readqs("57933", "Math", "1", MainActivity.this); // read qs by ID + name + question number
+        final HashMap<String, String> hashMap = DownloadReadlessons.readqs(id, name, qs_num, MainActivity.this); // read qs by ID + name + question number
         qs = (TextView)findViewById(R.id.textView);
         qs.setText(hashMap.get("qs"));
         Log.d("gojo", hashMap.get("qs"));
@@ -36,12 +41,10 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 EditText inp = (EditText) findViewById(R.id.inp);
                 String ans = inp.getText().toString();
-                boolean h=hashMap.get("Answer")==ans;
                 if (ans.equals(hashMap.get("Answer"))){
                     qs.setText("Guten");
                 }
             }
         });
-
-
-    }}
+    }
+}
