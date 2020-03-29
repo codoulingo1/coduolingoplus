@@ -1,6 +1,7 @@
 package com.example.coduolingo;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -28,15 +29,15 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        submit = (Button) findViewById(R.id.button);
-        qs = (TextView) findViewById(R.id.textView);
         lessonCreator("57933", "Math");
         //loadquestion("57933", "Math", "26"); //I hate you all google employees. But not you gradle the legendary elephant.
     }
 
     public void loadquestion(String id, String name, String qs_num) {
-        isRight = null;
+        isRight = false;
         String lesson = DownloadReadlessons.downloadlesson(id, MainActivity.this); // download lesson by ID
+        submit = (Button) findViewById(R.id.button);
+        qs = (TextView) findViewById(R.id.textView);
         Log.d("gojo", "h"); // pro vi estas gojo
         final HashMap<String, String> hashMap = DownloadReadlessons.readqs(id, name, qs_num, MainActivity.this); // read qs by ID + name + question number
         qs.setText(hashMap.get("qs"));
@@ -59,14 +60,24 @@ public class MainActivity extends AppCompatActivity {
 
     public void lessonCreator(String ID, String name){
 
-        for (int i = 1; i<=20; i++) {
-            try {
+        for (int i = 1; i<=3; i++) {
+            if(i == 1){
+                loadquestion(ID, name, String.valueOf(i));
+            }else if(isRight == true){
                 loadquestion(ID, name, String.valueOf(i));
             }
-            catch (Exception e){
 
-            }
         }
 
+    }
+
+    void sleep(int time){
+        Runnable r = new Runnable() {
+            @Override
+            public void run(){
+            }
+        };
+        Handler h = new Handler();
+        h.postDelayed(r, time);
     }
 }
