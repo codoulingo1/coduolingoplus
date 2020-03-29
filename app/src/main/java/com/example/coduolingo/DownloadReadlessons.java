@@ -28,7 +28,7 @@ public class DownloadReadlessons {
                 // whenever data at this location is updated.
                 for (DataSnapshot snap : dataSnapshot.getChildren()) {
                     if (snap.getValue(String.class).length() != 0) {
-                        Log.d("VAL", "Value is: " + snap.getKey() + "    " + snap.getValue(String.class));
+                        Log.d("VAL", "Value is: " + snap.getKey() + "    " + snap.getValue(String.class)); //grandmas are very dumb
                         ReadWrite.write(folder_main + snap.getKey(), snap.getValue(String.class), c); // write qs text file
                     }
                 }
