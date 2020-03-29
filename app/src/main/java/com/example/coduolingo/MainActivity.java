@@ -25,9 +25,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        loadquestion("57933", "Math", "1");
-
-
+        loadquestion("57933", "Math", "1"); //I hate you all google emplyees. But not you gradle the legendary elephant.
     }
 
     public void loadquestion(String id, String name, String qs_num) {
