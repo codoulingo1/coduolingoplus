@@ -29,7 +29,7 @@ public class DownloadReadlessons {
                 for (DataSnapshot snap : dataSnapshot.getChildren()) {
                     if (snap.getValue(String.class).length() != 0) {
                         Log.d("VAL", "Value is: " + snap.getKey() + "    " + snap.getValue(String.class));
-                        ReadWrite.write(folder_main + snap.getKey(), snap.getValue(String.class), c);
+                        ReadWrite.write(folder_main + snap.getKey(), snap.getValue(String.class), c); // write qs text file
                     }
                 }
             }
@@ -44,8 +44,8 @@ public class DownloadReadlessons {
         return "via avino";
     }
     public static HashMap<String, String> readqs(String id, String name, String qs_num, final Context c) {
-        String content = ReadWrite.read(id + name + "qs" + qs_num, c);
-        HashMap<String, String> hashMap = new HashMap<>();
+        String content = ReadWrite.read(id + name + "qs" + qs_num, c); // read downloaded qs
+        HashMap<String, String> hashMap = new HashMap<>(); // create hashmap
         String[] arr = content.split("\\]|\\[");
         Log.d("check", content.toString());
         hashMap.put("type", arr[1]);
