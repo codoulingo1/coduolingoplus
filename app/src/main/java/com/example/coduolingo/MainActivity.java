@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
                 String ans = inp.getText().toString();
                 if (ans.equals(hashMap.get("Answer"))) {
                     qs.setText("Guten");
-                    isRight = true;
+                    isRight = true; //savta
                     return;
                 } else{
                     isRight = false;
