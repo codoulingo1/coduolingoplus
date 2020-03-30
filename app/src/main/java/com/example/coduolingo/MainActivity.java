@@ -29,55 +29,42 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        lessonCreator("57933", "Math");
+        lessonCreator("57933", "Math", 1);
         //loadquestion("57933", "Math", "26"); //I hate you all google employees. But not you gradle the legendary elephant.
     }
 
-    public void loadquestion(String id, String name, String qs_num) {
+    public HashMap<String, String> loadquestion(String id, String name, String qs_num) {
         isRight = false;
         String lesson = DownloadReadlessons.downloadlesson(id, MainActivity.this); // download lesson by ID
         submit = (Button) findViewById(R.id.button);
         qs = (TextView) findViewById(R.id.textView);
         Log.d("gojo", "h"); // pro vi estas gojo
-        final HashMap<String, String> hashMap = DownloadReadlessons.readqs(id, name, qs_num, MainActivity.this); // read qs by ID + name + question number
-        qs.setText(hashMap.get("qs"));
-        Log.d("gojo", hashMap.get("qs"));
-        submit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                EditText inp = (EditText) findViewById(R.id.inp);
-                String ans = inp.getText().toString();
-                if (ans.equals(hashMap.get("Answer"))) {
-                    qs.setText("Guten");
-                    isRight = true; //savta
-                    return;
-                } else{
-                    isRight = false;
-                }
-            }
-        });
-    }
+        HashMap<String, String> hashMap = DownloadReadlessons.readqs(id, name, qs_num, MainActivity.this); // read qs by ID + name + question numbe
+        return hashMap;
+        // r
 
-    public void lessonCreator(String ID, String name){
-
-        for (int i = 1; i<=3; i++) {
-            if(i == 1){
-                loadquestion(ID, name, String.valueOf(i));
-            }else if(isRight == true){
-                loadquestion(ID, name, String.valueOf(i));
             }
 
-        }
+    public void lessonCreator(final String ID, final String name, final int i){
+            final HashMap<String, String> hashMap = loadquestion(ID, name, String.valueOf(i));
+            qs.setText(hashMap.get("qs"));
+            submit.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    EditText inp = (EditText) findViewById(R.id.inp);
+                    String ans = inp.getText().toString();
+                    if (ans.equals(hashMap.get("Answer"))) {
+                        qs.setText("Guten");
+                        try {
+                            lessonCreator(ID, name, i + 1);
+                        }
+                        catch (Exception e){
+                            Log.d("Error", "No files");
+                        }
 
-    }
+                    }else{
 
-    void sleep(int time){
-        Runnable r = new Runnable() {
-            @Override
-            public void run(){
-            }
-        };
-        Handler h = new Handler();
-        h.postDelayed(r, time);
-    }
-}
+                    }
+                }});}}
+
+
