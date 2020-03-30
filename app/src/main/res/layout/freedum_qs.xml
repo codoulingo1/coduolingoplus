@@ -7,7 +7,7 @@
     android:layout_height="match_parent">
 
     <Button
-        android:id="@+id/button5"
+        android:id="@+id/Opt4"
         android:layout_width="301dp"
         android:layout_height="50dp"
         android:text="Button"
@@ -19,7 +19,7 @@
         app:layout_constraintVertical_bias="0.876" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/Opt2"
         android:layout_width="301dp"
         android:layout_height="50dp"
         android:text="Button"
@@ -31,7 +31,7 @@
         app:layout_constraintVertical_bias="0.679" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/Opt1"
         android:layout_width="301dp"
         android:layout_height="50dp"
         android:text="Button"
@@ -43,7 +43,7 @@
         app:layout_constraintVertical_bias="0.581" />
 
     <Button
-        android:id="@+id/button4"
+        android:id="@+id/Opt3"
         android:layout_width="301dp"
         android:layout_height="50dp"
         android:text="Button"
@@ -55,7 +55,7 @@
         app:layout_constraintVertical_bias="0.775" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/freedumQuestion"
         android:layout_width="336dp"
         android:layout_height="39dp"
         android:text="?כמה כוכבים יש בדגל האמריקאי"

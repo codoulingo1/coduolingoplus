@@ -46,27 +46,36 @@ public class MainActivity extends AppCompatActivity {
             }
 
     public void lessonCreator(final String ID, final String name, final int i){
-            final HashMap<String, String> hashMap = loadquestion(ID, name, String.valueOf(i));
-            qs.setText(hashMap.get("qs"));
-            submit.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    EditText inp = (EditText) findViewById(R.id.inp);
-                    String ans = inp.getText().toString();
-                    if (ans.equals(hashMap.get("Answer"))) {
-                        qs.setText("Guten");
-                        try {
-                            lessonCreator(ID, name, i + 1);
-                        }
-                        catch (Exception e){
-                            Log.d("Error", "No files");
-                        }
-
-                    }else{
-
+        final HashMap<String, String> hashMap = loadquestion(ID, name, String.valueOf(i));
+        qs.setText(hashMap.get("qs"));
+        submit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                EditText inp = (EditText) findViewById(R.id.inp);
+                String ans = inp.getText().toString();
+                if (ans.equals(hashMap.get("Answer"))) {
+                    qs.setText("Guten");
+                    try {
+                        lessonCreator(ID, name, i + 1);
                     }
+                    catch (Exception e){
+                        Log.d("Error", "No files");
+                    }
+                 }
+                else{
                 }
-            });
+            }
+        });
+    }
+
+    public void freedumQs(int NumOfQs, int ID, int Qs_Num){
+        TextView Question = findViewById(R.id.freedumQuestion);
+        Button opt1 = findViewById(R.id.Opt1);
+        Button opt2 = findViewById(R.id.Opt2);
+        Button opt3 = findViewById(R.id.Opt3);
+        Button opt4 = findViewById(R.id.Opt4);
+
+        //TODO: Need to setup applying the questions from firebase.
     }
 }
 
