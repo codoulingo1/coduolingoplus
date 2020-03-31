@@ -27,8 +27,7 @@ public class ExplainationQS extends AppCompatActivity {
         HashMap<String, String> explanation_hashmap = MainActivity.shared_hashmap;
         int qs_num = MainActivity.j;
         TextView fr = (TextView)findViewById(R.id.Explanation);
-        fr.setText(explanation_hashmap.get("qs"));
-
+        fr.setText(explanation_hashmap.get("qs")); //Savta shel nadav asoia megojim
         continueBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
