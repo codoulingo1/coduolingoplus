@@ -36,7 +36,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         if (j>1){
-            lessonCreator("57933", "Math", j);
+            try {
+                lessonCreator("57933", "Math", j);
+            }
+            catch(Exception e) {
+
+            }
         }
         else {
             lessonCreator("57933", "Math", 1);
