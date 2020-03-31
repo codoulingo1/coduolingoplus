@@ -58,7 +58,7 @@
         android:id="@+id/freedumQuestion"
         android:layout_width="336dp"
         android:layout_height="39dp"
-        android:text="?כמה כוכבים יש בדגל האמריקאי"
+        android:text="\?כמה כוכבים יש בדגל האמריקאי"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
