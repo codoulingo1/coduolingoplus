@@ -26,15 +26,21 @@ public class MainActivity extends AppCompatActivity {
     TextView qs;
     Button submit;
     Boolean isRight;
-    public String shared_id;
-    public String shared_name;
+    public static String shared_id;
+    public static String shared_name;
     public static int j;
+    public static int is_back;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        lessonCreator("57934", "Math", 1);
+        if (j>1){
+            lessonCreator("57933", "Math", j);
+        }
+        else {
+            lessonCreator("57933", "Math", 1);
+        }
         //loadquestion("57933", "Math", "26"); //I hate you all google employees. But not you gradle the legendary elephant.
     }
 
