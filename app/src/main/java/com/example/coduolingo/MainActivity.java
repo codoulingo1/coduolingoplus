@@ -67,16 +67,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-
-    public void freedumQs(int NumOfQs, int ID, int Qs_Num){
-        TextView Question = findViewById(R.id.freedumQuestion);
-        Button opt1 = findViewById(R.id.Opt1);
-        Button opt2 = findViewById(R.id.Opt2);
-        Button opt3 = findViewById(R.id.Opt3);
-        Button opt4 = findViewById(R.id.Opt4);
-
-        //TODO: Need to setup applying the questions from firebase.
-    }
 }
 
 
