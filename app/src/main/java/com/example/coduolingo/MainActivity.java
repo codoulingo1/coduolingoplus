@@ -50,9 +50,8 @@ public class MainActivity extends AppCompatActivity {
         submit = (Button) findViewById(R.id.button);
         qs = (TextView) findViewById(R.id.textView);
         Log.d("gojo", "h"); // pro vi estas gojo
-        HashMap<String, String> hashMap = DownloadReadlessons.readqs(id, name, qs_num, MainActivity.this); // read qs by ID + name + question numbe
+        HashMap<String, String> hashMap = DownloadReadlessons.readqs(id, name, qs_num, MainActivity.this); // read qs by ID + name + question number
         return hashMap;
-        // r
 
             }
 
@@ -64,6 +63,9 @@ public class MainActivity extends AppCompatActivity {
         shared_hashmap = hashMap;
         if (hashMap.get("type").equals("freedum")){
             startActivity(new Intent(MainActivity.this, freedumQs.class));
+        }
+        if(hashMap.get("type").equals("explain")){
+            startActivity(new Intent(MainActivity.this, ExplainationQS.class));
         }
         qs.setText(hashMap.get("qs"));
         submit.setOnClickListener(new View.OnClickListener() {

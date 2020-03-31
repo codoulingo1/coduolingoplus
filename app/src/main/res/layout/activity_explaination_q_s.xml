@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <Button
+        android:id="@+id/continueBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="הבא"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.092"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.976" />
+
+    <TextView
+        android:id="@+id/Explanation"
+        android:layout_width="394dp"
+        android:layout_height="290dp"
+        android:text="חופש הוא מושג מופשט המתאר העדר אילוצים ואפשרויות פעולה לא מוגבלות. שאלת החופש נוגעת להרבה תחומים בחיי האדם בהם התחום הפילוסופי, הפוליטי-מדיני, החברתי, הפסיכולוגי והמנטלי. מושג החופש מתפרש גם לסוגים שונים כגון: חירות האדם, עצמאות, חירות מחשבה, חופש הביטוי, חופש דת וחופשה "
+        android:textSize="24sp"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="16dp" />
+</androidx.constraintlayout.widget.ConstraintLayout>

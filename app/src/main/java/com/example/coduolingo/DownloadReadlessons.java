@@ -55,5 +55,7 @@ public class DownloadReadlessons {
         hashMap.put("Image", arr[7]);
         hashMap.put("Answer", arr[9]);
         return hashMap; //goj
+
+
     }
 }
