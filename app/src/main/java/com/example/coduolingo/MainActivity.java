@@ -1,5 +1,6 @@
 package com.example.coduolingo;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -21,9 +22,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
 
+    public static HashMap<String, String> shared_hashmap;
     TextView qs;
     Button submit;
     Boolean isRight;
+    public String shared_id;
+    public String shared_name;
+    public static int j;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +52,13 @@ public class MainActivity extends AppCompatActivity {
 
     public void lessonCreator(final String ID, final String name, final int i){
         final HashMap<String, String> hashMap = loadquestion(ID, name, String.valueOf(i));
+        j = i;
+        shared_id = ID;
+        shared_name = name;
+        shared_hashmap = hashMap;
+        if (hashMap.get("type").equals("freedum")){
+            startActivity(new Intent(MainActivity.this, freedumQs.class));
+        }
         qs.setText(hashMap.get("qs"));
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,6 +75,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                  }
                 else{
+
                 }
             }
         });
