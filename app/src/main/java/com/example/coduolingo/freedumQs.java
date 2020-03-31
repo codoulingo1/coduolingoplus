@@ -3,6 +3,7 @@ package com.example.coduolingo;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -26,14 +27,9 @@ public class freedumQs extends AppCompatActivity {
         int qs_num = MainActivity.j;
         TextView fr = (TextView)findViewById(R.id.freedumQuestion);
         fr.setText(freedum_hashmap.get("qs"));
-        Button b1 = (Button)findViewById(R.id.Opt1);
-        String buttonText1 = b1.getText().toString();
-        Button b2 = (Button)findViewById(R.id.Opt2);
-        String buttonText2 = b2.getText().toString();
-        Button b3 = (Button)findViewById(R.id.Opt3);
-        String buttonText3 = b3.getText().toString();
-        Button b4 = (Button)findViewById(R.id.Opt4);
-        String buttonText4 = b3.getText().toString();
+        String[] optAns = freedum_hashmap.get("Content").split("//,");
+        Log.d("avino", optAns[0]);
+
 
     }
 }
