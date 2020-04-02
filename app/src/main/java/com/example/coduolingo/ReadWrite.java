@@ -24,6 +24,8 @@ public class ReadWrite {public static void write(String name, String data,Contex
     catch (IOException e) {
         Log.e("Exception", "File write failed: " + e.toString());
     }
+
+
 }
     public static String read(String name, Context context) {
 
