@@ -50,7 +50,6 @@ public class NonFreedum extends AppCompatActivity {
             public void onClick(View v) {
                 //when play is clicked show stop button and hide play button
                 choice(opt2);
-
             }
         });
         opt3.setOnClickListener(new View.OnClickListener() {
@@ -58,7 +57,6 @@ public class NonFreedum extends AppCompatActivity {
             public void onClick(View v) {
                 //when play is clicked show stop button and hide play button
                 choice(opt3);
-
             }
         });
         opt4.setOnClickListener(new View.OnClickListener() {
