@@ -7,9 +7,15 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class NonFreedum extends AppCompatActivity {
-
+    TextView ans;
+    String org;
+    List<String> back_ch = new ArrayList<String>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -20,23 +26,28 @@ public class NonFreedum extends AppCompatActivity {
         final Button opt4 = (Button) findViewById(R.id.button4);
         final Button opt5 = (Button) findViewById(R.id.button5);
         final Button opt6 = (Button) findViewById(R.id.button6);
+        final Button check = (Button) findViewById(R.id.check);
+        final TextView qs = (TextView) findViewById(R.id.textView2);
+        qs.setText(MainActivity.shared_hashmap.get("qs"));
+        String[] optAns = MainActivity.shared_hashmap.get("Content").split(",");
+        Log.d("hi", "h" + optAns[0]);
+        final Button dlt = (Button) findViewById(R.id.dlt);
+        final Button dltall = (Button) findViewById(R.id.dltall);
         Button[] ops = {opt1, opt2, opt3, opt4, opt5, opt6};
+        back_ch.add("");
+        int opnum = 0;
         for (Button op : ops){
-            if (op.getText().toString().length()==0) {
+            try{
+                op.setText(optAns[opnum]);
+                opnum++;
+            }
+            catch (Exception e) {
                 op.setVisibility(View.INVISIBLE);
+                break;
             }
             }
-        final Button ans1 = (Button) findViewById(R.id.ans);
-        final Button ans2 = (Button) findViewById(R.id.ans2);
-        final Button ans3 = (Button) findViewById(R.id.ans3);
-        final Button ans4 = (Button) findViewById(R.id.ans4);
-        final Button ans5 = (Button) findViewById(R.id.ans5);
-        ans1.setVisibility(View.INVISIBLE);
-        ans2.setVisibility(View.INVISIBLE);
-        ans3.setVisibility(View.INVISIBLE);
-        ans4.setVisibility(View.INVISIBLE);
-        ans5.setVisibility(View.INVISIBLE);
-
+        ans = (TextView) findViewById(R.id.textView3);
+        org = ans.getText().toString();
         opt1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -83,83 +94,57 @@ public class NonFreedum extends AppCompatActivity {
 
             }
         });
-        ans1.setOnClickListener(new View.OnClickListener() {
+        dlt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //when play is clicked show stop button and hide play button
-                back_choice(ans1);
+                back_choice();
 
             }
         });
-        ans2.setOnClickListener(new View.OnClickListener() {
+        dltall.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //when play is clicked show stop button and hide play button
-                back_choice(ans2);
+                rese();
 
             }
         });
-        ans3.setOnClickListener(new View.OnClickListener() {
+        check.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //when play is clicked show stop button and hide play button
-                back_choice(ans3);
-
-            }
-        });
-        ans4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //when play is clicked show stop button and hide play button
-                back_choice(ans4);
-
-            }
-        });
-        ans5.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //when play is clicked show stop button and hide play button
-                back_choice(ans5);
+                if (MainActivity.shared_hashmap.get("Answer").equals(ans.getText().toString())){
+                    MainActivity.j++;
+                    startActivity(new Intent(NonFreedum.this, MainActivity.class));
+                }
 
             }
         });
 
     }
     public void choice(Button opt){
-        final Button ans1 = (Button) findViewById(R.id.ans);
-        final Button ans2 = (Button) findViewById(R.id.ans2);
-        final Button ans3 = (Button) findViewById(R.id.ans3);
-        final Button ans4 = (Button) findViewById(R.id.ans4);
-        final Button ans5 = (Button) findViewById(R.id.ans5);
-        Button[] buttons = {ans1, ans2, ans3, ans4, ans5};
-        for (Button btn : buttons){
-            if (btn.getText().toString().length()==0){
-                if(opt.getText().toString().length()>0){
-                    Log.d("eyalo", "gojo");
-                    btn.setVisibility(View.VISIBLE);
-                    btn.setText(opt.getText().toString());
-                    opt.setText("");
-                    break;
-            }}
+        String text = ans.getText().toString();
+        String add = opt.getText().toString();
+        ans.setText(text + add);
+        back_ch.add(text+add);
+    }
+    public void back_choice() {
+        try{
+        if (back_ch.get(back_ch.size() - 2).length() < back_ch.get(back_ch.size() - 1).length()) {
+            ans.setText(back_ch.get(back_ch.size() - 2));
+            back_ch.remove(back_ch.size() - 2);}
+
+
+        else {
+            rese();
+        }
+        }catch (Exception e){
+            rese();
         }
     }
-    public void back_choice(Button ans){
-        final Button opt1 = (Button) findViewById(R.id.button1);
-        final Button opt2 = (Button) findViewById(R.id.button2);
-        final Button opt3 = (Button) findViewById(R.id.button3);
-        final Button opt4 = (Button) findViewById(R.id.button4);
-        final Button opt5 = (Button) findViewById(R.id.button5);
-        final Button opt6 = (Button) findViewById(R.id.button6);
-        Button[] ops = {opt1, opt2, opt3, opt4, opt5, opt6};
-        for (Button op : ops){
-            if (op.getText().toString().length()==0) {
-                op.setVisibility(View.VISIBLE);
-                op.setText(ans.getText().toString());
-                ans.setText("");
-                ans.setVisibility(View.INVISIBLE);
-                break;
-            }
-        }
+    public void rese() {
+        ans.setText(org);
     }
     void getLength(){
         //String btnText;

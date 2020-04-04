@@ -35,7 +35,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        startActivity(new Intent(MainActivity.this, NonFreedum.class));
         if (j>1){
             try {
                 lessonCreator("57933", "Math", j);
@@ -73,6 +72,10 @@ public class MainActivity extends AppCompatActivity {
         if(hashMap.get("type").equals("explain")){
             startActivity(new Intent(MainActivity.this, ExplainationQS.class));
         }
+        if(hashMap.get("type").equals("nonfreetext")){
+            startActivity(new Intent(MainActivity.this, NonFreedum.class));
+        }
+
         qs.setText(hashMap.get("qs"));
         submit.setOnClickListener(new View.OnClickListener() {
             @Override

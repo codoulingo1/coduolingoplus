@@ -76,9 +76,7 @@ public class freedumQs extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (opt3.getText().toString().equals(freedum_hashmap.get("Answer"))){
-                    MainActivity a =new MainActivity();
-                    setContentView(R.layout.activity_main);
-                    a.lessonCreator(freedum_id, freedum_name, qs_num+1);
+                    startActivity(new Intent(freedumQs.this, MainActivity.class));
                 }
 
             }
@@ -86,9 +84,7 @@ public class freedumQs extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (opt4.getText().toString().equals(freedum_hashmap.get("Answer"))){
-                    MainActivity a =new MainActivity();
-                    setContentView(R.layout.activity_main);
-                    a.lessonCreator(freedum_id, freedum_name, qs_num+1);
+                    startActivity(new Intent(freedumQs.this, MainActivity.class));
                 }
 
             }
