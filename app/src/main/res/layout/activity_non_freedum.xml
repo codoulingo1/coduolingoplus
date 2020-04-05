@@ -11,6 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="שאלה"
+        android:textColor="#000000"
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -21,10 +22,11 @@
 
     <HorizontalScrollView
         android:id="@+id/horizontalScrollView"
-        android:layout_width="409dp"
-        android:layout_height="65dp"
+        android:layout_width="wrap_content"
+        android:layout_height="55dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0">
@@ -36,49 +38,49 @@
 
             <Button
                 android:id="@+id/button1"
-                android:layout_width="46dp"
-                android:layout_height="60dp"
-                android:text="pr"
+                android:layout_width="120dp"
+                android:layout_height="50dp"
+                android:text="b1"
                 android:textAllCaps="false"
                 android:textSize="16dp" />
 
             <Button
                 android:id="@+id/button2"
-                android:layout_width="168dp"
-                android:layout_height="60dp"
-                android:text="eyalo estas gojaco"
+                android:layout_width="120dp"
+                android:layout_height="50dp"
+                android:text="b2"
                 android:textAllCaps="false"
                 android:textSize="16dp" />
 
             <Button
                 android:id="@+id/button3"
-                android:layout_width="143dp"
-                android:layout_height="60dp"
-                android:text="jes"
+                android:layout_width="120dp"
+                android:layout_height="50dp"
+                android:text="b3"
                 android:textAllCaps="false"
                 android:textSize="16dp" />
 
             <Button
                 android:id="@+id/button4"
-                android:layout_width="143dp"
-                android:layout_height="60dp"
-                android:text="ne"
+                android:layout_width="120dp"
+                android:layout_height="50dp"
+                android:text="b4"
                 android:textAllCaps="false"
                 android:textSize="16dp" />
 
             <Button
                 android:id="@+id/button5"
-                android:layout_width="143dp"
-                android:layout_height="60dp"
-                android:text="eble"
+                android:layout_width="120dp"
+                android:layout_height="50dp"
+                android:text="b5"
                 android:textAllCaps="false"
                 android:textSize="16dp" />
 
             <Button
                 android:id="@+id/button6"
-                android:layout_width="143dp"
-                android:layout_height="60dp"
-                android:text="if"
+                android:layout_width="120dp"
+                android:layout_height="50dp"
+                android:text="b6 "
                 android:textAllCaps="false"
                 android:textSize="16dp"
                 app:layout_constraintHorizontal_bias="1.0"
@@ -90,6 +92,7 @@
         android:id="@+id/textView3"
         android:layout_width="341dp"
         android:layout_height="416dp"
+        android:textColor="#000000"
         android:textSize="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

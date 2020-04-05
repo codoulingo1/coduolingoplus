@@ -16,6 +16,7 @@ public class NonFreedum extends AppCompatActivity {
     TextView ans;
     String org;
     List<String> back_ch = new ArrayList<String>();
+    String[] unuateksto;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,6 +31,7 @@ public class NonFreedum extends AppCompatActivity {
         final TextView qs = (TextView) findViewById(R.id.textView2);
         qs.setText(MainActivity.shared_hashmap.get("qs"));
         String[] optAns = MainActivity.shared_hashmap.get("Content").split(",");
+        unuateksto = MainActivity.shared_hashmap.get("additional").split(",");
         Log.d("hi", "h" + optAns[0]);
         final Button dlt = (Button) findViewById(R.id.dlt);
         final Button dltall = (Button) findViewById(R.id.dltall);
@@ -43,7 +45,6 @@ public class NonFreedum extends AppCompatActivity {
             }
             catch (Exception e) {
                 op.setVisibility(View.INVISIBLE);
-                break;
             }
             }
         ans = (TextView) findViewById(R.id.textView3);
@@ -121,19 +122,47 @@ public class NonFreedum extends AppCompatActivity {
 
             }
         });
+        int opt1txt = opt1.getText().toString().length();
+        int opt2txt = opt2.getText().toString().length();
+        int opt3txt = opt3.getText().toString().length();
+        int opt4txt = opt4.getText().toString().length();
+        int opt5txt = opt5.getText().toString().length();
+        int opt6txt = opt6.getText().toString().length();
+
+        opt1.getLayoutParams().width = opt1txt * 25 + 100;
+        opt2.getLayoutParams().width = opt2txt * 25 + 100;
+        opt3.getLayoutParams().width = opt3txt * 25 + 100;
+        opt4.getLayoutParams().width = opt4txt * 25 + 100;
+        opt5.getLayoutParams().width = opt5txt * 25 + 100;
+        opt6.getLayoutParams().width = opt6txt * 25 + 100;
 
     }
     public void choice(Button opt){
-        String text = ans.getText().toString();
+        String text;
+        Log.d("hi", back_ch.get(back_ch.size() - 1));
+        Log.d("hi", unuateksto[0] + unuateksto[1]);
+
+        try {
+            if (!back_ch.get(back_ch.size() - 1).equals(unuateksto[0] + unuateksto[1]))
+            {
+                text = back_ch.get(back_ch.size() - 1);
+            }else{
+                text = "";
+            }
+
+        }
+        catch (Exception e){
+            text = "";
+        }
         String add = opt.getText().toString();
-        ans.setText(text + add);
+        ans.setText(unuateksto[0] + text + add + unuateksto[1]);
         back_ch.add(text+add);
     }
     public void back_choice() {
         try{
         if (back_ch.get(back_ch.size() - 2).length() < back_ch.get(back_ch.size() - 1).length()) {
-            ans.setText(back_ch.get(back_ch.size() - 2));
-            back_ch.remove(back_ch.size() - 2);}
+            ans.setText(unuateksto[0] + back_ch.get(back_ch.size() - 2) + unuateksto[1]);
+            back_ch.remove(back_ch.size() - 1);}
 
 
         else {
@@ -144,7 +173,9 @@ public class NonFreedum extends AppCompatActivity {
         }
     }
     public void rese() {
-        ans.setText(org);
+        ans.setText( unuateksto[0] + unuateksto[1]);
+        back_ch.clear();
+        back_ch.add(unuateksto[0] + unuateksto[1]);
     }
     void getLength(){
         //String btnText;
