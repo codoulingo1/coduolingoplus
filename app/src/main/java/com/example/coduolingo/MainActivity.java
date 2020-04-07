@@ -35,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        String lesson = DownloadReadlessons.downloadlesson("57933", MainActivity.this);
         if (j>1){
             try {
                 lessonCreator("57933", "Math", j);
