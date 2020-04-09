@@ -1,5 +1,4 @@
 package com.example.coduolingo;
-
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -162,8 +161,8 @@ public class NonFreedum extends AppCompatActivity {
         }
         String add = opt.getText().toString();
         Log.d("hello", String.format(Text.replace(Text.replace(text, '£', '%', 0), '%', '£', 1), add));
-        ans.setText(String.format(Text.replace(Text.replace(text, '£', '%', 0), '%', '£', 1), add));
-        back_ch.add(String.format(Text.replace(Text.replace(text, '£', '%', 0), '%', '£', 1), add));
+        ans.setText(String.format(Text.replace(Text.replace(text, '£', '%', 0), '%', '£', 1), add));//add the input
+        back_ch.add(String.format(Text.replace(Text.replace(text, '£', '%', 0), '%', '£', 1), add));//add the input
     }
     public void back_choice() {
         try{

@@ -7,7 +7,7 @@ public class Text {
     {
         return text.indexOf(word) > -1;
     }
-    public static String replace (String text, char oldltr, char key, int num){
+    public static String replace (String text, char oldltr, char key, int num){// replace function
         int n = 0;
         String end = "";
         for ( char i : text.toCharArray()){
