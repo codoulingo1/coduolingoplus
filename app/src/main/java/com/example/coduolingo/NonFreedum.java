@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -29,6 +30,8 @@ public class NonFreedum extends AppCompatActivity {
         final Button opt6 = (Button) findViewById(R.id.button6);
         final Button check = (Button) findViewById(R.id.check);
         final TextView qs = (TextView) findViewById(R.id.textView2);
+        ProgressBar pb = (ProgressBar) findViewById(R.id.progressBar);
+        pb.setProgress(MainActivity.pr);
         qs.setText(MainActivity.shared_hashmap.get("qs"));
         String[] optAns = MainActivity.shared_hashmap.get("Content").split(",");
         unuateksto = MainActivity.shared_hashmap.get("additional");

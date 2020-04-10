@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.content.Intent;
 import android.os.Bundle;
@@ -31,8 +32,9 @@ public class freedumQs extends AppCompatActivity {
         final Button opt2 = findViewById(R.id.Opt2);
         final Button opt3 = findViewById(R.id.Opt3);
         final Button opt4 = findViewById(R.id.Opt4);
+        ProgressBar pb = (ProgressBar) findViewById(R.id.progressBar);
+        pb.setProgress(MainActivity.pr);
         final HashMap<String, String> freedum_hashmap = MainActivity.shared_hashmap;
-        final int qs_num = MainActivity.j;
         TextView fr = (TextView)findViewById(R.id.freedumQuestion);
         fr.setText(freedum_hashmap.get("qs"));
         String[] optAns = freedum_hashmap.get("Content").split(",");
@@ -57,7 +59,7 @@ public class freedumQs extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (opt1.getText().toString().equals(freedum_hashmap.get("Answer"))){
-                    MainActivity.j = qs_num+1;
+                    MainActivity.j++;
                     startActivity(new Intent(freedumQs.this, MainActivity.class));
                 }
                 //when play is clicked show stop button and hide play button

@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
@@ -30,14 +31,30 @@ public class MainActivity extends AppCompatActivity {
     public static String shared_name;
     public static int j;
     public static int is_back;
+    float maxJ;
+    ProgressBar pb;
+    public static int pr;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        String lesson = DownloadReadlessons.downloadlesson("57933", MainActivity.this);
+        pb = (ProgressBar) findViewById(R.id.progressBar);
+
+        //String lesson = DownloadReadlessons.downloadlesson("57933", MainActivity.this);
+        for (int i = 1; i<20; i++){
+            try {
+                loadquestion("57933", "Math", String.valueOf(i));
+            }
+            catch (Exception e) {
+                maxJ = i-1;
+                Log.d("savta1", String.valueOf(maxJ));
+                break;
+            }
+        }
         if (j>1){
             try {
+                //pb.setMax(100); // 100 maximum value for the progress value
                 lessonCreator("57933", "Math", j);
             }
             catch(Exception e) {
@@ -67,6 +84,7 @@ public class MainActivity extends AppCompatActivity {
         shared_id = ID;
         shared_name = name;
         shared_hashmap = hashMap;
+        progress();
         if (hashMap.get("type").equals("freedum")){
             startActivity(new Intent(MainActivity.this, freedumQs.class));
         }
@@ -97,6 +115,12 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+    public void progress(){
+        int b = 100 * j;
+        pr = Math.round(b/maxJ);
+        pb.setProgress(pr);
+        Log.d("savta2", String.valueOf(b/maxJ));
     }
 }
 

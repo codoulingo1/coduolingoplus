@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import java.util.HashMap;
@@ -25,9 +26,10 @@ public class ExplainationQS extends AppCompatActivity {
         Button continueBtn;
         continueBtn = (Button) findViewById(R.id.continueBtn);
         HashMap<String, String> explanation_hashmap = MainActivity.shared_hashmap;
-        int qs_num = MainActivity.j;
         TextView fr = (TextView)findViewById(R.id.Explanation);
         fr.setText(explanation_hashmap.get("qs")); //Savta shel nadav asoia megojim
+        ProgressBar pb = (ProgressBar) findViewById(R.id.progressBar);
+        pb.setProgress(MainActivity.pr);
         continueBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
