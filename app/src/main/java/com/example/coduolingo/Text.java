@@ -2,6 +2,9 @@ package com.example.coduolingo;
 
 import android.util.Log;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Text {
     public static boolean findstring(String word, String text)//boolean: if word in text : true, else: false
     {
@@ -133,6 +136,27 @@ public class Text {
             }
         }
         Log.d("end", end);
+        return end;
+    }
+    public static List<Integer> betweenIndex(String text, char start, char stop){
+        List<Integer> end = new ArrayList<Integer>();
+        boolean is_start = false;
+        char[] a = text.toCharArray();
+        for (int i =0; i<a.length; i++) {
+            //Log.d("hello", String.valueOf(a[i]));
+            if(a[i]==stop & is_start==true){
+                end.add(i);
+                is_start=false;
+            }
+            if (is_start==true){
+                end.add(i);
+            }
+            if  (a[i]==start){
+                is_start = true;
+                end.add(i);
+            }
+        }
+        Log.d("end", end.toString());
         return end;
     }
     public static String join(String text, String join){

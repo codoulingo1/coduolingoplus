@@ -18,6 +18,7 @@ public class NonFreedum extends AppCompatActivity {
     List<String> back_ch = new ArrayList<String>();
     String unuateksto;
     int wrloc;
+    public String f;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,6 +40,7 @@ public class NonFreedum extends AppCompatActivity {
         final Button dlt = (Button) findViewById(R.id.dlt);
         final Button dltall = (Button) findViewById(R.id.dltall);
         Button[] ops = {opt1, opt2, opt3, opt4, opt5, opt6};
+        unuateksto = Text.replace(unuateksto, '%', '£', 0);
         back_ch.add(unuateksto);
         int opnum = 0;
         for (Button op : ops){
@@ -51,7 +53,13 @@ public class NonFreedum extends AppCompatActivity {
             }
             }
         ans = (TextView) findViewById(R.id.textView3);
-        ans.setText(unuateksto);
+        List<Integer> first_del =  Text.betweenIndex(unuateksto, '£', 's');
+        char[] ch_new_text = unuateksto.toCharArray();
+        for (int d : first_del){
+            ch_new_text[d] = ' ';
+        }
+        f=String.valueOf(ch_new_text);
+        ans.setText(f);
         org = ans.getText().toString();
         opt1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -163,14 +171,27 @@ public class NonFreedum extends AppCompatActivity {
             Log.d("hi3", "4");
         }
         String add = opt.getText().toString();
-        Log.d("hello", String.format(Text.replace(Text.replace(text, '£', '%', 0), '%', '£', 1), add));
-        ans.setText(String.format(Text.replace(Text.replace(text, '£', '%', 0), '%', '£', 1), add));//add the input
-        back_ch.add(String.format(Text.replace(Text.replace(text, '£', '%', 0), '%', '£', 1), add));//add the input
+        String new_text = String.format(Text.replace(Text.replace(text, '£', '%', 0), '%', '£', 1), add);
+        List<Integer> del =  Text.betweenIndex(new_text, '£', 's');
+        char[] ch_new_text = new_text.toCharArray();
+        for (int d : del){
+            ch_new_text[d] = ' ';
+        }
+        ans.setText(String.valueOf(ch_new_text));//add the input
+        back_ch.add(new_text);//add the input
+        Log.d("hellosavtan", new_text);
+        Log.d("hellosavtan", Text.betweenIndex(new_text, '£', 's').toString());
     }
     public void back_choice() {
         try{
         if (back_ch.get(back_ch.size() - 2).length() < back_ch.get(back_ch.size() - 1).length() || Text.findstring("£", back_ch.get(back_ch.size() - 2))) {
-            ans.setText(back_ch.get(back_ch.size() - 2));
+            String new_text = back_ch.get(back_ch.size() - 2);
+            List<Integer> del =  Text.betweenIndex(new_text, '£', 's');
+            char[] ch_new_text = new_text.toCharArray();
+            for (int d : del){
+                ch_new_text[d] = ' ';
+            }
+            ans.setText(String.valueOf(ch_new_text));
             back_ch.remove(back_ch.size() - 1);}
 
 
@@ -182,7 +203,7 @@ public class NonFreedum extends AppCompatActivity {
         }
     }
     public void rese() {
-        ans.setText(unuateksto);
+        ans.setText(f);
         back_ch.clear();
         back_ch.add(unuateksto);
     }

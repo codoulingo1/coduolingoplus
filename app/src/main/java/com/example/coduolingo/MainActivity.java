@@ -117,7 +117,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
     public void progress(){
-        int b = 100 * j;
+        int b = 100 * (j-1);
         pr = Math.round(b/maxJ);
         pb.setProgress(pr);
         Log.d("savta2", String.valueOf(b/maxJ));
