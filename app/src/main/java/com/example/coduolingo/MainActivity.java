@@ -41,10 +41,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         pb = (ProgressBar) findViewById(R.id.progressBar);
 
-        //String lesson = DownloadReadlessons.downloadlesson("57933", MainActivity.this);
+        String lesson = DownloadReadlessons.downloadlesson("57983", MainActivity.this);
         for (int i = 1; i<20; i++){
             try {
-                loadquestion("57933", "Math", String.valueOf(i));
+                loadquestion("57983", "Math", String.valueOf(i));
             }
             catch (Exception e) {
                 maxJ = i-1;
@@ -55,16 +55,15 @@ public class MainActivity extends AppCompatActivity {
         if (j>1){
             try {
                 //pb.setMax(100); // 100 maximum value for the progress value
-                lessonCreator("57933", "Math", j);
+                lessonCreator("57983", "Math", j);
             }
             catch(Exception e) {
 
             }
         }
         else {
-            lessonCreator("57933", "Math", 1);
+            lessonCreator("57983", "Math", 1);
         }
-        //loadquestion("57933", "Math", "26"); //I hate you all google employees. But not you gradle the legendary elephant. aavino de vi
     }
 
     public HashMap<String, String> loadquestion(String id, String name, String qs_num) {
