@@ -16,6 +16,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.HashMap;
 
@@ -34,6 +35,8 @@ public class MainActivity extends AppCompatActivity {
     float maxJ;
     ProgressBar pb;
     public static int pr;
+    public static String id = "57983";
+    public static String name = "Math";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,37 +44,48 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         pb = (ProgressBar) findViewById(R.id.progressBar);
 
-        String lesson = DownloadReadlessons.downloadlesson("57983", MainActivity.this);
+       String lesson = DownloadReadlessons.downloadlesson(id, MainActivity.this);
         for (int i = 1; i<20; i++){
             try {
-                loadquestion("57983", "Math", String.valueOf(i));
+                loadquestion(id, name, String.valueOf(i));
             }
             catch (Exception e) {
                 maxJ = i-1;
-                Log.d("savta1", String.valueOf(maxJ));
                 break;
             }
         }
-        if (j>1){
+        if (j>1 & j<maxJ+1){
             try {
                 //pb.setMax(100); // 100 maximum value for the progress value
-                lessonCreator("57983", "Math", j);
+                lessonCreator(id, name, j);
             }
             catch(Exception e) {
 
             }
         }
+        else if (j<=1) {
+            lessonCreator(id, name, 1);
+        }
         else {
-            lessonCreator("57983", "Math", 1);
+            qs = (TextView) findViewById(R.id.textView);
+            int b = 100 * (j);
+            pr = Math.round(b/maxJ);
+            for (int numTodel=1; numTodel<=maxJ; numTodel++){
+                File dir = getFilesDir();
+                File file = new File(".", id + name + "qs" + String.valueOf(numTodel) + ".txt");
+                deleteFile(id + name + "qs" + String.valueOf(numTodel));
+                ReadWrite.write("a", "a", MainActivity.this);
+                ReadWrite.deleteFile("a", MainActivity.this);
+                //Log.d(String.valueOf(file.exists()), String.valueOf(deleted));
+
+            }
+            pb.setProgress(pr);
+            qs.setText("כל הכבוד!");
+
         }
     }
 
     public HashMap<String, String> loadquestion(String id, String name, String qs_num) {
-        isRight = false;
-        String lesson = DownloadReadlessons.downloadlesson(id, MainActivity.this); // download lesson by ID
-        submit = (Button) findViewById(R.id.button);
-        qs = (TextView) findViewById(R.id.textView);
-        Log.d("gojo", "h"); // pro vi estas gojo
         HashMap<String, String> hashMap = DownloadReadlessons.readqs(id, name, qs_num, MainActivity.this); // read qs by ID + name + question number
         return hashMap;
 
@@ -87,39 +101,23 @@ public class MainActivity extends AppCompatActivity {
         if (hashMap.get("type").equals("freedum")){
             startActivity(new Intent(MainActivity.this, freedumQs.class));
         }
-        if(hashMap.get("type").equals("explain")){
+        else if(hashMap.get("type").equals("explain")){
             startActivity(new Intent(MainActivity.this, ExplainationQS.class));
         }
-        if(hashMap.get("type").equals("nonfreetext")){
+        else if(hashMap.get("type").equals("nonfreetext")){
             startActivity(new Intent(MainActivity.this, NonFreedum.class));
         }
+        else if(hashMap.get("type").equals("freetext")){
+            startActivity(new Intent(MainActivity.this, FreeText.class));
 
-        qs.setText(hashMap.get("qs"));
-        submit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                EditText inp = (EditText) findViewById(R.id.inp);
-                String ans = inp.getText().toString();
-                if (ans.equals(hashMap.get("Answer"))) {
-                    qs.setText("Guten");
-                    try {
-                        lessonCreator(ID, name, i + 1);
-                    }
-                    catch (Exception e){
-                        Log.d("Error", "No files");
-                    }
-                 }
-                else{
-
-                }
-            }
-        });
-    }
+        }
+    else{
+        qs.setText("finished");
+    }}
     public void progress(){
         int b = 100 * (j-1);
         pr = Math.round(b/maxJ);
         pb.setProgress(pr);
-        Log.d("savta2", String.valueOf(b/maxJ));
     }
 }
 

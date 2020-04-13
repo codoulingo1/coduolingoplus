@@ -1,6 +1,7 @@
 package com.example.coduolingo;
 
 import android.content.Context;
+import android.os.Environment;
 import android.util.Log;
 
 import com.google.firebase.database.DataSnapshot;
@@ -9,6 +10,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.io.File;
 import java.util.HashMap;
 
 /**
@@ -16,7 +18,7 @@ import java.util.HashMap;
  */
 
 public class DownloadReadlessons {
-    public static String  downloadlesson(String ID, final Context c) {
+    public static String  downloadlesson(final String ID, final Context c) {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("Lessons").child(ID);
         myRef.addValueEventListener(new ValueEventListener() {
@@ -29,6 +31,17 @@ public class DownloadReadlessons {
                 for (DataSnapshot snap : dataSnapshot.getChildren()) {
                     if (snap.getValue(String.class).length() != 0) {
                         Log.d("VAL", "Value is: " + snap.getKey() + "    " + snap.getValue(String.class)); //grandmas are very dumb
+                        ReadWrite.write(folder_main + snap.getKey(), snap.getValue(String.class), c); // write qs text file
+                        File folder = new File(ID);
+                        boolean success = true;
+                        if (!folder.exists()) {
+                            success = folder.mkdirs();
+                        }
+                        if (success) {
+                            // Do something on success
+                        } else {
+                            // Do something else on failure
+                        }
                         ReadWrite.write(folder_main + snap.getKey(), snap.getValue(String.class), c); // write qs text file
                     }
                 }
@@ -45,11 +58,10 @@ public class DownloadReadlessons {
     }
     public static HashMap<String, String> readqs(String id, String name, String qs_num, final Context c) {
         String content = ReadWrite.read(id + name + "qs" + qs_num, c); // read downloaded qs
+        Log.d("loc", id + name + "qs" + qs_num);
         HashMap<String, String> hashMap = new HashMap<>(); // create hashmap
         String[] arr = content.split("\\]|\\[");
-        Log.d("check", content.toString());
         hashMap.put("type", arr[1]);
-        Log.d("avino", arr[3]);
         hashMap.put("qs", arr[3]);
         hashMap.put("Content", arr[5]);
         hashMap.put("Image", arr[7]);

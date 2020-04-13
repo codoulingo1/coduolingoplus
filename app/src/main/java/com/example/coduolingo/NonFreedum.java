@@ -36,7 +36,6 @@ public class NonFreedum extends AppCompatActivity {
         qs.setText(MainActivity.shared_hashmap.get("qs"));
         String[] optAns = MainActivity.shared_hashmap.get("Content").split(",");
         unuateksto = MainActivity.shared_hashmap.get("additional");
-        Log.d("hi", "h" + optAns[0]);
         final Button dlt = (Button) findViewById(R.id.dlt);
         final Button dltall = (Button) findViewById(R.id.dltall);
         Button[] ops = {opt1, opt2, opt3, opt4, opt5, opt6};
@@ -151,24 +150,19 @@ public class NonFreedum extends AppCompatActivity {
     }
     public void choice(Button opt){
         String text;
-        Log.d("hi", back_ch.get(back_ch.size() - 1));
-        Log.d("hi", unuateksto);
 
             try {
             if (!back_ch.get(back_ch.size() - 1).equals(unuateksto))
             {
-                Log.d("hi1", "2");
                 text = back_ch.get(back_ch.size() - 1);
             }else{
                 text = unuateksto;
-                Log.d("hi2", "1");
 
             }
 
         }
         catch (Exception e){
             text = unuateksto;
-            Log.d("hi3", "4");
         }
         String add = opt.getText().toString();
         String new_text = String.format(Text.replace(Text.replace(text, '£', '%', 0), '%', '£', 1), add);
@@ -179,8 +173,6 @@ public class NonFreedum extends AppCompatActivity {
         }
         ans.setText(String.valueOf(ch_new_text));//add the input
         back_ch.add(new_text);//add the input
-        Log.d("hellosavtan", new_text);
-        Log.d("hellosavtan", Text.betweenIndex(new_text, '£', 's').toString());
     }
     public void back_choice() {
         try{

@@ -38,7 +38,6 @@ public class freedumQs extends AppCompatActivity {
         TextView fr = (TextView)findViewById(R.id.freedumQuestion);
         fr.setText(freedum_hashmap.get("qs"));
         String[] optAns = freedum_hashmap.get("Content").split(",");
-        Log.d("aviam tuam", optAns[0]);
         final String freedum_id = MainActivity.shared_id;
         final String freedum_name = MainActivity.shared_name;
         opt1.setText(optAns[0]);

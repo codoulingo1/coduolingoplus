@@ -1,9 +1,12 @@
 package com.example.coduolingo;
 
+import android.content.ContentResolver;
 import android.content.Context;
+import android.net.Uri;
 import android.util.Log;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
@@ -55,5 +58,22 @@ public class ReadWrite {public static void write(String name, String data,Contex
         }
 
         return ret;
+    }
+    public static void deleteFile(String filePath, Context c){
+        if(filePath.startsWith("content://")){
+            ContentResolver contentResolver = c.getContentResolver();
+            contentResolver.delete(Uri.parse(filePath), null, null);
+        }else {
+            File file = new File(filePath);
+            if(file.exists()) {
+                if (file.delete()) {
+                    Log.e("hi", "File deleted.");
+                }else {
+                    Log.e("hi", "Failed to delete file!");
+                }
+            }else {
+                Log.e("hi", "File not exist!");
+            }
+        }
     }
 }
