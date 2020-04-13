@@ -2,6 +2,7 @@ package com.example.coduolingo;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
@@ -16,8 +17,11 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import org.apache.commons.io.FileUtils;
+
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.HashMap;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -43,8 +47,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         pb = (ProgressBar) findViewById(R.id.progressBar);
-
-       String lesson = DownloadReadlessons.downloadlesson(id, MainActivity.this);
+        String lesson = DownloadReadlessons.downloadlesson(id, MainActivity.this);
+        String lessons = DownloadReadlessons.downloadlesson(id, MainActivity.this);
         for (int i = 1; i<20; i++){
             try {
                 loadquestion(id, name, String.valueOf(i));
@@ -73,9 +77,14 @@ public class MainActivity extends AppCompatActivity {
             for (int numTodel=1; numTodel<=maxJ; numTodel++){
                 File dir = getFilesDir();
                 File file = new File(".", id + name + "qs" + String.valueOf(numTodel) + ".txt");
-                deleteFile(id + name + "qs" + String.valueOf(numTodel));
-                ReadWrite.write("a", "a", MainActivity.this);
-                ReadWrite.deleteFile("a", MainActivity.this);
+                File dirName = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/" + id + "/");
+                boolean a = false;
+                try {
+                    FileUtils.deleteDirectory(dirName);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                Log.d(String.valueOf(a), String.valueOf(a));
                 //Log.d(String.valueOf(file.exists()), String.valueOf(deleted));
 
             }

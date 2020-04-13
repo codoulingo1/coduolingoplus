@@ -1,13 +1,13 @@
 package com.example.coduolingo;
 
-import android.content.ContentResolver;
 import android.content.Context;
-import android.net.Uri;
 import android.util.Log;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -19,7 +19,7 @@ import java.io.OutputStreamWriter;
 
 public class ReadWrite {public static void write(String name, String data,Context context) {
     try {
-        OutputStreamWriter outputStreamWriter = new OutputStreamWriter(context.openFileOutput(name + ".txt", Context.MODE_PRIVATE));
+        OutputStreamWriter outputStreamWriter = new OutputStreamWriter(new FileOutputStream(new File(name + ".txt"), false));
         outputStreamWriter.write(data);
         outputStreamWriter.close();
         Log.d("ok", "file wrote");
@@ -27,15 +27,13 @@ public class ReadWrite {public static void write(String name, String data,Contex
     catch (IOException e) {
         Log.e("Exception", "File write failed: " + e.toString());
     }
-
-
 }
     public static String read(String name, Context context) {
 
         String ret = "";
 
         try {
-            InputStream inputStream = context.openFileInput(name +".txt");
+            InputStream inputStream = new FileInputStream(name +".txt");
 
             if ( inputStream != null ) {
                 InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
@@ -58,22 +56,5 @@ public class ReadWrite {public static void write(String name, String data,Contex
         }
 
         return ret;
-    }
-    public static void deleteFile(String filePath, Context c){
-        if(filePath.startsWith("content://")){
-            ContentResolver contentResolver = c.getContentResolver();
-            contentResolver.delete(Uri.parse(filePath), null, null);
-        }else {
-            File file = new File(filePath);
-            if(file.exists()) {
-                if (file.delete()) {
-                    Log.e("hi", "File deleted.");
-                }else {
-                    Log.e("hi", "Failed to delete file!");
-                }
-            }else {
-                Log.e("hi", "File not exist!");
-            }
-        }
     }
 }

@@ -1,5 +1,7 @@
 package com.example.coduolingo;
 
+import android.Manifest;
+import android.app.Activity;
 import android.content.Context;
 import android.os.Environment;
 import android.util.Log;
@@ -12,6 +14,8 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.io.File;
 import java.util.HashMap;
+
+import androidx.core.app.ActivityCompat;
 
 /**
  * Created by bobyo on 27/03/2020.
@@ -31,18 +35,19 @@ public class DownloadReadlessons {
                 for (DataSnapshot snap : dataSnapshot.getChildren()) {
                     if (snap.getValue(String.class).length() != 0) {
                         Log.d("VAL", "Value is: " + snap.getKey() + "    " + snap.getValue(String.class)); //grandmas are very dumb
-                        ReadWrite.write(folder_main + snap.getKey(), snap.getValue(String.class), c); // write qs text file
-                        File folder = new File(ID);
+                        ActivityCompat.requestPermissions((Activity) c,new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},1);
+                        ActivityCompat.requestPermissions((Activity) c,new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},1);
+                        File folder = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/" + ID);
                         boolean success = true;
                         if (!folder.exists()) {
                             success = folder.mkdirs();
                         }
                         if (success) {
-                            // Do something on success
+                            ReadWrite.write(Environment.getExternalStorageDirectory().getAbsolutePath() + "/" + ID + "/" + folder_main + snap.getKey(), snap.getValue(String.class), c); // write qs text file
+                            Log.d("sucsess", "guten");
                         } else {
-                            // Do something else on failure
+                            Log.d("sucsess", "nicht guten");
                         }
-                        ReadWrite.write(folder_main + snap.getKey(), snap.getValue(String.class), c); // write qs text file
                     }
                 }
             }
@@ -57,7 +62,7 @@ public class DownloadReadlessons {
         return "via avino";
     }
     public static HashMap<String, String> readqs(String id, String name, String qs_num, final Context c) {
-        String content = ReadWrite.read(id + name + "qs" + qs_num, c); // read downloaded qs
+        String content = ReadWrite.read(Environment.getExternalStorageDirectory().getAbsolutePath() + "/" + id + "/" + id + name + "qs" + qs_num, c); // read downloaded qs
         Log.d("loc", id + name + "qs" + qs_num);
         HashMap<String, String> hashMap = new HashMap<>(); // create hashmap
         String[] arr = content.split("\\]|\\[");
