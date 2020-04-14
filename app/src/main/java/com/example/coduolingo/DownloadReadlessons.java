@@ -58,7 +58,7 @@ public class DownloadReadlessons {
 
 
             @Override
-            public void onCancelled(DatabaseError error) {
+            public void onCancelled(DatabaseError error) {//avino
                 // Failed to read value
                 Log.d("sucsess", "4");
                 Log.w("error", "Failed to read value.", error.toException());
