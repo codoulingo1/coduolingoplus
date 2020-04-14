@@ -47,8 +47,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         pb = (ProgressBar) findViewById(R.id.progressBar);
-        String lesson = DownloadReadlessons.downloadlesson(id, MainActivity.this);
-        String lessons = DownloadReadlessons.downloadlesson(id, MainActivity.this);
+        DownloadReadlessons.downloadlesson(id, MainActivity.this);
         for (int i = 1; i<20; i++){
             try {
                 loadquestion(id, name, String.valueOf(i));

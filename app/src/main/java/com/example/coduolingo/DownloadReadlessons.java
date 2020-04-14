@@ -3,6 +3,7 @@ package com.example.coduolingo;
 import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
+import android.net.sip.SipSession;
 import android.os.Environment;
 import android.util.Log;
 
@@ -14,6 +15,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.io.File;
 import java.util.HashMap;
+import java.util.List;
 
 import androidx.core.app.ActivityCompat;
 
@@ -23,18 +25,20 @@ import androidx.core.app.ActivityCompat;
 
 public class DownloadReadlessons {
     public static String  downloadlesson(final String ID, final Context c) {
+        Log.d("sucsess", "1");
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("Lessons").child(ID);
+        final DatabaseReference myRef = database.getReference("Lessons").child(ID);
+        Log.d("sucsess", "2");
         myRef.addValueEventListener(new ValueEventListener() {
 
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+                Log.d("sucsess", "3");
                 String folder_main = dataSnapshot.child("LessonID").getValue(String.class) + dataSnapshot.child("LessonName").getValue(String.class);
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
                 for (DataSnapshot snap : dataSnapshot.getChildren()) {
                     if (snap.getValue(String.class).length() != 0) {
-                        Log.d("VAL", "Value is: " + snap.getKey() + "    " + snap.getValue(String.class)); //grandmas are very dumb
                         ActivityCompat.requestPermissions((Activity) c,new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},1);
                         ActivityCompat.requestPermissions((Activity) c,new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},1);
                         File folder = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/" + ID);
@@ -44,22 +48,27 @@ public class DownloadReadlessons {
                         }
                         if (success) {
                             ReadWrite.write(Environment.getExternalStorageDirectory().getAbsolutePath() + "/" + ID + "/" + folder_main + snap.getKey(), snap.getValue(String.class), c); // write qs text file
-                            Log.d("sucsess", "guten");
+
                         } else {
-                            Log.d("sucsess", "nicht guten");
                         }
                     }
                 }
+
             }
 
 
             @Override
-            public void onCancelled(DatabaseError error) {
+            public void onCancelled(DatabaseError error) {//avino
                 // Failed to read value
+                Log.d("sucsess", "4");
                 Log.w("error", "Failed to read value.", error.toException());
             }
         });
+        Log.d("sucsess", "5");
         return "via avino";
+    }
+    private interface  FirebaseCallback{
+        void onCallback(List<String> list);
     }
     public static HashMap<String, String> readqs(String id, String name, String qs_num, final Context c) {
         String content = ReadWrite.read(Environment.getExternalStorageDirectory().getAbsolutePath() + "/" + id + "/" + id + name + "qs" + qs_num, c); // read downloaded qs
