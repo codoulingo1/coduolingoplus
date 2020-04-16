@@ -33,13 +33,13 @@ public class freedumQs extends AppCompatActivity {
         final Button opt3 = findViewById(R.id.Opt3);
         final Button opt4 = findViewById(R.id.Opt4);
         ProgressBar pb = (ProgressBar) findViewById(R.id.progressBar);
-        pb.setProgress(MainActivity.pr);
-        final HashMap<String, String> freedum_hashmap = MainActivity.shared_hashmap;
+        pb.setProgress(LessonActivity.pr);
+        final HashMap<String, String> freedum_hashmap = LessonActivity.shared_hashmap;
         TextView fr = (TextView)findViewById(R.id.freedumQuestion);
         fr.setText(freedum_hashmap.get("qs"));
         String[] optAns = freedum_hashmap.get("Content").split(",");
-        final String freedum_id = MainActivity.shared_id;
-        final String freedum_name = MainActivity.shared_name;
+        final String freedum_id = LessonActivity.shared_id;
+        final String freedum_name = LessonActivity.shared_name;
         opt1.setText(optAns[0]);
         opt2.setText(optAns[1]);
         try {
@@ -58,8 +58,8 @@ public class freedumQs extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (opt1.getText().toString().equals(freedum_hashmap.get("Answer"))){
-                    MainActivity.j++;
-                    startActivity(new Intent(freedumQs.this, MainActivity.class));
+                    LessonActivity.j++;
+                    startActivity(new Intent(freedumQs.this, LessonActivity.class));
                 }
                 //when play is clicked show stop button and hide play button
 
@@ -69,7 +69,7 @@ public class freedumQs extends AppCompatActivity {
             public void onClick(View v) {
                 //when play is clicked show stop button and hide play button
                 if (opt2.getText().toString().equals(freedum_hashmap.get("Answer"))){
-                    startActivity(new Intent(freedumQs.this, MainActivity.class));
+                    startActivity(new Intent(freedumQs.this, LessonActivity.class));
                 }
 
             }
@@ -77,7 +77,7 @@ public class freedumQs extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (opt3.getText().toString().equals(freedum_hashmap.get("Answer"))){
-                    startActivity(new Intent(freedumQs.this, MainActivity.class));
+                    startActivity(new Intent(freedumQs.this, LessonActivity.class));
                 }
 
             }
@@ -85,7 +85,7 @@ public class freedumQs extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (opt4.getText().toString().equals(freedum_hashmap.get("Answer"))){
-                    startActivity(new Intent(freedumQs.this, MainActivity.class));
+                    startActivity(new Intent(freedumQs.this, LessonActivity.class));
                 }
 
             }

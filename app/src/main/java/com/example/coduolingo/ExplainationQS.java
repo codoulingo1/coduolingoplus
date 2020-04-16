@@ -31,16 +31,16 @@ public class ExplainationQS extends AppCompatActivity {
     public void explanationQs() {
         Button continueBtn;
         continueBtn = (Button) findViewById(R.id.continueBtn);
-        HashMap<String, String> explanation_hashmap = MainActivity.shared_hashmap;
+        HashMap<String, String> explanation_hashmap = LessonActivity.shared_hashmap;
         TextView fr = (TextView)findViewById(R.id.Explanation);
         fr.setText(explanation_hashmap.get("qs")); //Savta shel nadav asoia megojim
         ProgressBar pb = (ProgressBar) findViewById(R.id.progressBar);
-        pb.setProgress(MainActivity.pr);
+        pb.setProgress(LessonActivity.pr);
         continueBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MainActivity.j++;
-                startActivity(new Intent(ExplainationQS.this, MainActivity.class));
+                LessonActivity.j++;
+                startActivity(new Intent(ExplainationQS.this, LessonActivity.class));
             }
         });
     }
