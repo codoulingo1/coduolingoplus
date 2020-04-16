@@ -2,6 +2,7 @@ package com.example.coduolingo;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -41,33 +42,33 @@ public class MainActivity extends AppCompatActivity {
 
     public static String id = "57999";
     public static String name = "TRY";
-    ProgressDialog temp;
     CountDownTimer mcountdown;
+    TextView w;
     int i = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        temp = new ProgressDialog(MainActivity.this);
-        temp = new ProgressDialog(MainActivity.this);
-        temp.setCancelable(false);
-        temp.setProgress(i);
-        temp.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-        temp.getWindow().setBackgroundDrawable(new ColorDrawable(Color.GRAY));
+        w = (TextView) findViewById(R.id.textView);
         ActivityCompat.requestPermissions((Activity) MainActivity.this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},1);
         ActivityCompat.requestPermissions((Activity) MainActivity.this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},1);
+        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+        builder.setCancelable(false); // if you want user to wait for some process to finish,
+        builder.setView(R.layout.activity_main);
+        final AlertDialog dialog = builder.create();
+        dialog.setMessage("טוען שיעור: " + name);
         DownloadReadlessons.downloadlesson(id, MainActivity.this);
         mcountdown = new CountDownTimer(2000, 1000) {
             @Override
             public void onTick(long l) {
-                temp.setMessage("Loading lesson");
-              Log.d("Loading", "Loading");
+                dialog.show();
+                Log.d("Loading", "Loading");
             }
 
             @Override
             public void onFinish() {
-                temp.dismiss();
+                dialog.dismiss();
                 startActivity(new Intent(MainActivity.this, LessonActivity.class));
             }
         }.start();
