@@ -24,7 +24,7 @@
 
         <activity android:name=".freedumQs" />
         <activity android:name=".MainActivity"></activity>
-        <activity android:name=".tree"> <!--This is the default activity-->
+        <activity android:name=".tree"> <!--This is the default activity!-->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
