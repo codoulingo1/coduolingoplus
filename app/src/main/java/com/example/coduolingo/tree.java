@@ -26,7 +26,7 @@ public class tree extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startLesson("57983", "Math");
-            }
+            } //savta
         });
 
         skill2.setOnClickListener(new View.OnClickListener() {

@@ -46,7 +46,7 @@ public class FreeText extends AppCompatActivity {
                 }
                 else{
 
-                }
+                } //savta
             }
         });
     }
