@@ -2,10 +2,13 @@ package com.example.coduolingo;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.graphics.Color;
+import android.media.Image;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.content.Intent;
@@ -20,11 +23,15 @@ import java.util.HashMap;
 
 public class freedumQs extends AppCompatActivity {
 
+    ImageButton continueBtn;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_freedum_qs);
         freedumQs();
+        continueBtn = (ImageButton) findViewById(R.id.continueBtn1);
+        //continueBtn.setBackgroundColor(Color.TRANSPARENT);
     }
 
     public void freedumQs() {

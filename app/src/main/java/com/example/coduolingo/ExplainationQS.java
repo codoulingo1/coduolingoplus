@@ -18,6 +18,7 @@ import java.util.HashMap;
 
 public class ExplainationQS extends AppCompatActivity {
     public static ImageView ExpImage;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,6 +30,7 @@ public class ExplainationQS extends AppCompatActivity {
         }
         Log.d("url", url);
         explanationQs();
+
     }
 
 

@@ -36,6 +36,8 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
@@ -48,12 +50,18 @@ public class MainActivity extends AppCompatActivity {
     CountDownTimer mcountdown;
     TextView w;
     int i = 0;
+    ProgressBar loading;
+    int progress;
+    int counter = 0;
+    TextView loadingTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         w = (TextView) findViewById(R.id.textView);
+        loading = (ProgressBar) findViewById(R.id.loadingProgress);
+        loadingTextView = (TextView) findViewById(R.id.loadingText);
         ActivityCompat.requestPermissions((Activity) MainActivity.this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},1);
         ActivityCompat.requestPermissions((Activity) MainActivity.this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},1);
         AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
@@ -63,11 +71,13 @@ public class MainActivity extends AppCompatActivity {
         dialog.setMessage("טוען שיעור: " + name);
         DownloadReadlessons.downloadlesson(id, MainActivity.this);
 
-        mcountdown = new CountDownTimer(2000, 1000) {
+        mcountdown = new CountDownTimer(3000, 1000) {
             @Override
             public void onTick(long l) {
-                dialog.show();
+                //dialog.show();
                 Log.d("Loading", "Loading");
+                progressTime();
+                loadingTextView.setText("טוען שיעור: " + name);
             }
 
             @Override
@@ -78,6 +88,23 @@ public class MainActivity extends AppCompatActivity {
         }.start();
 
     } //savta
+
+    void progressTime(){
+        final Timer t = new Timer();
+        TimerTask tt = new TimerTask() {
+            @Override
+            public void run()
+            {
+                counter++;
+                loading.setProgress(counter);
+
+                if(counter == 30)
+                    t.cancel();
+            }
+        };
+
+        t.schedule(tt,0,30);
+    }
 }
 
 

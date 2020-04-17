@@ -16,14 +16,14 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/rubik_bold"
             android:text="תכנות למתחילים"
-            android:textSize="48sp"
+            android:textSize="46sp"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="10sp"/>
 
         <ProgressBar
             android:id="@+id/progressBar3"
             style="?android:attr/progressBarStyleHorizontal"
-            android:layout_width="393dp"
+            android:layout_width="380dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="80sp"
             android:layout_centerHorizontal="true"
