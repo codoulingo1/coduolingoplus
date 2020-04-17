@@ -22,23 +22,23 @@ public class FreeText extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_free_text);
+        setContentView(R.layout.content_free_text);
         ProgressBar pb = (ProgressBar) findViewById(R.id.progressBar);
-        pb.setProgress(MainActivity.pr);
+        pb.setProgress(LessonActivity.pr);
         submit = (Button) findViewById(R.id.button);
         qs = (TextView) findViewById(R.id.textView);
         Log.d("finished", "freetext");
-        qs.setText(MainActivity.shared_hashmap.get("qs"));
+        qs.setText(LessonActivity.shared_hashmap.get("qs"));
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 EditText inp = (EditText) findViewById(R.id.inp);
                 String ans = inp.getText().toString();
-                if (ans.equals(MainActivity.shared_hashmap.get("Answer"))) {
+                if (ans.equals(LessonActivity.shared_hashmap.get("Answer"))) {
                     qs.setText("Guten");
                     try {
-                        MainActivity.j++;
-                        startActivity(new Intent(FreeText.this, MainActivity.class));
+                        LessonActivity.j++;
+                        startActivity(new Intent(FreeText.this, LessonActivity.class));
                     }
                     catch (Exception e){
                         Log.d("Error", "No files");

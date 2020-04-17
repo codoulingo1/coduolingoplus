@@ -32,10 +32,10 @@ public class NonFreedum extends AppCompatActivity {
         final Button check = (Button) findViewById(R.id.check);
         final TextView qs = (TextView) findViewById(R.id.textView2);
         ProgressBar pb = (ProgressBar) findViewById(R.id.progressBar);
-        pb.setProgress(MainActivity.pr);
-        qs.setText(MainActivity.shared_hashmap.get("qs"));
-        String[] optAns = MainActivity.shared_hashmap.get("Content").split(",");
-        unuateksto = MainActivity.shared_hashmap.get("additional");
+        pb.setProgress(LessonActivity.pr);
+        qs.setText(LessonActivity.shared_hashmap.get("qs"));
+        String[] optAns = LessonActivity.shared_hashmap.get("Content").split(",");
+        unuateksto = LessonActivity.shared_hashmap.get("additional");
         final Button dlt = (Button) findViewById(R.id.dlt);
         final Button dltall = (Button) findViewById(R.id.dltall);
         Button[] ops = {opt1, opt2, opt3, opt4, opt5, opt6};
@@ -126,9 +126,9 @@ public class NonFreedum extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //when play is clicked show stop button and hide play button
-                if (MainActivity.shared_hashmap.get("Answer").equals(ans.getText().toString())){
-                    MainActivity.j++;
-                    startActivity(new Intent(NonFreedum.this, MainActivity.class));
+                if (LessonActivity.shared_hashmap.get("Answer").equals(ans.getText().toString())){
+                    LessonActivity.j++;
+                    startActivity(new Intent(NonFreedum.this, LessonActivity.class));
                 }
 
             }

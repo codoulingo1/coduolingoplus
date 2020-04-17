@@ -17,8 +17,11 @@ import java.io.OutputStreamWriter;
  * Created by bobyo on 17/03/2020.
  */
 
-public class ReadWrite {public static void write(String name, String data,Context context) {
+public class ReadWrite {public static void write(String name, String data) {
     try {
+        if (!new File(name + ".txt").exists()){
+            new File(name + ".txt").createNewFile();
+        }
         OutputStreamWriter outputStreamWriter = new OutputStreamWriter(new FileOutputStream(new File(name + ".txt"), false));
         outputStreamWriter.write(data);
         outputStreamWriter.close();
@@ -28,7 +31,7 @@ public class ReadWrite {public static void write(String name, String data,Contex
         Log.e("Exception", "File write failed: " + e.toString());
     }
 }
-    public static String read(String name, Context context) {
+    public static String read(String name) {
 
         String ret = "";
 
@@ -58,3 +61,4 @@ public class ReadWrite {public static void write(String name, String data,Contex
         return ret;
     }
 }
+

@@ -1,30 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.coduolingo">
 
     <application
+        android:name=".Firebasedata"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".tree"></activity>
+        <activity
+            android:name=".LessonActivity"
+            android:label="@string/title_activity_lesson"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".FreeText"
+            android:label="@string/title_activity_free_text"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".NonFreedum" />
         <activity android:name=".ExplainationQS" />
+
         <activity android:name=".freedumQs" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".tree"> <!--This is the default activity-->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <meta-data
-            android:name="preloaded_fonts"
-            android:resource="@array/preloaded_fonts" />
     </application>
+    <uses-permission
+        android:name="android.permission.READ_EXTERNAL_STORAGE"
+        tools:remove="android:maxSdkVersion" />
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        tools:remove="android:maxSdkVersion" />
+    <uses-permission android:name="android.permission.WRITE_INTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission. ACCESS_FINE_LOCATION" />
 
     <uses-permission android:name="android.permission.INTERNET" />
 

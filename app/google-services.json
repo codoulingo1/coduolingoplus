@@ -119,12 +119,57 @@
     },
     {
       "client_info": {
-        "mobilesdk_app_id": "1:34131449257:android:45ca52c0c815c9439c60b8",
+        "mobilesdk_app_id": "1:34131449257:android:6efda0715a2892449c60b8",
+        "android_client_info": {
+          "package_name": "com.example.coduo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "34131449257-pfjd0llu8t4a4p3v4d4gbp1gj9lv0rsj.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.coduo",
+            "certificate_hash": "3be67141ef8d71ad549331f1cb95bbc989553c18"
+          }
+        },
+        {
+          "client_id": "34131449257-8qg91tg79i97q1vb4ahoaq2u4ffhfse8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA2tpWqiWd48TvbJBeelWSTyrAJXgGqOtc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "34131449257-8qg91tg79i97q1vb4ahoaq2u4ffhfse8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:34131449257:android:3407e0e3e9eda8b79c60b8",
         "android_client_info": {
           "package_name": "com.example.coduolingo"
         }
       },
       "oauth_client": [
+        {
+          "client_id": "34131449257-neau1op1hsah7gjbbf6ou8tjht9llmna.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.coduolingo",
+            "certificate_hash": "6aca2110bb8ff8b4db16b43b201f3b31cc76d8a2"
+          }
+        },
         {
           "client_id": "34131449257-pcbm1fdg2ocjrahb135hvu692prprtqu.apps.googleusercontent.com",
           "client_type": 1,
