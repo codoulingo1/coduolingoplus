@@ -98,6 +98,7 @@ public class LessonActivity extends AppCompatActivity {
 
     public void lessonCreator(final String ID, final String name, final int i){
         final HashMap<String, String> hashMap = loadquestion(ID, name, String.valueOf(i));
+        Log.d(hashMap.toString(), hashMap.toString());
         j = i;
         shared_id = ID;
         shared_name = name;

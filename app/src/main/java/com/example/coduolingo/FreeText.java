@@ -29,10 +29,12 @@ public class FreeText extends AppCompatActivity {
         qs = (TextView) findViewById(R.id.textView);
         Log.d("finished", "freetext");
         qs.setText(LessonActivity.shared_hashmap.get("qs"));
+        Log.d(LessonActivity.shared_hashmap.get("additional"), LessonActivity.shared_hashmap.get("additional"));
+        final EditText inp = (EditText) findViewById(R.id.inp);
+        inp.setText(LessonActivity.shared_hashmap.get("additional"));
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                EditText inp = (EditText) findViewById(R.id.inp);
                 String ans = inp.getText().toString();
                 if (ans.equals(LessonActivity.shared_hashmap.get("Answer"))) {
                     qs.setText("Guten");
