@@ -25,16 +25,10 @@ public class tree extends AppCompatActivity {
         skill1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startLesson("597524", "try");
+                startLesson("597525", "try");
             }
         });
 
-        skill2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startLesson("57999", "TRY");
-            }
-        });
     }
 
     void startLesson(String id, String name){

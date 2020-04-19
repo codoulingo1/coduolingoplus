@@ -76,6 +76,7 @@ public class freedumQs extends AppCompatActivity {
             public void onClick(View v) {
                 //when play is clicked show stop button and hide play button
                 if (opt2.getText().toString().equals(freedum_hashmap.get("Answer"))){
+                    LessonActivity.j++;
                     startActivity(new Intent(freedumQs.this, LessonActivity.class));
                 }
 

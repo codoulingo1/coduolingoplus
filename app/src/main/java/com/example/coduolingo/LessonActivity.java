@@ -104,6 +104,7 @@ public class LessonActivity extends AppCompatActivity {
         shared_name = name;
         shared_hashmap = hashMap;
         progress();
+        Log.d("j", String.valueOf(j));
         if (hashMap.get("type").equals("freedum")){
             startActivity(new Intent(LessonActivity.this, freedumQs.class));
         }
