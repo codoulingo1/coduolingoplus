@@ -53,7 +53,9 @@
             android:text="Button"
             android:layout_marginTop="250dp"
             android:layout_alignParentRight="true"
-            android:layout_marginRight="25dp"/> <!--savta-->
+            android:layout_marginRight="25dp"/>
+
+        <!--savta-->
 
 
     </RelativeLayout>

@@ -39,7 +39,7 @@ public class ExplainationQS extends AppCompatActivity {
         continueBtn = (Button) findViewById(R.id.continueBtn);
         HashMap<String, String> explanation_hashmap = LessonActivity.shared_hashmap;
         TextView fr = (TextView)findViewById(R.id.Explanation);
-        fr.setText(explanation_hashmap.get("qs")); //Savta shel nadav asoia megojim
+        fr.setText(explanation_hashmap.get("qs"));
         ProgressBar pb = (ProgressBar) findViewById(R.id.progressBar);
         pb.setProgress(LessonActivity.pr);
         continueBtn.setOnClickListener(new View.OnClickListener() {

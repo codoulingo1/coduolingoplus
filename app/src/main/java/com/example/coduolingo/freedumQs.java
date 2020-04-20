@@ -41,6 +41,9 @@ public class freedumQs extends AppCompatActivity {
         final Button opt4 = findViewById(R.id.Opt4);
         ProgressBar pb = (ProgressBar) findViewById(R.id.progressBar);
         pb.setProgress(LessonActivity.pr);
+        final TextView l = (TextView) findViewById(R.id.l2);
+        final ImageButton buttonl = (ImageButton) findViewById(R.id.continueBtn1);
+        buttonl.setVisibility(View.INVISIBLE);
         final HashMap<String, String> freedum_hashmap = LessonActivity.shared_hashmap;
         TextView fr = (TextView)findViewById(R.id.freedumQuestion);
         fr.setText(freedum_hashmap.get("qs"));
@@ -65,8 +68,23 @@ public class freedumQs extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (opt1.getText().toString().equals(freedum_hashmap.get("Answer"))){
-                    LessonActivity.j++;
-                    startActivity(new Intent(freedumQs.this, LessonActivity.class));
+                    buttonl.setVisibility(View.VISIBLE);
+                    l.setText("כל הכבוד");
+                    buttonl.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            LessonActivity.j++;
+                            startActivity(new Intent(freedumQs.this, LessonActivity.class));
+                        }});
+                }
+                else{
+                    buttonl.setVisibility(View.VISIBLE);
+                    l.setText("נסה שוב");
+                    buttonl.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            startActivity(new Intent(freedumQs.this, freedumQs.class));
+                        }});
                 }
                 //when play is clicked show stop button and hide play button
 
@@ -76,8 +94,22 @@ public class freedumQs extends AppCompatActivity {
             public void onClick(View v) {
                 //when play is clicked show stop button and hide play button
                 if (opt2.getText().toString().equals(freedum_hashmap.get("Answer"))){
-                    LessonActivity.j++;
-                    startActivity(new Intent(freedumQs.this, LessonActivity.class));
+                    buttonl.setVisibility(View.VISIBLE);
+                    l.setText("כל הכבוד");
+                    buttonl.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            LessonActivity.j++;
+                            startActivity(new Intent(freedumQs.this, LessonActivity.class));
+                        }});
+                }else{
+                    buttonl.setVisibility(View.VISIBLE);
+                    l.setText("נסה שוב");
+                    buttonl.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            startActivity(new Intent(freedumQs.this, freedumQs.class));
+                        }});
                 }
 
             }
@@ -85,7 +117,22 @@ public class freedumQs extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (opt3.getText().toString().equals(freedum_hashmap.get("Answer"))){
-                    startActivity(new Intent(freedumQs.this, LessonActivity.class));
+                    buttonl.setVisibility(View.VISIBLE);
+                    l.setText("כל הכבוד");
+                    buttonl.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            LessonActivity.j++;
+                            startActivity(new Intent(freedumQs.this, LessonActivity.class));
+                        }});
+                }else{
+                    buttonl.setVisibility(View.VISIBLE);
+                    l.setText("נסה שוב");
+                    buttonl.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            startActivity(new Intent(freedumQs.this, freedumQs.class));
+                        }});
                 }
 
             }
@@ -93,7 +140,22 @@ public class freedumQs extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (opt4.getText().toString().equals(freedum_hashmap.get("Answer"))){
-                    startActivity(new Intent(freedumQs.this, LessonActivity.class));
+                    buttonl.setVisibility(View.VISIBLE);
+                    l.setText("כל הכבוד");
+                    buttonl.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            LessonActivity.j++;
+                            startActivity(new Intent(freedumQs.this, LessonActivity.class));
+                        }});
+                }else{
+                    buttonl.setVisibility(View.VISIBLE);
+                    l.setText("נסה שוב");
+                    buttonl.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            startActivity(new Intent(freedumQs.this, freedumQs.class));
+                        }});
                 }
 
             }

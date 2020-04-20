@@ -62,8 +62,6 @@ public class MainActivity extends AppCompatActivity {
         w = (TextView) findViewById(R.id.textView);
         loading = (ProgressBar) findViewById(R.id.loadingProgress);
         loadingTextView = (TextView) findViewById(R.id.loadingText);
-        ActivityCompat.requestPermissions((Activity) MainActivity.this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},1);
-        ActivityCompat.requestPermissions((Activity) MainActivity.this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},1);
         AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
         builder.setCancelable(false); // if you want user to wait for some process to finish,
         builder.setView(R.layout.activity_main);
@@ -71,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
         dialog.setMessage("טוען שיעור: " + name);
         DownloadReadlessons.downloadlesson(id, MainActivity.this);
 
-        mcountdown = new CountDownTimer(3000, 1000) {
+        mcountdown = new CountDownTimer(2000, 1000) {
             @Override
             public void onTick(long l) {
                 //dialog.show();

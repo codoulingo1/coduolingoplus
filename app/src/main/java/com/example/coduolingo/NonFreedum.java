@@ -32,11 +32,15 @@ public class NonFreedum extends AppCompatActivity {
         final Button check = (Button) findViewById(R.id.check);
         final TextView qs = (TextView) findViewById(R.id.textView2);
         ProgressBar pb = (ProgressBar) findViewById(R.id.progressBar);
+        final TextView l = (TextView) findViewById(R.id.l3);
+        final Button buttonl = (Button) findViewById(R.id.buttonl);
+        buttonl.setVisibility(View.INVISIBLE);
         pb.setProgress(LessonActivity.pr);
         qs.setText(LessonActivity.shared_hashmap.get("qs"));
         String[] optAns = LessonActivity.shared_hashmap.get("Content").split(",");
         unuateksto = LessonActivity.shared_hashmap.get("additional");
         final Button dlt = (Button) findViewById(R.id.dlt);
+
         final Button dltall = (Button) findViewById(R.id.dltall);
         Button[] ops = {opt1, opt2, opt3, opt4, opt5, opt6};
         unuateksto = Text.replace(unuateksto, '%', '£', 0);
@@ -127,8 +131,24 @@ public class NonFreedum extends AppCompatActivity {
             public void onClick(View v) {
                 //when play is clicked show stop button and hide play button
                 if (LessonActivity.shared_hashmap.get("Answer").equals(ans.getText().toString())){
-                    LessonActivity.j++;
-                    startActivity(new Intent(NonFreedum.this, LessonActivity.class));
+                    buttonl.setVisibility(View.VISIBLE);
+                    l.setText("כל הכבוד");
+                    buttonl.setText("המשך");
+                    buttonl.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            LessonActivity.j++;
+                            startActivity(new Intent(NonFreedum.this, LessonActivity.class));
+                        }});
+                } else{
+                    buttonl.setVisibility(View.VISIBLE);
+                    l.setText("נסה שוב");
+                    buttonl.setText("נסה שוב");
+                    buttonl.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            startActivity(new Intent(NonFreedum.this, NonFreedum.class));
+                        }});
                 }
 
             }

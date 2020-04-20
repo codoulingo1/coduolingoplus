@@ -59,7 +59,7 @@ public class DownloadReadlessons {
                 Log.w("error", "Failed to read value.", error.toException());
             }
         });
-        return "via avino";
+        return "a";
     }
     public static HashMap<String, String> readqs(String id, String name, String qs_num) {
         String content = ReadWrite.read(Environment.getExternalStorageDirectory() +"/" + "id" + "/" + id + name + "qs" + qs_num);
