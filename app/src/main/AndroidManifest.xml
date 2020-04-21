@@ -14,7 +14,7 @@
         <activity
             android:name=".LessonActivity"
             android:label="@string/title_activity_lesson"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".FreeText"
             android:label="@string/title_activity_free_text"
@@ -23,7 +23,7 @@
         <activity android:name=".ExplainationQS" />
 
         <activity android:name=".freedumQs" />
-        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".MainActivity" />
         <activity android:name=".tree"> <!--This is the default activity!-->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
