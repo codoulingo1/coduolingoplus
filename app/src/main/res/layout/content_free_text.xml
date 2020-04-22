@@ -8,6 +8,8 @@
     android:scrollbarStyle="insideInset"
     android:scrollbars="vertical"
     tools:context=".MainActivity">
+
+
     <Button
         android:id="@+id/button"
         android:layout_width="wrap_content"
@@ -15,12 +17,11 @@
         android:text="בדיקה"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.517"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.775"
+        app:layout_constraintTop_toBottomOf="@+id/inp"
+        app:layout_constraintVertical_bias="0.264"
         tools:text="בדיקה" />
-
 
     <EditText
         android:id="@+id/inp"
@@ -62,29 +63,32 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.11" />
+        app:layout_constraintVertical_bias="0.11"
+        android:progressDrawable="@drawable/pb_lsn"/>
 
     <Button
-        android:id="@+id/buttonL"
+        android:id="@+id/buttonl"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="119dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/inp"
-        app:layout_constraintHorizontal_bias="0.116"
+        app:layout_constraintHorizontal_bias="0.123"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.925" />
+        app:layout_constraintTop_toBottomOf="@+id/inp"
+        app:layout_constraintVertical_bias="0.215" />
 
     <TextView
         android:id="@+id/l"
         android:layout_width="123dp"
         android:layout_height="27dp"
+        android:layout_marginTop="140dp"
         android:textColor="#000000"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.777"
+        app:layout_constraintHorizontal_bias="0.881"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.927" />
+        app:layout_constraintTop_toBottomOf="@+id/inp"
+        app:layout_constraintVertical_bias="0.0" />
 </androidx.constraintlayout.widget.ConstraintLayout>

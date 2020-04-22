@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -35,8 +36,8 @@ public class ExplainationQS extends AppCompatActivity {
 
 
     public void explanationQs() {
-        Button continueBtn;
-        continueBtn = (Button) findViewById(R.id.continueBtn);
+        ImageButton continueBtn;
+        continueBtn = (ImageButton) findViewById(R.id.continueBtn);
         HashMap<String, String> explanation_hashmap = LessonActivity.shared_hashmap;
         TextView fr = (TextView)findViewById(R.id.Explanation);
         fr.setText(explanation_hashmap.get("qs"));

@@ -9,11 +9,13 @@
     </item>
 
     <!-- Define the progress properties like start color, end color etc -->
-    <item android:id="@android:id/progress">
+    <item android:id="@android:id/progress"
+        >
         <scale android:scaleWidth="100%">
             <shape>
+
                 <corners android:radius="8dp"/>
-                <solid android:color="#5DAED5"></solid>
+                <solid android:color="#6ADA66"></solid>
             </shape>
         </scale>
     </item>

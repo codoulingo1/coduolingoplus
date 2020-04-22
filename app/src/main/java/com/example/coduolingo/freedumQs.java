@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.content.Intent;
 import android.os.Bundle;
@@ -24,29 +25,60 @@ import java.util.HashMap;
 public class freedumQs extends AppCompatActivity {
 
     ImageButton continueBtn;
+    int isCorrect = 0; //0 = empty, 1 = false, 2 = correct
+
+    Button opt1;
+    Button opt2;
+    Button opt3;
+    Button opt4;
+
+    ProgressBar pb;
+    TextView l;
+    Button buttonl;
+    HashMap<String, String> freedum_hashmap;
+    RelativeLayout popup;
+    RelativeLayout popupWrong;
+    ImageButton continueBtn4;
+    ImageButton continueBtn6;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_freedum_qs);
-        freedumQs();
-        continueBtn = (ImageButton) findViewById(R.id.continueBtn1);
+        continueBtn = (ImageButton) findViewById(R.id.continueBtn3);
+        popupWrong = (RelativeLayout) findViewById(R.id.popup2);
         //continueBtn.setBackgroundColor(Color.TRANSPARENT);
+        popup = (RelativeLayout) findViewById(R.id.Popup1);
+        opt1 = (Button) findViewById(R.id.Opt1);
+        opt2 = (Button) findViewById(R.id.Opt2);
+        opt3 = (Button) findViewById(R.id.Opt3);
+        opt4 = (Button) findViewById(R.id.Opt4);
+        continueBtn4 = (ImageButton) findViewById(R.id.continueBtn4);
+        continueBtn6 = (ImageButton) findViewById(R.id.continueBtn6);
+        pb = (ProgressBar) findViewById(R.id.progressBar);
+        //l = (TextView) findViewById(R.id.l2);
+        buttonl = (Button) findViewById(R.id.buttonl);
+        continueBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(isCorrect == 2){
+                    showCorrect();
+                }else if (isCorrect == 1){
+                    showWrong();
+                } else if(isCorrect == 0){
+
+                }
+            }
+        });
+        freedumQs();
     }
 
     public void freedumQs() {
-        final Button opt1 = findViewById(R.id.Opt1);
-        final Button opt2 = findViewById(R.id.Opt2);
-        final Button opt3 = findViewById(R.id.Opt3);
-        final Button opt4 = findViewById(R.id.Opt4);
-        ProgressBar pb = (ProgressBar) findViewById(R.id.progressBar);
-        pb.setProgress(LessonActivity.pr);
-        final TextView l = (TextView) findViewById(R.id.l2);
-        final ImageButton buttonl = (ImageButton) findViewById(R.id.continueBtn1);
-        buttonl.setVisibility(View.INVISIBLE);
-        final HashMap<String, String> freedum_hashmap = LessonActivity.shared_hashmap;
+        freedum_hashmap = LessonActivity.shared_hashmap;
         TextView fr = (TextView)findViewById(R.id.freedumQuestion);
         fr.setText(freedum_hashmap.get("qs"));
+        //buttonl.setVisibility(View.INVISIBLE);
+        pb.setProgress(LessonActivity.pr);
         String[] optAns = freedum_hashmap.get("Content").split(",");
         final String freedum_id = LessonActivity.shared_id;
         final String freedum_name = LessonActivity.shared_name;
@@ -68,23 +100,10 @@ public class freedumQs extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (opt1.getText().toString().equals(freedum_hashmap.get("Answer"))){
-                    buttonl.setVisibility(View.VISIBLE);
-                    l.setText("כל הכבוד");
-                    buttonl.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            LessonActivity.j++;
-                            startActivity(new Intent(freedumQs.this, LessonActivity.class));
-                        }});
-                }
-                else{
-                    buttonl.setVisibility(View.VISIBLE);
-                    l.setText("נסה שוב");
-                    buttonl.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            startActivity(new Intent(freedumQs.this, freedumQs.class));
-                        }});
+                    isCorrect = 2;
+                }else
+                {
+                    isCorrect = 1;
                 }
                 //when play is clicked show stop button and hide play button
 
@@ -94,22 +113,9 @@ public class freedumQs extends AppCompatActivity {
             public void onClick(View v) {
                 //when play is clicked show stop button and hide play button
                 if (opt2.getText().toString().equals(freedum_hashmap.get("Answer"))){
-                    buttonl.setVisibility(View.VISIBLE);
-                    l.setText("כל הכבוד");
-                    buttonl.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            LessonActivity.j++;
-                            startActivity(new Intent(freedumQs.this, LessonActivity.class));
-                        }});
+                    isCorrect = 2;
                 }else{
-                    buttonl.setVisibility(View.VISIBLE);
-                    l.setText("נסה שוב");
-                    buttonl.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            startActivity(new Intent(freedumQs.this, freedumQs.class));
-                        }});
+                    isCorrect = 1;
                 }
 
             }
@@ -117,22 +123,9 @@ public class freedumQs extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (opt3.getText().toString().equals(freedum_hashmap.get("Answer"))){
-                    buttonl.setVisibility(View.VISIBLE);
-                    l.setText("כל הכבוד");
-                    buttonl.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            LessonActivity.j++;
-                            startActivity(new Intent(freedumQs.this, LessonActivity.class));
-                        }});
+                    isCorrect = 2;
                 }else{
-                    buttonl.setVisibility(View.VISIBLE);
-                    l.setText("נסה שוב");
-                    buttonl.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            startActivity(new Intent(freedumQs.this, freedumQs.class));
-                        }});
+                    isCorrect = 1;
                 }
 
             }
@@ -140,24 +133,49 @@ public class freedumQs extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (opt4.getText().toString().equals(freedum_hashmap.get("Answer"))){
-                    buttonl.setVisibility(View.VISIBLE);
-                    l.setText("כל הכבוד");
-                    buttonl.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            LessonActivity.j++;
-                            startActivity(new Intent(freedumQs.this, LessonActivity.class));
-                        }});
+                    isCorrect = 2;
                 }else{
-                    buttonl.setVisibility(View.VISIBLE);
-                    l.setText("נסה שוב");
-                    buttonl.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            startActivity(new Intent(freedumQs.this, freedumQs.class));
-                        }});
+                    isCorrect = 1;
                 }
 
+            }
+        });
+
+    }
+
+    void showCorrect() {
+        /*buttonl.setVisibility(View.VISIBLE);
+        l.setText("כל הכבוד");
+        buttonl.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    LessonActivity.j++;
+                    startActivity(new Intent(freedumQs.this, LessonActivity.class));
+                }
+        }); */
+        popup.setVisibility(View.VISIBLE);
+        continueBtn4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                LessonActivity.j++;
+                startActivity(new Intent(freedumQs.this, LessonActivity.class));
+            }
+        });
+    }
+    void showWrong(){
+        /*buttonl.setVisibility(View.VISIBLE);
+        l.setText("נסה שוב");
+        buttonl.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(freedumQs.this, freedumQs.class));
+            }
+        });*/
+        popupWrong.setVisibility(View.VISIBLE);
+        continueBtn6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(freedumQs.this, freedumQs.class));
             }
         });
 

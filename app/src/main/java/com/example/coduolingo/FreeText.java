@@ -24,7 +24,7 @@ public class FreeText extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.content_free_text);
         final TextView l = (TextView) findViewById(R.id.l);
-        final Button buttonl = (Button) findViewById(R.id.buttonL);
+        final Button buttonl = (Button) findViewById(R.id.buttonl);
         buttonl.setVisibility(View.INVISIBLE);
         ProgressBar pb = (ProgressBar) findViewById(R.id.progressBar);
         pb.setProgress(LessonActivity.pr);

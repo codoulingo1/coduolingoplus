@@ -18,18 +18,6 @@
         app:layout_constraintVertical_bias="0.022" />
 
     <Button
-        android:id="@+id/Opt1"
-        android:layout_width="301dp"
-        android:layout_height="50dp"
-        android:text="Button"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.463"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.538" />
-
-    <Button
         android:id="@+id/Opt4"
         android:layout_width="301dp"
         android:layout_height="50dp"
@@ -39,10 +27,10 @@
         app:layout_constraintHorizontal_bias="0.463"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.834" />
+        app:layout_constraintVertical_bias="0.748" />
 
     <Button
-        android:id="@+id/Opt2"
+        android:id="@+id/Opt1"
         android:layout_width="301dp"
         android:layout_height="50dp"
         android:text="Button"
@@ -51,7 +39,7 @@
         app:layout_constraintHorizontal_bias="0.463"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.637" />
+        app:layout_constraintVertical_bias="0.452" />
 
     <Button
         android:id="@+id/Opt3"
@@ -63,7 +51,19 @@
         app:layout_constraintHorizontal_bias="0.463"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.732" />
+        app:layout_constraintVertical_bias="0.647" />
+
+    <Button
+        android:id="@+id/Opt2"
+        android:layout_width="301dp"
+        android:layout_height="50dp"
+        android:text="Button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.463"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.552" />
 
     <TextView
         android:id="@+id/freedumQuestion"
@@ -77,6 +77,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.057" />
+
     <ProgressBar
         android:id="@+id/progressBar"
         style="?android:attr/progressBarStyleHorizontal"
@@ -86,10 +87,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.022" />
+        app:layout_constraintVertical_bias="0.022"
+        android:progressDrawable="@drawable/pb_lsn"/>
 
     <ImageButton
-        android:id="@+id/continueBtn1"
+        android:id="@+id/continueBtn3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:adjustViewBounds="true"
@@ -105,17 +107,83 @@
         app:layout_constraintVertical_bias="0.975"
         app:srcCompat="@drawable/next" />
 
-    <TextView
-        android:id="@+id/l2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="#121111"
-        android:textSize="24sp"
+    <RelativeLayout
+        android:id="@+id/popup2"
+        android:layout_width="match_parent"
+        android:layout_height="140dp"
+        android:background="#ffc1c2"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.718"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.952" />
+        app:layout_constraintVertical_bias="1.0">
+
+        <ImageButton
+            android:id="@+id/continueBtn6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="35dp"
+            android:adjustViewBounds="true"
+            android:background="#ffc1c2"
+            android:maxWidth="75dp"
+            android:maxHeight="75dp"
+            android:scaleType="fitCenter"
+            app:srcCompat="@drawable/next2" />
+
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="20dp"
+            android:fontFamily="@font/rubik_bold"
+            android:text="טעות"
+            android:textColor="#de302b"
+            android:textSize="46sp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/Popup1"
+        android:layout_width="match_parent"
+        android:layout_height="140dp"
+        android:background="#b8f28b"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0">
+
+        <ImageButton
+            android:id="@+id/continueBtn4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="35dp"
+            android:adjustViewBounds="true"
+            android:background="#80b8f28b"
+            android:maxWidth="75dp"
+            android:maxHeight="75dp"
+            android:scaleType="fitCenter"
+            app:srcCompat="@drawable/next" />
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="20dp"
+            android:fontFamily="@font/rubik_bold"
+            android:text="כל הכבוד!"
+            android:textColor="#7bb92d"
+            android:textSize="46sp" />
+
+    </RelativeLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
