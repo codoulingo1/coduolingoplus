@@ -68,7 +68,7 @@ public class LessonActivity extends AppCompatActivity {
             int b = 100 * (j);
             pr = Math.round(b/maxJ);
             pr = Math.round(b/maxJ);
-            for (int numTodel=1; numTodel<=maxJ; numTodel++){
+                j=0;
                 File dirName = new File(Environment.getExternalStorageDirectory() + "/" + "id" + "/");
                 boolean a = false;
                 Log.d("bona", "bona");
@@ -82,7 +82,6 @@ public class LessonActivity extends AppCompatActivity {
                 Log.d(String.valueOf(a), String.valueOf(a));
                 //Log.d(String.valueOf(file.exists()), String.valueOf(deleted));
 
-            }
             pb.setProgress(pr);
             pb.setProgress(pr);
             qs.setText("כל הכבוד!");
