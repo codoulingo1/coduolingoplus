@@ -34,15 +34,15 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.io.File;
-import java.net.URI;
 
 public class Login extends AppCompatActivity {
     private SignInButton signInButton;
     private GoogleSignInClient mGoogleSignInClient;
     private  String TAG = "Login";
     private FirebaseAuth mAuth;
-    private Button btnSignOut;
     private int RC_SIGN_IN = 1;
+    Button to_login;
+    Button to_signup;
 
 
     @Override
@@ -57,8 +57,9 @@ public class Login extends AppCompatActivity {
                     new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 0);
         }
         signInButton = findViewById(R.id.sign_in_button);
+        to_login = (Button) findViewById(R.id.to_sign_up);
+        to_signup = (Button) findViewById(R.id.to_login);
         mAuth = FirebaseAuth.getInstance();
-        btnSignOut = findViewById(R.id.sign_out_button);
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
@@ -73,13 +74,16 @@ public class Login extends AppCompatActivity {
                 signIn();
             }
         });
-
-        btnSignOut.setOnClickListener(new View.OnClickListener() {
+        to_signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mGoogleSignInClient.signOut();
-                Toast.makeText(Login.this,"You are Logged Out",Toast.LENGTH_SHORT).show();
-                btnSignOut.setVisibility(View.INVISIBLE);
+                startActivity(new Intent(Login.this, usernameloginActivity.class));
+            }
+        });
+        to_login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(Login.this, sign_upActivity.class));
             }
         });
     }
@@ -135,7 +139,6 @@ public class Login extends AppCompatActivity {
     }
 
     private void updateUI(FirebaseUser fUser){
-        btnSignOut.setVisibility(View.VISIBLE);
         GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(getApplicationContext());
         if(account !=  null){
             String personName = account.getDisplayName();
@@ -149,10 +152,10 @@ public class Login extends AppCompatActivity {
                 newFile.mkdirs();
                 Log.d("Create", "dir");
             }
-            ReadWrite.write(Environment.getExternalStorageDirectory() +"/" + "user", String.valueOf(personId));
+            ReadWrite.write(Environment.getExternalStorageDirectory() +"/" + "user", personEmail.replace('.', ' '));
             FirebaseDatabase database = FirebaseDatabase.getInstance();
             DatabaseReference myRef = database.getReference("Users");
-            DatabaseReference user = myRef.child(String.valueOf(personId));
+            DatabaseReference user = myRef.child(String.valueOf(personEmail.replace('.', ' ')));
             user.child("id").setValue(personId);
             user.child("email").setValue(personEmail);
             user.child("imgUrl").setValue(personPhoto.toString());

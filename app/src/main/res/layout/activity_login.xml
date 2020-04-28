@@ -7,25 +7,57 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <com.google.android.gms.common.SignInButton android:layout_height="wrap_content" android:layout_width="wrap_content" app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginBottom="338dp" android:layout_marginRight="142dp"
-        android:layout_marginEnd="142dp" android:layout_marginTop="338dp"
-        android:layout_marginLeft="142dp"
-        android:layout_marginStart="142dp"
-        android:id="@+id/sign_in_button"/>
+        <com.google.android.gms.common.SignInButton
+            android:id="@+id/sign_in_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="338dp"
+            android:layout_marginEnd="142dp"
+            android:layout_marginStart="142dp"
+            android:layout_marginTop="338dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
 
     <Button
-        android:id="@+id/sign_out_button"
+        android:id="@+id/to_sign_up"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Sign out"
+        android:text="צור חשבון"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.832"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.705" />
+        app:layout_constraintVertical_bias="0.663" />
+
+    <Button
+        android:id="@+id/to_login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="התחבר"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.832"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.206" />
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="258dp"
+        android:layout_height="32dp"
+        android:text="הכנס או צור חשבון עם גוגל"
+        android:textColor="#040303"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.376" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -21,7 +21,7 @@ public class tree extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tree);
-        File login = new File(Environment.getExternalStorageDirectory() +"/" + "user");
+        File login = new File(Environment.getExternalStorageDirectory() +"/" + "user.txt");
         if(!login.exists()) {
             startActivity(new Intent(tree.this, Login.class));
         }

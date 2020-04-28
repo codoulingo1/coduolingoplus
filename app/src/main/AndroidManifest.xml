@@ -23,6 +23,8 @@
         <activity android:name=".ExplainationQS" />
         <activity android:name=".freedumQs" />
         <activity android:name=".Login" />
+        <activity android:name=".usernameloginActivity" />
+        <activity android:name=".sign_upActivity" />
         <activity android:name=".profile_Activity" />
         <activity android:name=".MainActivity" />
         <activity android:name=".tree"> <!-- This is the default activity! -->

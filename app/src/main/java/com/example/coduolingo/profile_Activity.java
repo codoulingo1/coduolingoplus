@@ -90,7 +90,11 @@ public class profile_Activity extends AppCompatActivity {
             @Override
             public void onFinish() {
                 Log.d("profile_Activity2", url_old);
-                Picasso.with(profile_Activity.this).load(url_old).resizeDimen(R.dimen.image_size, R.dimen.image_size).placeholder(R.drawable.goj).into(profImg);
+                try {
+                    Picasso.with(profile_Activity.this).load(url_old).resizeDimen(R.dimen.image_size, R.dimen.image_size).placeholder(R.drawable.goj).into(profImg);
+                }catch (Exception e){
+
+                }
                 setName.setText(name);
                 btnSignOut.setVisibility(View.VISIBLE);
             }
@@ -101,7 +105,7 @@ public class profile_Activity extends AppCompatActivity {
                 mGoogleSignInClient.signOut();
                 Toast.makeText(profile_Activity.this,"You are Logged Out",Toast.LENGTH_SHORT).show();
                 btnSignOut.setVisibility(View.INVISIBLE);
-                File login = new File(Environment.getExternalStorageDirectory() +"/" + "user");
+                File login = new File(Environment.getExternalStorageDirectory() +"/" + "user.txt");
                 boolean del = login.delete();
                 Log.d("boolean", String.valueOf(del));
                 startActivity(new Intent(profile_Activity.this, Login.class));
