@@ -33,13 +33,13 @@ public class LessonActivity extends AppCompatActivity {
     public static int j;
     public static int is_back;
     float maxJ;
-    ProgressBar pb;
+    //ProgressBar pb;
     public static int pr;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.content_lesson);
-        pb = (ProgressBar) findViewById(R.id.progressBar2);
+        //pb = (ProgressBar) findViewById(R.id.progressBar2);
         String id = MainActivity.id;
         String name = MainActivity.name;
         for (int i = 1; i<20; i++){
@@ -82,8 +82,7 @@ public class LessonActivity extends AppCompatActivity {
                 Log.d(String.valueOf(a), String.valueOf(a));
                 //Log.d(String.valueOf(file.exists()), String.valueOf(deleted));
 
-            pb.setProgress(pr);
-            pb.setProgress(pr);
+            //pb.setProgress(pr);
             qs.setText("כל הכבוד!");
 
         }
@@ -123,7 +122,7 @@ public class LessonActivity extends AppCompatActivity {
     public void progress(){
         int b = 100 * (j-1);
         pr = Math.round(b/maxJ);
-        pb.setProgress(pr);
+        //pb.setProgress(pr);
     }
 
 }

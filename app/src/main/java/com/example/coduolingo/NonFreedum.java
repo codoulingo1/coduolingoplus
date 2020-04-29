@@ -6,7 +6,10 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -19,22 +22,29 @@ public class NonFreedum extends AppCompatActivity {
     String unuateksto;
     int wrloc;
     public String f;
+    RelativeLayout popupTrue;
+    RelativeLayout popupFalse;
+    ImageButton continueBtnTrue;
+    ImageButton continueBtnFalse;
+    Button opt1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_non_freedum);
-        final Button opt1 = (Button) findViewById(R.id.button1);
+        opt1 = (Button) findViewById(R.id.button1);
         final Button opt2 = (Button) findViewById(R.id.button2);
         final Button opt3 = (Button) findViewById(R.id.button3);
         final Button opt4 = (Button) findViewById(R.id.button4);
         final Button opt5 = (Button) findViewById(R.id.button5);
         final Button opt6 = (Button) findViewById(R.id.button6);
-        final Button check = (Button) findViewById(R.id.check);
+        final ImageButton check = (ImageButton) findViewById(R.id.check);
+        continueBtnFalse = (ImageButton) findViewById(R.id.continueBtnFalse);
+        continueBtnTrue = (ImageButton) findViewById(R.id.continueBtnTrue);
         final TextView qs = (TextView) findViewById(R.id.textView2);
         ProgressBar pb = (ProgressBar) findViewById(R.id.progressBar);
-        final TextView l = (TextView) findViewById(R.id.l3);
-        final Button buttonl = (Button) findViewById(R.id.buttonl);
-        buttonl.setVisibility(View.INVISIBLE);
+        popupFalse = (RelativeLayout) findViewById(R.id.popupFalse);
+        popupTrue = (RelativeLayout) findViewById(R.id.PopupTrue);
         pb.setProgress(LessonActivity.pr);
         qs.setText(LessonActivity.shared_hashmap.get("qs"));
         String[] optAns = LessonActivity.shared_hashmap.get("Content").split(",");
@@ -131,24 +141,26 @@ public class NonFreedum extends AppCompatActivity {
             public void onClick(View v) {
                 //when play is clicked show stop button and hide play button
                 if (LessonActivity.shared_hashmap.get("Answer").equals(ans.getText().toString())){
-                    buttonl.setVisibility(View.VISIBLE);
-                    l.setText("כל הכבוד");
+                    /*buttonl.setVisibility(View.VISIBLE);
                     buttonl.setText("המשך");
                     buttonl.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
                             LessonActivity.j++;
                             startActivity(new Intent(NonFreedum.this, LessonActivity.class));
-                        }});
+                        }});*/
+                    showCorrect();
+
                 } else{
-                    buttonl.setVisibility(View.VISIBLE);
-                    l.setText("נסה שוב");
+                    /*buttonl.setVisibility(View.VISIBLE);
                     buttonl.setText("נסה שוב");
                     buttonl.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
                             startActivity(new Intent(NonFreedum.this, NonFreedum.class));
-                        }});
+                        }
+                    });*/
+                    showWrong();
                 }
 
             }
@@ -224,6 +236,27 @@ public class NonFreedum extends AppCompatActivity {
         //btnText = btn2.getText().toString();
         //btnText.length();
 
+    }
+
+    void showCorrect(){
+        popupTrue.setVisibility(View.VISIBLE);
+        continueBtnTrue.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                LessonActivity.j++;
+                //LessonActivity.points++;
+                startActivity(new Intent(NonFreedum.this, LessonActivity.class));
+            }
+        });
+    }
+    void showWrong(){
+        popupFalse.setVisibility(View.VISIBLE);
+        continueBtnFalse.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(NonFreedum.this, NonFreedum.class));
+            }
+        });
     }
 
 }

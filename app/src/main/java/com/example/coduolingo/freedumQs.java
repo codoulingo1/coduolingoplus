@@ -32,6 +32,12 @@ public class freedumQs extends AppCompatActivity {
     Button opt3;
     Button opt4;
 
+    int isClicked1 = 0;
+    int isClicked2 = 0;
+    int isClicked3 = 0;
+    int isClicked4 = 0;
+
+
     ProgressBar pb;
     TextView l;
     Button buttonl;
@@ -57,7 +63,7 @@ public class freedumQs extends AppCompatActivity {
         continueBtn6 = (ImageButton) findViewById(R.id.continueBtn6);
         pb = (ProgressBar) findViewById(R.id.progressBar);
         //l = (TextView) findViewById(R.id.l2);
-        buttonl = (Button) findViewById(R.id.buttonl);
+        //buttonl = (Button) findViewById(R.id.buttonl);
         continueBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -99,43 +105,98 @@ public class freedumQs extends AppCompatActivity {
         opt1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (opt1.getText().toString().equals(freedum_hashmap.get("Answer"))){
-                    isCorrect = 2;
-                }else
-                {
-                    isCorrect = 1;
+                if(isClicked1 != 1){
+                    isClicked1 = 1;
+                    opt1.setScaleX(1.1f);
+                    opt1.setScaleY(1.1f);
+
+                    if (opt1.getText().toString().equals(freedum_hashmap.get("Answer"))){
+                        isCorrect = 2;
+                    }
+                    else {
+                        isCorrect = 1;
+                    }
                 }
-                //when play is clicked show stop button and hide play button
+                else
+                {
+                    isCorrect = 0;
+                    isClicked1 = 0;
+                    opt1.setScaleX(1);
+                    opt1.setScaleY(1);
+                }
 
             }
-        });opt2.setOnClickListener(new View.OnClickListener() {
+        });
+
+        opt2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //when play is clicked show stop button and hide play button
-                if (opt2.getText().toString().equals(freedum_hashmap.get("Answer"))){
-                    isCorrect = 2;
-                }else{
-                    isCorrect = 1;
+                if(isClicked2 != 1){
+                    isClicked2 = 1;
+                    opt2.setScaleX(1.1f);
+                    opt2.setScaleY(1.1f);
+
+                    if (opt2.getText().toString().equals(freedum_hashmap.get("Answer"))){
+                        isCorrect = 2;
+                    }
+                    else {
+                        isCorrect = 1;
+                    }
+                }
+                else
+                {
+                    isCorrect = 0;
+                    isClicked2 = 0;
+                    opt2.setScaleX(1);
+                    opt2.setScaleY(1);
                 }
 
             }
         });opt3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (opt3.getText().toString().equals(freedum_hashmap.get("Answer"))){
-                    isCorrect = 2;
-                }else{
-                    isCorrect = 1;
+                if(isClicked3 != 1){
+                    isClicked3 = 1;
+                    opt3.setScaleX(1.1f);
+                    opt3.setScaleY(1.1f);
+
+                    if (opt3.getText().toString().equals(freedum_hashmap.get("Answer"))){
+                        isCorrect = 2;
+                    }
+                    else {
+                        isCorrect = 1;
+                    }
+                }
+                else
+                {
+                    isCorrect = 0;
+                    isClicked3 = 0;
+                    opt3.setScaleX(1);
+                    opt3.setScaleY(1);
                 }
 
             }
         });opt4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (opt4.getText().toString().equals(freedum_hashmap.get("Answer"))){
-                    isCorrect = 2;
-                }else{
-                    isCorrect = 1;
+                if(isClicked4 != 1){
+                    isClicked4 = 1;
+                    opt4.setScaleX(1.1f);
+                    opt4.setScaleY(1.1f);
+
+                    if (opt4.getText().toString().equals(freedum_hashmap.get("Answer"))){
+                        isCorrect = 2;
+                    }
+                    else {
+                        isCorrect = 1;
+                    }
+                }
+                else
+                {
+                    isCorrect = 0;
+                    isClicked4 = 0;
+                    opt4.setScaleX(1);
+                    opt4.setScaleY(1);
                 }
 
             }
@@ -158,6 +219,7 @@ public class freedumQs extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 LessonActivity.j++;
+                //LessonActivity.points++;
                 startActivity(new Intent(freedumQs.this, LessonActivity.class));
             }
         });

@@ -1,6 +1,8 @@
 package com.example.coduolingo;
 
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -9,24 +11,43 @@ import com.google.android.material.snackbar.Snackbar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.text.Editable;
+import android.text.Html;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.TextWatcher;
+import android.text.style.ForegroundColorSpan;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
+import android.view.textclassifier.TextSelection;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import java.util.concurrent.TimeUnit;
+
 public class FreeText extends AppCompatActivity {
+
     TextView qs;
     Button submit;
+    RelativeLayout popupTruee;
+    ImageButton continueBtn10;
+    RelativeLayout popup11;
+    ImageButton continueBtn11;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.content_free_text);
-        final TextView l = (TextView) findViewById(R.id.l);
-        final Button buttonl = (Button) findViewById(R.id.buttonl);
-        buttonl.setVisibility(View.INVISIBLE);
+        popupTruee = (RelativeLayout) findViewById(R.id.PopupTruee);
+        continueBtn10 = (ImageButton) findViewById(R.id.continueBtn10);
         ProgressBar pb = (ProgressBar) findViewById(R.id.progressBar);
+        popup11 = (RelativeLayout) findViewById(R.id.popup11);
+        continueBtn11 = (ImageButton) findViewById(R.id.continueBtn11);
         pb.setProgress(LessonActivity.pr);
         submit = (Button) findViewById(R.id.button);
         qs = (TextView) findViewById(R.id.textView);
@@ -38,34 +59,47 @@ public class FreeText extends AppCompatActivity {
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                hideKeyboard();
                 String ans = inp.getText().toString();
                 if (ans.equals(LessonActivity.shared_hashmap.get("Answer"))) {
-                    qs.setText("Guten");
-                    try {
-                        buttonl.setVisibility(View.VISIBLE);
-                        l.setText("כל הכבוד");
-                        buttonl.setText("המשך");
-                        buttonl.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                LessonActivity.j++;
-                                startActivity(new Intent(FreeText.this, LessonActivity.class));
-                    }});}
-                    catch (Exception e){
-                        Log.d("Error", "No files");
-                    }
+                    showCorrect();
                 }
+
                 else{
-                    buttonl.setVisibility(View.VISIBLE);
-                    l.setText("נסה שוב");
-                    buttonl.setText("נסה שוב");
-                    buttonl.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            startActivity(new Intent(FreeText.this, FreeText.class));
-                        }});
+                    showWrong();
                 }
             }
+        }
+        );
+
+    }
+    void showCorrect() {
+        popupTruee.setVisibility(View.VISIBLE);
+        continueBtn10.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                LessonActivity.j++;
+                //LessonActivity.points++;
+                startActivity(new Intent(FreeText.this, LessonActivity.class));
+            }
         });
+    }
+
+    void showWrong(){
+        popup11.setVisibility(View.VISIBLE);
+        continueBtn11.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(FreeText.this, FreeText.class));
+            }
+        });
+
+    }
+    public void hideKeyboard() {
+        View view1 = this.getCurrentFocus();
+        if(view1 != null){
+            InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(view1.getWindowToken(), 0);
+        }
     }
 }

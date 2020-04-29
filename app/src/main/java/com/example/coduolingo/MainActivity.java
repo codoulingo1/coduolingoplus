@@ -96,12 +96,12 @@ public class MainActivity extends AppCompatActivity {
                 counter++;
                 loading.setProgress(counter);
 
-                if(counter == 30)
+                if(counter == 10)
                     t.cancel();
             }
         };
 
-        t.schedule(tt,0,30);
+        t.schedule(tt,0,10);
     }
 }
 

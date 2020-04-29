@@ -47,6 +47,7 @@ public class ExplainationQS extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 LessonActivity.j++;
+                //LessonActivity.points++;
                 startActivity(new Intent(ExplainationQS.this, LessonActivity.class));
             }
         });
