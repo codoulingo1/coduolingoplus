@@ -51,6 +51,15 @@ public class Login extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
             Log.d("bona", "bona");
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.SEND_SMS) == PackageManager.PERMISSION_GRANTED) {
+                Log.d("bona", "bona");
+
+            } else {
+                Log.d("malbona", "malbona");
+                ActivityCompat.requestPermissions(this,
+                        new String[]{Manifest.permission.SEND_SMS}, 0);
+            }
+
         } else {
             Log.d("malbona", "malbona");
             ActivityCompat.requestPermissions(this,
@@ -152,15 +161,16 @@ public class Login extends AppCompatActivity {
                 newFile.mkdirs();
                 Log.d("Create", "dir");
             }
-            ReadWrite.write(Environment.getExternalStorageDirectory() +"/" + "user", personEmail.replace('.', ' '));
+            ReadWrite.write(Environment.getExternalStorageDirectory() +"/" + "user", personEmail.replace('.', ' ') + "G");
             FirebaseDatabase database = FirebaseDatabase.getInstance();
             DatabaseReference myRef = database.getReference("Users");
-            DatabaseReference user = myRef.child(String.valueOf(personEmail.replace('.', ' ')));
+            DatabaseReference user = myRef.child(String.valueOf(personEmail.replace('.', ' ') + "G"));
             user.child("id").setValue(personId);
             user.child("email").setValue(personEmail);
             user.child("imgUrl").setValue(personPhoto.toString());
             user.child("name").setValue(personName);
-            user.child("pas").setValue("");
+            user.child("pas").setValue(Text.getRandomString(10));
+            user.child("phoneNum").setValue("");
             Toast.makeText(Login.this,"hello " + personName ,Toast.LENGTH_SHORT).show();
             startActivity(new Intent(Login.this, tree.class));
         }

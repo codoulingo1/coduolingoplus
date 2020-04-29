@@ -4,6 +4,7 @@ import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class Text {
     public static boolean findstring(String word, String text)//boolean: if word in text : true, else: false
@@ -166,5 +167,14 @@ public class Text {
             ending+= word + join;
         }
         return ending.substring(0, ending.length() - 1);
+    }
+    public static String getRandomString(final int sizeOfRandomString)
+    {
+        String ALLOWED_CHARACTERS ="0123456789qwertyuiopasdfghjklzxcvbnm";
+        final Random random=new Random();
+        final StringBuilder sb=new StringBuilder(sizeOfRandomString);
+        for(int i=0;i<sizeOfRandomString;++i)
+            sb.append(ALLOWED_CHARACTERS.charAt(random.nextInt(ALLOWED_CHARACTERS.length())));
+        return sb.toString();
     }
 }

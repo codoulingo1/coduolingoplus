@@ -11,7 +11,7 @@
         android:layout_weight="1">
 
         <EditText
-            android:id="@+id/inppas"
+            android:id="@+id/inpIDpas"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -24,7 +24,7 @@
             app:layout_constraintVertical_bias="0.483" />
 
         <EditText
-            android:id="@+id/inpemail"
+            android:id="@+id/inpC"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -62,7 +62,21 @@
             app:layout_constraintHorizontal_bias="0.87"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.761" />
+            app:layout_constraintVertical_bias="0.75" />
+
+        <TextView
+            android:id="@+id/to_ForgPas"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="שכחתי את הסיסמה"
+            android:textColor="#070707"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.87"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.823" />
 
         <TextView
             android:id="@+id/textVpas"
@@ -80,7 +94,7 @@
             app:layout_constraintVertical_bias="0.401" />
 
         <Button
-            android:id="@+id/sign_up_btn"
+            android:id="@+id/entID"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="התחבר"
