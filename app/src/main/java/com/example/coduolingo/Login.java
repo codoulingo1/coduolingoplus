@@ -34,6 +34,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.io.File;
+import java.util.List;
 
 public class Login extends AppCompatActivity {
     private SignInButton signInButton;
@@ -43,6 +44,7 @@ public class Login extends AppCompatActivity {
     private int RC_SIGN_IN = 1;
     Button to_login;
     Button to_signup;
+    public static List<String> emails;
 
 
     @Override
@@ -65,9 +67,10 @@ public class Login extends AppCompatActivity {
             ActivityCompat.requestPermissions(this,
                     new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 0);
         }
+        //emails = DownloadReadlessons.get_emails();
         signInButton = findViewById(R.id.sign_in_button);
-        to_login = (Button) findViewById(R.id.to_sign_up);
-        to_signup = (Button) findViewById(R.id.to_login);
+        to_signup = (Button) findViewById(R.id.to_sign_up);
+        to_login = (Button) findViewById(R.id.to_login);
         mAuth = FirebaseAuth.getInstance();
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -86,15 +89,16 @@ public class Login extends AppCompatActivity {
         to_signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(Login.this, usernameloginActivity.class));
+                startActivity(new Intent(Login.this, sign_upActivity.class));
             }
         });
         to_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(Login.this, sign_upActivity.class));
+                startActivity(new Intent(Login.this, usernameloginActivity.class));
             }
         });
+
     }
 
     private void signIn(){
@@ -156,13 +160,14 @@ public class Login extends AppCompatActivity {
             String personEmail = account.getEmail();
             String personId = account.getId();
             Uri personPhoto = account.getPhotoUrl();
-            final File newFile = new File(Environment.getExternalStorageDirectory() +"/user");
+            /*final File newFile = new File(Environment.getExternalStorageDirectory() +"/user");
             if (!newFile.exists()){
                 newFile.mkdirs();
                 Log.d("Create", "dir");
             }
-            ReadWrite.write(Environment.getExternalStorageDirectory() +"/" + "user", personEmail.replace('.', ' ') + "G");
+            ReadWrite.write(Environment.getExternalStorageDirectory() +"/" + "user", personEmail.replace('.', ' ') + "G");*/
             FirebaseDatabase database = FirebaseDatabase.getInstance();
+
             DatabaseReference myRef = database.getReference("Users");
             DatabaseReference user = myRef.child(String.valueOf(personEmail.replace('.', ' ') + "G"));
             user.child("id").setValue(personId);
@@ -177,13 +182,3 @@ public class Login extends AppCompatActivity {
 
     }
 }
-
-
-
-
-
-
-
-
-
-

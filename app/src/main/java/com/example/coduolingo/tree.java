@@ -8,11 +8,16 @@ import android.os.Environment;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import java.io.File;
 
 public class tree extends AppCompatActivity {
 
+    FirebaseAuth mAuth;
     Button skill1;
     Button skill2;
     Button skill3;
@@ -22,10 +27,7 @@ public class tree extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tree);
-        File login = new File(Environment.getExternalStorageDirectory() +"/" + "user.txt");
-        if(!login.exists()) {
-            startActivity(new Intent(tree.this, Login.class));
-        }
+        mAuth = FirebaseAuth.getInstance();
         skill1 = (Button) findViewById(R.id.skill1);
         skill2 = (Button) findViewById(R.id.skill2);
         skill3 = (Button) findViewById(R.id.skill3);
@@ -55,5 +57,20 @@ public class tree extends AppCompatActivity {
         MainActivity.name = name;
 
         startActivity(new Intent(tree.this, MainActivity.class));
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        // Check if user is signed in (non-null) and update UI accordingly.
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        updateUI(currentUser);
+    }
+
+    private void updateUI(FirebaseUser user){
+        if(user == null){
+            //not logged in
+            startActivity(new Intent(tree.this, Login.class));
+        }
     }
 }

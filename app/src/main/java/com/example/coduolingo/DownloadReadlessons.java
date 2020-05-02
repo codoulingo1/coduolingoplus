@@ -12,7 +12,9 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 /**
  * Created by bobyo on 27/03/2020.
@@ -82,4 +84,27 @@ public class DownloadReadlessons {
 
         return hashMap;
     }
+    /*public static List<String> get_emails(){
+        final List<String> Address;
+        Address = new ArrayList<>();
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("Users");
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // This method is called once with the initial value and again
+                // whenever data at this location is updated.
+                for(DataSnapshot fire_email: dataSnapshot.getChildren()){
+                    Address.add(fire_email.getKey());
+
+                }
+
+            }            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+                Log.w("Failed to read value.", error.toException());
+            }
+        });
+        return Address;
+    }*/
 }

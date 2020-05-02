@@ -16,6 +16,8 @@ import android.widget.Toast;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -46,11 +48,13 @@ public class profile_Activity extends AppCompatActivity {
     private Button btnSignOut;
     CountDownTimer mcountdown;
     private GoogleSignInClient mGoogleSignInClient;
+    FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
+        mAuth = FirebaseAuth.getInstance();
         profImg = (ImageView) findViewById(R.id.imageView2);
         setName = (TextView) findViewById(R.id.set_name);
         btnSignOut = findViewById(R.id.sign_out);
@@ -60,26 +64,6 @@ public class profile_Activity extends AppCompatActivity {
                 .requestEmail()
                 .build();
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
-        String idp = ReadWrite.read(Environment.getExternalStorageDirectory() +"/" + "user");
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("Users").child(idp);
-        myRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                // This method is called once with the initial value and again
-                // whenever data at this location is updated.
-                url_old = dataSnapshot.child("imgUrl").getValue(String.class);//paste here google drive picture shareable link but change "open?" to "uc?"
-                Log.d("profile_Activity", url_old);
-                name = dataSnapshot.child("name").getValue(String.class);
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError error) {
-                // Failed to read value
-                Log.w("Failed to read value.", error.toException());
-            }
-        });
         mcountdown = new CountDownTimer(1000, 1000) {
             @Override
             public void onTick(long l) {
@@ -89,7 +73,7 @@ public class profile_Activity extends AppCompatActivity {
 
             @Override
             public void onFinish() {
-                Log.d("profile_Activity2", url_old);
+                //Log.d("profile_Activity2", url_old);
                 try {
                     Picasso.with(profile_Activity.this).load(url_old).resizeDimen(R.dimen.image_size, R.dimen.image_size).placeholder(R.drawable.goj).into(profImg);
                 }catch (Exception e){
@@ -103,15 +87,28 @@ public class profile_Activity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 mGoogleSignInClient.signOut();
+                FirebaseAuth.getInstance().signOut();
                 Toast.makeText(profile_Activity.this,"You are Logged Out",Toast.LENGTH_SHORT).show();
                 btnSignOut.setVisibility(View.INVISIBLE);
-                File login = new File(Environment.getExternalStorageDirectory() +"/" + "user.txt");
-                boolean del = login.delete();
-                Log.d("boolean", String.valueOf(del));
                 startActivity(new Intent(profile_Activity.this, Login.class));
 
             }
         });
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        // Check if user is signed in (non-null) and update UI accordingly.
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        updateUI(currentUser);
+    }
+
+    private void updateUI(FirebaseUser user){
+        if(user == null){
+            startActivity(new Intent(profile_Activity.this, Login.class));
+        } else {
+            Toast.makeText(profile_Activity.this, "Logged In", Toast.LENGTH_SHORT).show();
+        }
+    }
 }

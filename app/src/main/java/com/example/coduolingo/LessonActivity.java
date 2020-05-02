@@ -83,7 +83,7 @@ public class LessonActivity extends AppCompatActivity {
                 //Log.d(String.valueOf(file.exists()), String.valueOf(deleted));
 
             //pb.setProgress(pr);
-            qs.setText("כל הכבוד!");
+            //qs.setText("כל הכבוד!");
 
         }
     }
