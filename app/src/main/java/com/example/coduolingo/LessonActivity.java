@@ -5,6 +5,8 @@ import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -20,7 +22,12 @@ import org.apache.commons.io.FileUtils;
 
 import java.io.File;
 import java.io.IOException;
+import java.sql.Timestamp;
+import java.time.Instant;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.TimeZone;
 
 public class LessonActivity extends AppCompatActivity {
 
@@ -68,19 +75,26 @@ public class LessonActivity extends AppCompatActivity {
             int b = 100 * (j);
             pr = Math.round(b/maxJ);
             pr = Math.round(b/maxJ);
-                j=0;
-                File dirName = new File(Environment.getExternalStorageDirectory() + "/" + "id" + "/");
-                boolean a = false;
-                Log.d("bona", "bona");
+            FirebaseDatabase database = FirebaseDatabase.getInstance();
+            DatabaseReference myRef = database.getReference("Users");
+            DatabaseReference user = myRef.child(ReadWrite.read(Environment.getExternalStorageDirectory() +"/" + "user"));
+            Date today = new Date(System.currentTimeMillis());
+            Timestamp ts=new Timestamp(today.getTime());
 
-                try {
-                    FileUtils.deleteDirectory(dirName);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                    Log.d("malbona", "malbona");
-                }
-                Log.d(String.valueOf(a), String.valueOf(a));
-                //Log.d(String.valueOf(file.exists()), String.valueOf(deleted));
+            user.child("lastLessonD").setValue(ts);
+            j=0;
+            File dirName = new File(Environment.getExternalStorageDirectory() + "/" + "id" + "/");
+            boolean a = false;
+            Log.d("bona", "bona");
+
+            try {
+                FileUtils.deleteDirectory(dirName);
+            } catch (IOException e) {
+                e.printStackTrace();
+                Log.d("malbona", "malbona");
+            }
+            Log.d(String.valueOf(a), String.valueOf(a));
+            //Log.d(String.valueOf(file.exists()), String.valueOf(deleted));
 
             //pb.setProgress(pr);
             //qs.setText("כל הכבוד!");

@@ -23,6 +23,16 @@
         android:text="סיסמה"
         android:textSize="24sp" />
 
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="210dp"
+        android:text="שם משתמש"
+        android:textSize="24sp" />
+
     <EditText
         android:id="@+id/emailField2"
         android:layout_width="300dp"
@@ -43,12 +53,22 @@
         android:layout_alignParentRight="true"
         android:layout_marginRight="100dp"/>
 
+    <EditText
+        android:id="@+id/inpName"
+        android:layout_width="337dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="75dp"
+        android:layout_marginTop="235dp"
+        android:ems="10"
+        android:inputType="textPassword" />
+
     <Button
         android:id="@+id/signInBtn2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="250dp"
+        android:layout_marginTop="285dp"
         android:text="הרשם"/>
 
 

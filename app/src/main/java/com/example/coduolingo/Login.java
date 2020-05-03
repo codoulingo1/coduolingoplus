@@ -164,8 +164,8 @@ public class Login extends AppCompatActivity {
             if (!newFile.exists()){
                 newFile.mkdirs();
                 Log.d("Create", "dir");
-            }
-            ReadWrite.write(Environment.getExternalStorageDirectory() +"/" + "user", personEmail.replace('.', ' ') + "G");*/
+            }*/
+            ReadWrite.write(Environment.getExternalStorageDirectory() +"/" + "user", personEmail.replace('.', ' ') + "G");
             FirebaseDatabase database = FirebaseDatabase.getInstance();
 
             DatabaseReference myRef = database.getReference("Users");

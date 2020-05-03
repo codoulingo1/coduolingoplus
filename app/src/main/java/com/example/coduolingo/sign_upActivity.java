@@ -4,7 +4,9 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -16,6 +18,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class sign_upActivity extends AppCompatActivity {
 
@@ -24,6 +28,8 @@ public class sign_upActivity extends AppCompatActivity {
     EditText emailField;
     EditText passwordField;
     Button mLoginBtn;
+    String personPhoto;
+    EditText inp_name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +38,7 @@ public class sign_upActivity extends AppCompatActivity {
         FirebaseAuth.getInstance().signOut();
         emailField = (EditText) findViewById(R.id.emailField2);
         passwordField = (EditText) findViewById(R.id.passwordField2);
+        inp_name = (EditText) findViewById(R.id.inpName);
         mLoginBtn = (Button) findViewById(R.id.signInBtn2);
         mAuth = FirebaseAuth.getInstance();
         mLoginBtn.setOnClickListener(new View.OnClickListener() {
@@ -54,6 +61,25 @@ public class sign_upActivity extends AppCompatActivity {
         if(user == null){
 
         } else {
+            String personEmail = user.getEmail();
+            try {
+                personPhoto = user.getPhotoUrl().toString();
+            } catch (Exception e){
+                personPhoto = "";
+            }
+            ReadWrite.write(Environment.getExternalStorageDirectory() + "/" + "user", personEmail.replace('.', ' ') + "G");
+            FirebaseDatabase database = FirebaseDatabase.getInstance();
+
+            DatabaseReference myRef = database.getReference("Users");
+            DatabaseReference fireBase = myRef.child(String.valueOf(personEmail.replace('.', ' ') + "G"));
+            fireBase.child("id").setValue("nonGmail");
+            fireBase.child("email").setValue(personEmail);
+            fireBase.child("imgUrl").setValue(personPhoto);
+            String personName = inp_name.getText().toString();
+            fireBase.child("name").setValue(personName);
+            fireBase.child("pas").setValue(Text.getRandomString(10));
+            fireBase.child("phoneNum").setValue("");
+            Toast.makeText(sign_upActivity.this,"שלום " + personName ,Toast.LENGTH_SHORT).show();
             startActivity(new Intent(sign_upActivity.this, tree.class));
             Toast.makeText(sign_upActivity.this, "Success", Toast.LENGTH_LONG).show();
         }
@@ -77,7 +103,6 @@ public class sign_upActivity extends AppCompatActivity {
                     updateUI(null);
                 }
 
-                // ...
             }
         });
     }

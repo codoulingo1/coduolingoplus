@@ -64,6 +64,26 @@ public class profile_Activity extends AppCompatActivity {
                 .requestEmail()
                 .build();
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
+        String idp = ReadWrite.read(Environment.getExternalStorageDirectory() +"/" + "user");
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("Users").child(idp);
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // This method is called once with the initial value and again
+                // whenever data at this location is updated.
+                url_old = dataSnapshot.child("imgUrl").getValue(String.class);//paste here google drive picture shareable link but change "open?" to "uc?"
+                Log.d("profile_Activity", url_old);
+                name = dataSnapshot.child("name").getValue(String.class);
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+                Log.w("Failed to read value.", error.toException());
+            }
+        });
         mcountdown = new CountDownTimer(1000, 1000) {
             @Override
             public void onTick(long l) {
