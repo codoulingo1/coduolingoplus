@@ -176,6 +176,8 @@ public class Login extends AppCompatActivity {
             user.child("name").setValue(personName);
             user.child("pas").setValue(Text.getRandomString(10));
             user.child("phoneNum").setValue("");
+            user.child("lastLessonD").setValue("");
+            user.child("streak").setValue("");
             Toast.makeText(Login.this,"hello " + personName ,Toast.LENGTH_SHORT).show();
             startActivity(new Intent(Login.this, tree.class));
         }
