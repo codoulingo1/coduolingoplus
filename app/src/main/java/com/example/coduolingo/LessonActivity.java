@@ -78,9 +78,8 @@ public class LessonActivity extends AppCompatActivity {
             FirebaseDatabase database = FirebaseDatabase.getInstance();
             DatabaseReference myRef = database.getReference("Users");
             DatabaseReference user = myRef.child(ReadWrite.read(Environment.getExternalStorageDirectory() +"/" + "user"));
-            Date today = new Date(System.currentTimeMillis());
-            Timestamp ts=new Timestamp(today.getTime());
-
+            Date currentTime = Calendar.getInstance().getTime();
+            Timestamp ts=new Timestamp(currentTime.getTime());
             user.child("lastLessonD").setValue(ts);
             j=0;
             File dirName = new File(Environment.getExternalStorageDirectory() + "/" + "id" + "/");

@@ -4,16 +4,24 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.os.Environment;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.io.File;
+import java.sql.Timestamp;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.HashMap;
 
 public class tree extends AppCompatActivity {
 
@@ -22,7 +30,9 @@ public class tree extends AppCompatActivity {
     Button skill2;
     Button skill3;
     Button profile;
-
+    CountDownTimer mcountdown;
+    HashMap <String, String> date;
+    TextView streak;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,6 +42,56 @@ public class tree extends AppCompatActivity {
         skill2 = (Button) findViewById(R.id.skill2);
         skill3 = (Button) findViewById(R.id.skill3);
         profile = (Button) findViewById(R.id.profile);
+        streak = (TextView) findViewById(R.id.streak);
+        date = DownloadReadlessons.get_last_lesson();
+        mcountdown = new CountDownTimer(1000, 1000) {
+            @Override
+            public void onTick(long l) {
+                //dialog.show();
+                Log.d("Loading", "Loading");
+            }
+
+            @Override
+            public void onFinish() {
+                int year = Integer.parseInt(date.get("year"));
+                int month = Integer.parseInt(date.get("month"));
+                int day = Integer.parseInt(date.get("date"));
+                Calendar calendar = Calendar.getInstance();
+
+                // Move calendar to yesterday
+                calendar.add(Calendar.DATE, -1);
+
+                // Get current date of calendar which point to the yesterday now
+                int yesterday = calendar.get(Calendar.DATE);
+                Calendar calendar2 = Calendar.getInstance();
+                int today = calendar2.get(Calendar.DATE);
+                Log.d("0", String.valueOf(calendar.get(Calendar.YEAR)));
+                if(year==calendar.get(Calendar.YEAR)-1900){
+                    Log.d("1", "1");
+                    if(month==calendar.get(Calendar.MONTH)){
+                        Log.d("2", "2");
+                        if(day==yesterday){
+                            Log.d("3", "3");
+                            streak.setText(String.valueOf(Integer.parseInt(date.get("streak")) + 1));
+                            FirebaseDatabase database = FirebaseDatabase.getInstance();
+                            DatabaseReference myRef = database.getReference("Users").child(ReadWrite.read(Environment.getExternalStorageDirectory() + "/" + "user"));
+                            myRef.child("streak").setValue(String.valueOf(Integer.parseInt(date.get("streak")) + 1));
+                        }
+                        else if(day==today){
+                            Log.d("3", "3");
+                            streak.setText(String.valueOf(date.get("streak")));
+                        }
+                        else{
+                            Log.d("3", "3");
+                            streak.setText("0");
+                            FirebaseDatabase database = FirebaseDatabase.getInstance();
+                            DatabaseReference myRef = database.getReference("Users").child(ReadWrite.read(Environment.getExternalStorageDirectory() + "/" + "user"));
+                            myRef.child("streak").setValue(0);
+                        }
+                    }
+                }
+            }
+        }.start();
         profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
