@@ -72,10 +72,7 @@ public class tree extends AppCompatActivity {
                         Log.d("2", "2");
                         if(day==yesterday){
                             Log.d("3", "3");
-                            streak.setText(String.valueOf(Integer.parseInt(date.get("streak")) + 1));
-                            FirebaseDatabase database = FirebaseDatabase.getInstance();
-                            DatabaseReference myRef = database.getReference("Users").child(ReadWrite.read(Environment.getExternalStorageDirectory() + "/" + "user"));
-                            myRef.child("streak").setValue(String.valueOf(Integer.parseInt(date.get("streak")) + 1));
+                            streak.setText(String.valueOf(Integer.parseInt(date.get("streak"))));
                         }
                         else if(day==today){
                             Log.d("3", "3");
