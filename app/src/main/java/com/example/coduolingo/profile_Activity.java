@@ -49,6 +49,7 @@ public class profile_Activity extends AppCompatActivity {
     CountDownTimer mcountdown;
     private GoogleSignInClient mGoogleSignInClient;
     FirebaseAuth mAuth;
+    Button backToTree;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,7 +58,8 @@ public class profile_Activity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         profImg = (ImageView) findViewById(R.id.imageView2);
         setName = (TextView) findViewById(R.id.set_name);
-        btnSignOut = findViewById(R.id.sign_out);
+        btnSignOut = (Button) findViewById(R.id.sign_out);
+        backToTree =  (Button) findViewById(R.id.back_to_tree);
         btnSignOut.setVisibility(View.INVISIBLE);
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
@@ -94,11 +96,17 @@ public class profile_Activity extends AppCompatActivity {
             @Override
             public void onFinish() {
                 //Log.d("profile_Activity2", url_old);
-                try {
+                /*try {
                     Picasso.with(profile_Activity.this).load(url_old).resizeDimen(R.dimen.image_size, R.dimen.image_size).placeholder(R.drawable.goj).into(profImg);
                 }catch (Exception e){
-
+                    Log.d("savta", "Image Error");
+                }*/
+                try {
+                    Picasso.with(profile_Activity.this).load(url_old).resizeDimen(R.dimen.image_size, R.dimen.image_size).placeholder(R.drawable.goj).into(profImg);
+                }catch(Exception e){
+                    profImg.setImageResource(R.drawable.user_pic);
                 }
+
                 setName.setText(name);
                 btnSignOut.setVisibility(View.VISIBLE);
             }
@@ -114,6 +122,13 @@ public class profile_Activity extends AppCompatActivity {
 
             }
         });
+        backToTree.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(profile_Activity.this, tree.class));
+            }
+        });
+
     }
 
     @Override

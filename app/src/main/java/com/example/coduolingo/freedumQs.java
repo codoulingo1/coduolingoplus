@@ -205,15 +205,7 @@ public class freedumQs extends AppCompatActivity {
     }
 
     void showCorrect() {
-        /*buttonl.setVisibility(View.VISIBLE);
-        l.setText("כל הכבוד");
-        buttonl.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    LessonActivity.j++;
-                    startActivity(new Intent(freedumQs.this, LessonActivity.class));
-                }
-        }); */
+
         popup.setVisibility(View.VISIBLE);
         continueBtn4.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -225,14 +217,6 @@ public class freedumQs extends AppCompatActivity {
         });
     }
     void showWrong(){
-        /*buttonl.setVisibility(View.VISIBLE);
-        l.setText("נסה שוב");
-        buttonl.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(freedumQs.this, freedumQs.class));
-            }
-        });*/
         popupWrong.setVisibility(View.VISIBLE);
         continueBtn6.setOnClickListener(new View.OnClickListener() {
             @Override

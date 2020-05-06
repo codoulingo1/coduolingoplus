@@ -3,6 +3,7 @@ package com.example.coduolingo;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.icu.util.Calendar;
 import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
@@ -47,7 +48,7 @@ public class tree extends AppCompatActivity {
         skill2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startLesson("57932", "HI");
+                startLesson("123456789", "Omri");
             }
         });
     }
@@ -55,6 +56,7 @@ public class tree extends AppCompatActivity {
     void startLesson(String id, String name){
         MainActivity.id = id;
         MainActivity.name = name;
+
 
         startActivity(new Intent(tree.this, MainActivity.class));
     }

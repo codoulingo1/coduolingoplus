@@ -15,6 +15,8 @@ import android.os.Environment;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -45,6 +47,8 @@ public class Login extends AppCompatActivity {
     Button to_login;
     Button to_signup;
     public static List<String> emails;
+    TextView sign_up_email;
+    ImageButton imgBtnGoogle;
 
 
     @Override
@@ -67,11 +71,13 @@ public class Login extends AppCompatActivity {
             ActivityCompat.requestPermissions(this,
                     new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 0);
         }
+        sign_up_email = (TextView) findViewById(R.id.textView12);
+        imgBtnGoogle = (ImageButton) findViewById(R.id.imageButtonGoogle);
+        mAuth = FirebaseAuth.getInstance();
         //emails = DownloadReadlessons.get_emails();
-        signInButton = findViewById(R.id.sign_in_button);
+        /*signInButton = findViewById(R.id.sign_in_button);
         to_signup = (Button) findViewById(R.id.to_sign_up);
         to_login = (Button) findViewById(R.id.to_login);
-        mAuth = FirebaseAuth.getInstance();
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
@@ -96,6 +102,24 @@ public class Login extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(Login.this, usernameloginActivity.class));
+            }
+        });*/
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken(getString(R.string.default_web_client_id))
+                .requestEmail()
+                .build();
+        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
+        sign_up_email.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Login.this, sign_upActivity.class));
+            }
+        });
+        imgBtnGoogle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent signInIntent = mGoogleSignInClient.getSignInIntent();
+                startActivityForResult(signInIntent, RC_SIGN_IN);
             }
         });
 

@@ -50,7 +50,6 @@ public class NonFreedum extends AppCompatActivity {
         String[] optAns = LessonActivity.shared_hashmap.get("Content").split(",");
         unuateksto = LessonActivity.shared_hashmap.get("additional");
         final Button dlt = (Button) findViewById(R.id.dlt);
-
         final Button dltall = (Button) findViewById(R.id.dltall);
         Button[] ops = {opt1, opt2, opt3, opt4, opt5, opt6};
         unuateksto = Text.replace(unuateksto, '%', '£', 0);
@@ -171,6 +170,7 @@ public class NonFreedum extends AppCompatActivity {
         int opt4txt = opt4.getText().toString().length();
         int opt5txt = opt5.getText().toString().length();
         int opt6txt = opt6.getText().toString().length();
+        
 
         opt1.getLayoutParams().width = opt1txt * 25 + 100;
         opt2.getLayoutParams().width = opt2txt * 25 + 100;
