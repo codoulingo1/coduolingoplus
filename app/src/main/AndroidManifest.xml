@@ -26,9 +26,9 @@
         <activity android:name=".Login" />
         <activity android:name=".usernameloginActivity" />
         <activity android:name=".sign_upActivity" />
-        <activity android:name=".profile_Activity" />
+        <activity android:name=".profile_Activity"/>
         <activity android:name=".MainActivity" />
-        <activity android:name=".tree"> <!-- This is the default activity! -->
+        <activity android:name=".tree"><!-- This is the default activity! -->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

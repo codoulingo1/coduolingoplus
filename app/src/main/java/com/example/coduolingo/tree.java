@@ -19,9 +19,12 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.io.File;
 import java.sql.Timestamp;
+import java.util.Arrays;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 
 public class tree extends AppCompatActivity {
 
@@ -65,7 +68,6 @@ public class tree extends AppCompatActivity {
                 int yesterday = calendar.get(Calendar.DATE);
                 Calendar calendar2 = Calendar.getInstance();
                 int today = calendar2.get(Calendar.DATE);
-                Log.d("0", String.valueOf(calendar.get(Calendar.YEAR)));
                 if(year==calendar.get(Calendar.YEAR)-1900){
                     Log.d("1", "1");
                     if(month==calendar.get(Calendar.MONTH)){
@@ -98,22 +100,28 @@ public class tree extends AppCompatActivity {
         skill1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startLesson("57983", "Math");
+                startLesson(Arrays.asList("57983"), "Math");
             } //savta
         });
         skill2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startLesson("57932", "HI");
+                startLesson(Arrays.asList("57983", "57932"), "HI");
             }
         });
     }
 
-    void startLesson(String id, String name){
-        MainActivity.id = id;
-        MainActivity.name = name;
+    void startLesson(List<String> id, String name){
+        String old_progress = String.valueOf(date.get("cProgress"));
+        for(String d : id){
+            List<String> str_old_progress = Arrays.asList(old_progress.split(" "));
+            if(!str_old_progress.contains(d)) {
+                MainActivity.id = d;
+                MainActivity.name = name;
 
-        startActivity(new Intent(tree.this, MainActivity.class));
+                startActivity(new Intent(tree.this, MainActivity.class));
+            }
+        }
     }
 
     @Override

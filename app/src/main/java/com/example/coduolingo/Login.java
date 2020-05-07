@@ -181,7 +181,8 @@ public class Login extends AppCompatActivity {
             user.child("lastLessonD").child("month").setValue(0);
             user.child("lastLessonD").child("date").setValue(0);
             user.child("streak").setValue(1);
-            Toast.makeText(Login.this,"שלום " + personName ,Toast.LENGTH_SHORT).show();
+            user.child("progress").setValue("");
+                Toast.makeText(Login.this,"שלום " + personName ,Toast.LENGTH_SHORT).show();
             startActivity(new Intent(Login.this, tree.class));
         }else{
                 Toast.makeText(Login.this,"שלום " + personName ,Toast.LENGTH_SHORT).show();

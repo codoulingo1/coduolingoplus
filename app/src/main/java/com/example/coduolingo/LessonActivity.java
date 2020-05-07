@@ -25,9 +25,11 @@ import java.io.File;
 import java.io.IOException;
 import java.sql.Timestamp;
 import java.time.Instant;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.TimeZone;
 
 public class LessonActivity extends AppCompatActivity {
@@ -108,6 +110,7 @@ public class LessonActivity extends AppCompatActivity {
                     int year = Integer.parseInt(date.get("year"));
                     int month = Integer.parseInt(date.get("month"));
                     int day = Integer.parseInt(date.get("date"));
+                    String old_progress = String.valueOf(date.get("cProgress"));
                     Calendar calendar = Calendar.getInstance();
 
                     // Move calendar to yesterday
@@ -135,13 +138,25 @@ public class LessonActivity extends AppCompatActivity {
                                 DatabaseReference myRef = database.getReference("Users").child(ReadWrite.read(Environment.getExternalStorageDirectory() + "/" + "user"));
                                 myRef.child("streak").setValue(1);
                             }
+                        }else{
                             FirebaseDatabase database = FirebaseDatabase.getInstance();
-                            DatabaseReference myRef = database.getReference("Users");
-                            DatabaseReference user = myRef.child(ReadWrite.read(Environment.getExternalStorageDirectory() + "/" + "user"));
-                            Date currentTime = Calendar.getInstance().getTime();
-                            Timestamp ts = new Timestamp(currentTime.getTime());
-                            user.child("lastLessonD").setValue(ts);
+                            DatabaseReference myRef = database.getReference("Users").child(ReadWrite.read(Environment.getExternalStorageDirectory() + "/" + "user"));
+                            myRef.child("streak").setValue(1);
                         }
+                    }else{
+                        FirebaseDatabase database = FirebaseDatabase.getInstance();
+                        DatabaseReference myRef = database.getReference("Users").child(ReadWrite.read(Environment.getExternalStorageDirectory() + "/" + "user"));
+                        myRef.child("streak").setValue(1);
+                    }
+                    FirebaseDatabase database = FirebaseDatabase.getInstance();
+                    DatabaseReference myRef = database.getReference("Users");
+                    DatabaseReference user = myRef.child(ReadWrite.read(Environment.getExternalStorageDirectory() + "/" + "user"));
+                    Date currentTime = Calendar.getInstance().getTime();
+                    Timestamp ts = new Timestamp(currentTime.getTime());
+                    user.child("lastLessonD").setValue(ts);
+                    List<String> str_old_progress = Arrays.asList(old_progress.split(" "));
+                    if(!str_old_progress.contains(MainActivity.id)) {
+                        user.child("progress").setValue(old_progress + " " + MainActivity.id);
                     }
                 }
             }.start();
