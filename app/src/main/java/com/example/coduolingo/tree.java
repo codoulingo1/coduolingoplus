@@ -106,7 +106,7 @@ public class tree extends AppCompatActivity {
         skill2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startLesson(Arrays.asList("57983", "57932"), "HI");
+                startLesson(Arrays.asList("1"), "משתנים");
             }
         });
     }
