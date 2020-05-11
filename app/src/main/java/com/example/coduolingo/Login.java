@@ -47,8 +47,9 @@ public class Login extends AppCompatActivity {
     Button to_login;
     Button to_signup;
     public static List<String> emails;
-    TextView sign_up_email;
+    ImageButton sign_up_email;
     ImageButton imgBtnGoogle;
+    TextView loginWithExisting;
 
 
     @Override
@@ -60,7 +61,6 @@ public class Login extends AppCompatActivity {
             Log.d("bona", "bona");
             if (ContextCompat.checkSelfPermission(this, Manifest.permission.SEND_SMS) == PackageManager.PERMISSION_GRANTED) {
                 Log.d("bona", "bona");
-
             } else {
                 Log.d("malbona", "malbona");
                 ActivityCompat.requestPermissions(this,
@@ -72,9 +72,10 @@ public class Login extends AppCompatActivity {
             ActivityCompat.requestPermissions(this,
                     new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 0);
         }
-        sign_up_email = (TextView) findViewById(R.id.textView12);
+        sign_up_email = (ImageButton) findViewById(R.id.imageButtonMail);
         imgBtnGoogle = (ImageButton) findViewById(R.id.imageButtonGoogle);
         mAuth = FirebaseAuth.getInstance();
+        loginWithExisting = (TextView) findViewById(R.id.signInWithExisting);
         //emails = DownloadReadlessons.get_emails();
         /*signInButton = findViewById(R.id.sign_in_button);
         to_signup = (Button) findViewById(R.id.to_sign_up);
@@ -121,6 +122,12 @@ public class Login extends AppCompatActivity {
             public void onClick(View v) {
                 Intent signInIntent = mGoogleSignInClient.getSignInIntent();
                 startActivityForResult(signInIntent, RC_SIGN_IN);
+            }
+        });
+        loginWithExisting.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Login.this, usernameloginActivity.class));
             }
         });
 
@@ -193,25 +200,25 @@ public class Login extends AppCompatActivity {
             ReadWrite.write(Environment.getExternalStorageDirectory() +"/" + "user", personEmail.replace('.', ' ') + "G");
             FirebaseDatabase database = FirebaseDatabase.getInstance();
             if(!emails.contains(personEmail.replace('.', ' ') + "G")){
-            DatabaseReference myRef = database.getReference("Users");
-            DatabaseReference user = myRef.child(String.valueOf(personEmail.replace('.', ' ') + "G"));
-            user.child("id").setValue(personId);
-            user.child("email").setValue(personEmail);
-            user.child("imgUrl").setValue(personPhoto.toString());
-            user.child("name").setValue(personName);
-            user.child("pas").setValue(Text.getRandomString(10));
-            user.child("phoneNum").setValue("");
-            user.child("lastLessonD").child("year").setValue(0);
-            user.child("lastLessonD").child("month").setValue(0);
-            user.child("lastLessonD").child("date").setValue(0);
-            user.child("streak").setValue(1);
-            user.child("progress").setValue("");
+                DatabaseReference myRef = database.getReference("Users");
+                DatabaseReference user = myRef.child(String.valueOf(personEmail.replace('.', ' ') + "G"));
+                user.child("id").setValue(personId);
+                user.child("email").setValue(personEmail);
+                user.child("imgUrl").setValue(personPhoto.toString());
+                user.child("name").setValue(personName);
+                user.child("pas").setValue(Text.getRandomString(10));
+                user.child("phoneNum").setValue("");
+                user.child("lastLessonD").child("year").setValue(0);
+                user.child("lastLessonD").child("month").setValue(0);
+                user.child("lastLessonD").child("date").setValue(0);
+                user.child("streak").setValue(1);
+                user.child("progress").setValue("");
                 Toast.makeText(Login.this,"שלום " + personName ,Toast.LENGTH_SHORT).show();
-            startActivity(new Intent(Login.this, tree.class));
+                startActivity(new Intent(Login.this, tree.class));
         }else{
                 Toast.makeText(Login.this,"שלום " + personName ,Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(Login.this, tree.class));
-            }
+        }
         }
 
     }

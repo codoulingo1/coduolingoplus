@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
         dialog.setMessage("טוען שיעור: " + name);
         DownloadReadlessons.downloadlesson(id, MainActivity.this);
 
-        mcountdown = new CountDownTimer(2000, 1000) {
+        mcountdown = new CountDownTimer(4000, 1000) {
             @Override
             public void onTick(long l) {
                 //dialog.show();
@@ -96,12 +96,12 @@ public class MainActivity extends AppCompatActivity {
                 counter++;
                 loading.setProgress(counter);
 
-                if(counter == 10)
+                if(counter == 30)
                     t.cancel();
             }
         };
 
-        t.schedule(tt,0,10);
+        t.schedule(tt,0,30);
     }
 }
 
