@@ -55,6 +55,7 @@ public class Login extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        emails=DownloadReadlessons.get_emails();
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
             Log.d("bona", "bona");
             if (ContextCompat.checkSelfPermission(this, Manifest.permission.SEND_SMS) == PackageManager.PERMISSION_GRANTED) {
@@ -191,7 +192,7 @@ public class Login extends AppCompatActivity {
             }*/
             ReadWrite.write(Environment.getExternalStorageDirectory() +"/" + "user", personEmail.replace('.', ' ') + "G");
             FirebaseDatabase database = FirebaseDatabase.getInstance();
-
+            if(!emails.contains(personEmail.replace('.', ' ') + "G")){
             DatabaseReference myRef = database.getReference("Users");
             DatabaseReference user = myRef.child(String.valueOf(personEmail.replace('.', ' ') + "G"));
             user.child("id").setValue(personId);
@@ -200,8 +201,17 @@ public class Login extends AppCompatActivity {
             user.child("name").setValue(personName);
             user.child("pas").setValue(Text.getRandomString(10));
             user.child("phoneNum").setValue("");
-            Toast.makeText(Login.this,"hello " + personName ,Toast.LENGTH_SHORT).show();
+            user.child("lastLessonD").child("year").setValue(0);
+            user.child("lastLessonD").child("month").setValue(0);
+            user.child("lastLessonD").child("date").setValue(0);
+            user.child("streak").setValue(1);
+            user.child("progress").setValue("");
+                Toast.makeText(Login.this,"שלום " + personName ,Toast.LENGTH_SHORT).show();
             startActivity(new Intent(Login.this, tree.class));
+        }else{
+                Toast.makeText(Login.this,"שלום " + personName ,Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(Login.this, tree.class));
+            }
         }
 
     }

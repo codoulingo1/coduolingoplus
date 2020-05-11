@@ -84,7 +84,29 @@ public class DownloadReadlessons {
 
         return hashMap;
     }
-    /*public static List<String> get_emails(){
+    public static HashMap <String, String> get_last_lesson(){
+        final HashMap<String, String> ret = new HashMap<>();
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("Users").child( ReadWrite.read(Environment.getExternalStorageDirectory() + "/" + "user"));
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // This method is called once with the initial value and again
+                // whenever data at this location is uploaded
+                ret.put("streak", dataSnapshot.child("streak").getValue().toString());
+                ret.put("year", dataSnapshot.child("lastLessonD").child("year").getValue().toString());
+                ret.put("month", dataSnapshot.child("lastLessonD").child("month").getValue().toString());
+                ret.put("date", dataSnapshot.child("lastLessonD").child("date").getValue().toString());
+                ret.put("cProgress", dataSnapshot.child("progress").getValue().toString());
+            }            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+                Log.w("Failed to read value.", error.toException());
+            }
+        });
+        return ret;
+    }
+    public static List<String> get_emails() {
         final List<String> Address;
         Address = new ArrayList<>();
         FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -94,17 +116,19 @@ public class DownloadReadlessons {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
-                for(DataSnapshot fire_email: dataSnapshot.getChildren()){
+                for (DataSnapshot fire_email : dataSnapshot.getChildren()) {
                     Address.add(fire_email.getKey());
 
                 }
 
-            }            @Override
+            }
+
+            @Override
             public void onCancelled(DatabaseError error) {
                 // Failed to read value
                 Log.w("Failed to read value.", error.toException());
             }
         });
         return Address;
-    }*/
+    }
 }

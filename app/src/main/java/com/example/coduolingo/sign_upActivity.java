@@ -78,7 +78,10 @@ public class sign_upActivity extends AppCompatActivity {
             String personName = inp_name.getText().toString();
             fireBase.child("name").setValue(personName);
             fireBase.child("pas").setValue(Text.getRandomString(10));
-            fireBase.child("phoneNum").setValue("");
+            fireBase.child("phoneNum").setValue(0);
+            fireBase.child("lastLessonD").setValue(0);
+            fireBase.child("streak").setValue(1);
+            fireBase.child("progress").setValue("");
             Toast.makeText(sign_upActivity.this,"שלום " + personName ,Toast.LENGTH_SHORT).show();
             startActivity(new Intent(sign_upActivity.this, tree.class));
             Toast.makeText(sign_upActivity.this, "Success", Toast.LENGTH_LONG).show();

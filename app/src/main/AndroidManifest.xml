@@ -11,7 +11,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".PasswordReset" />
+        <activity android:name=".PasswordReset"></activity>
         <activity
             android:name=".LessonActivity"
             android:label="@string/title_activity_lesson"
@@ -20,24 +20,15 @@
             android:name=".FreeText"
             android:label="@string/title_activity_free_text"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".NonFreedum"
-            android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".ExplainationQS"
-            android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".freedumQs"
-            android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".Login"
-            android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".usernameloginActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".sign_upActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".profile_Activity"
-            android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".MainActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".tree"
-            android:theme="@style/AppTheme.NoActionBar"> <!-- This is the default activity! -->
+        <activity android:name=".NonFreedum" />
+        <activity android:name=".ExplainationQS" />
+        <activity android:name=".freedumQs" />
+        <activity android:name=".Login" />
+        <activity android:name=".usernameloginActivity" />
+        <activity android:name=".sign_upActivity" />
+        <activity android:name=".profile_Activity"/>
+        <activity android:name=".MainActivity" />
+        <activity android:name=".tree"><!-- This is the default activity! -->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -49,6 +40,8 @@
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
     </application>
+    <uses-permission android:name="android.permission. ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.SEND_SMS" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -58,9 +51,7 @@
     <uses-permission
         android:name="android.permission.WRITE_EXTERNAL_STORAGE"
         tools:remove="android:maxSdkVersion" />
-    <uses-permission android:name="android.permission.WRITE_INTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission. ACCESS_FINE_LOCATION" />
 
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WRITE_INTERNAL_STORAGE" />
 
 </manifest>

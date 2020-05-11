@@ -3,18 +3,28 @@ package com.example.coduolingo;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.icu.util.Calendar;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.os.Environment;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.io.File;
+import java.sql.Timestamp;
+import java.util.Arrays;
+import java.util.Calendar;
+import java.util.Collections;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
 
 public class tree extends AppCompatActivity {
 
@@ -23,7 +33,9 @@ public class tree extends AppCompatActivity {
     Button skill2;
     Button skill3;
     Button profile;
-
+    CountDownTimer mcountdown;
+    HashMap <String, String> date;
+    TextView streak;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,6 +45,52 @@ public class tree extends AppCompatActivity {
         skill2 = (Button) findViewById(R.id.skill2);
         skill3 = (Button) findViewById(R.id.skill3);
         profile = (Button) findViewById(R.id.profile);
+        streak = (TextView) findViewById(R.id.streak);
+        date = DownloadReadlessons.get_last_lesson();
+        mcountdown = new CountDownTimer(1000, 1000) {
+            @Override
+            public void onTick(long l) {
+                //dialog.show();
+                Log.d("Loading", "Loading");
+            }
+
+            @Override
+            public void onFinish() {
+                int year = Integer.parseInt(date.get("year"));
+                int month = Integer.parseInt(date.get("month"));
+                int day = Integer.parseInt(date.get("date"));
+                Calendar calendar = Calendar.getInstance();
+
+                // Move calendar to yesterday
+                calendar.add(Calendar.DATE, -1);
+
+                // Get current date of calendar which point to the yesterday now
+                int yesterday = calendar.get(Calendar.DATE);
+                Calendar calendar2 = Calendar.getInstance();
+                int today = calendar2.get(Calendar.DATE);
+                if(year==calendar.get(Calendar.YEAR)-1900){
+                    Log.d("1", "1");
+                    if(month==calendar.get(Calendar.MONTH)){
+                        Log.d("2", "2");
+                        if(day==yesterday){
+                            Log.d("3", "3");
+                            streak.setText(String.valueOf(Integer.parseInt(date.get("streak"))));
+                        }
+                        else if(day==today){
+                            Log.d("3", "3");
+                            streak.setText(String.valueOf(date.get("streak")));
+                        }
+                        else{
+                            Log.d("3", "3");
+                            streak.setText("0");
+                            FirebaseDatabase database = FirebaseDatabase.getInstance();
+                            DatabaseReference myRef = database.getReference("Users").child(ReadWrite.read(Environment.getExternalStorageDirectory() + "/" + "user"));
+                            myRef.child("streak").setValue(0);
+                        }
+                    }
+                }
+            }
+        }.start();
         profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -42,23 +100,28 @@ public class tree extends AppCompatActivity {
         skill1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startLesson("57983", "Math");
+                startLesson(Arrays.asList("57983"), "Math");
             } //savta
         });
         skill2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startLesson("123456789", "Omri");
+                startLesson(Arrays.asList("1"), "משתנים");
             }
         });
     }
 
-    void startLesson(String id, String name){
-        MainActivity.id = id;
-        MainActivity.name = name;
+    void startLesson(List<String> id, String name){
+        String old_progress = String.valueOf(date.get("cProgress"));
+        for(String d : id){
+            List<String> str_old_progress = Arrays.asList(old_progress.split(" "));
+            if(!str_old_progress.contains(d)) {
+                MainActivity.id = d;
+                MainActivity.name = name;
 
-
-        startActivity(new Intent(tree.this, MainActivity.class));
+                startActivity(new Intent(tree.this, MainActivity.class));
+            }
+        }
     }
 
     @Override
