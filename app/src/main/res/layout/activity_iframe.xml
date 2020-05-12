@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".iframe"
+    android:background="#F3F4F9">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/inputHTML"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:background="@color/codeBackground"
+            android:fontFamily="@font/veramono"
+            android:gravity="top"
+            android:inputType="textMultiLine|textNoSuggestions"
+            android:minLines="5"
+            android:overScrollMode="always"
+            android:scrollbarStyle="insideInset"
+            android:scrollbars="vertical"
+            android:textColor="@color/white"
+            android:layout_alignParentTop="true"/>
+
+        <Button
+            android:id="@+id/submitHTML"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/inputHTML"
+            android:layout_marginTop="10dp"
+            android:layout_centerHorizontal="true"
+            android:text="Submit"></Button>
+
+
+        <org.sufficientlysecure.htmltextview.HtmlTextView
+            android:id="@+id/html_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/submitHTML"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="15dp">
+
+        </org.sufficientlysecure.htmltextview.HtmlTextView>
+
+    </RelativeLayout>
+</ScrollView>

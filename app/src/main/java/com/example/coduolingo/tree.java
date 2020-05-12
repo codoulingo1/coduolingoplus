@@ -36,6 +36,7 @@ public class tree extends AppCompatActivity {
     CountDownTimer mcountdown;
     HashMap <String, String> date;
     TextView streak;
+    Button toHTML;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,6 +47,7 @@ public class tree extends AppCompatActivity {
         skill3 = (Button) findViewById(R.id.skill3);
         profile = (Button) findViewById(R.id.profile);
         streak = (TextView) findViewById(R.id.streak);
+        toHTML = (Button) findViewById(R.id.toHTML);
         date = DownloadReadlessons.get_last_lesson();
         mcountdown = new CountDownTimer(1000, 1000) {
             @Override
@@ -107,6 +109,12 @@ public class tree extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startLesson(Arrays.asList("1"), "משתנים");
+            }
+        });
+        toHTML.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(tree.this, iframe.class));
             }
         });
     }
