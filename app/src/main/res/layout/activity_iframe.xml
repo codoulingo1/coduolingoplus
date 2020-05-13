@@ -9,7 +9,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
 
         <EditText
             android:id="@+id/inputHTML"
@@ -35,17 +35,16 @@
             android:layout_centerHorizontal="true"
             android:text="Submit"></Button>
 
-
-        <org.sufficientlysecure.htmltextview.HtmlTextView
-            android:id="@+id/html_text"
+        <WebView
+            android:id="@+id/HtmlView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/submitHTML"
+            android:layout_below="@id/submitHTML"
             android:layout_alignParentBottom="true"
+            android:layout_marginTop="15dp"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="15dp">
+            />
 
-        </org.sufficientlysecure.htmltextview.HtmlTextView>
 
     </RelativeLayout>
 </ScrollView>

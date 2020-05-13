@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.View;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -14,28 +16,27 @@ import org.sufficientlysecure.htmltextview.HtmlTextView;
 public class iframe extends AppCompatActivity {
 
     String htmlCode;
-    HtmlTextView HTMLView;
+    WebView htmlView;
     Button submitBtn;
-    EditText htmlCodeText;
+    EditText htmlInp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_iframe);
 
-        HTMLView = (HtmlTextView) findViewById(R.id.html_text);
+        htmlView = (WebView) findViewById(R.id.HtmlView);
         submitBtn = (Button) findViewById(R.id.submitHTML);
-        htmlCodeText = (EditText) findViewById(R.id.inputHTML);
+        htmlInp = (EditText) findViewById(R.id.inputHTML);
+
+        htmlView.getSettings().setJavaScriptEnabled(true);
+        htmlView.setWebViewClient(new WebViewClient());
 
         submitBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                htmlCode = htmlCodeText.getText().toString();
-                if(htmlCode != null){
-                    HTMLView.setHtml(htmlCode, new HtmlHttpImageGetter(HTMLView));
-                }else {
-                    Toast.makeText(iframe.this, "Invalid HTML", Toast.LENGTH_SHORT).show();
-                }
+                htmlCode = htmlInp.getText().toString();
+                htmlView.loadData(htmlCode, "text/html", "UTF-8");
             }
         });
 
