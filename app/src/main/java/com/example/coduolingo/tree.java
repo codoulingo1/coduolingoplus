@@ -37,6 +37,7 @@ public class tree extends AppCompatActivity {
     HashMap <String, String> date;
     TextView streak;
     Button toHTML;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,6 +49,7 @@ public class tree extends AppCompatActivity {
         profile = (Button) findViewById(R.id.profile);
         streak = (TextView) findViewById(R.id.streak);
         toHTML = (Button) findViewById(R.id.toHTML);
+        LessonActivity.j = 1;
         date = DownloadReadlessons.get_last_lesson();
         mcountdown = new CountDownTimer(1000, 1000) {
             @Override

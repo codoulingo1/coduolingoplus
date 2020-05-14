@@ -1,5 +1,6 @@
 package com.example.coduolingo;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -62,7 +63,6 @@ public class FreeText extends AppCompatActivity {
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                hideKeyboard();
                 String ans = inp.getText().toString();
                 if (ans.equals(LessonActivity.shared_hashmap.get("Answer"))) {
                     showCorrect();
@@ -74,6 +74,14 @@ public class FreeText extends AppCompatActivity {
             }
         }
         );
+        inp.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (!hasFocus) {
+                    hideKeyboard(v);
+                }
+            }
+        });
 
     }
     void showCorrect() {
@@ -109,13 +117,11 @@ public class FreeText extends AppCompatActivity {
         });
 
     }
-    public void hideKeyboard() {
-        View view1 = this.getCurrentFocus();
-        if(view1 != null){
-            InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-            imm.hideSoftInputFromWindow(view1.getWindowToken(), 0);
-        }
+    public void hideKeyboard(View view) {
+        InputMethodManager inputMethodManager =(InputMethodManager)getSystemService(Activity.INPUT_METHOD_SERVICE);
+        inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
+
     @Override
     public void onBackPressed() {
         DialogBack dialogBack = new DialogBack();

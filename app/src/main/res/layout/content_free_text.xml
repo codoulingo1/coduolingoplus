@@ -6,7 +6,9 @@
     android:layout_height="match_parent"
     android:overScrollMode="always"
     android:scrollbars="vertical"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:clickable="true"
+    android:focusableInTouchMode="true" >
     <!--android:scrollbarStyle="insideInset" - this is something bad-->
 
     <ImageButton
@@ -72,7 +74,7 @@
         android:fontFamily="@font/rubik_light"
         android:text="שאלה"
         android:textColor="#0B0A0A"
-        android:textSize="30sp" />
+        android:textSize="22sp" />
 
     <RelativeLayout
         android:id="@+id/PopupTruee"

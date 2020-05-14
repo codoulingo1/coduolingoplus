@@ -57,7 +57,6 @@ public class ExplainationQS extends AppCompatActivity {
                 overridePendingTransition(0, 0);
                 //continueBtn.setImageResource(R.drawable.avd_anim);
                 //animate();
-                Toast.makeText(ExplainationQS.this, "YES", Toast.LENGTH_SHORT).show();
 
             }
         });
