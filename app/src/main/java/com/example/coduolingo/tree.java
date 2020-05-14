@@ -53,7 +53,7 @@ public class tree extends AppCompatActivity {
             @Override
             public void onTick(long l) {
                 //dialog.show();
-                Log.d("Loading", "Loading");
+                //Log.d("Loading", "Loading");
             }
 
             @Override
@@ -115,7 +115,7 @@ public class tree extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(tree.this, iframe.class));
-                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_in_left);
+                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
             }
         });
     }
@@ -129,6 +129,7 @@ public class tree extends AppCompatActivity {
                 MainActivity.name = name;
 
                 startActivity(new Intent(tree.this, MainActivity.class));
+                overridePendingTransition(0,0);
             }
         }
     }

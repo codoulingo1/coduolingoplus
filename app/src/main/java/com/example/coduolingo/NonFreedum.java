@@ -246,7 +246,7 @@ public class NonFreedum extends AppCompatActivity {
                 LessonActivity.j++;
                 //LessonActivity.points++;
                 startActivity(new Intent(NonFreedum.this, LessonActivity.class));
-                overridePendingTransition(R.anim.slide_in_left, R.anim.slide_in_right);
+                overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
             }
         });
     }

@@ -24,6 +24,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import java.util.HashMap;
+import java.util.concurrent.TimeUnit;
 
 public class freedumQs extends AppCompatActivity {
 
@@ -34,6 +35,8 @@ public class freedumQs extends AppCompatActivity {
     Button opt2;
     Button opt3;
     Button opt4;
+
+    private AnimatedVectorDrawable animation;
 
     int isClicked1 = 0;
     int isClicked2 = 0;
@@ -209,8 +212,19 @@ public class freedumQs extends AppCompatActivity {
 
     void showCorrect() {
 
-        popup.setVisibility(View.VISIBLE);
+        /*popup.setVisibility(View.VISIBLE);
         continueBtn4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                LessonActivity.j++;
+                //LessonActivity.points++;
+                startActivity(new Intent(freedumQs.this, LessonActivity.class));
+                overridePendingTransition(0, 0);
+            }
+        });*/
+        continueBtn.setImageResource(R.drawable.avd_anim);
+        animate();
+        continueBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 LessonActivity.j++;
@@ -231,10 +245,19 @@ public class freedumQs extends AppCompatActivity {
         });
 
     }
+
     @Override
     public void onBackPressed() {
         DialogBack dialogBack = new DialogBack();
         dialogBack.show(getSupportFragmentManager(), "Example Dialog");
+    }
+    public void animate(){
+        Drawable d = continueBtn.getDrawable();
+        if (d instanceof AnimatedVectorDrawable) {
+
+            animation = (AnimatedVectorDrawable) d;
+            animation.start();
+        }
     }
 
 }

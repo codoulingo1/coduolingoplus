@@ -218,7 +218,6 @@ public class Login extends AppCompatActivity {
         }else{
                 Toast.makeText(Login.this,"שלום " + personName ,Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(Login.this, tree.class));
-                //TODO: app be looking kinda crashy on personal phone
         }
         }
 
