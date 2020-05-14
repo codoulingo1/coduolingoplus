@@ -76,7 +76,8 @@
         app:layout_constraintHorizontal_bias="0.561"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.109" />
+        app:layout_constraintVertical_bias="0.109"
+        android:fontFamily="@font/rubik_light"/>
 
     <ProgressBar
         android:id="@+id/progressBar"

@@ -180,15 +180,19 @@ public class LessonActivity extends AppCompatActivity {
         Log.d("j", String.valueOf(j));
         if (hashMap.get("type").equals("freedum")){
             startActivity(new Intent(LessonActivity.this, freedumQs.class));
+            overridePendingTransition(R.anim.slide_in_left, R.anim.slide_in_right);
         }
         else if(hashMap.get("type").equals("explain")){
             startActivity(new Intent(LessonActivity.this, ExplainationQS.class));
+            overridePendingTransition(R.anim.slide_in_left, R.anim.slide_in_right);
         }
         else if(hashMap.get("type").equals("nonfreetext")){
             startActivity(new Intent(LessonActivity.this, NonFreedum.class));
+            overridePendingTransition(R.anim.slide_in_left, R.anim.slide_in_right);
         }
         else if(hashMap.get("type").equals("freetext")){
             startActivity(new Intent(LessonActivity.this, FreeText.class));
+            overridePendingTransition(R.anim.slide_in_left, R.anim.slide_in_right);
 
         }
         else{
@@ -198,6 +202,11 @@ public class LessonActivity extends AppCompatActivity {
         int b = 100 * (j-1);
         pr = Math.round(b/maxJ);
         //pb.setProgress(pr);
+    }
+    @Override
+    public void onBackPressed() {
+        DialogBack dialogBack = new DialogBack();
+        dialogBack.show(getSupportFragmentManager(), "Example Dialog");
     }
 
 }

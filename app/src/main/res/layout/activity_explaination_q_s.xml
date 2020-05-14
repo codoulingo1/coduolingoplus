@@ -1,42 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:padding="10dp">
 
     <ImageButton
         android:id="@+id/continueBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentBottom="true"
         android:adjustViewBounds="true"
         android:background="#80FFFFFF"
-        android:maxWidth="75dp"
-        android:maxHeight="75dp"
+        android:maxWidth="60dp"
+        android:maxHeight="60dp"
         android:scaleType="fitCenter"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.047"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.975"
-        app:srcCompat="@drawable/next" />
+        app:srcCompat="@drawable/next"
+        android:layout_marginBottom="15dp"
+        android:layout_marginLeft="15dp"/>
 
     <TextView
         android:id="@+id/Explanation"
         android:layout_width="396dp"
         android:layout_height="371dp"
+        android:fontFamily="@font/rubik_light"
         android:singleLine="false"
         android:text="חופש הוא מושג מופשט המתאר העדר אילוצים ואפשרויות פעולה לא מוגבלות. שאלת החופש נוגעת להרבה תחומים בחיי האדם בהם התחום הפילוסופי, הפוליטי-מדיני, החברתי, הפסיכולוגי והמנטלי. מושג החופש מתפרש גם לסוגים שונים כגון: חירות האדם, עצמאות, חירות מחשבה, חופש הביטוי, חופש דת וחופשה "
+        android:layout_below="@+id/progressBar"
+        android:layout_marginTop="25dp"
         android:textDirection="anyRtl"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.47"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.188" />
+        android:textSize="20sp" />
 
 
 
@@ -45,23 +40,18 @@
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="347dp"
         android:layout_height="17dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.022" />
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:progressDrawable="@drawable/pb_lsn"/>
 
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
         android:adjustViewBounds="true"
         android:scaleType="fitCenter"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.475"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.86" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:layout_below="@id/Explanation"
+        android:layout_marginTop="15dp"
+        android:layout_centerHorizontal="true" />
+
+</RelativeLayout>

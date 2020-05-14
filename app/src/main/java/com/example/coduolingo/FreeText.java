@@ -3,6 +3,8 @@ package com.example.coduolingo;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.drawable.AnimatedVectorDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -33,11 +35,12 @@ import java.util.concurrent.TimeUnit;
 public class FreeText extends AppCompatActivity {
 
     TextView qs;
-    Button submit;
+    ImageButton submit;
     RelativeLayout popupTruee;
     ImageButton continueBtn10;
     RelativeLayout popup11;
     ImageButton continueBtn11;
+    private AnimatedVectorDrawable animation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +52,7 @@ public class FreeText extends AppCompatActivity {
         popup11 = (RelativeLayout) findViewById(R.id.popup11);
         continueBtn11 = (ImageButton) findViewById(R.id.continueBtn11);
         pb.setProgress(LessonActivity.pr);
-        submit = (Button) findViewById(R.id.button);
+        submit = (ImageButton) findViewById(R.id.button);
         qs = (TextView) findViewById(R.id.textView);
         Log.d("finished", "freetext");
         qs.setText(LessonActivity.shared_hashmap.get("qs"));
@@ -74,8 +77,18 @@ public class FreeText extends AppCompatActivity {
 
     }
     void showCorrect() {
-        popupTruee.setVisibility(View.VISIBLE);
+        /*popupTruee.setVisibility(View.VISIBLE);
         continueBtn10.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                LessonActivity.j++;
+                //LessonActivity.points++;
+                startActivity(new Intent(FreeText.this, LessonActivity.class));
+            }
+        });*/
+        submit.setImageResource(R.drawable.avd_anim);
+        animate();
+        submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 LessonActivity.j++;
@@ -91,6 +104,7 @@ public class FreeText extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(FreeText.this, FreeText.class));
+                overridePendingTransition(0, 0);
             }
         });
 
@@ -100,6 +114,21 @@ public class FreeText extends AppCompatActivity {
         if(view1 != null){
             InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
             imm.hideSoftInputFromWindow(view1.getWindowToken(), 0);
+        }
+    }
+    @Override
+    public void onBackPressed() {
+        DialogBack dialogBack = new DialogBack();
+        dialogBack.show(getSupportFragmentManager(), "Example Dialog");
+    }
+
+    public void animate(){
+        Drawable d = submit.getDrawable();
+        if (d instanceof AnimatedVectorDrawable) {
+
+            Log.d("testanim", "onCreate: instancefound" + d.toString());
+            animation = (AnimatedVectorDrawable) d;
+            animation.start();
         }
     }
 }

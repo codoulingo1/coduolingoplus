@@ -1,8 +1,11 @@
 package com.example.coduolingo;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.vectordrawable.graphics.drawable.AnimatedVectorDrawableCompat;
 
 import android.graphics.Color;
+import android.graphics.drawable.AnimatedVectorDrawable;
+import android.graphics.drawable.Drawable;
 import android.media.Image;
 import android.os.Bundle;
 import android.util.Log;
@@ -213,8 +216,10 @@ public class freedumQs extends AppCompatActivity {
                 LessonActivity.j++;
                 //LessonActivity.points++;
                 startActivity(new Intent(freedumQs.this, LessonActivity.class));
+                overridePendingTransition(0, 0);
             }
         });
+
     }
     void showWrong(){
         popupWrong.setVisibility(View.VISIBLE);
@@ -226,4 +231,10 @@ public class freedumQs extends AppCompatActivity {
         });
 
     }
+    @Override
+    public void onBackPressed() {
+        DialogBack dialogBack = new DialogBack();
+        dialogBack.show(getSupportFragmentManager(), "Example Dialog");
+    }
+
 }

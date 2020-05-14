@@ -246,6 +246,7 @@ public class NonFreedum extends AppCompatActivity {
                 LessonActivity.j++;
                 //LessonActivity.points++;
                 startActivity(new Intent(NonFreedum.this, LessonActivity.class));
+                overridePendingTransition(R.anim.slide_in_left, R.anim.slide_in_right);
             }
         });
     }
@@ -257,6 +258,11 @@ public class NonFreedum extends AppCompatActivity {
                 startActivity(new Intent(NonFreedum.this, NonFreedum.class));
             }
         });
+    }
+    @Override
+    public void onBackPressed() {
+        DialogBack dialogBack = new DialogBack();
+        dialogBack.show(getSupportFragmentManager(), "Example Dialog");
     }
 
 }

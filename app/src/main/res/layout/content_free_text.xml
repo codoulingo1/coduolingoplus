@@ -9,13 +9,22 @@
     tools:context=".MainActivity">
     <!--android:scrollbarStyle="insideInset" - this is something bad-->
 
-    <Button
+    <ImageButton
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="בדיקה"
         android:layout_marginTop="400dp"
-        android:layout_centerHorizontal="true"/>
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_margin="15dp"
+        android:src="@drawable/next3"
+        android:background="#80FFFFFF"
+        android:maxWidth="60dp"
+        android:maxHeight="60dp"
+        android:scaleType="fitCenter"
+        android:adjustViewBounds="true"/>
 
 
     <View

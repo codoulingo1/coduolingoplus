@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp">
+
+    <TextView
+        android:id="@+id/textView13"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="בטוח שרוצים לצאת?"
+        android:layout_alignParentRight="true"
+        android:textSize="20sp"
+        android:fontFamily="@font/rubik_bold"
+        />
+
+    <TextView
+        android:id="@+id/textView12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ההתקדמות בשיעור לא תישמר אם תצא עכשיו"
+        android:layout_alignParentRight="true"
+        android:textSize="20sp"
+        android:fontFamily="@font/rubik_light"
+        android:layout_marginTop="30dp"
+        />
+</RelativeLayout>
