@@ -1,125 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <ProgressBar
-        android:id="@+id/progressBar2"
-        style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="347dp"
-        android:layout_height="17dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.022" />
+    android:layout_height="match_parent"
+    android:background="#F3F4F9">
 
     <Button
         android:id="@+id/Opt4"
-        android:layout_width="301dp"
-        android:layout_height="50dp"
-        android:text="Button"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.463"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.748" />
+        android:layout_width="375dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="125dp"
+        android:layout_marginRight="15dp"
+        android:text="ישנם 51 כוכבים בדגל"
+        android:textAlignment="textStart"
+        android:fontFamily="@font/rubik_light"/>
 
     <Button
         android:id="@+id/Opt1"
-        android:layout_width="301dp"
-        android:layout_height="50dp"
-        android:text="Button"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.463"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.452" />
+        android:layout_width="375dp"
+        android:layout_height="wrap_content"
+        android:text="ישנם 51 כוכבים בדגל"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="350dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="15dp"
+        android:textAlignment="textStart"
+        android:fontFamily="@font/rubik_light"/>
 
     <Button
         android:id="@+id/Opt3"
-        android:layout_width="301dp"
-        android:layout_height="50dp"
-        android:text="Button"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.463"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.647" />
+        android:layout_width="375dp"
+        android:layout_height="wrap_content"
+        android:text="ישנם 51 כוכבים בדגל"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="200dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="15dp"
+        android:textAlignment="textStart"
+        android:fontFamily="@font/rubik_light"/>
 
     <Button
         android:id="@+id/Opt2"
-        android:layout_width="301dp"
-        android:layout_height="50dp"
-        android:text="Button"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.463"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.552" />
-
-    <TextView
-        android:id="@+id/freedumQuestion"
-        android:layout_width="354dp"
-        android:layout_height="191dp"
-        android:text="\?כמה כוכבים יש בדגל האמריקאי"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.561"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.109"
+        android:layout_width="375dp"
+        android:layout_height="wrap_content"
+        android:text="ישנם 51 כוכבים בדגל"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="275dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="15dp"
+        android:textAlignment="textStart"
         android:fontFamily="@font/rubik_light"/>
 
-    <ProgressBar
-        android:id="@+id/progressBar"
-        style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="347dp"
-        android:layout_height="17dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.022"
-        android:progressDrawable="@drawable/pb_lsn"/>
 
     <ImageButton
         android:id="@+id/continueBtn3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:adjustViewBounds="true"
-        android:background="#80FFFFFF"
+        android:background="#F3F4F9"
         android:maxWidth="60dp"
         android:maxHeight="60dp"
+        android:src="@drawable/next3"
         android:scaleType="fitCenter"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.047"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.975"
-        app:srcCompat="@drawable/next" />
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_margin="15dp"/>
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="347dp"
+        android:layout_height="12dp"
+        android:progressDrawable="@drawable/pb_lsn" />
 
     <RelativeLayout
         android:id="@+id/popup2"
         android:layout_width="match_parent"
         android:layout_height="140dp"
         android:background="#ffc1c2"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0">
+        android:visibility="gone">
 
         <ImageButton
             android:id="@+id/continueBtn6"
@@ -147,18 +112,13 @@
             android:textSize="46sp" />
     </RelativeLayout>
 
+
     <RelativeLayout
         android:id="@+id/Popup1"
         android:layout_width="match_parent"
         android:layout_height="140dp"
         android:background="#b8f28b"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0">
+        android:visibility="gone">
 
         <ImageButton
             android:id="@+id/continueBtn4"
@@ -187,4 +147,22 @@
 
     </RelativeLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <TextView
+        android:id="@+id/freedumQuestion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/topBar"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/rubik_light"
+        android:text="כמה כוכבים יש בדגל האמריקאי?"
+        android:textSize="24sp"
+        android:layout_marginRight="15dp"/>
+
+    <View
+        android:id="@+id/topBar"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@color/white"></View>
+
+</RelativeLayout>
