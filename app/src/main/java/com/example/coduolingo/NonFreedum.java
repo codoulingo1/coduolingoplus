@@ -2,6 +2,8 @@ package com.example.coduolingo;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.drawable.AnimatedVectorDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -28,6 +30,10 @@ public class NonFreedum extends AppCompatActivity {
     ImageButton continueBtnFalse;
     Button opt1;
 
+    private AnimatedVectorDrawable animation;
+
+    ImageButton check;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,7 +44,7 @@ public class NonFreedum extends AppCompatActivity {
         final Button opt4 = (Button) findViewById(R.id.button4);
         final Button opt5 = (Button) findViewById(R.id.button5);
         final Button opt6 = (Button) findViewById(R.id.button6);
-        final ImageButton check = (ImageButton) findViewById(R.id.check);
+        check = (ImageButton) findViewById(R.id.check);
         continueBtnFalse = (ImageButton) findViewById(R.id.continueBtnFalse);
         continueBtnTrue = (ImageButton) findViewById(R.id.continueBtnTrue);
         final TextView qs = (TextView) findViewById(R.id.textView2);
@@ -63,7 +69,7 @@ public class NonFreedum extends AppCompatActivity {
             catch (Exception e) {
                 op.setVisibility(View.INVISIBLE);
             }
-            }
+        }
         ans = (TextView) findViewById(R.id.textView3);
         List<Integer> first_del =  Text.betweenIndex(unuateksto, '£', 's');
         char[] ch_new_text = unuateksto.toCharArray();
@@ -239,8 +245,19 @@ public class NonFreedum extends AppCompatActivity {
     }
 
     void showCorrect(){
-        popupTrue.setVisibility(View.VISIBLE);
+        /*popupTrue.setVisibility(View.VISIBLE);
         continueBtnTrue.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                LessonActivity.j++;
+                //LessonActivity.points++;
+                startActivity(new Intent(NonFreedum.this, LessonActivity.class));
+                overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
+            }
+        });*/
+        check.setImageResource(R.drawable.avd_anim);
+        animate();
+        check.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 LessonActivity.j++;
@@ -263,6 +280,15 @@ public class NonFreedum extends AppCompatActivity {
     public void onBackPressed() {
         DialogBack dialogBack = new DialogBack();
         dialogBack.show(getSupportFragmentManager(), "Example Dialog");
+    }
+    public void animate(){
+        Drawable d = check.getDrawable();
+        if (d instanceof AnimatedVectorDrawable) {
+
+            Log.d("testanim", "onCreate: instancefound" + d.toString());
+            animation = (AnimatedVectorDrawable) d;
+            animation.start();
+        }
     }
 
 }

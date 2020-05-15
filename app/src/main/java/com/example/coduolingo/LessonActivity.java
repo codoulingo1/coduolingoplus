@@ -156,7 +156,7 @@ public class LessonActivity extends AppCompatActivity {
                     user.child("lastLessonD").setValue(ts);
                     List<String> str_old_progress = Arrays.asList(old_progress.split(" "));
                     if(!str_old_progress.contains(MainActivity.id)) {
-                        user.child("progress").setValue(old_progress + " " + MainActivity.id);
+                        //user.child("progress").setValue(old_progress + " " + MainActivity.id);
                     }
                 }
             }.start();

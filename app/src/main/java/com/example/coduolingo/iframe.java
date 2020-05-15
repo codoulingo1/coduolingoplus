@@ -8,10 +8,6 @@ package com.example.coduolingo;
         import android.webkit.WebViewClient;
         import android.widget.Button;
         import android.widget.EditText;
-        import android.widget.Toast;
-
-        import org.sufficientlysecure.htmltextview.HtmlHttpImageGetter;
-        import org.sufficientlysecure.htmltextview.HtmlTextView;
 
 public class iframe extends AppCompatActivity {
 
