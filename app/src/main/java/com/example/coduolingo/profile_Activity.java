@@ -66,7 +66,7 @@ public class profile_Activity extends AppCompatActivity {
                 .requestEmail()
                 .build();
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
-        String idp = ReadWrite.read(Environment.getExternalStorageDirectory() +"/" + "user");
+        String idp = ReadWrite.read(this.getFilesDir()+File.separator + "user");
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("Users").child(idp);
         myRef.addValueEventListener(new ValueEventListener() {

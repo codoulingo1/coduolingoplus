@@ -21,6 +21,8 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.io.File;
+
 public class sign_upActivity extends AppCompatActivity {
 
     FirebaseAuth.AuthStateListener mAuthListener;
@@ -67,7 +69,7 @@ public class sign_upActivity extends AppCompatActivity {
             } catch (Exception e){
                 personPhoto = "";
             }
-            ReadWrite.write(Environment.getExternalStorageDirectory() + "/" + "user", personEmail.replace('.', ' ') + "G");
+            ReadWrite.write(this.getFilesDir()+ File.separator + "user", personEmail.replace('.', ' ') + "G");
             FirebaseDatabase database = FirebaseDatabase.getInstance();
 
             DatabaseReference myRef = database.getReference("Users");
@@ -79,9 +81,12 @@ public class sign_upActivity extends AppCompatActivity {
             fireBase.child("name").setValue(personName);
             fireBase.child("pas").setValue(Text.getRandomString(10));
             fireBase.child("phoneNum").setValue(0);
-            fireBase.child("lastLessonD").setValue(0);
+            fireBase.child("lastLessonD").child("year").setValue(0);
+            fireBase.child("lastLessonD").child("month").setValue(0);
+            fireBase.child("lastLessonD").child("date").setValue(0);
             fireBase.child("streak").setValue(1);
             fireBase.child("progress").setValue("");
+            fireBase.child("xp").setValue(0);
             Toast.makeText(sign_upActivity.this,"שלום " + personName ,Toast.LENGTH_SHORT).show();
             startActivity(new Intent(sign_upActivity.this, tree.class));
             Toast.makeText(sign_upActivity.this, "Success", Toast.LENGTH_LONG).show();

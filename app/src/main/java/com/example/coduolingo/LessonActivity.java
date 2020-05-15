@@ -111,6 +111,7 @@ public class LessonActivity extends AppCompatActivity {
                     int month = Integer.parseInt(date.get("month"));
                     int day = Integer.parseInt(date.get("date"));
                     String old_progress = String.valueOf(date.get("cProgress"));
+                    int xp = Integer.parseInt(date.get("xp"));
                     Calendar calendar = Calendar.getInstance();
 
                     // Move calendar to yesterday
@@ -158,6 +159,7 @@ public class LessonActivity extends AppCompatActivity {
                     if(!str_old_progress.contains(MainActivity.id)) {
                         //user.child("progress").setValue(old_progress + " " + MainActivity.id);
                     }
+                    user.child("xp").setValue(xp+10);
                 }
             }.start();
         }

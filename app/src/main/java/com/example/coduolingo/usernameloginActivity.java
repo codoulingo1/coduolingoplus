@@ -34,6 +34,7 @@ public class usernameloginActivity extends AppCompatActivity {
     Button mLoginBtn;
     Button signUp;
     Button resetBtn;
+    String email;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,6 +75,7 @@ public class usernameloginActivity extends AppCompatActivity {
         if(user == null){
 
         } else {
+            ReadWrite.write(this.getFilesDir()+File.separator+ "user", email.replace('.', ' ') + "G");
             Toast.makeText(usernameloginActivity.this, "Success", Toast.LENGTH_SHORT).show();
             startActivity(new Intent(usernameloginActivity.this, tree.class));
         }
@@ -88,7 +90,7 @@ public class usernameloginActivity extends AppCompatActivity {
     }
 
     private void logIn(){
-        String email = emailField.getText().toString();
+        email = emailField.getText().toString();
         String password = passwordField.getText().toString();
 
         mAuth.signInWithEmailAndPassword(email, password)
