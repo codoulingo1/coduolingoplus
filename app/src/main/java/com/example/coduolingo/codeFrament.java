@@ -58,34 +58,61 @@ public class codeFrament extends Fragment  { //was extends Fragment, might need 
             }
         });
 
-        help1.setOnClickListener(new View.OnClickListener() {
+        /*help1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String newCode = htmlInp.getText().toString() + ">";
-                htmlInp.setText(newCode);
+                String finalCode;
+                int CurrentSelection = htmlInp.getSelectionStart();
+                int endSelection = htmlInp.length();
+                String code = htmlInp.getText().toString();
+                String newCode1 = code.substring(0, CurrentSelection) + "<";
+                try {
+                    String newCode2 = code.substring(CurrentSelection + 1, endSelection);
+                    finalCode = newCode1 + newCode2;
+                }catch (Exception e){
+                    finalCode = newCode1;
+                }
+                htmlInp.setText(finalCode);
+                htmlInp.setSelection(htmlInp.getSelectionStart() + 1); //Moves the cursor to the correct place
             }
         });
         help2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String newCode = htmlInp.getText().toString() + "<";
-                htmlInp.setText(newCode);
+                String finalCode;
+                int CurrentSelection = htmlInp.getSelectionStart();
+                int endSelection = htmlInp.length();
+                String code = htmlInp.getText().toString();
+                String newCode1 = code.substring(0, CurrentSelection) + ">";
+                try {
+                    String newCode2 = code.substring(CurrentSelection + 1, endSelection);
+                    finalCode = newCode1 + newCode2;
+                }catch (Exception e){
+                    finalCode = newCode1;
+                }
+                htmlInp.setText(finalCode);
+                htmlInp.setSelection(htmlInp.getSelectionStart() + 1); //Moves the cursor to the correct place
             }
         });
+
         help3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String newCode = htmlInp.getText().toString() + "<";
-                htmlInp.setText(newCode);
+                String finalCode;
+                int CurrentSelection = htmlInp.getSelectionStart();
+                int endSelection = htmlInp.length();
+                String code = htmlInp.getText().toString();
+                String newCode1 = code.substring(0, CurrentSelection) + "/";
+                try {
+                    String newCode2 = code.substring(CurrentSelection + 1, endSelection);
+                    finalCode = newCode1 + newCode2;
+                }catch (Exception e){
+                    finalCode = newCode1;
+                }
+                htmlInp.setText(finalCode);
+                htmlInp.setSelection(htmlInp.getSelectionStart() + 1); //Moves the cursor to the correct place
             }
-        });
-        help3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String newCode = htmlInp.getText().toString() + "/";
-                htmlInp.setText(newCode);
-            }
-        });
+        });*/
         htmlInp.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
