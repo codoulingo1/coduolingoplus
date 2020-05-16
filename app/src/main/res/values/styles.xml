@@ -25,4 +25,12 @@
         <item name="windowNoTitle">true</item>
     </style>
 
+    <style name="NavStyle" parent="Widget.Design.BottomNavigationView">
+        <item name="fontFamily">@font/rubik_bold</item>
+        <item name="android:textSize">24dp</item>
+    </style>
+    <style name="tab_text" parent="@android:style/TextAppearance.Widget.TabWidget">
+        <item name="android:fontFamily">@font/rubik_bold</item>
+    </style>
+
 </resources>
