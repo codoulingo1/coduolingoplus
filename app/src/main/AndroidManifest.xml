@@ -11,8 +11,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".iframe" />
-        <activity android:name=".PasswordReset" />
+        <activity
+            android:name=".iframe2"
+            android:label="@string/title_activity_iframe2"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".iframe"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".PasswordReset"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".LessonActivity"
             android:label="@string/title_activity_lesson"
@@ -59,7 +67,6 @@
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
     </application>
-    <uses-permission android:name="android.permission.SEND_SMS" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission
@@ -70,7 +77,8 @@
         tools:remove="android:maxSdkVersion" />
     <uses-permission android:name="android.permission.WRITE_INTERNAL_STORAGE" />
     <uses-permission android:name="android.permission. ACCESS_FINE_LOCATION" />
-
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <uses-permission android:name="android.permission.SEND_SMS" />
 
 </manifest>
