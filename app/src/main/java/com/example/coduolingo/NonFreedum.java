@@ -261,6 +261,7 @@ public class NonFreedum extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 LessonActivity.j++;
+                LessonActivity.shared_xp = LessonActivity.shared_xp + 1.5;
                 //LessonActivity.points++;
                 startActivity(new Intent(NonFreedum.this, LessonActivity.class));
                 overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
@@ -272,6 +273,9 @@ public class NonFreedum extends AppCompatActivity {
         continueBtnFalse.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(LessonActivity.shared_xp>=11){
+                    LessonActivity.shared_xp = LessonActivity.shared_xp - 1;
+                }
                 startActivity(new Intent(NonFreedum.this, NonFreedum.class));
             }
         });

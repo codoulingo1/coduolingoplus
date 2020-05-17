@@ -100,6 +100,7 @@ public class FreeText extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 LessonActivity.j++;
+                LessonActivity.shared_xp = LessonActivity.shared_xp + 2;
                 //LessonActivity.points++;
                 startActivity(new Intent(FreeText.this, LessonActivity.class));
             }
@@ -111,6 +112,9 @@ public class FreeText extends AppCompatActivity {
         continueBtn11.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(LessonActivity.shared_xp>=11){
+                    LessonActivity.shared_xp = LessonActivity.shared_xp - 1;
+                }
                 startActivity(new Intent(FreeText.this, FreeText.class));
                 overridePendingTransition(0, 0);
             }

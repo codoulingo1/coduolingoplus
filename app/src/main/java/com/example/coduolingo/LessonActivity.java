@@ -40,6 +40,7 @@ public class LessonActivity extends AppCompatActivity {
     Boolean isRight;
     public static String shared_id;
     public static String shared_name;
+    public static Double shared_xp;
     public static int j;
     public static int is_back;
     float maxJ;
@@ -110,6 +111,7 @@ public class LessonActivity extends AppCompatActivity {
                     int year = Integer.parseInt(date.get("year"));
                     int month = Integer.parseInt(date.get("month"));
                     int day = Integer.parseInt(date.get("date"));
+                    int xp = Integer.parseInt(date.get("xp"));
                     String old_progress = String.valueOf(date.get("cProgress"));
                     Calendar calendar = Calendar.getInstance();
 
@@ -154,6 +156,7 @@ public class LessonActivity extends AppCompatActivity {
                     Date currentTime = Calendar.getInstance().getTime();
                     Timestamp ts = new Timestamp(currentTime.getTime());
                     user.child("lastLessonD").setValue(ts);
+                    user.child("xp").setValue(xp + shared_xp);
                     List<String> str_old_progress = Arrays.asList(old_progress.split(" "));
                     if(!str_old_progress.contains(MainActivity.id)) {
                         //user.child("progress").setValue(old_progress + " " + MainActivity.id);
