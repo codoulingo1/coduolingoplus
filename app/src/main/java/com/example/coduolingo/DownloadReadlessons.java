@@ -84,10 +84,10 @@ public class DownloadReadlessons {
 
         return hashMap;
     }
-    public static HashMap <String, String> get_last_lesson(){
+    public static HashMap <String, String> get_last_lesson(Context c){
         final HashMap<String, String> ret = new HashMap<>();
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("Users").child( ReadWrite.read(Environment.getExternalStorageDirectory() + "/" + "user"));
+        DatabaseReference myRef = database.getReference("Users").child( ReadWrite.read(c.getFilesDir()+File.separator+ "user"));
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -98,7 +98,7 @@ public class DownloadReadlessons {
                 ret.put("month", dataSnapshot.child("lastLessonD").child("month").getValue().toString());
                 ret.put("date", dataSnapshot.child("lastLessonD").child("date").getValue().toString());
                 ret.put("cProgress", dataSnapshot.child("progress").getValue().toString());
-                 ret.put("xp", dataSnapshot.child("xp").getValue().toString());
+                //ret.put("xp", dataSnapshot.child("xp").getValue().toString());
             }            @Override
             public void onCancelled(DatabaseError error) {
                 // Failed to read value

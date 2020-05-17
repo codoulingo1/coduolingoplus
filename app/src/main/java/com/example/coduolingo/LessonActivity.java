@@ -80,7 +80,7 @@ public class LessonActivity extends AppCompatActivity {
             int b = 100 * (j);
             pr = Math.round(b / maxJ);
             pr = Math.round(b / maxJ);
-            date = DownloadReadlessons.get_last_lesson();
+            date = DownloadReadlessons.get_last_lesson(LessonActivity.this);
             j = 0;
             File dirName = new File(Environment.getExternalStorageDirectory() + "/" + "id" + "/");
             boolean a = false;
@@ -111,7 +111,6 @@ public class LessonActivity extends AppCompatActivity {
                     int month = Integer.parseInt(date.get("month"));
                     int day = Integer.parseInt(date.get("date"));
                     String old_progress = String.valueOf(date.get("cProgress"));
-                    int xp = Integer.parseInt(date.get("xp"));
                     Calendar calendar = Calendar.getInstance();
 
                     // Move calendar to yesterday
@@ -159,7 +158,6 @@ public class LessonActivity extends AppCompatActivity {
                     if(!str_old_progress.contains(MainActivity.id)) {
                         //user.child("progress").setValue(old_progress + " " + MainActivity.id);
                     }
-                    user.child("xp").setValue(xp+10);
                 }
             }.start();
         }

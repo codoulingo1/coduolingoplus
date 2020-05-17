@@ -12,6 +12,9 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.chaquo.python.PyObject;
+import com.chaquo.python.Python;
+import com.chaquo.python.android.AndroidPlatform;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
@@ -42,6 +45,12 @@ public class tree extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tree);
+        if (! Python.isStarted()) {
+            Python.start(new AndroidPlatform(tree.this));
+        }
+        Python py = Python.getInstance();
+        PyObject pyFile = py.getModule("a");
+        Log.d("start", pyFile.callAttr("helloworld").toString());
         mAuth = FirebaseAuth.getInstance();
         skill1 = (Button) findViewById(R.id.skill1);
         skill2 = (Button) findViewById(R.id.skill2);
@@ -50,7 +59,7 @@ public class tree extends AppCompatActivity {
         streak = (TextView) findViewById(R.id.streak);
         toHTML = (Button) findViewById(R.id.toHTML);
         LessonActivity.j = 1;
-        date = DownloadReadlessons.get_last_lesson();
+        date = DownloadReadlessons.get_last_lesson(tree.this);
         mcountdown = new CountDownTimer(1000, 1000) {
             @Override
             public void onTick(long l) {
@@ -88,7 +97,7 @@ public class tree extends AppCompatActivity {
                             Log.d("3", "3");
                             streak.setText("0");
                             FirebaseDatabase database = FirebaseDatabase.getInstance();
-                            DatabaseReference myRef = database.getReference("Users").child(ReadWrite.read(Environment.getExternalStorageDirectory() + "/" + "user"));
+                            DatabaseReference myRef = database.getReference("Users").child(ReadWrite.read(tree.this.getFilesDir()+File.separator+ "user"));
                             myRef.child("streak").setValue(0);
                         }
                     }

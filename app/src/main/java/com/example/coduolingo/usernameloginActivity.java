@@ -75,7 +75,7 @@ public class usernameloginActivity extends AppCompatActivity {
         if(user == null){
 
         } else {
-            ReadWrite.write(this.getFilesDir()+File.separator+ "user", email.replace('.', ' ') + "G");
+            ReadWrite.write(this.getFilesDir()+File.separator+ "user", user.getEmail().replace('.', ' ') + "G");
             Toast.makeText(usernameloginActivity.this, "Success", Toast.LENGTH_SHORT).show();
             startActivity(new Intent(usernameloginActivity.this, tree.class));
         }

@@ -1,5 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'com.google.gms.google-services'
+apply plugin: 'com.chaquo.python'
 
 android {
     compileSdkVersion 28
@@ -11,7 +12,20 @@ android {
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
-
+        sourceSets {
+            main {
+                python {
+                    srcDirs = ["src/main/python"]
+                }
+            }
+        }
+        python{
+            buildPython "C:\\Users\\bobyo\\AppData\\Local\\Programs\\Python\\Python38-32\\python.exe"
+            buildPython "python3"
+        }
+        ndk{
+            abiFilters "armeabi-v7a", "x86"
+        }
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
