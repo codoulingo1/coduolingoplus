@@ -97,7 +97,7 @@ public class tree extends AppCompatActivity {
                             Log.d("3", "3");
                             streak.setText("0");
                             FirebaseDatabase database = FirebaseDatabase.getInstance();
-                            DatabaseReference myRef = database.getReference("Users").child(ReadWrite.read(tree.this.getFilesDir()+File.separator+ "user"));
+                            DatabaseReference myRef = database.getReference("Users").child(ReadWrite.read(tree.this.getFilesDir()+File.separator + "user"));
                             myRef.child("streak").setValue(0);
                         }
                     }

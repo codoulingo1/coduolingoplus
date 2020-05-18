@@ -3,6 +3,7 @@ package com.example.coduolingo;
 import android.util.Log;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
@@ -62,7 +63,7 @@ public class Text {
     }
     public static String stopDot(String word){//stop in the first dot of string "text"
         char[] a = word.toCharArray();
-        int b=-a.length;
+        int b =-a.length;
         StringBuilder str = new StringBuilder();
         for (char i : a){
             if(i==".".charAt(0)){
@@ -176,5 +177,32 @@ public class Text {
         for(int i=0;i<sizeOfRandomString;++i)
             sb.append(ALLOWED_CHARACTERS.charAt(random.nextInt(ALLOWED_CHARACTERS.length())));
         return sb.toString();
+    }
+    public static boolean eqnova(String a, String b, int from_n){
+        char[] text = a.toCharArray();
+        boolean eq = true;
+        boolean err1 = false;
+        char[] check = b.toCharArray();
+        check = Arrays.copyOfRange(check, from_n, check.length);
+        text = Arrays.copyOfRange(text, from_n, text.length);
+        if(text.length-check.length > 1 || text.length-check.length<-1){
+            eq=false;
+        }
+        Log.d(String.valueOf(text.length), String.valueOf(check.length));
+        for (int i = from_n; i < check.length; i++) {
+            try {
+                if (text[i] != check[i]) {
+                    if (!err1) {
+                        err1 = true;
+                    } else if (err1) {
+
+                        eq = false;
+                    }
+                }
+            }catch (Exception e){
+
+            }
+        }
+        return eq;
     }
 }

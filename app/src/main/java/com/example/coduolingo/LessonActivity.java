@@ -40,7 +40,7 @@ public class LessonActivity extends AppCompatActivity {
     Boolean isRight;
     public static String shared_id;
     public static String shared_name;
-    public static Double shared_xp;
+    public static Double shared_xp = 0.0;
     public static int j;
     public static int is_back;
     float maxJ;
@@ -130,29 +130,29 @@ public class LessonActivity extends AppCompatActivity {
                             if (day == yesterday) {
                                 Log.d("3", "3");
                                 FirebaseDatabase database = FirebaseDatabase.getInstance();
-                                DatabaseReference myRef = database.getReference("Users").child(ReadWrite.read(Environment.getExternalStorageDirectory() + "/" + "user"));
+                                DatabaseReference myRef = database.getReference("Users").child(ReadWrite.read(LessonActivity.this.getFilesDir()+File.separator + "user"));
                                 myRef.child("streak").setValue(String.valueOf(Integer.parseInt(date.get("streak")) + 1));
                             } else if (day == today) {
                                 Log.d("3", "3");
                             } else {
                                 Log.d("3", "3");
                                 FirebaseDatabase database = FirebaseDatabase.getInstance();
-                                DatabaseReference myRef = database.getReference("Users").child(ReadWrite.read(Environment.getExternalStorageDirectory() + "/" + "user"));
+                                DatabaseReference myRef = database.getReference("Users").child(ReadWrite.read(LessonActivity.this.getFilesDir()+File.separator + "user"));
                                 myRef.child("streak").setValue(1);
                             }
                         }else{
                             FirebaseDatabase database = FirebaseDatabase.getInstance();
-                            DatabaseReference myRef = database.getReference("Users").child(ReadWrite.read(Environment.getExternalStorageDirectory() + "/" + "user"));
+                            DatabaseReference myRef = database.getReference("Users").child(ReadWrite.read(LessonActivity.this.getFilesDir()+File.separator + "user"));
                             myRef.child("streak").setValue(1);
                         }
                     }else{
                         FirebaseDatabase database = FirebaseDatabase.getInstance();
-                        DatabaseReference myRef = database.getReference("Users").child(ReadWrite.read(Environment.getExternalStorageDirectory() + "/" + "user"));
+                        DatabaseReference myRef = database.getReference("Users").child(ReadWrite.read(LessonActivity.this.getFilesDir()+File.separator + "user"));
                         myRef.child("streak").setValue(1);
                     }
                     FirebaseDatabase database = FirebaseDatabase.getInstance();
                     DatabaseReference myRef = database.getReference("Users");
-                    DatabaseReference user = myRef.child(ReadWrite.read(Environment.getExternalStorageDirectory() + "/" + "user"));
+                    DatabaseReference user = myRef.child(ReadWrite.read(LessonActivity.this.getFilesDir()+File.separator + "user"));
                     Date currentTime = Calendar.getInstance().getTime();
                     Timestamp ts = new Timestamp(currentTime.getTime());
                     user.child("lastLessonD").setValue(ts);
