@@ -35,6 +35,8 @@ public class mainScreen extends AppCompatActivity {
                     case R.id.navigation_shop:
                         selectedFragment = new ShopFragment();
                         break;
+                    case R.id.navigation_profile:
+                        selectedFragment = new profileFragment();
                 }
 
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_containerMain, selectedFragment).commit();

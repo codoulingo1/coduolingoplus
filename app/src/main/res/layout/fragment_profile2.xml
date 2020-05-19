@@ -62,6 +62,15 @@
             android:textAlignment="center"
             android:textColor="#090909"
             android:textSize="24sp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Streak:"
+            android:layout_below="@+id/set_name"
+            android:layout_marginTop="10dp"
+            android:layout_centerHorizontal="true"
+            android:fontFamily="@font/rubik_bold"
+            android:textSize="20sp"/>
 
     </RelativeLayout>
 </LinearLayout>
