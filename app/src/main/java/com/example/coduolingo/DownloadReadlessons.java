@@ -99,7 +99,8 @@ public class DownloadReadlessons {
                 ret.put("date", dataSnapshot.child("lastLessonD").child("date").getValue().toString());
                 ret.put("cProgress", dataSnapshot.child("progress").getValue().toString());
                 ret.put("xp", dataSnapshot.child("xp").getValue().toString());
-            }            @Override
+            }
+            @Override
             public void onCancelled(DatabaseError error) {
                 // Failed to read value
                 Log.w("Failed to read value.", error.toException());
