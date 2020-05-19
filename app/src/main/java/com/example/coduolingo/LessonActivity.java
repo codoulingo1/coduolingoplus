@@ -81,7 +81,7 @@ public class LessonActivity extends AppCompatActivity {
             int b = 100 * (j);
             pr = Math.round(b / maxJ);
             pr = Math.round(b / maxJ);
-            date = DownloadReadlessons.get_last_lesson(LessonActivity.this);
+            date = DownloadReadlessons.get_last_lesson(ReadWrite.read(this.getFilesDir()+File.separator+ "user"));
             j = 0;
             File dirName = new File(Environment.getExternalStorageDirectory() + "/" + "id" + "/");
             boolean a = false;

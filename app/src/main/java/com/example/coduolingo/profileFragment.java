@@ -32,6 +32,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 import java.io.File;
+import java.util.HashMap;
 
 public class profileFragment extends Fragment {
 
@@ -47,6 +48,7 @@ public class profileFragment extends Fragment {
     private GoogleSignInClient mGoogleSignInClient;
     FirebaseAuth mAuth;
     Button backToTree;
+    HashMap<String, String> old_streak;
 
     @Nullable
     @Override
@@ -65,6 +67,7 @@ public class profileFragment extends Fragment {
                 .requestEmail()
                 .build();
         mGoogleSignInClient = GoogleSignIn.getClient(getActivity(), gso);
+        old_streak = DownloadReadlessons.get_last_lesson(ReadWrite.read(getActivity().getFilesDir()+File.separator+ "user"));
         String idp = ReadWrite.read(getActivity().getFilesDir()+ File.separator + "user");
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("Users").child(idp);
@@ -107,6 +110,7 @@ public class profileFragment extends Fragment {
                 }
 
                 setName.setText(name);
+                String streak = String.valueOf(old_streak.get("streak"));
                 btnSignOut.setVisibility(View.VISIBLE);
             }
         }.start();

@@ -84,10 +84,10 @@ public class DownloadReadlessons {
 
         return hashMap;
     }
-    public static HashMap <String, String> get_last_lesson(Context c){
+    public static HashMap <String, String> get_last_lesson(String email){
         final HashMap<String, String> ret = new HashMap<>();
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("Users").child( ReadWrite.read(c.getFilesDir()+File.separator+ "user"));
+        DatabaseReference myRef = database.getReference("Users").child(email);
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {

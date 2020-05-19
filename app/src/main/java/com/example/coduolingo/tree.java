@@ -45,12 +45,6 @@ public class tree extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tree);
-        if (! Python.isStarted()) {
-            Python.start(new AndroidPlatform(tree.this));
-        }
-        Python py = Python.getInstance();
-        PyObject pyFile = py.getModule("a");
-        Log.d("start", pyFile.callAttr("helloworld").toString());
         //mAuth = FirebaseAuth.getInstance();
         skill1 = (Button) findViewById(R.id.skill1);
         skill2 = (Button) findViewById(R.id.skill2);
@@ -59,7 +53,7 @@ public class tree extends AppCompatActivity {
         streak = (TextView) findViewById(R.id.streak);
         toHTML = (Button) findViewById(R.id.toHTML);
         LessonActivity.j = 1;
-        date = DownloadReadlessons.get_last_lesson(tree.this);
+        date = DownloadReadlessons.get_last_lesson(ReadWrite.read(this.getFilesDir()+File.separator+ "user"));
         mcountdown = new CountDownTimer(1000, 1000) {
             @Override
             public void onTick(long l) {
