@@ -1,5 +1,6 @@
 package com.example.coduolingo;
 
+import android.app.TabActivity;
 import android.graphics.drawable.AnimatedVectorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -21,6 +22,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
+import com.google.android.material.tabs.TabLayout;
+
 
 public class codeFrament extends Fragment  { //was extends Fragment, might need to change that
 
@@ -30,6 +33,7 @@ public class codeFrament extends Fragment  { //was extends Fragment, might need 
     Button help1;
     Button help2;
     Button help3;
+    TabLayout tabHost;
 
     private AnimatedVectorDrawable animation;
 
@@ -38,8 +42,7 @@ public class codeFrament extends Fragment  { //was extends Fragment, might need 
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_code_frament, container, false);
         submitBtn = (ImageButton) v.findViewById(R.id.submitHTML);
@@ -47,6 +50,8 @@ public class codeFrament extends Fragment  { //was extends Fragment, might need 
         help1 = (Button) v.findViewById(R.id.help1);
         help2 = (Button) v.findViewById(R.id.help2);
         help3 = (Button) v.findViewById(R.id.help3);
+        tabHost = (TabLayout) v.findViewById(R.id.tabs);
+
 
         submitBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -141,6 +146,11 @@ public class codeFrament extends Fragment  { //was extends Fragment, might need 
         FragmentTransaction transaction = fragmentManager.beginTransaction();
         transaction.addToBackStack(null);
         transaction.add(R.id.fragment_container, BrowserFragment, "FRAGMENT").commit();
+        //tabHost.getTabAt(2).select();
+
+        iframe2.switchTabs();
+
+
     }
 
     public void animate(){

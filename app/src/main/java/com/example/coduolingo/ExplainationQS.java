@@ -3,6 +3,7 @@ package com.example.coduolingo;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.vectordrawable.graphics.drawable.AnimatedVectorDrawableCompat;
 
+import android.animation.ObjectAnimator;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.drawable.AnimatedVectorDrawable;
@@ -26,6 +27,7 @@ public class ExplainationQS extends AppCompatActivity {
     public static ImageView ExpImage;
     ImageButton continueBtn;
     private AnimatedVectorDrawable animation;
+    ProgressBar pb;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +48,7 @@ public class ExplainationQS extends AppCompatActivity {
         HashMap<String, String> explanation_hashmap = LessonActivity.shared_hashmap;
         TextView fr = (TextView)findViewById(R.id.Explanation);
         fr.setText(explanation_hashmap.get("qs"));
-        ProgressBar pb = (ProgressBar) findViewById(R.id.progressBar);
+        pb = (ProgressBar) findViewById(R.id.progressBar);
         pb.setProgress(LessonActivity.pr);
         continueBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -66,6 +68,12 @@ public class ExplainationQS extends AppCompatActivity {
     public void onBackPressed() {
         DialogBack dialogBack = new DialogBack();
         dialogBack.show(getSupportFragmentManager(), "Example Dialog");
+    }
+
+    void AnimateProgress(){
+        ObjectAnimator.ofInt(pb, "progress", LessonActivity.pr, 100)
+                .setDuration(300)
+                .start();
     }
     /*public void animate(){
         Drawable d = continueBtn.getDrawable();

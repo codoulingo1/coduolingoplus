@@ -31,7 +31,7 @@ import java.util.List;
 
 public class tree extends AppCompatActivity {
 
-    FirebaseAuth mAuth;
+    //FirebaseAuth mAuth;
     Button skill1;
     Button skill2;
     Button skill3;
@@ -51,7 +51,7 @@ public class tree extends AppCompatActivity {
         Python py = Python.getInstance();
         PyObject pyFile = py.getModule("a");
         Log.d("start", pyFile.callAttr("helloworld").toString());
-        mAuth = FirebaseAuth.getInstance();
+        //mAuth = FirebaseAuth.getInstance();
         skill1 = (Button) findViewById(R.id.skill1);
         skill2 = (Button) findViewById(R.id.skill2);
         skill3 = (Button) findViewById(R.id.skill3);
@@ -145,7 +145,7 @@ public class tree extends AppCompatActivity {
         }
     }
 
-    @Override
+    /*@Override
     public void onStart() {
         super.onStart();
         // Check if user is signed in (non-null) and update UI accordingly.
@@ -158,5 +158,5 @@ public class tree extends AppCompatActivity {
             //not logged in
             startActivity(new Intent(tree.this, Login.class));
         }
-    }
+    }*/
 }

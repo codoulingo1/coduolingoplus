@@ -1,6 +1,7 @@
 package com.example.coduolingo;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.animation.ObjectAnimator;
 import android.content.Intent;
 import android.graphics.drawable.AnimatedVectorDrawable;
 import android.graphics.drawable.Drawable;
@@ -29,6 +30,8 @@ public class NonFreedum extends AppCompatActivity {
     ImageButton continueBtnTrue;
     ImageButton continueBtnFalse;
     Button opt1;
+    ProgressBar pb;
+    private ObjectAnimator progressAnimator;
 
     private AnimatedVectorDrawable animation;
 
@@ -48,7 +51,7 @@ public class NonFreedum extends AppCompatActivity {
         continueBtnFalse = (ImageButton) findViewById(R.id.continueBtnFalse);
         continueBtnTrue = (ImageButton) findViewById(R.id.continueBtnTrue);
         final TextView qs = (TextView) findViewById(R.id.textView2);
-        ProgressBar pb = (ProgressBar) findViewById(R.id.progressBar);
+        pb = (ProgressBar) findViewById(R.id.progressBar);
         popupFalse = (RelativeLayout) findViewById(R.id.popupFalse);
         popupTrue = (RelativeLayout) findViewById(R.id.PopupTrue);
         pb.setProgress(LessonActivity.pr);
@@ -281,6 +284,7 @@ public class NonFreedum extends AppCompatActivity {
         DialogBack dialogBack = new DialogBack();
         dialogBack.show(getSupportFragmentManager(), "Example Dialog");
     }
+
     public void animate(){
         Drawable d = check.getDrawable();
         if (d instanceof AnimatedVectorDrawable) {
@@ -290,5 +294,4 @@ public class NonFreedum extends AppCompatActivity {
             animation.start();
         }
     }
-
 }

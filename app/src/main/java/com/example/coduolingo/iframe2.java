@@ -25,13 +25,14 @@ public class iframe2 extends AppCompatActivity {
 
     private codeFrament CodeFrament;
     private browserFragment BrowserFragment;
+    public static TabLayout tabs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_iframe2);
         ViewPager viewPager = findViewById(R.id.view_pager);
-        TabLayout tabs = findViewById(R.id.tabs);
+        tabs = (TabLayout) findViewById(R.id.tabs);
         tabs.setupWithViewPager(viewPager);
 
         CodeFrament = new codeFrament();
@@ -76,5 +77,9 @@ public class iframe2 extends AppCompatActivity {
         public CharSequence getPageTitle(int position) {
             return fragmentTitle.get(position);
         }
+    }
+
+    public static void switchTabs(){
+        tabs.getTabAt(2).select();
     }
 }

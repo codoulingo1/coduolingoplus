@@ -214,10 +214,10 @@ public class Login extends AppCompatActivity {
                 user.child("streak").setValue(1);
                 user.child("progress").setValue("");
                 Toast.makeText(Login.this,"שלום " + personName ,Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(Login.this, tree.class));
+                startActivity(new Intent(Login.this, mainScreen.class));
         }else{
                 Toast.makeText(Login.this,"שלום " + personName ,Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(Login.this, tree.class));
+                startActivity(new Intent(Login.this, mainScreen.class));
         }
         }
 
