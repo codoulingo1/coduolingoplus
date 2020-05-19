@@ -57,14 +57,14 @@ public class FreeText extends AppCompatActivity {
         qs = (TextView) findViewById(R.id.textView);
         Log.d("finished", "freetext");
         qs.setText(LessonActivity.shared_hashmap.get("qs"));
-        Log.d(LessonActivity.shared_hashmap.get("additional"), LessonActivity.shared_hashmap.get("additional"));
+        Log.d(String.valueOf(LessonActivity.shared_hashmap.get("additional").length()), String.valueOf(LessonActivity.shared_hashmap.get("additional").length()));
         final EditText inp = (EditText) findViewById(R.id.inp);
         inp.setText(LessonActivity.shared_hashmap.get("additional"));
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String ans = inp.getText().toString();
-                if (ans.equals(LessonActivity.shared_hashmap.get("Answer"))) {
+                if (Text.eqnova(ans, LessonActivity.shared_hashmap.get("Answer"), LessonActivity.shared_hashmap.get("additional").length())) {
                     showCorrect();
                 }
 
@@ -100,6 +100,7 @@ public class FreeText extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 LessonActivity.j++;
+                LessonActivity.shared_xp = LessonActivity.shared_xp + 2;
                 //LessonActivity.points++;
                 startActivity(new Intent(FreeText.this, LessonActivity.class));
             }
@@ -111,6 +112,9 @@ public class FreeText extends AppCompatActivity {
         continueBtn11.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(LessonActivity.shared_xp>=11){
+                    LessonActivity.shared_xp = LessonActivity.shared_xp - 1;
+                }
                 startActivity(new Intent(FreeText.this, FreeText.class));
                 overridePendingTransition(0, 0);
             }

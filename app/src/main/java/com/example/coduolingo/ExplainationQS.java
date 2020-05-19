@@ -54,6 +54,7 @@ public class ExplainationQS extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 LessonActivity.j++;
+                LessonActivity.shared_xp = LessonActivity.shared_xp + 1;
                 //LessonActivity.points++;
                 startActivity(new Intent(ExplainationQS.this, LessonActivity.class));
                 overridePendingTransition(0, 0);
