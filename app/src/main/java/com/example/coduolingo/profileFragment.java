@@ -49,16 +49,17 @@ public class profileFragment extends Fragment {
     FirebaseAuth mAuth;
     Button backToTree;
     HashMap<String, String> old_streak;
-
+    TextView setStreak;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_profile, container, false);
+        final View v = inflater.inflate(R.layout.fragment_profile2, container, false);
         Log.d("fragmentTest", "savta2");
 
         mAuth = FirebaseAuth.getInstance();
         profImg = (ImageView) v.findViewById(R.id.imageView2);
         setName = (TextView) v.findViewById(R.id.set_name);
+        setStreak = (TextView) v.findViewById(R.id.streak);
         btnSignOut = (Button) v.findViewById(R.id.sign_out);
         backToTree =  (Button) v.findViewById(R.id.back_to_tree);
         btnSignOut.setVisibility(View.INVISIBLE);
@@ -88,7 +89,7 @@ public class profileFragment extends Fragment {
                 Log.w("Failed to read value.", error.toException());
             }
         });
-        mcountdown = new CountDownTimer(1000, 1000) {
+        mcountdown = new CountDownTimer(2000, 1000) {
             @Override
             public void onTick(long l) {
                 //dialog.show();
@@ -111,6 +112,7 @@ public class profileFragment extends Fragment {
 
                 setName.setText(name);
                 String streak = String.valueOf(old_streak.get("streak"));
+                setStreak.setText(String.valueOf(streak));
                 btnSignOut.setVisibility(View.VISIBLE);
             }
         }.start();
