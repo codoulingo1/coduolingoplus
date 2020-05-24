@@ -87,6 +87,7 @@ public class sign_upActivity extends AppCompatActivity {
             fireBase.child("streak").setValue(1);
             fireBase.child("progress").setValue("");
             fireBase.child("xp").setValue(0);
+            fireBase.child("friends").setValue("");
             Toast.makeText(sign_upActivity.this,"שלום " + personName ,Toast.LENGTH_SHORT).show();
             startActivity(new Intent(sign_upActivity.this, tree.class));
             Toast.makeText(sign_upActivity.this, "Success", Toast.LENGTH_LONG).show();

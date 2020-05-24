@@ -214,6 +214,7 @@ public class Login extends AppCompatActivity {
                 user.child("streak").setValue(1);
                 user.child("xp").setValue(0);
                 user.child("progress").setValue("");
+                user.child("friends").setValue("");
                 Toast.makeText(Login.this,"שלום " + personName ,Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(Login.this, mainScreen.class));
         }else{

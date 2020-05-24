@@ -102,6 +102,7 @@ public class DownloadReadlessons {
                 ret.put("name", dataSnapshot.child("name").getValue().toString());
                 ret.put("img", dataSnapshot.child("imgUrl").getValue().toString());
                 ret.put("email", dataSnapshot.child("email").getValue().toString());
+                ret.put("friends", dataSnapshot.child("friends").getValue().toString());
             }
             @Override
             public void onCancelled(DatabaseError error) {

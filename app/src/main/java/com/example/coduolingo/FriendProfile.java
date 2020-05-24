@@ -1,24 +1,16 @@
 package com.example.coduolingo;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.os.Debug;
-import android.provider.ContactsContract;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -35,49 +27,41 @@ import com.squareup.picasso.Picasso;
 import java.io.File;
 import java.util.HashMap;
 
-public class profileFragment extends Fragment {
-
+public class FriendProfile extends AppCompatActivity {
+    Button follow;
     Button skill1;
     Button skill2;
     Button skill3;
     ImageView profImg;
     TextView setName;
     String url_old;
+    HashMap old_streak;
+    HashMap old_friends;
     String name;
     private Button btnSignOut;
     CountDownTimer mcountdown;
     private GoogleSignInClient mGoogleSignInClient;
     FirebaseAuth mAuth;
-    Button toSearch;
     Button backToTree;
-    HashMap<String, String> old_streak;
     TextView setStreak;
-    Button changeName;
-    EditText cgName;
-    boolean changed = false;
-    @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        final View v = inflater.inflate(R.layout.fragment_profile2, container, false);
-        Log.d("fragmentTest", "savta2");
-
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_friend_profile);
         mAuth = FirebaseAuth.getInstance();
-        profImg = (ImageView) v.findViewById(R.id.imageView2);
-        setName = (TextView) v.findViewById(R.id.set_name);
-        setStreak = (TextView) v.findViewById(R.id.streak);
-        btnSignOut = (Button) v.findViewById(R.id.sign_out);
-        backToTree =  (Button) v.findViewById(R.id.back_to_tree);
-        toSearch =  (Button) v.findViewById(R.id.addFriend);
-        changeName = (Button) v.findViewById(R.id.changeName);
-        cgName =  (EditText) v.findViewById(R.id.cgName);
-        btnSignOut.setVisibility(View.INVISIBLE);
+        profImg = (ImageView) findViewById(R.id.imageView2);
+        setName = (TextView) findViewById(R.id.set_name);
+        backToTree =  (Button) findViewById(R.id.back_to_tree);
+        follow =  (Button) findViewById(R.id.follow);
+        setStreak = (TextView) findViewById(R.id.streak);
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
                 .requestEmail()
                 .build();
-        mGoogleSignInClient = GoogleSignIn.getClient(getActivity(), gso);
-        old_streak = DownloadReadlessons.get_last_lesson(ReadWrite.read(getActivity().getFilesDir()+File.separator+ "user"));
-        String idp = ReadWrite.read(getActivity().getFilesDir()+ File.separator + "user");
+        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
+        String idp = Search.selected;
+        old_streak = DownloadReadlessons.get_last_lesson(Search.selected);
+        old_friends = DownloadReadlessons.get_last_lesson(String.valueOf(ReadWrite.read(FriendProfile.this.getFilesDir()+File.separator+ "user")));
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("Users").child(idp);
         myRef.addValueEventListener(new ValueEventListener() {
@@ -113,7 +97,7 @@ public class profileFragment extends Fragment {
                     Log.d("savta", "Image Error");
                 }*/
                 try {
-                    Picasso.with(getActivity()).load(url_old).resizeDimen(R.dimen.image_size, R.dimen.image_size).placeholder(R.drawable.goj).into(profImg);
+                    Picasso.with(FriendProfile.this).load(url_old).resizeDimen(R.dimen.image_size, R.dimen.image_size).placeholder(R.drawable.goj).into(profImg);
                 }catch(Exception e){
                     profImg.setImageResource(R.drawable.user_pic);
                 }
@@ -121,53 +105,59 @@ public class profileFragment extends Fragment {
                 setName.setText(name);
                 String streak = String.valueOf(old_streak.get("streak"));
                 setStreak.setText(String.valueOf(streak));
-                btnSignOut.setVisibility(View.VISIBLE);
-            }
-        }.start();
-        changeName.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(!changed) {
-                    cgName.setVisibility(View.VISIBLE);
-                    changeName.setText("קבע כשם משתמש חדש");
-                    changed = true;
-                }else if(changed){
-                    FirebaseDatabase database = FirebaseDatabase.getInstance();
-
-                    DatabaseReference myRef = database.getReference("Users");
-                    DatabaseReference fireBase = myRef.child(ReadWrite.read(getActivity().getFilesDir()+File.separator + "user"));
-                    fireBase.child("name").setValue(cgName.getText().toString());
+                String friends = String.valueOf(old_friends.get("friends"));
+                if(friends.contains(Search.selected)){
+                    follow.setText("הסר מרשימת החברים");
+                }
+                else{
+                    follow.setText("הוסף לרשימת החברים");
                 }
             }
-        });
-        btnSignOut.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mGoogleSignInClient.signOut();
-                FirebaseAuth.getInstance().signOut();
-                btnSignOut.setVisibility(View.INVISIBLE);
-                Intent intent = new Intent(getActivity(), Login.class);
-                startActivity(intent);
-
-            }
-        });
+        }.start();
         backToTree.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), mainScreen.class);
-                startActivity(intent);
+                startActivity(new Intent(FriendProfile.this, mainScreen.class));
             }
         });
-        toSearch.setOnClickListener(new View.OnClickListener() {
+        follow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), Search.class);
-                startActivity(intent);
+                String friends = String.valueOf(old_friends.get("friends"));
+                if(friends.contains(Search.selected)){
+                    FirebaseDatabase database = FirebaseDatabase.getInstance();
+
+                    DatabaseReference myRef = database.getReference("Users");
+                    DatabaseReference fireBase = myRef.child(String.valueOf(ReadWrite.read(FriendProfile.this.getFilesDir() + File.separator + "user")));
+                    fireBase.child("friends").setValue(friends.replaceAll(" " + Search.selected + "/" + Search.name, ""));
+                    follow.setText("הוסף לרשימת החברים");
+                }
+                else{
+                    FirebaseDatabase database = FirebaseDatabase.getInstance();
+
+                    DatabaseReference myRef = database.getReference("Users");
+                    DatabaseReference fireBase = myRef.child(String.valueOf(ReadWrite.read(FriendProfile.this.getFilesDir() + File.separator + "user")));
+                    fireBase.child("friends").setValue(friends + " " + Search.selected + "/" + Search.name);
+                    follow.setText("הסר מרשימת החברים");
+                }
             }
         });
 
+    }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        // Check if user is signed in (non-null) and update UI accordingly.
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        updateUI(currentUser);
+    }
 
-        return v;
+    private void updateUI(FirebaseUser user){
+        if(user == null){
+            startActivity(new Intent(FriendProfile.this, Login.class));
+        } else {
+            //Toast.makeText(profile_Activity.this, "Logged In", Toast.LENGTH_SHORT).show();
+        }
     }
 }
