@@ -129,7 +129,7 @@ public class FriendProfile extends AppCompatActivity {
 
                     DatabaseReference myRef = database.getReference("Users");
                     DatabaseReference fireBase = myRef.child(String.valueOf(ReadWrite.read(FriendProfile.this.getFilesDir() + File.separator + "user")));
-                    fireBase.child("friends").setValue(friends.replaceAll(" " + Search.selected + "/" + Search.name, ""));
+                    fireBase.child("friends").setValue(friends.replaceAll("-" + Search.selected + "/" + name, ""));
                     follow.setText("הוסף לרשימת החברים");
                 }
                 else{
@@ -137,7 +137,7 @@ public class FriendProfile extends AppCompatActivity {
 
                     DatabaseReference myRef = database.getReference("Users");
                     DatabaseReference fireBase = myRef.child(String.valueOf(ReadWrite.read(FriendProfile.this.getFilesDir() + File.separator + "user")));
-                    fireBase.child("friends").setValue(friends + " " + Search.selected + "/" + Search.name);
+                    fireBase.child("friends").setValue(friends + "-" + Search.selected + "/" + name);
                     follow.setText("הסר מרשימת החברים");
                 }
             }

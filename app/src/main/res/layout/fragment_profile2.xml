@@ -75,14 +75,14 @@
 
         <Button
             android:id="@+id/changeName"
-            android:layout_width="95dp"
-            android:layout_height="52dp"
+            android:layout_width="wrap_content"
+            android:layout_height="53dp"
             android:layout_alignBottom="@+id/set_name"
             android:layout_alignEnd="@+id/set_name"
             android:layout_alignTop="@+id/set_name"
-            android:layout_marginBottom="-124dp"
+            android:layout_marginBottom="-126dp"
             android:layout_marginEnd="-41dp"
-            android:layout_marginStart="-51dp"
+            android:layout_marginStart="-50dp"
             android:layout_marginTop="140dp"
             android:layout_toEndOf="@+id/set_name"
             android:text="שנה את שם המשתמש"
@@ -112,16 +112,17 @@
             android:text="הוסף חבר" />
 
         <ListView
-            android:layout_width="306dp"
-            android:layout_height="wrap_content"
+            android:id="@+id/friendsList"
+            android:layout_width="313dp"
+            android:layout_height="227dp"
             android:layout_alignBottom="@+id/sign_out"
             android:layout_alignEnd="@+id/changeName"
             android:layout_alignStart="@+id/sign_out"
             android:layout_alignTop="@+id/imageView2"
             android:layout_marginBottom="92dp"
-            android:layout_marginEnd="25dp"
+            android:layout_marginEnd="18dp"
             android:layout_marginStart="33dp"
-            android:layout_marginTop="409dp" />
+            android:layout_marginTop="377dp" />
 
     </RelativeLayout>
 </LinearLayout>

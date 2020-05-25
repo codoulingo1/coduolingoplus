@@ -9,9 +9,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -33,6 +36,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class profileFragment extends Fragment {
@@ -40,8 +44,10 @@ public class profileFragment extends Fragment {
     Button skill1;
     Button skill2;
     Button skill3;
+    ListView listView;
     ImageView profImg;
     TextView setName;
+    ArrayList<String> list;
     String url_old;
     String name;
     private Button btnSignOut;
@@ -52,6 +58,7 @@ public class profileFragment extends Fragment {
     Button backToTree;
     HashMap<String, String> old_streak;
     TextView setStreak;
+    HashMap<String, String> ret;
     Button changeName;
     EditText cgName;
     boolean changed = false;
@@ -63,11 +70,13 @@ public class profileFragment extends Fragment {
 
         mAuth = FirebaseAuth.getInstance();
         profImg = (ImageView) v.findViewById(R.id.imageView2);
-        setName = (TextView) v.findViewById(R.id.set_name);
+        listView = (ListView) v.findViewById(R.id.friendsList);
         setStreak = (TextView) v.findViewById(R.id.streak);
+        setName = (TextView) v.findViewById(R.id.cgName);
         btnSignOut = (Button) v.findViewById(R.id.sign_out);
         backToTree =  (Button) v.findViewById(R.id.back_to_tree);
         toSearch =  (Button) v.findViewById(R.id.addFriend);
+        listView = (ListView) v.findViewById(R.id.friendsList);
         changeName = (Button) v.findViewById(R.id.changeName);
         cgName =  (EditText) v.findViewById(R.id.cgName);
         btnSignOut.setVisibility(View.INVISIBLE);
@@ -119,6 +128,23 @@ public class profileFragment extends Fragment {
                 }
 
                 setName.setText(name);
+                ret = new HashMap<>();
+                int i = 0;
+                list = new ArrayList<String>();
+                for(String friend : old_streak.get("friends").split("-")){
+                    try {
+                        list.add(friend.split("/")[1]);
+                        ret.put(String.valueOf(i), friend.split("/")[0]);
+                        Log.d("hi", friend.split("/")[0]);
+                        i++;
+                    }catch(Exception e){
+
+                    }
+                }
+                String stringArray[] = list.toArray(new String[list.size()]);
+                ArrayAdapter<String> itemsAdapter =
+                        new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, android.R.id.text1,  stringArray);
+                listView.setAdapter(itemsAdapter);
                 String streak = String.valueOf(old_streak.get("streak"));
                 setStreak.setText(String.valueOf(streak));
                 btnSignOut.setVisibility(View.VISIBLE);
@@ -138,6 +164,17 @@ public class profileFragment extends Fragment {
                     DatabaseReference fireBase = myRef.child(ReadWrite.read(getActivity().getFilesDir()+File.separator + "user"));
                     fireBase.child("name").setValue(cgName.getText().toString());
                 }
+            }
+        });
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener()
+        {
+            public void onItemClick(AdapterView<?> arg0, View arg1, int position, long arg3)
+            {
+                Log.i("HelloListView", "You clicked Item: " + "id" + " at position:" + position);
+                Search.selected = ret.get(String.valueOf(position));
+                name = list.get(position);
+                Intent in = new Intent(getActivity(), FriendProfile.class);
+                startActivity(in);
             }
         });
         btnSignOut.setOnClickListener(new View.OnClickListener() {
