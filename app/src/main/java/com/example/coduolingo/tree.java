@@ -139,6 +139,11 @@ public class tree extends AppCompatActivity {
         }
     }
 
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(tree.this, mainScreen.class));
+    }
+
     /*@Override
     public void onStart() {
         super.onStart();

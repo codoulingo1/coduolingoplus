@@ -18,5 +18,6 @@ public class ShopFragment extends Fragment {
         Log.d("fragmentTest", "savta2");
         return inflater.inflate(R.layout.fragment_shop, container, false);
 
+
     }
 }

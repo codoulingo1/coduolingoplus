@@ -1,6 +1,7 @@
 package com.example.coduolingo;
 
 import android.content.Intent;
+import android.media.Image;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -13,9 +14,11 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.os.CountDownTimer;
 import android.os.Environment;
+import android.provider.ContactsContract;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -48,6 +51,9 @@ public class LessonActivity extends AppCompatActivity {
     public static int pr;
     HashMap <String, String> date;
     CountDownTimer mcountdown;;
+
+    ImageButton continueBtn20;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -164,6 +170,15 @@ public class LessonActivity extends AppCompatActivity {
                 }
             }.start();
         }
+
+        continueBtn20 = (ImageButton) findViewById(R.id.continueBtn2000);
+
+        continueBtn20.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(LessonActivity.this, tree.class));
+            }
+        });
     }
 
     public HashMap<String, String> loadquestion(String id, String name, String qs_num) {

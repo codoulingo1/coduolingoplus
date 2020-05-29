@@ -79,7 +79,7 @@ public class iframe2 extends AppCompatActivity {
         }
     }
 
-    public static void switchTabs(){
+    /*public static void switchTabs(){
         tabs.getTabAt(2).select();
-    }
+    }*/
 }

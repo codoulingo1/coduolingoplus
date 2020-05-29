@@ -103,6 +103,12 @@ public class MainActivity extends AppCompatActivity {
 
         t.schedule(tt,0,30);
     }
+
+    @Override
+    public void onBackPressed() {
+        return;
+    }
+
 }
 
 

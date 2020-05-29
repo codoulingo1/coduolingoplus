@@ -8,25 +8,9 @@
     android:scrollbars="vertical"
     tools:context=".MainActivity"
     android:clickable="true"
-    android:focusableInTouchMode="true" >
+    android:focusableInTouchMode="true"
+    android:background="#F3F4F9">
     <!--android:scrollbarStyle="insideInset" - this is something bad-->
-
-    <ImageButton
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="בדיקה"
-        android:layout_marginTop="400dp"
-        android:layout_centerHorizontal="true"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_margin="15dp"
-        android:src="@drawable/next3"
-        android:background="#80FFFFFF"
-        android:maxWidth="60dp"
-        android:maxHeight="60dp"
-        android:scaleType="fitCenter"
-        android:adjustViewBounds="true"/>
 
     <EditText
         android:id="@+id/inp"
@@ -65,6 +49,30 @@
         android:text="שאלה"
         android:textColor="#0B0A0A"
         android:textSize="22sp" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:background="@color/white"
+        android:layout_alignParentBottom="true">
+
+        <ImageButton
+            android:id="@+id/button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="בדיקה"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="15dp"
+            android:layout_marginBottom="5dp"
+            android:src="@drawable/next3"
+            android:background="#80FFFFFF"
+            android:maxWidth="60dp"
+            android:maxHeight="60dp"
+            android:scaleType="fitCenter"
+            android:adjustViewBounds="true" />
+
+    </RelativeLayout>
 
     <RelativeLayout
         android:id="@+id/PopupTruee"
@@ -136,5 +144,7 @@
             android:textColor="#de302b"
             android:textSize="46sp" />
     </RelativeLayout>
+
+
 
 </RelativeLayout>

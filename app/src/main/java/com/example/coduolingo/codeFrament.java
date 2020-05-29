@@ -148,7 +148,7 @@ public class codeFrament extends Fragment  { //was extends Fragment, might need 
         transaction.add(R.id.fragment_container, BrowserFragment, "FRAGMENT").commit();
         //tabHost.getTabAt(2).select();
 
-        iframe2.switchTabs();
+        //iframe2.switchTabs();
 
 
     }

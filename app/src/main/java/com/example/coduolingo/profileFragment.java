@@ -97,7 +97,7 @@ public class profileFragment extends Fragment {
                 Log.w("Failed to read value.", error.toException());
             }
         });
-        mcountdown = new CountDownTimer(1000, 1000) {
+        mcountdown = new CountDownTimer(100, 10) {
             @Override
             public void onTick(long l) {
                 //dialog.show();
@@ -106,12 +106,6 @@ public class profileFragment extends Fragment {
 
             @Override
             public void onFinish() {
-                //Log.d("profile_Activity2", url_old);
-                /*try {
-                    Picasso.with(profile_Activity.this).load(url_old).resizeDimen(R.dimen.image_size, R.dimen.image_size).placeholder(R.drawable.goj).into(profImg);
-                }catch (Exception e){
-                    Log.d("savta", "Image Error");
-                }*/
                 try {
                     Picasso.with(getActivity()).load(url_old).resizeDimen(R.dimen.image_size, R.dimen.image_size).placeholder(R.drawable.goj).into(profImg);
                 }catch(Exception e){
@@ -120,7 +114,7 @@ public class profileFragment extends Fragment {
 
                 setName.setText(name);
                 String streak = String.valueOf(old_streak.get("streak"));
-                setStreak.setText(String.valueOf(streak));
+                setStreak.setText("Streak:" + (String.valueOf(streak)));
                 btnSignOut.setVisibility(View.VISIBLE);
             }
         }.start();
