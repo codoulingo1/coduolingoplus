@@ -13,6 +13,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
@@ -63,24 +64,103 @@ public class DownloadReadlessons {
         });
         return "a";
     }
+    public static String  downloadPractice(final String[] ID, final int maxQS) {
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("Lessons");
+        myRef.addValueEventListener(new ValueEventListener() {
+
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                    final File newFile = new File(Environment.getExternalStorageDirectory() + "/id/");
+                if (!newFile.exists()) {
+                    newFile.mkdirs();
+                    Log.d("Create", "dir");
+                }
+
+                String folder_main = "prac";
+                // This method is called once with the initial value and again
+                // whenever data at this location is updated.
+                ArrayList<String> first = new ArrayList<String>();
+                for (String i : ID){
+                    for (DataSnapshot snap : dataSnapshot.child(i).getChildren()) {
+                        if (snap.getValue(String.class).length() != 0) {
+                            try {
+                                String[] arr = snap.getValue(String.class).split("\\]|\\[");
+                                if (!arr[1].replace("\\n", System.getProperty("line.separator")).equals("explain")) {
+                                    first.add(snap.getValue(String.class));
+                                }
+                                }catch (Exception e){
+                                    Log.d("err", String.valueOf(snap.getKey()));
+                                }
+                        }
+                    }
+                }
+                Collections.shuffle(first);
+                int wr_num = 1;
+                for(String wr : first) {
+                    File f = new File(Environment.getExternalStorageDirectory() + "/id/" + folder_main + "qs" + wr_num + ".txt");
+                    if (!f.getParentFile().exists())
+                        f.getParentFile().mkdirs();
+                    if (!f.exists()) {
+                        try {
+                            f.createNewFile();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                    if(wr_num<=maxQS) {
+                        Log.d(folder_main + "qs" + wr_num, "Value is: " + "qs" + wr_num + "    " + wr);
+                        ReadWrite.write(Environment.getExternalStorageDirectory() + "/id/" + folder_main + "qs" + wr_num, wr);
+                    }
+
+                    wr_num++;
+                    Log.d("wr_num", String.valueOf(wr_num));
+                }
+                }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+                Log.w("error", "Failed to read value.", error.toException());
+            }
+        });
+        return "a";
+    }
     public static HashMap<String, String> readqs(String id, String name, String qs_num) {
         String content = ReadWrite.read(Environment.getExternalStorageDirectory() +"/" + "id" + "/" + id + name + "qs" + qs_num);
         HashMap<String, String> hashMap = new HashMap<>();
         String[] arr = content.split("\\]|\\[");
         Log.d("check", content.toString());
-        try {
-            hashMap.put("type", arr[1].replace("\\n", System.getProperty("line.separator")));
-        }catch (Exception e){hashMap.put("type", arr[1]);}try {
-            hashMap.put("qs", arr[3].replace("\\n", System.getProperty("line.separator")));
-        }catch (Exception e){hashMap.put("qs", arr[3]);}try {
-            hashMap.put("Content", arr[5].replace("\\n", System.getProperty("line.separator")));
-        }catch (Exception e){hashMap.put("Content", arr[5]);}try {
-            hashMap.put("Image", arr[7].replace("\\n", System.getProperty("line.separator")));
-        }catch (Exception e){hashMap.put("Image", arr[7]);}try {
-            hashMap.put("Answer", arr[9].replace("\\n", System.getProperty("line.separator")));
-        }catch (Exception e){hashMap.put("Answer", arr[9]);}try {
-            hashMap.put("additional", arr[11].replace("\\n", System.getProperty("line.separator")));
-        }catch (Exception e){hashMap.put("additional", arr[11]);}
+            try {
+                hashMap.put("type", arr[1].replace("\\n", System.getProperty("line.separator")));
+            } catch (Exception e) {
+                hashMap.put("type", arr[1]);
+            }
+            try {
+                hashMap.put("qs", arr[3].replace("\\n", System.getProperty("line.separator")));
+            } catch (Exception e) {
+                hashMap.put("qs", arr[3]);
+            }
+            try {
+                hashMap.put("Content", arr[5].replace("\\n", System.getProperty("line.separator")));
+            } catch (Exception e) {
+                hashMap.put("Content", arr[5]);
+            }
+            try {
+                hashMap.put("Image", arr[7].replace("\\n", System.getProperty("line.separator")));
+            } catch (Exception e) {
+                hashMap.put("Image", arr[7]);
+            }
+            try {
+                hashMap.put("Answer", arr[9].replace("\\n", System.getProperty("line.separator")));
+            } catch (Exception e) {
+                hashMap.put("Answer", arr[9]);
+            }
+            try {
+                hashMap.put("additional", arr[11].replace("\\n", System.getProperty("line.separator")));
+            } catch (Exception e) {
+                hashMap.put("additional", arr[11]);
+            }
 
         return hashMap;
     }

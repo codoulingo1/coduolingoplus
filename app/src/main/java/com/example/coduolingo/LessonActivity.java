@@ -61,6 +61,7 @@ public class LessonActivity extends AppCompatActivity {
             }
             catch (Exception e) {
                 maxJ = i-1;
+                Log.d("hi", String.valueOf(maxJ));
                 break;
             }
         }
@@ -111,7 +112,7 @@ public class LessonActivity extends AppCompatActivity {
                     int year = Integer.parseInt(date.get("year"));
                     int month = Integer.parseInt(date.get("month"));
                     int day = Integer.parseInt(date.get("date"));
-                    int xp = Integer.parseInt(date.get("xp"));
+                    int xp = (int) Double.parseDouble(date.get("xp"));
                     String old_progress = String.valueOf(date.get("cProgress"));
                     Calendar calendar = Calendar.getInstance();
 

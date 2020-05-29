@@ -67,6 +67,9 @@ public class MainActivity extends AppCompatActivity {
         builder.setView(R.layout.activity_main);
         final AlertDialog dialog = builder.create();
         dialog.setMessage("טוען שיעור: " + name);
+        if(tree.LessonType.equals("practice")){
+            DownloadReadlessons.downloadPractice(tree.practiceID, 5);
+        }
         DownloadReadlessons.downloadlesson(id, MainActivity.this);
 
         mcountdown = new CountDownTimer(4000, 1000) {

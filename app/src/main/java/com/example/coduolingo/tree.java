@@ -20,7 +20,10 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import org.apache.commons.io.FileUtils;
+
 import java.io.File;
+import java.io.IOException;
 import java.sql.Timestamp;
 import java.util.Arrays;
 import java.util.Calendar;
@@ -37,6 +40,8 @@ public class tree extends AppCompatActivity {
     Button skill3;
     Button profile;
     CountDownTimer mcountdown;
+    public static String[] practiceID;
+    public static String LessonType;
     HashMap <String, String> date;
     TextView streak;
     Button toHTML;
@@ -52,6 +57,13 @@ public class tree extends AppCompatActivity {
         profile = (Button) findViewById(R.id.profile);
         streak = (TextView) findViewById(R.id.streak);
         toHTML = (Button) findViewById(R.id.toHTML);
+        File dirName = new File(Environment.getExternalStorageDirectory() + "/" + "id" + "/");
+        try {
+            FileUtils.deleteDirectory(dirName);
+        } catch (IOException e) {
+            e.printStackTrace();
+            Log.d("malbona", "malbona");
+        }
         LessonActivity.j = 1;
         date = DownloadReadlessons.get_last_lesson(ReadWrite.read(this.getFilesDir()+File.separator+ "user"));
         mcountdown = new CountDownTimer(1000, 1000) {
@@ -113,7 +125,7 @@ public class tree extends AppCompatActivity {
         skill2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startLesson(Arrays.asList("1"), "משתנים");
+                startPractice(new String[]{"1", "57983"});
             }
         });
         toHTML.setOnClickListener(new View.OnClickListener() {
@@ -137,6 +149,13 @@ public class tree extends AppCompatActivity {
                 overridePendingTransition(0,0);
             }
         }
+    }
+    void startPractice(String[] id){
+        LessonType = "practice";
+        MainActivity.id = "prac";
+        MainActivity.name = "";
+        practiceID = id;
+        startActivity(new Intent(tree.this, MainActivity.class));
     }
 
     /*@Override
