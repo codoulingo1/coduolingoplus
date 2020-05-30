@@ -65,7 +65,7 @@ public class DownloadReadlessons {
         return "a";
     }
     public static String  downloadPractice(final String[] ID, final int maxQS) {
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        FirebaseDatabase database = FirebaseDatabase.getInstance(); //hello
         DatabaseReference myRef = database.getReference("Lessons");
         myRef.addValueEventListener(new ValueEventListener() {
 
