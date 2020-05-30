@@ -11,13 +11,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Login"
+        <activity android:name=".Tree_new"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
         <activity android:name=".FriendProfile" />
         <activity android:name=".Search" />
         <activity
-            android:name=".mainScreen"
+            android:name=".Login"
             android:label="@string/title_activity_courses_screen"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
@@ -63,7 +63,7 @@
             android:name=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".Tree_new"
+            android:name=".mainScreen"
             android:theme="@style/AppTheme.NoActionBar"> <!-- This is the default activity! -->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

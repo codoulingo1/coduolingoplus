@@ -2,7 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F3F4F9">
+    android:background="#F3F4F9"
+    android:padding="20dp">
 
     <TextView
         android:layout_width="wrap_content"
@@ -15,6 +16,55 @@
         android:layout_alignParentTop="true"
         android:layout_margin="15dp"
         android:id="@+id/label" />
+    <RelativeLayout
+        android:layout_width="370dp"
+        android:layout_height="180dp"
+        android:background="@drawable/course_bg"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="100dp"
+        android:elevation="3dp"
+        android:layout_below="@id/label"
+        android:layout_centerHorizontal="true">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/clickView1"
+            android:clickable="true"
+            android:background="@drawable/ripple_anim2"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="הקפאת סטריק"
+            android:fontFamily="@font/rubik_light"
+            android:textColor="#42445F"
+            android:textSize="26dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:layout_margin="15dp" />
+        <TextView
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:text="שומר את הסטריק במקרה שיום שלם לא עושים שיעור."
+            android:fontFamily="@font/rubik_light"
+            android:textColor="#6B6767"
+            android:textSize="16dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="55dp"
+            />
+
+        <ImageView
+            android:layout_width="150dp"
+            android:layout_height="120dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ic_flame"
+            />
+
+    </RelativeLayout>
 
 
 
