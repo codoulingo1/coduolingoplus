@@ -77,7 +77,7 @@ public class DownloadReadlessons {
                     Log.d("Create", "dir");
                 }
 
-                String folder_main = "prac";
+                String folder_main = "prac"; //hello
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
                 ArrayList<String> first = new ArrayList<String>();
