@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".tree">
+    tools:context=".tree"
+    android:background="#F3F4F9">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -13,9 +14,12 @@
 
         <RelativeLayout
             android:layout_width="100dp"
-            android:layout_height="110dp"
+            android:layout_height="120dp"
             android:layout_centerHorizontal="true"
-            android:clickable="true">
+            android:clickable="true"
+            android:id="@+id/skill12"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="25dp">
 
             <ProgressBar
                 android:id="@+id/progressBar2"
@@ -27,7 +31,7 @@
                 android:progress="60"
                 android:layout_marginTop="0dp"
                 android:layout_alignParentBottom="true"
-                android:layout_marginBottom="20dp"
+                android:layout_marginBottom="25dp"
                 />
 
             <TextView
@@ -48,11 +52,11 @@
                 android:layout_height="80dp"
                 android:layout_centerHorizontal="true"
                 android:id="@+id/n">
-                <View
+                <ImageView
                     android:id="@+id/lessonStart"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
-                    android:background="@drawable/lesson_circle"
+                    app:srcCompat="@drawable/lesson_circle"
                     android:layout_centerHorizontal="true"
                     />
 
