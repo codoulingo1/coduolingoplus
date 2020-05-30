@@ -85,13 +85,13 @@ public class DownloadReadlessons {
                     for (DataSnapshot snap : dataSnapshot.child(i).getChildren()) {
                         if (snap.getValue(String.class).length() != 0) {
                             try {
-                                String[] arr = snap.getValue(String.class).split("\\]|\\[");
-                                if (!arr[1].replace("\\n", System.getProperty("line.separator")).equals("explain")) {
-                                    first.add(snap.getValue(String.class));
-                                }
+                                    String[] arr = snap.getValue(String.class).split("\\]|\\[");
+                                    if (!arr[1].replace("\\n", System.getProperty("line.separator")).equals("explain")) {
+                                        first.add(snap.getValue(String.class));
+                                    }
                                 }catch (Exception e){
                                     Log.d("err", String.valueOf(snap.getKey()));
-                                }
+                            }
                         }
                     }
                 }

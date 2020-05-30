@@ -139,8 +139,9 @@ public class tree extends AppCompatActivity {
 
     void startLesson(List<String> id, String name){
         String old_progress = String.valueOf(date.get("cProgress"));
+        LessonType = "";
         for(String d : id){
-            List<String> str_old_progress = Arrays.asList(old_progress.split(" "));
+            List<String> str_old_progress = Arrays.asList(old_progress.split(""));
             if(!str_old_progress.contains(d)) {
                 MainActivity.id = d;
                 MainActivity.name = name;
