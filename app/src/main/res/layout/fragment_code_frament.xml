@@ -25,7 +25,9 @@
             android:scrollbarStyle="insideInset"
             android:scrollbars="vertical"
             android:textColor="@color/white"
-            android:layout_alignParentTop="true" />
+            android:layout_alignParentTop="true"
+            android:textDirection="ltr"
+            />
         <!--<com.google.android.material.bottomnavigation.BottomNavigationView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

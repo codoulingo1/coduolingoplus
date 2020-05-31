@@ -24,6 +24,8 @@ import android.widget.ImageButton;
 
 import com.google.android.material.tabs.TabLayout;
 
+import java.util.Locale;
+
 
 public class codeFrament extends Fragment  { //was extends Fragment, might need to change that
 
@@ -51,6 +53,7 @@ public class codeFrament extends Fragment  { //was extends Fragment, might need 
         help2 = (Button) v.findViewById(R.id.help2);
         help3 = (Button) v.findViewById(R.id.help3);
         tabHost = (TabLayout) v.findViewById(R.id.tabs);
+        detectLanguage();
 
 
         submitBtn.setOnClickListener(new View.OnClickListener() {
@@ -139,7 +142,7 @@ public class codeFrament extends Fragment  { //was extends Fragment, might need 
             public void onClick(View v) {
                 String x = htmlInp.getText().toString();
                 int loc = htmlInp.getSelectionStart();
-                x = x.substring(0, htmlInp.getSelectionStart()) + "<" + x.substring(htmlInp.getSelectionStart(), x.length());
+                x = x.substring(0, htmlInp.getSelectionStart()) + ">" + x.substring(htmlInp.getSelectionStart(), x.length());
                 Log.d("hi", String.valueOf(htmlInp.getSelectionStart()+1));
                 htmlInp.setText(x);
                 htmlInp.setSelection(loc + 1);
@@ -150,7 +153,7 @@ public class codeFrament extends Fragment  { //was extends Fragment, might need 
             public void onClick(View v) {
                 String x = htmlInp.getText().toString();
                 int loc = htmlInp.getSelectionStart();
-                x = x.substring(0, htmlInp.getSelectionStart()) + ">" + x.substring(htmlInp.getSelectionStart(), x.length());
+                x = x.substring(0, htmlInp.getSelectionStart()) + "<" + x.substring(htmlInp.getSelectionStart(), x.length());
                 Log.d("hi", String.valueOf(htmlInp.getSelectionStart()+1));
                 htmlInp.setText(x);
                 htmlInp.setSelection(loc + 1);
@@ -192,6 +195,13 @@ public class codeFrament extends Fragment  { //was extends Fragment, might need 
             Log.d("testanim", "onCreate: instancefound" + d.toString());
             animation = (AnimatedVectorDrawable) d;
             animation.start();
+        }
+    }
+    void detectLanguage(){
+        String a = Locale.getDefault().getDisplayLanguage();
+        Log.d("lan", a);
+        if(a.equals("English")){
+            String help1S = "";
         }
     }
 }

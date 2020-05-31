@@ -120,28 +120,31 @@ public class profileFragment extends Fragment {
                 }catch(Exception e){
                     profImg.setImageResource(R.drawable.user_pic);
                 }
+                try {
+                    setName.setText(name);
+                    ret = new HashMap<>();
+                    int i = 0;
+                    list = new ArrayList<String>();
+                    for(String friend : old_streak.get("friends").split("-")){
+                        try {
+                            list.add(friend.split("/")[1]);
+                            ret.put(String.valueOf(i), friend.split("/")[0]);
+                            Log.d("hi", friend.split("/")[0]);
+                            i++;
+                        }catch(Exception e){
 
-                setName.setText(name);
-                ret = new HashMap<>();
-                int i = 0;
-                list = new ArrayList<String>();
-                for(String friend : old_streak.get("friends").split("-")){
-                    try {
-                        list.add(friend.split("/")[1]);
-                        ret.put(String.valueOf(i), friend.split("/")[0]);
-                        Log.d("hi", friend.split("/")[0]);
-                        i++;
-                    }catch(Exception e){
-
+                        }
                     }
+                    String stringArray[] = list.toArray(new String[list.size()]);
+                    ArrayAdapter<String> itemsAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, android.R.id.text1,  stringArray);
+                    listView.setAdapter(itemsAdapter);
+                    String streak = String.valueOf(old_streak.get("streak"));
+                    setStreak.setText("Streak:" + (String.valueOf(streak)));
+                    btnSignOut.setVisibility(View.VISIBLE);
                 }
-                String stringArray[] = list.toArray(new String[list.size()]);
-                ArrayAdapter<String> itemsAdapter =
-                        new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, android.R.id.text1,  stringArray);
-                listView.setAdapter(itemsAdapter);
-                String streak = String.valueOf(old_streak.get("streak"));
-                setStreak.setText("Streak:" + (String.valueOf(streak)));
-                btnSignOut.setVisibility(View.VISIBLE);
+                catch (Exception e){
+
+                }
             }
         }.start();
         changeName.setOnClickListener(new View.OnClickListener() {
