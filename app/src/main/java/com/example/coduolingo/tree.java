@@ -128,6 +128,12 @@ public class tree extends AppCompatActivity {
                 startPractice(new String[]{"1", "57983"});
             }
         });
+        skill3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startLesson(Arrays.asList("0000-1-1"), "מבוא לפיתוח אתרים");
+            }
+        });
         toHTML.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -151,7 +157,7 @@ public class tree extends AppCompatActivity {
             }
         }
     }
-    void startPractice(String[] id){
+    void startPractice(String[] id) {
         LessonType = "practice";
         MainActivity.id = "prac";
         MainActivity.name = "";
