@@ -134,7 +134,39 @@ public class codeFrament extends Fragment  { //was extends Fragment, might need 
 
             }
         });
-
+        help1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String x = htmlInp.getText().toString();
+                int loc = htmlInp.getSelectionStart();
+                x = x.substring(0, htmlInp.getSelectionStart()) + "<" + x.substring(htmlInp.getSelectionStart(), x.length());
+                Log.d("hi", String.valueOf(htmlInp.getSelectionStart()+1));
+                htmlInp.setText(x);
+                htmlInp.setSelection(loc + 1);
+            }
+        });
+        help2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String x = htmlInp.getText().toString();
+                int loc = htmlInp.getSelectionStart();
+                x = x.substring(0, htmlInp.getSelectionStart()) + ">" + x.substring(htmlInp.getSelectionStart(), x.length());
+                Log.d("hi", String.valueOf(htmlInp.getSelectionStart()+1));
+                htmlInp.setText(x);
+                htmlInp.setSelection(loc + 1);
+            }
+        });
+        help3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String x = htmlInp.getText().toString();
+                int loc = htmlInp.getSelectionStart();
+                x = x.substring(0, htmlInp.getSelectionStart()) + "/" + x.substring(htmlInp.getSelectionStart(), x.length());
+                Log.d("hi", String.valueOf(htmlInp.getSelectionStart()+1));
+                htmlInp.setText(x);
+                htmlInp.setSelection(loc + 1);
+            }
+        });
 
         return v;
     }

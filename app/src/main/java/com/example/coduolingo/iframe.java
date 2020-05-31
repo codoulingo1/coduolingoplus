@@ -20,6 +20,7 @@ public class iframe extends AppCompatActivity {
     String htmlCode;
     WebView htmlView;
     ImageButton submitBtn;
+    Button help1;
     EditText htmlInp;
 
     private AnimatedVectorDrawable animation;
@@ -31,6 +32,7 @@ public class iframe extends AppCompatActivity {
 
         htmlView = (WebView) findViewById(R.id.HtmlView);
         submitBtn = (ImageButton) findViewById(R.id.submitHTML);
+        help1 = (Button) findViewById(R.id.help1);
         htmlInp = (EditText) findViewById(R.id.inputHTML);
 
         htmlView.getSettings().setJavaScriptEnabled(true);
@@ -58,6 +60,7 @@ public class iframe extends AppCompatActivity {
                     }
                 });
                 htmlCode = htmlInp.getText().toString();
+                htmlInp.setText("hi");
                 htmlView.loadData(htmlCode, "text/html", "UTF-8");
             }
         });

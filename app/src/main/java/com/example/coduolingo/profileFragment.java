@@ -106,7 +106,7 @@ public class profileFragment extends Fragment {
                 Log.w("Failed to read value.", error.toException());
             }
         });
-        mcountdown = new CountDownTimer(100, 10) {
+        mcountdown = new CountDownTimer(1000, 1000) {
             @Override
             public void onTick(long l) {
                 //dialog.show();
