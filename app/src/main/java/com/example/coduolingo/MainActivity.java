@@ -6,8 +6,10 @@ import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.media.Image;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -28,6 +30,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.RequestCreator;
+import com.squareup.picasso.Target;
 
 import org.apache.commons.io.FileUtils;
 
@@ -54,7 +57,6 @@ public class MainActivity extends AppCompatActivity {
     int progress;
     int counter = 0;
     TextView loadingTextView;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
         }
         DownloadReadlessons.downloadlesson(id, MainActivity.this);
 
-        mcountdown = new CountDownTimer(4000, 1000) {
+        mcountdown = new CountDownTimer(1000, 1000) {
             @Override
             public void onTick(long l) {
                 //dialog.show();
@@ -84,7 +86,45 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onFinish() {
                 dialog.dismiss();
-                startActivity(new Intent(MainActivity.this, LessonActivity.class));
+                for (int i = 1; i<20; i++){
+                    try {
+                        Target target = new Target() {
+                            @Override
+                            public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
+                            }
+
+                            @Override
+                            public void onBitmapFailed(Drawable errorDrawable) {
+
+                            }
+
+                            @Override
+                            public void onPrepareLoad(Drawable placeHolderDrawable) {
+
+                            }
+                        };
+                        Picasso.with(MainActivity.this).load(DownloadReadlessons.readImage(id, name, String.valueOf(i))).resizeDimen(R.dimen.image_size, R.dimen.image_size).into(target);
+                        Log.d("imageUrl", DownloadReadlessons.readImage(id, name, String.valueOf(i)));
+                    }
+                    catch (Exception e) {
+                        break;
+                    }
+                }
+                mcountdown = new CountDownTimer(2000, 1000) {
+                    @Override
+                    public void onTick(long l) {
+                        //dialog.show();
+                        Log.d("Loading", "Loading");
+                        progressTime();
+                        loadingTextView.setText("טוען שיעור: " + name);
+                    }
+
+                    @Override
+                    public void onFinish() {
+                        dialog.dismiss();
+                        startActivity(new Intent(MainActivity.this, LessonActivity.class));
+                    }
+                }.start();
             }
         }.start();
 

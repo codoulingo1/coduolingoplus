@@ -164,6 +164,14 @@ public class DownloadReadlessons {
 
         return hashMap;
     }
+    public static String readImage(String id, String name, String qs_num) {
+        String content = ReadWrite.read(Environment.getExternalStorageDirectory() +"/" + "id" + "/" + id + name + "qs" + qs_num);
+        HashMap<String, String> hashMap = new HashMap<>();
+        String[] arr = content.split("\\]|\\[");
+        Log.d("check", content.toString());
+        return arr[7];
+
+    }
     public static HashMap <String, String> get_last_lesson(String email){
         final HashMap<String, String> ret = new HashMap<>();
         FirebaseDatabase database = FirebaseDatabase.getInstance();
