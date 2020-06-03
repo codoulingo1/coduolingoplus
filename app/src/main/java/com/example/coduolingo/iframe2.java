@@ -15,6 +15,7 @@ import androidx.viewpager.widget.ViewPager;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 
@@ -25,14 +26,14 @@ public class iframe2 extends AppCompatActivity {
 
     private codeFrament CodeFrament;
     private browserFragment BrowserFragment;
-    public static TabLayout tabs;
+    private TabLayout tabs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_iframe2);
-        ViewPager viewPager = findViewById(R.id.view_pager);
-        tabs = (TabLayout) findViewById(R.id.tabs);
+        ViewPager viewPager = findViewById(R.id.view_pager6000);
+        tabs = (TabLayout) findViewById(R.id.tabs6000);
         tabs.setupWithViewPager(viewPager);
 
         CodeFrament = new codeFrament();
@@ -79,7 +80,14 @@ public class iframe2 extends AppCompatActivity {
         }
     }
 
-    /*public static void switchTabs(){
-        tabs.getTabAt(2).select();
-    }*/
+    public void changeTab(int position){
+        tabs.getTabAt(position).select();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu, menu);
+        return true;
+    }
 }

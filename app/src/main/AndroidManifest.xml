@@ -22,8 +22,7 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".iframe2"
-            android:label="@string/title_activity_iframe2"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:label="עורך הקוד" />
         <activity
             android:name=".iframe"
             android:theme="@style/AppTheme.NoActionBar" />

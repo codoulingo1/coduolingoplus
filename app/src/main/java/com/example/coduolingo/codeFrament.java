@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.viewpager.widget.ViewPager;
 
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -35,7 +36,8 @@ public class codeFrament extends Fragment  { //was extends Fragment, might need 
     Button help1;
     Button help2;
     Button help3;
-    TabLayout tabHost;
+    ViewPager mViewPager;
+    TabLayout tabsHost;
 
     private AnimatedVectorDrawable animation;
 
@@ -52,7 +54,8 @@ public class codeFrament extends Fragment  { //was extends Fragment, might need 
         help1 = (Button) v.findViewById(R.id.help1);
         help2 = (Button) v.findViewById(R.id.help2);
         help3 = (Button) v.findViewById(R.id.help3);
-        tabHost = (TabLayout) v.findViewById(R.id.tabs);
+        mViewPager = (ViewPager) v.findViewById(R.id.view_pager6000);
+        tabsHost = getActivity().findViewById(R.id.tabs6000);
         detectLanguage();
 
 
@@ -170,7 +173,6 @@ public class codeFrament extends Fragment  { //was extends Fragment, might need 
                 htmlInp.setSelection(loc + 1);
             }
         });
-
         return v;
     }
 
@@ -181,10 +183,8 @@ public class codeFrament extends Fragment  { //was extends Fragment, might need 
         FragmentTransaction transaction = fragmentManager.beginTransaction();
         transaction.addToBackStack(null);
         transaction.add(R.id.fragment_container, BrowserFragment, "FRAGMENT").commit();
-        //tabHost.getTabAt(2).select();
-
-        //iframe2.switchTabs();
-
+        tabsHost.getTabAt(1).select();
+        //((iframe2) getActivity()).changeTab(2);
 
     }
 
@@ -204,4 +204,5 @@ public class codeFrament extends Fragment  { //was extends Fragment, might need 
             String help1S = "";
         }
     }
+
 }

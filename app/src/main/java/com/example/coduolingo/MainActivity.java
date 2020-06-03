@@ -72,6 +72,7 @@ public class MainActivity extends AppCompatActivity {
         }
         DownloadReadlessons.downloadlesson(id, MainActivity.this);
 
+
         mcountdown = new CountDownTimer(4000, 1000) {
             @Override
             public void onTick(long l) {

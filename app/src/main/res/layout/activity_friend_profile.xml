@@ -30,7 +30,8 @@
             app:civ_border_color="#42445F"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="10dp"
-            android:layout_alignParentTop="true" />
+            android:layout_alignParentTop="true"
+            android:src="@drawable/ic_profile"/>
 
         <TextView
             android:id="@+id/set_name"
@@ -58,12 +59,10 @@
             android:id="@+id/follow"
             android:layout_width="142dp"
             android:layout_height="45dp"
-            android:layout_alignEnd="@+id/set_name"
-            android:layout_below="@+id/imageView2"
-            android:layout_marginEnd="-39dp"
-            android:layout_marginStart="2dp"
-            android:layout_marginTop="148dp"
-            android:layout_toEndOf="@+id/streak" />
+            android:layout_centerHorizontal="true"
+            android:text="עקוב"
+            android:layout_below="@id/streak"
+            android:layout_marginTop="10dp"/>
 
     </RelativeLayout>
 </LinearLayout>

@@ -7,7 +7,7 @@
     tools:context=".iframe2">
 
     <androidx.viewpager.widget.ViewPager
-        android:id="@+id/view_pager"
+        android:id="@+id/view_pager6000"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior" />
@@ -18,10 +18,10 @@
         android:theme="@style/AppTheme.AppBarOverlay">
 
         <com.google.android.material.tabs.TabLayout
-            android:id="@+id/tabs"
+            android:id="@+id/tabs6000"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/TopBar"
+            android:background="@color/codeBackground"
             app:tabTextAppearance="@style/tab_text">
 
             <!--<com.google.android.material.tabs.TabItem
