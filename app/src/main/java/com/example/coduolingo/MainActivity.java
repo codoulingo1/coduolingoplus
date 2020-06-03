@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
         final AlertDialog dialog = builder.create();
         dialog.setMessage("טוען שיעור: " + name);
         if(tree.LessonType.equals("practice")){
-            DownloadReadlessons.downloadPractice(tree.practiceID, 5);
+            DownloadReadlessons.downloadPractice(tree.practiceID, 5, MainActivity.this);
         }
         DownloadReadlessons.downloadlesson(id, MainActivity.this);
 
@@ -103,8 +103,8 @@ public class MainActivity extends AppCompatActivity {
 
                             }
                         };
-                        Picasso.with(MainActivity.this).load(DownloadReadlessons.readImage(id, name, String.valueOf(i))).resizeDimen(R.dimen.image_size, R.dimen.image_size).into(target);
-                        Log.d("imageUrl", DownloadReadlessons.readImage(id, name, String.valueOf(i)));
+                        Picasso.with(MainActivity.this).load(DownloadReadlessons.readImage(id, name, String.valueOf(i), MainActivity.this)).resizeDimen(R.dimen.image_size, R.dimen.image_size).into(target);
+                        Log.d("imageUrl", DownloadReadlessons.readImage(id, name, String.valueOf(i), MainActivity.this));
                     }
                     catch (Exception e) {
                         break;

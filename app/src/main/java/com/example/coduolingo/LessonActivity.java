@@ -183,7 +183,7 @@ public class LessonActivity extends AppCompatActivity {
     }
 
     public HashMap<String, String> loadquestion(String id, String name, String qs_num) {
-        HashMap<String, String> hashMap = DownloadReadlessons.readqs(id, name, qs_num); // read qs by ID + name + question number
+        HashMap<String, String> hashMap = DownloadReadlessons.readqs(id, name, qs_num, LessonActivity.this); // read qs by ID + name + question number
         return hashMap;
 
     }
