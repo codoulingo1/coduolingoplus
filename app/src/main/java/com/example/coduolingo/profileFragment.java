@@ -37,6 +37,7 @@ import com.squareup.picasso.Picasso;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 
 public class profileFragment extends Fragment {
@@ -117,7 +118,7 @@ public class profileFragment extends Fragment {
             public void onFinish() {
                 try {
                     Picasso.with(getActivity()).load(url_old).resizeDimen(R.dimen.image_size, R.dimen.image_size).placeholder(R.drawable.goj).into(profImg);
-                }catch(Exception e){
+                } catch (Exception e) {
                     profImg.setImageResource(R.drawable.user_pic);
                 }
                 try {
@@ -125,21 +126,69 @@ public class profileFragment extends Fragment {
                     ret = new HashMap<>();
                     int i = 0;
                     list = new ArrayList<String>();
-                    for(String friend : old_streak.get("friends").split("-")){
+                    for (String friend : old_streak.get("friends").split("-")) {
                         try {
                             list.add(friend.split("/")[1]);
                             ret.put(String.valueOf(i), friend.split("/")[0]);
                             Log.d("hi", friend.split("/")[0]);
                             i++;
-                        }catch(Exception e){
+                        } catch (Exception e) {
 
                         }
                     }
                     String stringArray[] = list.toArray(new String[list.size()]);
-                    ArrayAdapter<String> itemsAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, android.R.id.text1,  stringArray);
+                    ArrayAdapter<String> itemsAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, android.R.id.text1, stringArray);
                     listView.setAdapter(itemsAdapter);
-                    String streak = String.valueOf(old_streak.get("streak"));
-                    setStreak.setText("Streak:" + (String.valueOf(streak)));
+                    int year = Integer.parseInt(old_streak.get("year"));
+                    int month = Integer.parseInt(old_streak.get("month"));
+                    int day = Integer.parseInt(old_streak.get("date"));
+                    Calendar calendar = Calendar.getInstance();
+
+                    // Move calendar to yesterday
+                    calendar.add(Calendar.DATE, -1);
+
+                    // Get current date of calendar which point to the yesterday now
+                    int yesterday = calendar.get(Calendar.DATE);
+                    Calendar calendar_3 = Calendar.getInstance();
+
+                    // Move calendar to yesterday
+                    calendar_3.add(Calendar.DATE, -2);
+
+                    // Get current date of calendar which point to the yesterday now
+                    int bf = calendar_3.get(Calendar.DATE);
+                    Calendar calendar2 = Calendar.getInstance();
+                    int today = calendar2.get(Calendar.DATE);
+                    Log.d("hello", String.valueOf(today));
+                    if (year == calendar.get(Calendar.YEAR) - 1900) {
+                        Log.d("1", "1");
+                        if (month == calendar.get(Calendar.MONTH)) {
+                            Log.d("2", "2");
+                            if (day == yesterday) {
+                                Log.d("3", "3");
+                                setStreak.setText("Streak: " + String.valueOf(Integer.parseInt(old_streak.get("streak"))));
+                            } else if (day == today) {
+                                Log.d("3", "3");
+                                setStreak.setText("Streak: " + String.valueOf(old_streak.get("streak")));
+
+                            } else if (day == bf && old_streak.get("streak freeze").equals("true")) {
+                                setStreak.setText("Streak: " + String.valueOf(old_streak.get("streak")));
+                                FirebaseDatabase database = FirebaseDatabase.getInstance();
+                                DatabaseReference myRef = database.getReference("Users").child(ReadWrite.read(getActivity().getFilesDir() + File.separator + "user"));
+                                myRef.child("lastLessonD").child("year").setValue(calendar.get(Calendar.YEAR) - 1900);
+                                myRef.child("lastLessonD").child("month").setValue(calendar.get(Calendar.MONTH));
+                                myRef.child("lastLessonD").child("date").setValue(calendar.get(Calendar.DATE));
+                                myRef.child("streak freeze").setValue("false");
+
+                            } else {
+                                Log.d("3", "3");
+                                setStreak.setText("Streak: 0");
+                                FirebaseDatabase database = FirebaseDatabase.getInstance();
+                                DatabaseReference myRef = database.getReference("Users").child(ReadWrite.read(getActivity().getFilesDir() + File.separator + "user"));
+                                myRef.child("streak freeze").setValue("false");
+                                myRef.child("streak").setValue(0);
+                            }
+                        }
+                    }
                     btnSignOut.setVisibility(View.VISIBLE);
                 }
                 catch (Exception e){

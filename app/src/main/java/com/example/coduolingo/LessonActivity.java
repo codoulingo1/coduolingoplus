@@ -51,6 +51,7 @@ public class LessonActivity extends AppCompatActivity {
     public static int pr;
     HashMap <String, String> date;
     CountDownTimer mcountdown;;
+    public static int shared_xp2;
 
     ImageButton continueBtn20;
 
@@ -167,10 +168,12 @@ public class LessonActivity extends AppCompatActivity {
                     Timestamp ts = new Timestamp(currentTime.getTime());
                     user.child("lastLessonD").setValue(ts);
                     user.child("xp").setValue(xp + shared_xp);
+                    shared_xp2 = shared_xp.intValue();
                     List<String> str_old_progress = Arrays.asList(old_progress.split(" "));
                     if(!str_old_progress.contains(MainActivity.id)) {
                         //user.child("progress").setValue(old_progress + " " + MainActivity.id);
                     }
+                    startActivity(new Intent(LessonActivity.this, finalLesson.class));
                 }
             }.start();
         }
@@ -215,7 +218,6 @@ public class LessonActivity extends AppCompatActivity {
         else if(hashMap.get("type").equals("freetext")){
             startActivity(new Intent(LessonActivity.this, FreeText.class));
             overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
-
         }
         else{
             qs.setText("finished");
