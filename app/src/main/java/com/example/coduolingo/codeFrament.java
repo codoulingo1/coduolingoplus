@@ -32,7 +32,7 @@ public class codeFrament extends Fragment  { //was extends Fragment, might need 
 
     public static String htmlCode;
     ImageButton submitBtn;
-    EditText htmlInp;
+    public static EditText htmlInp;
     Button help1;
     Button help2;
     Button help3;

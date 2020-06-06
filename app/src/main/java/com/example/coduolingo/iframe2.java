@@ -1,5 +1,6 @@
 package com.example.coduolingo;
 
+import android.content.ClipData;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -14,10 +15,13 @@ import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,6 +49,7 @@ public class iframe2 extends AppCompatActivity {
         viewPagerAdapter.addFragment(BrowserFragment, "תצוגה");
 
         viewPager.setAdapter(viewPagerAdapter);
+
     }
 
     private class ViewPagerAdapter extends FragmentPagerAdapter
@@ -89,5 +94,19 @@ public class iframe2 extends AppCompatActivity {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu, menu);
         return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.saveProject:
+                Toast.makeText(iframe2.this, "Hello", Toast.LENGTH_SHORT);
+                Log.d("worked", codeFrament.htmlInp.getText().toString()); //codeFragment.htmlInp.getText().toString is the file which is supposed to be saved/shared
+                return true;
+            case R.id.shareProject:
+                Toast.makeText(iframe2.this, "Shared", Toast.LENGTH_SHORT);
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
