@@ -212,6 +212,7 @@ public class Login extends AppCompatActivity {
                 user.child("lastLessonD").child("month").setValue(0);
                 user.child("lastLessonD").child("date").setValue(0);
                 user.child("streak").setValue(1);
+                user.child("streak freeze").setValue("false");
                 user.child("xp").setValue(0);
                 user.child("progress").setValue("");
                 user.child("friends").setValue("");

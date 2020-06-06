@@ -85,6 +85,7 @@ public class sign_upActivity extends AppCompatActivity {
             fireBase.child("lastLessonD").child("month").setValue(0);
             fireBase.child("lastLessonD").child("date").setValue(0);
             fireBase.child("streak").setValue(1);
+            fireBase.child("streak freeze").setValue("false");
             fireBase.child("progress").setValue("");
             fireBase.child("xp").setValue(0);
             fireBase.child("friends").setValue("");
