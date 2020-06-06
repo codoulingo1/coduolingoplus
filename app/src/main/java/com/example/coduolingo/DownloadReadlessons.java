@@ -29,7 +29,7 @@ public class DownloadReadlessons {
 
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                final File newFile = new File(Environment.getExternalStorageDirectory() +"/id/");
+                final File newFile = new File(c.getFilesDir() +"/id/");
                 if (!newFile.exists()){
                     newFile.mkdirs();
                     Log.d("Create", "dir");
@@ -41,7 +41,7 @@ public class DownloadReadlessons {
                 for (DataSnapshot snap : dataSnapshot.getChildren()) {
                     if (snap.getValue(String.class).length() != 0) {
                         Log.d(folder_main + snap.getKey(), "Value is: " + snap.getKey() + "    " + snap.getValue(String.class));
-                        File f = new File(Environment.getExternalStorageDirectory() + "/id/" + folder_main + snap.getKey()  + ".txt");
+                        File f = new File(c.getFilesDir() + "/id/" + folder_main + snap.getKey()  + ".txt");
                         if (!f.getParentFile().exists())
                             f.getParentFile().mkdirs();
                         if (!f.exists()) {
@@ -51,7 +51,7 @@ public class DownloadReadlessons {
                                 e.printStackTrace();
                             }
                         }
-                        ReadWrite.write(Environment.getExternalStorageDirectory() + "/id/" + folder_main + snap.getKey() , snap.getValue(String.class));
+                        ReadWrite.write(c.getFilesDir() + "/id/" + folder_main + snap.getKey() , snap.getValue(String.class));
                     }
                 }
             }
@@ -64,14 +64,14 @@ public class DownloadReadlessons {
         });
         return "a";
     }
-    public static String  downloadPractice(final String[] ID, final int maxQS) {
+    public static String  downloadPractice(final String[] ID, final int maxQS, final Context c) {
         FirebaseDatabase database = FirebaseDatabase.getInstance(); //hello
         DatabaseReference myRef = database.getReference("Lessons");
         myRef.addValueEventListener(new ValueEventListener() {
 
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                    final File newFile = new File(Environment.getExternalStorageDirectory() + "/id/");
+                    final File newFile = new File(c.getFilesDir() + "/id/");
                 if (!newFile.exists()) {
                     newFile.mkdirs();
                     Log.d("Create", "dir");
@@ -98,7 +98,7 @@ public class DownloadReadlessons {
                 Collections.shuffle(first);
                 int wr_num = 1;
                 for(String wr : first) {
-                    File f = new File(Environment.getExternalStorageDirectory() + "/id/" + folder_main + "qs" + wr_num + ".txt");
+                    File f = new File(c.getFilesDir() + "/id/" + folder_main + "qs" + wr_num + ".txt");
                     if (!f.getParentFile().exists())
                         f.getParentFile().mkdirs();
                     if (!f.exists()) {
@@ -110,7 +110,7 @@ public class DownloadReadlessons {
                     }
                     if(wr_num<=maxQS) {
                         Log.d(folder_main + "qs" + wr_num, "Value is: " + "qs" + wr_num + "    " + wr);
-                        ReadWrite.write(Environment.getExternalStorageDirectory() + "/id/" + folder_main + "qs" + wr_num, wr);
+                        ReadWrite.write(c.getFilesDir() + "/id/" + folder_main + "qs" + wr_num, wr);
                     }
 
                     wr_num++;
@@ -126,8 +126,8 @@ public class DownloadReadlessons {
         });
         return "a";
     }
-    public static HashMap<String, String> readqs(String id, String name, String qs_num) {
-        String content = ReadWrite.read(Environment.getExternalStorageDirectory() +"/" + "id" + "/" + id + name + "qs" + qs_num);
+    public static HashMap<String, String> readqs(String id, String name, String qs_num, Context c) {
+        String content = ReadWrite.read(c.getFilesDir() +"/" + "id" + "/" + id + name + "qs" + qs_num);
         HashMap<String, String> hashMap = new HashMap<>();
         String[] arr = content.split("\\]|\\[");
         Log.d("check", content.toString());
@@ -164,6 +164,14 @@ public class DownloadReadlessons {
 
         return hashMap;
     }
+    public static String readImage(String id, String name, String qs_num, Context c) {
+        String content = ReadWrite.read(c.getFilesDir() +"/" + "id" + "/" + id + name + "qs" + qs_num);
+        HashMap<String, String> hashMap = new HashMap<>();
+        String[] arr = content.split("\\]|\\[");
+        Log.d("check", content.toString());
+        return arr[7];
+
+    }
     public static HashMap <String, String> get_last_lesson(String email){
         final HashMap<String, String> ret = new HashMap<>();
         FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -182,6 +190,7 @@ public class DownloadReadlessons {
                 ret.put("name", dataSnapshot.child("name").getValue().toString());
                 ret.put("img", dataSnapshot.child("imgUrl").getValue().toString());
                 ret.put("email", dataSnapshot.child("email").getValue().toString());
+                ret.put("streak freeze", dataSnapshot.child("streak freeze").getValue().toString());
                 ret.put("friends", dataSnapshot.child("friends").getValue().toString());
             }
             @Override

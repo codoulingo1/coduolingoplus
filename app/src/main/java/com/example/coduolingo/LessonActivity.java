@@ -145,17 +145,20 @@ public class LessonActivity extends AppCompatActivity {
                                 Log.d("3", "3");
                                 FirebaseDatabase database = FirebaseDatabase.getInstance();
                                 DatabaseReference myRef = database.getReference("Users").child(ReadWrite.read(LessonActivity.this.getFilesDir()+File.separator + "user"));
-                                myRef.child("streak").setValue(1);
+                                myRef.child("streak").setValue(0);
+                                Log.d("error", "day");
                             }
                         }else{
                             FirebaseDatabase database = FirebaseDatabase.getInstance();
                             DatabaseReference myRef = database.getReference("Users").child(ReadWrite.read(LessonActivity.this.getFilesDir()+File.separator + "user"));
-                            myRef.child("streak").setValue(1);
+                            myRef.child("streak").setValue(0);
+                            Log.d("error", "month");
                         }
                     }else{
                         FirebaseDatabase database = FirebaseDatabase.getInstance();
                         DatabaseReference myRef = database.getReference("Users").child(ReadWrite.read(LessonActivity.this.getFilesDir()+File.separator + "user"));
-                        myRef.child("streak").setValue(1);
+                        myRef.child("streak").setValue(0);
+                        Log.d("error", "year");
                     }
                     FirebaseDatabase database = FirebaseDatabase.getInstance();
                     DatabaseReference myRef = database.getReference("Users");
@@ -183,7 +186,7 @@ public class LessonActivity extends AppCompatActivity {
     }
 
     public HashMap<String, String> loadquestion(String id, String name, String qs_num) {
-        HashMap<String, String> hashMap = DownloadReadlessons.readqs(id, name, qs_num); // read qs by ID + name + question number
+        HashMap<String, String> hashMap = DownloadReadlessons.readqs(id, name, qs_num, LessonActivity.this); // read qs by ID + name + question number
         return hashMap;
 
     }

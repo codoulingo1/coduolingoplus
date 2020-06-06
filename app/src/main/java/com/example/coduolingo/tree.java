@@ -85,8 +85,16 @@ public class tree extends AppCompatActivity {
 
                 // Get current date of calendar which point to the yesterday now
                 int yesterday = calendar.get(Calendar.DATE);
+                Calendar calendar_3 = Calendar.getInstance();
+
+                // Move calendar to yesterday
+                calendar_3.add(Calendar.DATE, -2);
+
+                // Get current date of calendar which point to the yesterday now
+                int bf = calendar_3.get(Calendar.DATE);
                 Calendar calendar2 = Calendar.getInstance();
                 int today = calendar2.get(Calendar.DATE);
+                Log.d("hello", String.valueOf(today));
                 if(year==calendar.get(Calendar.YEAR)-1900){
                     Log.d("1", "1");
                     if(month==calendar.get(Calendar.MONTH)){
@@ -99,11 +107,22 @@ public class tree extends AppCompatActivity {
                             Log.d("3", "3");
                             streak.setText(String.valueOf(date.get("streak")));
                         }
+                        else if(day==bf && date.get("streak freeze").equals("true")){
+                            streak.setText(String.valueOf(date.get("streak")));
+                            FirebaseDatabase database = FirebaseDatabase.getInstance();
+                            DatabaseReference myRef = database.getReference("Users").child(ReadWrite.read(tree.this.getFilesDir()+File.separator + "user"));
+                            myRef.child("lastLessonD").child("year").setValue(calendar.get(Calendar.YEAR)-1900);
+                            myRef.child("lastLessonD").child("month").setValue(calendar.get(Calendar.MONTH));
+                            myRef.child("lastLessonD").child("date").setValue(calendar.get(Calendar.DATE));
+                            myRef.child("streak freeze").setValue("false");
+
+                        }
                         else{
                             Log.d("3", "3");
                             streak.setText("0");
                             FirebaseDatabase database = FirebaseDatabase.getInstance();
                             DatabaseReference myRef = database.getReference("Users").child(ReadWrite.read(tree.this.getFilesDir()+File.separator + "user"));
+                            myRef.child("streak freeze").setValue("false");
                             myRef.child("streak").setValue(0);
                         }
                     }
