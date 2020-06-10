@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".SettingsFragment"
+    android:padding="10dp"
+    android:background="#F3F4F9">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/imageViewSettings"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        app:civ_border_color="#42445F"
+        app:civ_border_width="2dp"
+        android:src="@drawable/user_pic"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/rubik_medium"
+        android:layout_below="@+id/imageViewSettings"
+        android:text="שנה תמונת פרופיל"
+        android:textColor="#42445F"
+        android:layout_centerHorizontal="true"
+        android:textSize="22sp"
+        android:layout_marginTop="10dp"
+        android:clickable="true"
+        android:id="@+id/changeNameBtn"/>
+
+    <TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_alignParentRight="true"
+    android:text="שם משתמש"
+    android:layout_below="@id/changeNameBtn"
+    android:layout_marginTop="15dp"
+    android:fontFamily="@font/rubik_medium"
+    android:textSize="18sp"
+    android:id="@+id/yourName"
+    android:textColor="#5B9A9C"/>
+
+    <EditText
+        android:layout_width="320dp"
+        android:layout_height="55dp"
+        app:backgroundTint="#e5e5e5"
+        android:layout_below="@id/yourName"
+        android:layout_marginTop="10dp"
+        android:layout_alignParentLeft="true"
+        android:gravity="right"
+        android:text="שם משתמש"
+        android:layout_alignParentRight="true"
+        android:textSize="22sp"
+        android:textColorHint="#42445F"
+        android:textColor="#42445F"
+        android:fontFamily="@font/rubik_light"
+        android:id="@+id/yourNameEdit"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:text="שינוי סיסמה"
+        android:layout_below="@id/yourNameEdit"
+        android:layout_marginTop="15dp"
+        android:textColor="#5B9A9C"
+        android:fontFamily="@font/rubik_medium"
+        android:textSize="18sp"
+        android:id="@+id/yourPassword"/>
+    <EditText
+        android:layout_width="320dp"
+        android:layout_height="55dp"
+        app:backgroundTint="#e5e5e5"
+        android:layout_below="@id/yourPassword"
+        android:layout_marginTop="10dp"
+        android:layout_alignParentLeft="true"
+        android:gravity="right"
+        android:hint="סיסמה חדשה"
+        android:layout_alignParentRight="true"
+        android:inputType="textPassword"
+        android:textSize="22sp"
+        android:textColorHint="#42445F"
+        android:textColor="#42445F"
+        android:fontFamily="@font/rubik_light"
+        android:id="@+id/yourPasswordEdit" />
+    <EditText
+        android:layout_width="320dp"
+        android:layout_height="55dp"
+        app:backgroundTint="#e5e5e5"
+        android:layout_below="@id/yourPasswordEdit"
+        android:layout_marginTop="10dp"
+        android:layout_alignParentLeft="true"
+        android:gravity="right"
+        android:hint="חזור על הסיסמה"
+        android:layout_alignParentRight="true"
+        android:inputType="textPassword"
+        android:textSize="22sp"
+        android:textColorHint="#42445F"
+        android:textColor="#42445F"
+        android:fontFamily="@font/rubik_light"
+        android:id="@+id/yourPasswordEdit2" />
+
+
+    <!--<ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:width="320dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/yourPasswordEdit"
+        android:layout_marginTop="15dp"
+        android:src="@drawable/ic_invitefriend"
+        android:scaleType="fitCenter"
+        android:adjustViewBounds="true"
+        android:background="#F3F4F9"-->
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#3D959A"
+        android:text="שמור שינויים"
+        android:fontFamily="@font/rubik_bold"
+        android:textColor="@color/white"
+        android:textSize="26sp"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/saveBtnProfile"
+        android:layout_above="@id/sign_outBtnProfile"
+        android:layout_marginBottom="60dp"
+        android:visibility="invisible"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="התנתק מהמשתמש"
+        android:fontFamily="@font/rubik_light"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:textColor="#42445F"
+        android:textSize="26sp"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/sign_outBtnProfile"
+        android:clickable="true"/>
+
+
+
+
+</RelativeLayout>

@@ -255,10 +255,10 @@ public class freedumQs extends AppCompatActivity {
         DialogBack dialogBack = new DialogBack();
         dialogBack.show(getSupportFragmentManager(), "Example Dialog");
     }
+
     public void animate(){
         Drawable d = continueBtn.getDrawable();
         if (d instanceof AnimatedVectorDrawable) {
-
             animation = (AnimatedVectorDrawable) d;
             animation.start();
         }

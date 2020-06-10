@@ -13,6 +13,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
@@ -38,6 +39,7 @@ import com.squareup.picasso.Picasso;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Dictionary;
 import java.util.HashMap;
 
 public class profileFragment extends Fragment {
@@ -51,7 +53,6 @@ public class profileFragment extends Fragment {
     ArrayList<String> list;
     String url_old;
     String name;
-    private Button btnSignOut;
     CountDownTimer mcountdown;
     private GoogleSignInClient mGoogleSignInClient;
     FirebaseAuth mAuth;
@@ -63,6 +64,8 @@ public class profileFragment extends Fragment {
     Button changeName;
     EditText cgName;
     boolean changed = false;
+    ImageButton profileSettingsBtn;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -70,17 +73,15 @@ public class profileFragment extends Fragment {
         Log.d("fragmentTest", "savta2");
 
         mAuth = FirebaseAuth.getInstance();
+        profileSettingsBtn = (ImageButton) v.findViewById(R.id.profileSettings);
         profImg = (ImageView) v.findViewById(R.id.imageView2);
         listView = (ListView) v.findViewById(R.id.friendsList);
         setStreak = (TextView) v.findViewById(R.id.streak);
-        setName = (TextView) v.findViewById(R.id.cgName);
-        btnSignOut = (Button) v.findViewById(R.id.sign_out);
+        setName = (TextView) v.findViewById(R.id.set_name);
         backToTree =  (Button) v.findViewById(R.id.back_to_tree);
         toSearch =  (Button) v.findViewById(R.id.addFriend);
         listView = (ListView) v.findViewById(R.id.friendsList);
-        changeName = (Button) v.findViewById(R.id.changeName);
-        cgName =  (EditText) v.findViewById(R.id.cgName);
-        btnSignOut.setVisibility(View.INVISIBLE);
+        //cgName =  (EditText) v.findViewById(R.id.cgName);
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
                 .requestEmail()
@@ -90,6 +91,16 @@ public class profileFragment extends Fragment {
         String idp = ReadWrite.read(getActivity().getFilesDir()+ File.separator + "user");
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("Users").child(idp);
+        profileSettingsBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SettingsFragment nextFrag= new SettingsFragment();
+                getActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(((ViewGroup)getView().getParent()).getId(), nextFrag, "findThisFragment")
+                        .addToBackStack(null)
+                        .commit();
+            }
+        });
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -189,29 +200,13 @@ public class profileFragment extends Fragment {
                             }
                         }
                     }
-                    btnSignOut.setVisibility(View.VISIBLE);
                 }
                 catch (Exception e){
 
                 }
             }
         }.start();
-        changeName.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(!changed) {
-                    cgName.setVisibility(View.VISIBLE);
-                    changeName.setText("קבע כשם משתמש חדש");
-                    changed = true;
-                }else if(changed){
-                    FirebaseDatabase database = FirebaseDatabase.getInstance();
 
-                    DatabaseReference myRef = database.getReference("Users");
-                    DatabaseReference fireBase = myRef.child(ReadWrite.read(getActivity().getFilesDir()+File.separator + "user"));
-                    fireBase.child("name").setValue(cgName.getText().toString());
-                }
-            }
-        });
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener()
         {
             public void onItemClick(AdapterView<?> arg0, View arg1, int position, long arg3)
@@ -221,17 +216,6 @@ public class profileFragment extends Fragment {
                 name = list.get(position);
                 Intent in = new Intent(getActivity(), FriendProfile.class);
                 startActivity(in);
-            }
-        });
-        btnSignOut.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mGoogleSignInClient.signOut();
-                FirebaseAuth.getInstance().signOut();
-                btnSignOut.setVisibility(View.INVISIBLE);
-                Intent intent = new Intent(getActivity(), Login.class);
-                startActivity(intent);
-
             }
         });
         backToTree.setOnClickListener(new View.OnClickListener() {

@@ -8,10 +8,12 @@ import android.os.CountDownTimer;
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.SearchView;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -30,7 +32,7 @@ public class Search extends AppCompatActivity {
     Handler handler;
     ListView listView;
     HashMap<String, String> hashMap;
-    EditText ed;
+    SearchView ed;
     public static String name;
     int i;
     public static String selected;
@@ -38,7 +40,8 @@ public class Search extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
-        ed = (EditText) findViewById(R.id.editText);
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
+        ed = (SearchView) findViewById(R.id.editText);
         listView = (ListView) findViewById(R.id.list);
         handler = new Handler();
         final int delay = 500; //milliseconds
@@ -56,7 +59,7 @@ public class Search extends AppCompatActivity {
                         // This method is called once with the initial value and again
                         // whenever data at this location is updated.
                         for (DataSnapshot fire_email : dataSnapshot.getChildren()) {
-                            if(fire_email.child("name").getValue(String.class).equals(ed.getText().toString())){
+                            if(fire_email.child("name").getValue(String.class).toLowerCase().contains(ed.getQuery().toString().toLowerCase())){
                                 hashMap.put(String.valueOf(i), fire_email.getKey());
                                 i++;
                             }
@@ -107,7 +110,7 @@ public class Search extends AppCompatActivity {
             {
                 Log.i("HelloListView", "You clicked Item: " + "id" + " at position:" + position);
                 selected = hashMap.get(String.valueOf(position));
-                name = ed.getText().toString();
+                name = ed.getQuery().toString();
                 Intent in = new Intent(getApplicationContext(), FriendProfile.class);
                 startActivity(in);
             }

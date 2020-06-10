@@ -19,13 +19,16 @@ import androidx.fragment.app.Fragment;
 
 public class ShopFragment extends Fragment {
 
+    RelativeLayout relativeClick1;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         Log.d("fragmentTest", "savta2");
         View v = inflater.inflate(R.layout.fragment_shop, container, false);
-        RelativeLayout relativeclic1 =(RelativeLayout) v.findViewById(R.id.c);
-        relativeclic1.setOnClickListener(new View.OnClickListener(){
+        RelativeLayout relativeClick1 = (RelativeLayout) v.findViewById(R.id.c);
+
+        relativeClick1.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
                 FirebaseDatabase database = FirebaseDatabase.getInstance();

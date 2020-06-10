@@ -12,16 +12,6 @@
         android:layout_weight="1">
 
         <Button
-            android:id="@+id/sign_out"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentLeft="true"
-            android:layout_marginBottom="25dp"
-            android:layout_marginLeft="25dp"
-            android:text="sign out" />
-
-        <Button
             android:id="@+id/back_to_tree"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -42,15 +32,16 @@
 
         <TextView
             android:id="@+id/set_name"
-            android:layout_width="285dp"
-            android:layout_height="67dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_below="@+id/imageView2"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="25dp"
             android:fontFamily="@font/rubik_light"
             android:textAlignment="center"
             android:textColor="#090909"
-            android:textSize="24sp" />
+            android:textSize="24sp"
+            android:text="s"/>
 
         <TextView
             android:id="@+id/streak"
@@ -74,31 +65,27 @@
             app:civ_border_color="#42445F"
             app:civ_border_width="2dp" />
 
-        <Button
-            android:id="@+id/changeName"
-            android:layout_width="wrap_content"
-            android:layout_height="53dp"
-            android:layout_alignBottom="@+id/set_name"
-            android:layout_alignEnd="@+id/set_name"
-            android:layout_alignTop="@+id/set_name"
-            android:layout_marginBottom="-126dp"
-            android:layout_marginEnd="-41dp"
-            android:layout_marginStart="-50dp"
-            android:layout_marginTop="140dp"
-            android:layout_toEndOf="@+id/set_name"
-            android:text="שנה את שם המשתמש"
-            android:textSize="14sp" />
+        <ImageButton
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/ic_settings_black_24dp"
+            android:background="#F3F4F9"
+            android:scaleType="fitCenter"
+            android:adjustViewBounds="true"
+            android:layout_margin="15dp"
+            android:id="@+id/profileSettings"
+            android:layout_alignParentLeft="true"/>
 
-        <EditText
+
+        <!--<EditText
             android:id="@+id/cgName"
             android:layout_width="255dp"
             android:layout_height="58dp"
-            android:layout_below="@+id/imageView2"
             android:layout_marginTop="157dp"
             android:ems="10"
             android:inputType="textPersonName"
             android:text="הקלד את שם המשתמש החדש"
-            android:visibility="invisible" />
+            android:visibility="gone" />-->
 
         <Button
             android:id="@+id/addFriend"
