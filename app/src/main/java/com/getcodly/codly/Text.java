@@ -94,6 +94,35 @@ public class Text {
         Log.d("end", end);
         return end.substring(0, end.length() - 1);
     }
+    public static String SEbetween(String text, String start, String stop){
+        String bet = "";
+        String st = "";
+        boolean is_end = false;
+        String end = "";
+        boolean is_start = false;
+        String[] a = text.split(" ");
+        for (String i : a) {
+            Log.d("hello", i);
+            if(i.equals(stop)){
+                break;
+            }
+            if (is_start==true){
+                if(!is_end) {
+                    bet = bet + i + " ";
+                }else{
+
+                }
+            }
+            if(is_start==false){
+                st = st + i + " ";
+            }
+            if  (i.equals(start)){
+                is_start = true;
+            }
+        }
+        Log.d("end", bet);
+        return bet.substring(0, bet.length() - 1);
+    }
     public static String IfwordIs(String text, String start){
         String end = "";
         boolean is_start = false;
