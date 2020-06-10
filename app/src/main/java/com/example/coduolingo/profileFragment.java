@@ -44,9 +44,6 @@ import java.util.HashMap;
 
 public class profileFragment extends Fragment {
 
-    Button skill1;
-    Button skill2;
-    Button skill3;
     ListView listView;
     ImageView profImg;
     TextView setName;
@@ -58,6 +55,7 @@ public class profileFragment extends Fragment {
     FirebaseAuth mAuth;
     Button toSearch;
     Button backToTree;
+    Button ןמהןאקף;
     HashMap<String, String> old_streak;
     TextView setStreak;
     HashMap<String, String> ret;

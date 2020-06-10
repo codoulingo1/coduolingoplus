@@ -60,7 +60,7 @@ public class Search extends AppCompatActivity {
                         // whenever data at this location is updated.
                         for (DataSnapshot fire_email : dataSnapshot.getChildren()) {
                             if(fire_email.child("name").getValue(String.class).toLowerCase().contains(ed.getQuery().toString().toLowerCase())){
-                                hashMap.put(String.valueOf(i), fire_email.getKey());
+                                hashMap.put(String.valueOf(i), fire_email.child("name").getValue().toString());
                                 i++;
                             }
 
