@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".iframe"
+    tools:context="com.getcodly.codly.iframe"
     android:background="#F3F4F9"
     android:id="@+id/fragmentContainer2">
 

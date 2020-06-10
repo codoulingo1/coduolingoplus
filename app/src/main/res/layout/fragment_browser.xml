@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".browserFragment"
+    tools:context="com.getcodly.codly.browserFragment"
     android:id="@+id/fragment_container">
 
     <WebView

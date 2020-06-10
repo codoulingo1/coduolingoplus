@@ -7,7 +7,7 @@ android {
 
 
     defaultConfig {
-        applicationId "com.example.coduolingo"
+        applicationId "com.getcodly.codly"
         minSdkVersion 23
         targetSdkVersion 28
         versionCode 1
