@@ -1,10 +1,19 @@
-package com.getcodly.codly;
+package com.example.coduolingo;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.vectordrawable.graphics.drawable.AnimatedVectorDrawableCompat;
 
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.graphics.drawable.AnimatedVectorDrawable;
 import android.graphics.drawable.Drawable;
+import android.media.Image;
 import android.os.Bundle;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.SpannableStringBuilder;
+import android.text.style.StyleSpan;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -12,9 +21,15 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.content.Intent;
-
-
+import android.os.Bundle;
+import android.os.Handler;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 import java.util.HashMap;
+import java.util.concurrent.TimeUnit;
 
 public class freedumQs extends AppCompatActivity {
 
@@ -78,7 +93,23 @@ public class freedumQs extends AppCompatActivity {
     public void freedumQs() {
         freedum_hashmap = LessonActivity.shared_hashmap;
         TextView fr = (TextView)findViewById(R.id.freedumQuestion);
-        fr.setText(freedum_hashmap.get("qs"));
+        SpannableStringBuilder builder=new SpannableStringBuilder();
+        for (int i = 0; i < 10; i = i + 1) {
+            try {
+                if (i % 2 == 0 || i==0) {
+                    builder.append(freedum_hashmap.get("qs").split("\\*")[i]);
+                }
+                else{
+                    SpannableString txtSpannable = new SpannableString(freedum_hashmap.get("qs").split("\\*")[i]);
+                    StyleSpan boldSpan = new StyleSpan(Typeface.BOLD);
+                    txtSpannable.setSpan(boldSpan, 0, freedum_hashmap.get("qs").split("\\*")[i].length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                    builder.append(txtSpannable);
+                }
+            }catch (Exception e){
+                break;
+            }
+        }
+        fr.setText(builder);
         //buttonl.setVisibility(View.INVISIBLE);
         pb.setProgress(LessonActivity.pr);
         String[] optAns = freedum_hashmap.get("Content").split(",");

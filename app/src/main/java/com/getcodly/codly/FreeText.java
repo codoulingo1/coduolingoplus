@@ -1,22 +1,40 @@
-package com.getcodly.codly;
+package com.example.coduolingo;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.graphics.drawable.AnimatedVectorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
-import androidx.appcompat.app.AppCompatActivity;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+
+import android.text.Editable;
+import android.text.Html;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.SpannableStringBuilder;
+import android.text.TextWatcher;
+import android.text.style.ForegroundColorSpan;
+import android.text.style.StyleSpan;
 import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.view.textclassifier.TextSelection;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import java.util.concurrent.TimeUnit;
 
 public class FreeText extends AppCompatActivity {
 
@@ -41,7 +59,23 @@ public class FreeText extends AppCompatActivity {
         submit = (ImageButton) findViewById(R.id.button);
         qs = (TextView) findViewById(R.id.textView);
         Log.d("finished", "freetext");
-        qs.setText(LessonActivity.shared_hashmap.get("qs"));
+        SpannableStringBuilder builder=new SpannableStringBuilder();
+        for (int i = 0; i < 10; i = i + 1) {
+            try {
+                if (i % 2 == 0 || i==0) {
+                    builder.append(LessonActivity.shared_hashmap.get("qs").split("\\*")[i]);
+                }
+                else{
+                    SpannableString txtSpannable = new SpannableString(LessonActivity.shared_hashmap.get("qs").split("\\*")[i]);
+                    StyleSpan boldSpan = new StyleSpan(Typeface.BOLD);
+                    txtSpannable.setSpan(boldSpan, 0, LessonActivity.shared_hashmap.get("qs").split("\\*")[i].length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                    builder.append(txtSpannable);
+                }
+            }catch (Exception e){
+                break;
+            }
+        }
+        qs.setText(builder);
         Log.d(String.valueOf(LessonActivity.shared_hashmap.get("additional").length()), String.valueOf(LessonActivity.shared_hashmap.get("additional").length()));
         final EditText inp = (EditText) findViewById(R.id.inp);
         inp.setText(LessonActivity.shared_hashmap.get("additional"));
