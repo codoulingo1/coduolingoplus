@@ -145,7 +145,7 @@ public class profileFragment extends Fragment {
 
                         }
                     }
-                    String stringArray[] = list.toArray(new String[list.size()]);
+                    String[] stringArray = list.toArray(new String[list.size()]);
                     ArrayAdapter<String> itemsAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, android.R.id.text1, stringArray);
                     listView.setAdapter(itemsAdapter);
                     int year = Integer.parseInt(old_streak.get("year"));

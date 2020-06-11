@@ -11,6 +11,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager.widget.ViewPager;
 
+import android.os.Handler;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -173,6 +174,19 @@ public class codeFrament extends Fragment  { //was extends Fragment, might need 
                 htmlInp.setSelection(loc + 1);
             }
         });
+        final Handler handler = new Handler();
+        final int delay = 1000; //milliseconds
+
+        handler.postDelayed(new Runnable(){
+            public void run(){
+                String[] c = new String[]{"hi", "hello"};
+                String text = htmlInp.getText().toString();
+                String[] codeWords = text.split(" ");
+                for(String codeWord : codeWords){
+                }
+                handler.postDelayed(this, delay);
+            }
+        }, delay);
         return v;
     }
 
