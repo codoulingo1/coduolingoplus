@@ -11,6 +11,27 @@
         android:layout_height="match_parent"
         android:layout_weight="1">
 
+        <androidx.viewpager.widget.ViewPager
+            android:layout_width="match_parent"
+            android:layout_height="400dp"
+            android:layout_above="@id/back_to_tree"
+            android:layout_below="@id/tabs"
+            android:id="@+id/viewPager">
+
+        </androidx.viewpager.widget.ViewPager>
+
+        <com.google.android.material.tabs.TabLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:layout_below="@id/streak"
+            android:id="@+id/tabs">
+
+
+
+        </com.google.android.material.tabs.TabLayout>
+
+
         <Button
             android:id="@+id/back_to_tree"
             android:layout_width="wrap_content"
@@ -42,6 +63,17 @@
             android:textColor="#090909"
             android:textSize="24sp"
             android:text="s"/>
+
+        <ListView
+            android:id="@+id/friendsList"
+            android:layout_width="313dp"
+            android:layout_height="227dp"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"
+            android:layout_above="@+id/sign_out"
+            android:layout_marginBottom="100dp"
+            android:layout_below="@id/tabs"
+            android:visibility="invisible"/>
 
         <TextView
             android:id="@+id/streak"
@@ -95,14 +127,6 @@
             android:layout_margin="15dp"
             android:text="הוסף חבר" />
 
-        <ListView
-            android:id="@+id/friendsList"
-            android:layout_width="313dp"
-            android:layout_height="227dp"
-            android:layout_centerHorizontal="true"
-            android:layout_alignParentBottom="true"
-            android:layout_above="@+id/sign_out"
-            android:layout_marginBottom="100dp"/>
 
         <Button
             android:id="@+id/invite_friend"

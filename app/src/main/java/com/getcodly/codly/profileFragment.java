@@ -19,10 +19,14 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -35,15 +39,16 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.List;
 
 public class profileFragment extends Fragment {
 
     ListView listView;
     ImageView profImg;
     TextView setName;
-    ArrayList<String> list;
+    public static ArrayList<String> list;
     String url_old;
-    String name;
+    public static String name;
     CountDownTimer mcountdown;
     private GoogleSignInClient mGoogleSignInClient;
     FirebaseAuth mAuth;
@@ -52,19 +57,24 @@ public class profileFragment extends Fragment {
     Button ןמהןאקף;
     HashMap<String, String> old_streak;
     TextView setStreak;
-    HashMap<String, String> ret;
+    public static HashMap<String, String> ret;
     Button changeName;
     EditText cgName;
     boolean changed = false;
     ImageButton profileSettingsBtn;
+    private FriendsFragment friendsFragment;
+
+    ViewPager viewPager;
+    TabLayout tabLayout;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        final View v = inflater.inflate(R.layout.fragment_profile2, container, false);
+        View v = inflater.inflate(R.layout.fragment_profile2, container, false);
         Log.d("fragmentTest", "savta2");
 
         mAuth = FirebaseAuth.getInstance();
+        tabLayout = (TabLayout) v.findViewById(R.id.tabs);
         profileSettingsBtn = (ImageButton) v.findViewById(R.id.profileSettings);
         profImg = (ImageView) v.findViewById(R.id.imageView2);
         listView = (ListView) v.findViewById(R.id.friendsList);
@@ -73,7 +83,10 @@ public class profileFragment extends Fragment {
         backToTree =  (Button) v.findViewById(R.id.back_to_tree);
         toSearch =  (Button) v.findViewById(R.id.addFriend);
         listView = (ListView) v.findViewById(R.id.friendsList);
-        //cgName =  (EditText) v.findViewById(R.id.cgName);
+        viewPager = v.findViewById(R.id.viewPager);
+
+        friendsFragment = new FriendsFragment();
+
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
                 .requestEmail()
@@ -93,6 +106,7 @@ public class profileFragment extends Fragment {
                         .commit();
             }
         });
+
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -110,6 +124,7 @@ public class profileFragment extends Fragment {
                 Log.w("Failed to read value.", error.toException());
             }
         });
+
         mcountdown = new CountDownTimer(1000, 1000) {
             @Override
             public void onTick(long l) {
@@ -226,7 +241,41 @@ public class profileFragment extends Fragment {
         });
 
 
-
         return v;
     }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+
+        setUpViewPager(viewPager);
+        tabLayout.setupWithViewPager(viewPager);
+
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
+    }
+
+    private void setUpViewPager(ViewPager viewPager) {
+        SectionPageAdapter adapter = new SectionPageAdapter(getChildFragmentManager());
+
+        adapter.addFragment(new FriendsFragment(), "חברים");
+        adapter.addFragment(new ProjectsFragment(), "פרוייקטים");
+
+        viewPager.setAdapter(adapter);
+    }
 }
+

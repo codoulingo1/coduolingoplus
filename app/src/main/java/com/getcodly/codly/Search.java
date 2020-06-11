@@ -43,6 +43,7 @@ public class Search extends AppCompatActivity {
         listView = (ListView) findViewById(R.id.list);
         handler = new Handler();
         final int delay = 500; //milliseconds
+        ed.setIconified(false);
 
         handler.postDelayed(new Runnable(){
             public void run(){
