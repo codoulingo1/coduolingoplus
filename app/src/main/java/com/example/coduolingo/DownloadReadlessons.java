@@ -131,36 +131,36 @@ public class DownloadReadlessons {
         HashMap<String, String> hashMap = new HashMap<>();
         String[] arr = content.split("\\]|\\[");
         Log.d("check", content.toString());
-            try {
-                hashMap.put("type", arr[1].replace("\\n", System.getProperty("line.separator")));
-            } catch (Exception e) {
-                hashMap.put("type", arr[1]);
-            }
-            try {
-                hashMap.put("qs", arr[3].replace("\\n", System.getProperty("line.separator")));
-            } catch (Exception e) {
-                hashMap.put("qs", arr[3]);
-            }
-            try {
-                hashMap.put("Content", arr[5].replace("\\n", System.getProperty("line.separator")));
-            } catch (Exception e) {
-                hashMap.put("Content", arr[5]);
-            }
-            try {
-                hashMap.put("Image", arr[7].replace("\\n", System.getProperty("line.separator")));
-            } catch (Exception e) {
-                hashMap.put("Image", arr[7]);
-            }
-            try {
-                hashMap.put("Answer", arr[9].replace("\\n", System.getProperty("line.separator")));
-            } catch (Exception e) {
-                hashMap.put("Answer", arr[9]);
-            }
-            try {
-                hashMap.put("additional", arr[11].replace("\\n", System.getProperty("line.separator")));
-            } catch (Exception e) {
-                hashMap.put("additional", arr[11]);
-            }
+        try {
+            hashMap.put("type", arr[1].replace("\\n", System.getProperty("line.separator")));
+        } catch (Exception e) {
+            hashMap.put("type", arr[1]);
+        }
+        try {
+            hashMap.put("qs", arr[3].replace("\\n", System.getProperty("line.separator")));
+        } catch (Exception e) {
+            hashMap.put("qs", arr[3]);
+        }
+        try {
+            hashMap.put("Content", arr[5].replace("\\n", System.getProperty("line.separator")));
+        } catch (Exception e) {
+            hashMap.put("Content", arr[5]);
+        }
+        try {
+            hashMap.put("Image", arr[7].replace("\\n", System.getProperty("line.separator")));
+        } catch (Exception e) {
+            hashMap.put("Image", arr[7]);
+        }
+        try {
+            hashMap.put("Answer", arr[9].replace("\\n", System.getProperty("line.separator")));
+        } catch (Exception e) {
+            hashMap.put("Answer", arr[9]);
+        }
+        try {
+            hashMap.put("additional", arr[11].replace("\\n", System.getProperty("line.separator")));
+        } catch (Exception e) {
+            hashMap.put("additional", arr[11]);
+        }
 
         return hashMap;
     }

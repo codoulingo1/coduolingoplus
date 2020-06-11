@@ -5,6 +5,7 @@ import android.util.Log;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 import java.util.Random;
 
 public class Text {
@@ -94,34 +95,52 @@ public class Text {
         Log.d("end", end);
         return end.substring(0, end.length() - 1);
     }
-    public static String SEbetween(String text, String start, String stop){
+    public static List<String> SEbetween(String text, char start, char stop){
         String bet = "";
         String st = "";
         boolean is_end = false;
         String end = "";
         boolean is_start = false;
-        String[] a = text.split(" ");
-        for (String i : a) {
-            Log.d("hello", i);
-            if(i.equals(stop)){
-                break;
+        char[] a = text.toCharArray();
+        for (char i : a) {
+            Log.d("hello", String.valueOf(i));
+            if  (i==stop && is_start){
+                is_end = true;
             }
-            if (is_start==true){
+            else if  (Objects.equals(i, start) && !is_end){
+                is_start = true;
+            }
+            if (is_start){
                 if(!is_end) {
                     bet = bet + i + " ";
                 }else{
-
+                    end = end + i + " ";
                 }
             }
-            if(is_start==false){
+            else{
                 st = st + i + " ";
-            }
-            if  (i.equals(start)){
-                is_start = true;
             }
         }
         Log.d("end", bet);
-        return bet.substring(0, bet.length() - 1);
+        final List<String> t;
+        t = new ArrayList<String>();
+        Log.d("check", "st" + st + "bet" + bet + "end" + end);
+        try{
+            t.add(st.substring(0, st.length() - 1));
+        }catch (Exception e){
+            t.add(st);
+        }
+        try{
+            t.add(bet.substring(0, bet.length() - 1));
+        }catch (Exception e){
+            t.add(bet);
+        }
+        try {
+            t.add(end.substring(0, end.length() - 1));
+        }catch (Exception e){
+            t.add(end);
+        }
+        return t;
     }
     public static String IfwordIs(String text, String start){
         String end = "";

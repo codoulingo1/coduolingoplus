@@ -6,10 +6,16 @@ import androidx.vectordrawable.graphics.drawable.AnimatedVectorDrawableCompat;
 import android.animation.ObjectAnimator;
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.graphics.drawable.AnimatedVectorDrawable;
 import android.graphics.drawable.Drawable;
 import android.media.Image;
 import android.os.Bundle;
+import android.text.Html;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.SpannableStringBuilder;
+import android.text.style.StyleSpan;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -47,7 +53,23 @@ public class ExplainationQS extends AppCompatActivity {
     public void explanationQs() {
         HashMap<String, String> explanation_hashmap = LessonActivity.shared_hashmap;
         TextView fr = (TextView)findViewById(R.id.Explanation);
-        fr.setText(explanation_hashmap.get("qs"));
+        SpannableStringBuilder builder=new SpannableStringBuilder();
+        for (int i = 0; i < 10; i = i + 1) {
+            try {
+                if (i % 2 == 0 || i==0) {
+                    builder.append(explanation_hashmap.get("qs").split("\\*")[i]);
+                }
+                else{
+                    SpannableString txtSpannable = new SpannableString(explanation_hashmap.get("qs").split("\\*")[i]);
+                    StyleSpan boldSpan = new StyleSpan(Typeface.BOLD);
+                    txtSpannable.setSpan(boldSpan, 0, explanation_hashmap.get("qs").split("\\*")[i].length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                    builder.append(txtSpannable);
+                }
+            }catch (Exception e){
+                break;
+            }
+        }
+        fr.setText(builder);
         pb = (ProgressBar) findViewById(R.id.progressBar);
         pb.setProgress(LessonActivity.pr);
         continueBtn.setOnClickListener(new View.OnClickListener() {
