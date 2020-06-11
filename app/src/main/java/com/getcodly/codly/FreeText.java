@@ -1,4 +1,4 @@
-package com.example.coduolingo;
+package com.getcodly.codly;
 
 import android.app.Activity;
 import android.content.Context;

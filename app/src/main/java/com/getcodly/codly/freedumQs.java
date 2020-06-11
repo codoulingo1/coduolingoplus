@@ -1,4 +1,4 @@
-package com.example.coduolingo;
+package com.getcodly.codly;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.vectordrawable.graphics.drawable.AnimatedVectorDrawableCompat;
