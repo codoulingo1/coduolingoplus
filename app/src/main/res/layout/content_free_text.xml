@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:overScrollMode="always"
     android:scrollbars="vertical"
-    tools:context=".MainActivity"
+    tools:context="com.getcodly.codly.MainActivity"
     android:clickable="true"
     android:focusableInTouchMode="true"
     android:background="#F3F4F9">

@@ -201,6 +201,80 @@
     },
     {
       "client_info": {
+        "mobilesdk_app_id": "1:34131449257:android:d66f65095711189e9c60b8",
+        "android_client_info": {
+          "package_name": "com.example.myapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "34131449257-2eonvhalcijc6k18rgdnuk45vl99l6s7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.myapplication",
+            "certificate_hash": "6aca2110bb8ff8b4db16b43b201f3b31cc76d8a2"
+          }
+        },
+        {
+          "client_id": "34131449257-8qg91tg79i97q1vb4ahoaq2u4ffhfse8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA2tpWqiWd48TvbJBeelWSTyrAJXgGqOtc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "34131449257-8qg91tg79i97q1vb4ahoaq2u4ffhfse8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:34131449257:android:5b17385c55309ad29c60b8",
+        "android_client_info": {
+          "package_name": "com.getcodly.codly"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "34131449257-mdgahp2ikhhis88mg1r9l430rfoqb03s.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.getcodly.codly",
+            "certificate_hash": "6aca2110bb8ff8b4db16b43b201f3b31cc76d8a2"
+          }
+        },
+        {
+          "client_id": "34131449257-8qg91tg79i97q1vb4ahoaq2u4ffhfse8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA2tpWqiWd48TvbJBeelWSTyrAJXgGqOtc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "34131449257-8qg91tg79i97q1vb4ahoaq2u4ffhfse8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
         "mobilesdk_app_id": "1:34131449257:android:4ab3c565e6b27a789c60b8",
         "android_client_info": {
           "package_name": "n.freedum.myapplication"
