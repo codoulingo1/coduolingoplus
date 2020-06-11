@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.graphics.drawable.AnimatedVectorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -18,8 +19,10 @@ import android.text.Editable;
 import android.text.Html;
 import android.text.Spannable;
 import android.text.SpannableString;
+import android.text.SpannableStringBuilder;
 import android.text.TextWatcher;
 import android.text.style.ForegroundColorSpan;
+import android.text.style.StyleSpan;
 import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -56,7 +59,23 @@ public class FreeText extends AppCompatActivity {
         submit = (ImageButton) findViewById(R.id.button);
         qs = (TextView) findViewById(R.id.textView);
         Log.d("finished", "freetext");
-        qs.setText(LessonActivity.shared_hashmap.get("qs"));
+        SpannableStringBuilder builder=new SpannableStringBuilder();
+        for (int i = 0; i < 10; i = i + 1) {
+            try {
+                if (i % 2 == 0 || i==0) {
+                    builder.append(LessonActivity.shared_hashmap.get("qs").split("\\*")[i]);
+                }
+                else{
+                    SpannableString txtSpannable = new SpannableString(LessonActivity.shared_hashmap.get("qs").split("\\*")[i]);
+                    StyleSpan boldSpan = new StyleSpan(Typeface.BOLD);
+                    txtSpannable.setSpan(boldSpan, 0, LessonActivity.shared_hashmap.get("qs").split("\\*")[i].length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                    builder.append(txtSpannable);
+                }
+            }catch (Exception e){
+                break;
+            }
+        }
+        qs.setText(builder);
         Log.d(String.valueOf(LessonActivity.shared_hashmap.get("additional").length()), String.valueOf(LessonActivity.shared_hashmap.get("additional").length()));
         final EditText inp = (EditText) findViewById(R.id.inp);
         inp.setText(LessonActivity.shared_hashmap.get("additional"));

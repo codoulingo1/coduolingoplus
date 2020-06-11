@@ -3,9 +3,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.animation.ObjectAnimator;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.graphics.drawable.AnimatedVectorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.SpannableStringBuilder;
+import android.text.style.StyleSpan;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -55,7 +60,23 @@ public class NonFreedum extends AppCompatActivity {
         popupFalse = (RelativeLayout) findViewById(R.id.popupFalse);
         popupTrue = (RelativeLayout) findViewById(R.id.PopupTrue);
         pb.setProgress(LessonActivity.pr);
-        qs.setText(LessonActivity.shared_hashmap.get("qs"));
+        SpannableStringBuilder builder=new SpannableStringBuilder();
+        for (int i = 0; i < 10; i = i + 1) {
+            try {
+                if (i % 2 == 0 || i==0) {
+                    builder.append(LessonActivity.shared_hashmap.get("qs").split("\\*")[i]);
+                }
+                else{
+                    SpannableString txtSpannable = new SpannableString(LessonActivity.shared_hashmap.get("qs").split("\\*")[i]);
+                    StyleSpan boldSpan = new StyleSpan(Typeface.BOLD);
+                    txtSpannable.setSpan(boldSpan, 0, LessonActivity.shared_hashmap.get("qs").split("\\*")[i].length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                    builder.append(txtSpannable);
+                }
+            }catch (Exception e){
+                break;
+            }
+        }
+        qs.setText(builder);
         String[] optAns = LessonActivity.shared_hashmap.get("Content").split(",");
         unuateksto = LessonActivity.shared_hashmap.get("additional");
         final Button dlt = (Button) findViewById(R.id.dlt);
