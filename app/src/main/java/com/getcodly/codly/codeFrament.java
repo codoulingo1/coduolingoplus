@@ -1,5 +1,6 @@
 package com.getcodly.codly;
 
+import android.graphics.Color;
 import android.graphics.drawable.AnimatedVectorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -11,7 +12,10 @@ import androidx.viewpager.widget.ViewPager;
 
 import android.os.Handler;
 import android.text.Editable;
+import android.text.SpannableString;
+import android.text.SpannableStringBuilder;
 import android.text.TextWatcher;
+import android.text.style.ForegroundColorSpan;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,6 +27,7 @@ import android.widget.ImageButton;
 import com.getcodly.codly.R;
 import com.google.android.material.tabs.TabLayout;
 
+import java.util.Arrays;
 import java.util.Locale;
 
 
@@ -172,14 +177,31 @@ public class codeFrament extends Fragment  { //was extends Fragment, might need 
             }
         });
         final Handler handler = new Handler();
-        final int delay = 1000; //milliseconds
+        final int delay = 2000; //milliseconds
 
         handler.postDelayed(new Runnable(){
             public void run(){
                 String[] c = new String[]{"hi", "hello"};
                 String text = htmlInp.getText().toString();
                 String[] codeWords = text.split(" ");
+                SpannableStringBuilder builder = new SpannableStringBuilder();
                 for(String codeWord : codeWords){
+                    if(Arrays.asList(c).contains(codeWord)){
+                        SpannableString str1= new SpannableString(codeWord);
+                        str1.setSpan(new ForegroundColorSpan(Color.GREEN), 0, str1.length(), 0);
+                        builder.append(str1);
+                    }
+                    else{
+                        builder.append(codeWord);
+                    }
+                    builder.append(" ");
+                }
+                int loc = htmlInp.getSelectionStart();
+                htmlInp.setText(builder);
+                try {
+                    htmlInp.setSelection(loc);
+                } catch (Exception e){
+                    htmlInp.setSelection(builder.length());
                 }
                 handler.postDelayed(this, delay);
             }

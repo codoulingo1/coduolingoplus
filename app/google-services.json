@@ -245,6 +245,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "34131449257-jvsr87agtgpdbsna0m5ds72h638057or.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.getcodly.codly",
+            "certificate_hash": "3be67141ef8d71ad549331f1cb95bbc989553c18"
+          }
+        },
+        {
           "client_id": "34131449257-mdgahp2ikhhis88mg1r9l430rfoqb03s.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
