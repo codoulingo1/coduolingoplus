@@ -49,7 +49,8 @@ public class Search extends AppCompatActivity {
             public void run(){
                 i = 0;
                 hashMap = new HashMap<>();
-                final List<String> names;
+                final ArrayList names;
+                names = new ArrayList<>();
                 FirebaseDatabase database = FirebaseDatabase.getInstance();
                 DatabaseReference myRef = database.getReference("Users");
                 myRef.addValueEventListener(new ValueEventListener() {
@@ -58,8 +59,9 @@ public class Search extends AppCompatActivity {
                         // This method is called once with the initial value and again
                         // whenever data at this location is updated.
                         for (DataSnapshot fire_email : dataSnapshot.getChildren()) {
-                            if(fire_email.child("name").getValue(String.class).toLowerCase().contains(ed.getQuery().toString().toLowerCase())){
-                                hashMap.put(String.valueOf(i), fire_email.child("name").getValue().toString());
+                            if(fire_email.getKey().contains(ed.getQuery().toString().toLowerCase())){
+                                names.add(fire_email.child("name").getValue(String.class));
+                                hashMap.put(String.valueOf(i), fire_email.getKey());
                                 i++;
                             }
                         }
@@ -84,7 +86,7 @@ public class Search extends AppCompatActivity {
 
                         //Getting Collection of values from HashMap
 
-                        Collection<String> values = hashMap.values();
+                        Collection<String> values = names;
 
                         //Creating an ArrayList of values
 
@@ -107,6 +109,7 @@ public class Search extends AppCompatActivity {
             {
                 Log.i("HelloListView", "You clicked Item: " + "id" + " at position:" + position);
                 selected = hashMap.get(String.valueOf(position));
+                Log.d("hi", selected);
                 name = ed.getQuery().toString();
                 Intent in = new Intent(getApplicationContext(), FriendProfile.class);
                 startActivity(in);
