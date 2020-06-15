@@ -185,9 +185,10 @@ public class codeFrament extends Fragment  { //was extends Fragment, might need 
 
         handler.postDelayed(new Runnable(){
             public void run(){
-                String[] c = new String[]{"hi", "hello"};
+                String[] c = new String[]{"hello", "hi"};
                 String text = htmlInp.getText().toString();
                 SpannableStringBuilder builder = new SpannableStringBuilder();
+                Arrays.sort(c, (str1, str2) -> str1.length() - str2.length());
                 SpannableString str1= new SpannableString(text);
                 for(String codeWord : c){
                     int start = 0;
