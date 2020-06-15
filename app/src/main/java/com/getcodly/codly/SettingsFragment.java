@@ -45,6 +45,7 @@ public class SettingsFragment extends Fragment {
     TextView signOutBtn;
     boolean isNotSaved;
     private GoogleSignInClient mGoogleSignInClient;
+    Boolean isChanged = false;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -61,6 +62,18 @@ public class SettingsFragment extends Fragment {
 
         loadProfileSettings();
 
+        mCountdown = new CountDownTimer(120, 50) {
+            @Override
+            public void onTick(long l) {
+
+            }
+
+            @Override
+            public void onFinish() {
+                isChanged = true;
+            }
+        }.start();
+
         yourNameEditText.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -74,24 +87,27 @@ public class SettingsFragment extends Fragment {
 
             @Override
             public void afterTextChanged(Editable s) {
-                isNotSaved = true;
-                submitBtn.setVisibility(View.VISIBLE);
+                if(isChanged == true){
+                    submitBtn.setVisibility(View.VISIBLE);
 
-                submitBtn.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        FirebaseDatabase database = FirebaseDatabase.getInstance();
-                        DatabaseReference myRef = database.getReference("Users");
-                        DatabaseReference fireBase = myRef.child(ReadWrite.read(getActivity().getFilesDir()+File.separator + "user"));
+                    submitBtn.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            FirebaseDatabase database = FirebaseDatabase.getInstance();
+                            DatabaseReference myRef = database.getReference("Users");
+                            DatabaseReference fireBase = myRef.child(ReadWrite.read(getActivity().getFilesDir()+File.separator + "user"));
 
-                        fireBase.child("name").setValue(yourNameEditText.getText().toString());
-                        Toast.makeText(getContext(), "השם השתנה בהצלחה", Toast.LENGTH_SHORT).show();
-                        loadProfileSettings();
-                        submitBtn.setVisibility(View.INVISIBLE);
-                    }
-                });
+                            fireBase.child("name").setValue(yourNameEditText.getText().toString());
+                            Toast.makeText(getContext(), "השם השתנה בהצלחה", Toast.LENGTH_SHORT).show();
+                            loadProfileSettings();
+                            isChanged = false;
+                            submitBtn.setVisibility(View.INVISIBLE);
+                        }
+                    });
+                }
             }
         });
+
 
 
         signOutBtn.setOnClickListener(new View.OnClickListener() {

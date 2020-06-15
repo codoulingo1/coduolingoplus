@@ -12,7 +12,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -31,6 +33,7 @@ public class FriendsFragment extends Fragment {
     ArrayList list;
     HashMap ret;
     String name;
+    TextView addFriend;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -38,6 +41,15 @@ public class FriendsFragment extends Fragment {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_friendlist, container, false);
         listView = (ListView) v.findViewById(R.id.friendList2);
+        addFriend = (TextView) v.findViewById(R.id.addFriendBtn);
+        addFriend.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), Search.class);
+                startActivity(intent);
+            }
+        });
+
         CountDownTimer mcountdown = new CountDownTimer(2000, 1000) {
             @Override
             public void onTick(long l) {

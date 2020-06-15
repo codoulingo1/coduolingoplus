@@ -73,7 +73,7 @@ public class Search extends AppCompatActivity {
                         Log.w("Failed to read value.", error.toException());
                     }
                 });
-                mcountdown = new CountDownTimer(1000, 1000) {
+                mcountdown = new CountDownTimer(1000, 100) {
                     @Override
                     public void onTick(long l) {
                         //dialog.show();
@@ -94,7 +94,7 @@ public class Search extends AppCompatActivity {
 
                         // Convert ArrayList to Array
 
-                        String stringArray[]=listOfValues.toArray(new String[listOfValues.size()]);
+                        String stringArray[] = listOfValues.toArray(new String[listOfValues.size()]);
                         ArrayAdapter<String> itemsAdapter =
                                 new ArrayAdapter<String>(Search.this, android.R.layout.simple_list_item_1, android.R.id.text1,  stringArray);
                         listView.setAdapter(itemsAdapter);

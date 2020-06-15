@@ -56,21 +56,6 @@ public class Login extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         emails=DownloadReadlessons.get_emails();
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
-            Log.d("bona", "bona");
-            if (ContextCompat.checkSelfPermission(this, Manifest.permission.SEND_SMS) == PackageManager.PERMISSION_GRANTED) {
-                Log.d("bona", "bona");
-            } else {
-                Log.d("malbona", "malbona");
-                ActivityCompat.requestPermissions(this,
-                        new String[]{Manifest.permission.SEND_SMS}, 0);
-            }
-
-        } else {
-            Log.d("malbona", "malbona");
-            ActivityCompat.requestPermissions(this,
-                    new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 0);
-        }
         sign_up_email = (ImageButton) findViewById(R.id.imageButtonMail);
         imgBtnGoogle = (ImageButton) findViewById(R.id.imageButtonGoogle);
         mAuth = FirebaseAuth.getInstance();
