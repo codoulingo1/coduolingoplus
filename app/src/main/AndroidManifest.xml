@@ -21,7 +21,7 @@
             android:windowSoftInputMode="adjustPan"
             android:theme="@style/AppTheme.NoActionBar"> </activity>
         <activity
-            android:name="com.getcodly.codly.mainScreen"
+            android:name="com.getcodly.codly.Login"
             android:label="@string/title_activity_courses_screen"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
@@ -66,7 +66,7 @@
             android:name="com.getcodly.codly.MainActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="com.getcodly.codly.Login"
+            android:name="com.getcodly.codly.mainScreen"
             android:theme="@style/AppTheme.NoActionBar"> <!-- This is the default activity! -->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

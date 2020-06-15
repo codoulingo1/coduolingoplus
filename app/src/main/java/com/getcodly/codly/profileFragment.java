@@ -15,9 +15,11 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toolbar;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
@@ -53,7 +55,6 @@ public class profileFragment extends Fragment {
     private GoogleSignInClient mGoogleSignInClient;
     FirebaseAuth mAuth;
     Button toSearch;
-    Button backToTree;
     Button ןמהןאקף;
     HashMap<String, String> old_streak;
     TextView setStreak;
@@ -77,15 +78,14 @@ public class profileFragment extends Fragment {
         tabLayout = (TabLayout) v.findViewById(R.id.tabs);
         profileSettingsBtn = (ImageButton) v.findViewById(R.id.profileSettings);
         profImg = (ImageView) v.findViewById(R.id.imageView2);
-        listView = (ListView) v.findViewById(R.id.friendsList);
         setStreak = (TextView) v.findViewById(R.id.streak);
         setName = (TextView) v.findViewById(R.id.set_name);
-        backToTree =  (Button) v.findViewById(R.id.back_to_tree);
-        toSearch =  (Button) v.findViewById(R.id.addFriend);
-        listView = (ListView) v.findViewById(R.id.friendsList);
+        viewPager = v.findViewById(R.id.viewPager);
         viewPager = v.findViewById(R.id.viewPager);
 
         friendsFragment = new FriendsFragment();
+
+
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
@@ -214,7 +214,7 @@ public class profileFragment extends Fragment {
             }
         }.start();
 
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener()
+        /*listView.setOnItemClickListener(new AdapterView.OnItemClickListener()
         {
             public void onItemClick(AdapterView<?> arg0, View arg1, int position, long arg3)
             {
@@ -238,7 +238,7 @@ public class profileFragment extends Fragment {
                 Intent intent = new Intent(getActivity(), Search.class);
                 startActivity(intent);
             }
-        });
+        });*/
 
 
         return v;

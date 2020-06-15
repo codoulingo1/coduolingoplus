@@ -14,7 +14,6 @@
         <androidx.viewpager.widget.ViewPager
             android:layout_width="match_parent"
             android:layout_height="400dp"
-            android:layout_above="@id/back_to_tree"
             android:layout_below="@id/tabs"
             android:id="@+id/viewPager">
 
@@ -32,16 +31,6 @@
         </com.google.android.material.tabs.TabLayout>
 
 
-        <Button
-            android:id="@+id/back_to_tree"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentRight="true"
-            android:layout_marginBottom="25dp"
-            android:layout_marginRight="25dp"
-            android:text="Back to the tree" />
-
         <!--<ImageView
             android:id="@+id/imageView2"
             android:layout_width="350dp"
@@ -51,11 +40,32 @@
             android:scaleType="fitCenter"
             android:layout_centerHorizontal="true"/> -->
 
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="@color/TopBar"
+            android:id="@+id/topBar5">
+
+            <ImageButton
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/ic_settings_white_24dp"
+                android:background="@color/TopBar"
+                android:scaleType="fitCenter"
+                android:layout_marginLeft="10dp"
+                android:layout_alignParentLeft="true"
+                android:adjustViewBounds="true"
+                android:id="@+id/profileSettings"
+                android:layout_centerVertical="true"/>
+        </RelativeLayout>
+
         <TextView
             android:id="@+id/set_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/imageView2"
+            android:layout_toLeftOf="@id/imageView2"
+            android:layout_marginRight="15dp"
+            android:layout_below="@id/topBar5"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="25dp"
             android:fontFamily="@font/rubik_light"
@@ -64,26 +74,17 @@
             android:textSize="24sp"
             android:text="s"/>
 
-        <ListView
-            android:id="@+id/friendsList"
-            android:layout_width="313dp"
-            android:layout_height="227dp"
-            android:layout_centerHorizontal="true"
-            android:layout_alignParentBottom="true"
-            android:layout_above="@+id/sign_out"
-            android:layout_marginBottom="100dp"
-            android:layout_below="@id/tabs"
-            android:visibility="invisible"/>
-
         <TextView
             android:id="@+id/streak"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/set_name"
+            android:layout_toLeftOf="@id/imageView2"
+            android:layout_marginRight="15dp"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="10dp"
             android:fontFamily="@font/rubik_bold"
-            android:text="Streak:"
+            android:text="סטריק: "
             android:textSize="20sp" />
 
         <de.hdodenhof.circleimageview.CircleImageView
@@ -91,22 +92,15 @@
             android:id="@+id/imageView2"
             android:layout_width="120dp"
             android:layout_height="120dp"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="20dp"
+            android:layout_alignParentRight="true"
+            android:layout_below="@id/topBar5"
             app:civ_border_color="#42445F"
             app:civ_border_width="2dp" />
 
-        <ImageButton
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:src="@drawable/ic_settings_black_24dp"
-            android:background="#F3F4F9"
-            android:scaleType="fitCenter"
-            android:adjustViewBounds="true"
-            android:layout_margin="15dp"
-            android:id="@+id/profileSettings"
-            android:layout_alignParentLeft="true"/>
+
+
+
 
 
         <!--<EditText
@@ -119,23 +113,7 @@
             android:text="הקלד את שם המשתמש החדש"
             android:visibility="gone" />-->
 
-        <Button
-            android:id="@+id/addFriend"
-            android:layout_width="100dp"
-            android:layout_height="50dp"
-            android:layout_alignParentRight="true"
-            android:layout_margin="15dp"
-            android:text="הוסף חבר" />
 
-
-        <Button
-            android:id="@+id/invite_friend"
-            android:layout_width="154dp"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="15dp"
-            android:text="הזמן חבר"
-            android:layout_below="@id/addFriend"/>
 
     </RelativeLayout>
 </LinearLayout>
