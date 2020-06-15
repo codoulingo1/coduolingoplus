@@ -114,7 +114,7 @@ public class Search extends AppCompatActivity {
                 Intent in = new Intent(getApplicationContext(), FriendProfile.class);
                 startActivity(in);
             }
-        });
+        });//
     }
 
 }
