@@ -27,8 +27,12 @@ import android.widget.ImageButton;
 import com.getcodly.codly.R;
 import com.google.android.material.tabs.TabLayout;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Locale;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 
 public class codeFrament extends Fragment  { //was extends Fragment, might need to change that
@@ -177,27 +181,24 @@ public class codeFrament extends Fragment  { //was extends Fragment, might need 
             }
         });
         final Handler handler = new Handler();
-        final int delay = 2000; //milliseconds
+        final int delay = 3000; //milliseconds
 
         handler.postDelayed(new Runnable(){
             public void run(){
                 String[] c = new String[]{"hi", "hello"};
                 String text = htmlInp.getText().toString();
-                String[] codeWords = text.split(" ");
                 SpannableStringBuilder builder = new SpannableStringBuilder();
-                for(String codeWord : codeWords){
-                    if(Arrays.asList(c).contains(codeWord)){
-                        SpannableString str1= new SpannableString(codeWord);
-                        str1.setSpan(new ForegroundColorSpan(Color.GREEN), 0, str1.length(), 0);
-                        builder.append(str1);
+                SpannableString str1= new SpannableString(text);
+                for(String codeWord : c){
+                    int start = 0;
+                    while (text.indexOf(codeWord, start)>-1) {
+                        Log.d("hi", String.valueOf(text.indexOf(codeWord, 3)));
+                        str1.setSpan(new ForegroundColorSpan(Color.GREEN), text.indexOf(codeWord, start), text.indexOf(codeWord, start) + codeWord.length(), 0);
+                        start = text.indexOf(codeWord, start) + codeWord.length();
                     }
-                    else{
-                        builder.append(codeWord);
-                    }
-                    builder.append(" ");
                 }
                 int loc = htmlInp.getSelectionStart();
-                htmlInp.setText(builder);
+                htmlInp.setText(str1);
                 try {
                     htmlInp.setSelection(loc);
                 } catch (Exception e){
