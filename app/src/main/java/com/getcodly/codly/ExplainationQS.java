@@ -72,8 +72,14 @@ public class ExplainationQS extends AppCompatActivity {
                 LessonActivity.j++;
                 LessonActivity.shared_xp = LessonActivity.shared_xp + 1;
                 //LessonActivity.points++;
-                startActivity(new Intent(ExplainationQS.this, LessonActivity.class));
-                overridePendingTransition(0, 0);
+                if(LessonActivity.shared_hashmap.get("additional").equals("none")) {
+                    startActivity(new Intent(ExplainationQS.this, LessonActivity.class));
+                    overridePendingTransition(0, 0);
+                }
+                else{
+                    fr.setText(fr.getText() + System.getProperty("line.separator") + LessonActivity.shared_hashmap.get("additional"));
+                    LessonActivity.shared_hashmap.put("additional", "none");
+                }
                 //continueBtn.setImageResource(R.drawable.avd_anim);
                 //animate();
 
