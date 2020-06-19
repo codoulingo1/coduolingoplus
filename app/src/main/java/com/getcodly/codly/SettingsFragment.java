@@ -1,12 +1,22 @@
 package com.getcodly.codly;
 
+import android.Manifest;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 
+import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import android.os.CountDownTimer;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,8 +29,11 @@ import android.widget.Toast;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 
 import java.io.File;
@@ -31,6 +44,8 @@ import java.util.HashMap;
  * A simple {@link Fragment} subclass.
  */
 public class SettingsFragment extends Fragment {
+
+    private static final int RESULT_OK = -1;
 
     public SettingsFragment() {
         // Required empty public constructor
@@ -46,6 +61,12 @@ public class SettingsFragment extends Fragment {
     boolean isNotSaved;
     private GoogleSignInClient mGoogleSignInClient;
     Boolean isChanged = false;
+    private FirebaseAuth firebaseAuth;
+    private StorageReference mStorageRef;
+    private static final int PICK_IMAGE_REQUEST = 1;
+    TextView mButtonChooseImage;
+    changeImageDialog changeImageDialoge = new changeImageDialog();
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -54,13 +75,24 @@ public class SettingsFragment extends Fragment {
         yourNameEditText = (EditText) v.findViewById(R.id.yourNameEdit);
         submitBtn = (Button) v.findViewById(R.id.saveBtnProfile);
         signOutBtn = (TextView) v.findViewById(R.id.sign_outBtnProfile);
+        mButtonChooseImage = (TextView) v.findViewById(R.id.changeImageBtn);
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
                 .requestEmail()
                 .build();
         mGoogleSignInClient = GoogleSignIn.getClient(getActivity(), gso);
+        mStorageRef = FirebaseStorage.getInstance().getReference();
+
+        checkFilePermissions();
 
         loadProfileSettings();
+
+        mButtonChooseImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                changeImageDialoge.show(getParentFragmentManager(), "hi");
+            }
+        });
 
         mCountdown = new CountDownTimer(120, 50) {
             @Override
@@ -120,6 +152,7 @@ public class SettingsFragment extends Fragment {
                 openDialog();
             }
         });
+
         return v;
     }
 
@@ -145,5 +178,20 @@ public class SettingsFragment extends Fragment {
     public void openDialog() {
         OutDialog outDialog = new OutDialog();
         outDialog.show(getParentFragmentManager(), "Exit");
+    }
+
+    private void checkFilePermissions() {
+        if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
+
+        } else {
+            Log.d("malbona", "malbona");
+            ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 0);
+        }
+        if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
+
+        } else {
+            Log.d("malbona", "malbona");
+            ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 0);
+        }
     }
 }
