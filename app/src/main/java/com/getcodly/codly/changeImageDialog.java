@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.webkit.MimeTypeMap;
@@ -28,8 +29,11 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.StorageTask;
 import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
+
+import java.io.File;
 
 public class changeImageDialog extends AppCompatDialogFragment {
 
@@ -42,9 +46,12 @@ public class changeImageDialog extends AppCompatDialogFragment {
     ImageView mImageView;
     Button mUploadImage;
     ProgressBar mProgressBar;
+    StorageReference fileReference;
 
     private StorageReference mStorageRef;
     private DatabaseReference mDatabaseRef;
+
+    private StorageTask mUploadTask;
     Uri mImageUri;
 
     @NonNull
@@ -61,6 +68,7 @@ public class changeImageDialog extends AppCompatDialogFragment {
         mImageView = view.findViewById(R.id.profilePreview);
         mUploadImage = view.findViewById(R.id.saveImageBtn);
         mProgressBar = view.findViewById(R.id.uploadProgressBar);
+        mButtonRemoveImage = view.findViewById(R.id.deleteProfilePic);
 
         mStorageRef = FirebaseStorage.getInstance().getReference("profile-pictures");
         mDatabaseRef = FirebaseDatabase.getInstance().getReference("profile-pictures");
@@ -71,11 +79,26 @@ public class changeImageDialog extends AppCompatDialogFragment {
                 openFileChooser();
             }
         });
+        mButtonRemoveImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FirebaseDatabase database = FirebaseDatabase.getInstance();
+                DatabaseReference myRef = database.getReference("Users");
+                DatabaseReference fireBase = myRef.child(ReadWrite.read(getActivity().getFilesDir()+ File.separator + "user"));
+
+                fireBase.child("imgUrl").setValue("");
+                dismiss();
+            }
+        });
 
         mUploadImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                uploadFile();
+                if (mUploadTask != null && mUploadTask.isInProgress()){
+
+                } else {
+                    uploadFile();
+                }
             }
         });
 
@@ -111,9 +134,9 @@ public class changeImageDialog extends AppCompatDialogFragment {
 
     private void uploadFile(){
         if (mImageUri != null){
-            StorageReference fileReference = mStorageRef.child(System.currentTimeMillis() + "." + getFileExtension(mImageUri));
+            fileReference = mStorageRef.child(System.currentTimeMillis() + "." + getFileExtension(mImageUri));
             mProgressBar.setVisibility(View.VISIBLE);
-            fileReference.putFile(mImageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            mUploadTask = fileReference.putFile(mImageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                     Handler handler = new Handler();
@@ -121,11 +144,14 @@ public class changeImageDialog extends AppCompatDialogFragment {
                         @Override
                         public void run() {
                             mProgressBar.setProgress(0);
+                            downloadPicture();
                         }
-                    }, 2000);
+                    }, 500);
 
                     Toast.makeText(getActivity(), "Upload Successful", Toast.LENGTH_SHORT).show();
-                    //UploadProfileImage uploadProfileImage = new UploadProfileImage("ProfilePic1", taskSnapshot.getUploadSessionUri().toString());
+                    UploadProfileImage uploadProfileImage = new UploadProfileImage("ProfilePic1", taskSnapshot.getUploadSessionUri().toString());
+                    String uploadID = mDatabaseRef.push().getKey();
+                    mDatabaseRef.child(uploadID).setValue(uploadProfileImage);
                 }
             }).addOnFailureListener(new OnFailureListener() {
                 @Override
@@ -141,7 +167,29 @@ public class changeImageDialog extends AppCompatDialogFragment {
             });
 
         } else {
-            Toast.makeText(getActivity(), "No file selected", Toast.LENGTH_SHORT).show();
+
         }
     }
+
+    void downloadPicture() {
+        fileReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+            @Override
+            public void onSuccess(Uri uri) {
+                Log.d("link", uri.toString());
+                FirebaseDatabase database = FirebaseDatabase.getInstance();
+                DatabaseReference myRef = database.getReference("Users");
+                DatabaseReference fireBase = myRef.child(ReadWrite.read(getActivity().getFilesDir()+ File.separator + "user"));
+
+                fireBase.child("imgUrl").setValue(uri.toString());
+                dismiss();
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+
+            }
+        });
+    }
+
+
 }

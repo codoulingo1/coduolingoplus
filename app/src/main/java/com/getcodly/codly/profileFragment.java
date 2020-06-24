@@ -78,7 +78,7 @@ public class profileFragment extends Fragment {
         tabLayout = (TabLayout) v.findViewById(R.id.tabs);
         profileSettingsBtn = (ImageButton) v.findViewById(R.id.profileSettings);
         profImg = (ImageView) v.findViewById(R.id.imageView2);
-        setStreak = (TextView) v.findViewById(R.id.streak);
+        setStreak = (TextView) v.findViewById(R.id.streakView);
         setName = (TextView) v.findViewById(R.id.set_name);
         viewPager = v.findViewById(R.id.viewPager);
         viewPager = v.findViewById(R.id.viewPager);

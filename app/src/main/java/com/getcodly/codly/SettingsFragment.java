@@ -1,6 +1,7 @@
 package com.getcodly.codly;
 
 import android.Manifest;
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -68,6 +69,8 @@ public class SettingsFragment extends Fragment {
     changeImageDialog changeImageDialoge = new changeImageDialog();
 
 
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_settings, container, false);
@@ -83,13 +86,13 @@ public class SettingsFragment extends Fragment {
         mGoogleSignInClient = GoogleSignIn.getClient(getActivity(), gso);
         mStorageRef = FirebaseStorage.getInstance().getReference();
 
-        checkFilePermissions();
 
         loadProfileSettings();
 
         mButtonChooseImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //checkFilePermissions();
                 changeImageDialoge.show(getParentFragmentManager(), "hi");
             }
         });
@@ -170,7 +173,11 @@ public class SettingsFragment extends Fragment {
                 img = hashMap.get("img");
 
                 yourNameEditText.setText(name);
-                Picasso.with(getActivity()).load(img).placeholder(R.drawable.user_pic).into(profileImg);
+                try {
+                    Picasso.with(getActivity()).load(img).placeholder(R.drawable.user_pic).into(profileImg);
+                }catch (Exception e){
+
+                }
             }
         }.start();
     }
