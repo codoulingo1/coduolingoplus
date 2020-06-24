@@ -31,14 +31,28 @@
         <item name="colorPrimary">@color/green</item>
         <!--<item name="android:textColorSecondary">@color/TopBar</item>-->
     </style>
+
     <style name="tab_text" parent="@android:style/TextAppearance.Widget.TabWidget">
         <item name="android:fontFamily">@font/rubik_bold</item>
     </style>
+
     <style name="TitleBarTextAppearance" parent="android:TextAppearance">
         <item name="android:fontFamily">@font/rubik_bold</item>
         <item name="android:textSize">23sp</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <style name="FullscreenTheme" parent="AppTheme">
+        <item name="android:actionBarStyle">@style/FullscreenActionBarStyle</item>
+        <item name="android:windowActionBarOverlay">true</item>
+        <item name="android:windowBackground">@null</item>
+        <item name="metaButtonBarStyle">?android:attr/buttonBarStyle</item>
+        <item name="metaButtonBarButtonStyle">?android:attr/buttonBarButtonStyle</item>
+    </style>
+
+    <style name="FullscreenActionBarStyle" parent="Widget.AppCompat.ActionBar">
+        <item name="android:background">@color/black_overlay</item>
     </style>
 
 </resources>

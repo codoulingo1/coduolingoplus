@@ -77,7 +77,9 @@ public class ExplainationQS extends AppCompatActivity {
                     overridePendingTransition(0, 0);
                 }
                 else{
-                    fr.setText(fr.getText() + System.getProperty("line.separator") + LessonActivity.shared_hashmap.get("additional"));
+                    builder.append(System.getProperty("line.separator"));
+                    builder.append((LessonActivity.shared_hashmap.get("additional")));
+                    fr.setText(builder);
                     LessonActivity.shared_hashmap.put("additional", "none");
                 }
                 //continueBtn.setImageResource(R.drawable.avd_anim);

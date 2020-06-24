@@ -4,69 +4,76 @@
     package="com.getcodly.codly">
 
     <application
-        android:name="com.getcodly.codly.Firebasedata"
+        android:name=".Firebasedata"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="codly"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.getcodly.codly.finalLesson"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".PythonActivity"></activity>
         <activity
-            android:name="com.getcodly.codly.Tree_new"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity android:name="com.getcodly.codly.FriendProfile" />
-        <activity android:name="com.getcodly.codly.Search"
-            android:windowSoftInputMode="adjustPan"
-            android:theme="@style/AppTheme.NoActionBar"> </activity>
+            android:name=".mainScreen"
+            android:label="@string/title_activity_python"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="com.getcodly.codly.Login"
+            android:name=".finalLesson"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Tree_new"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".FriendProfile" />
+        <activity
+            android:name=".Search"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".Login"
             android:label="@string/title_activity_courses_screen"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="com.getcodly.codly.iframe2"
+            android:name=".iframe2"
             android:label="עורך הקוד" />
         <activity
-            android:name="com.getcodly.codly.iframe"
+            android:name=".iframe"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="com.getcodly.codly.PasswordReset"
+            android:name=".PasswordReset"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="com.getcodly.codly.LessonActivity"
+            android:name=".LessonActivity"
             android:label="@string/title_activity_lesson"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="com.getcodly.codly.FreeText"
+            android:name=".FreeText"
             android:label="@string/title_activity_free_text"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="com.getcodly.codly.NonFreedum"
+            android:name=".NonFreedum"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="com.getcodly.codly.ExplainationQS"
+            android:name=".ExplainationQS"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="com.getcodly.codly.freedumQs"
+            android:name=".freedumQs"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="com.getcodly.codly.tree"
+            android:name=".tree"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="com.getcodly.codly.usernameloginActivity"
+            android:name=".usernameloginActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="com.getcodly.codly.sign_upActivity"
+            android:name=".sign_upActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="com.getcodly.codly.profile_Activity"
+            android:name=".profile_Activity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="com.getcodly.codly.MainActivity"
+            android:name=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="com.getcodly.codly.mainScreen"
+            android:name=".PythonActivity2"
             android:theme="@style/AppTheme.NoActionBar"> <!-- This is the default activity! -->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -79,9 +86,6 @@
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
     </application>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.SEND_SMS" />
-    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission
         android:name="android.permission.READ_EXTERNAL_STORAGE"
@@ -90,7 +94,10 @@
         android:name="android.permission.WRITE_EXTERNAL_STORAGE"
         tools:remove="android:maxSdkVersion" />
     <uses-permission android:name="android.permission.WRITE_INTERNAL_STORAGE" />
-
     <uses-permission android:name="android.permission. ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.SEND_SMS" />
+
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
 
 </manifest>
