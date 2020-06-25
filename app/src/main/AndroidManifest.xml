@@ -11,9 +11,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".PythonActivity"></activity>
         <activity
-            android:name=".mainScreen"
+            android:name=".runQs"
+            android:label="@string/title_activity_run_qs"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".PythonActivity" />
+        <activity
+            android:name=".PythonActivity2"
             android:label="@string/title_activity_python"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
@@ -73,7 +77,7 @@
             android:name=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".PythonActivity2"
+            android:name=".mainScreen"
             android:theme="@style/AppTheme.NoActionBar"> <!-- This is the default activity! -->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -86,7 +90,6 @@
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
     </application>
-    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission
         android:name="android.permission.READ_EXTERNAL_STORAGE"
         tools:remove="android:maxSdkVersion" />
@@ -97,7 +100,8 @@
     <uses-permission android:name="android.permission. ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.SEND_SMS" />
-
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>
