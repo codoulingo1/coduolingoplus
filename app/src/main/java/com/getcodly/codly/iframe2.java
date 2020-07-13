@@ -101,12 +101,7 @@ public class iframe2 extends AppCompatActivity {
             case R.id.saveProject:
                 Toast.makeText(iframe2.this, "Hello", Toast.LENGTH_SHORT);
                 Log.d("worked", codeFrament.htmlInp.getText().toString()); //codeFragment.htmlInp.getText().toString is the file which is supposed to be saved/shared
-                if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
 
-                } else {
-                    Log.d("malbona", "malbona");
-                    ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 0);
-                }
 
                 return true;
             case R.id.shareProject:

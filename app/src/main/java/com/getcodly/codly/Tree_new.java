@@ -25,10 +25,17 @@ public class Tree_new extends AppCompatActivity {
         skill1 = (RelativeLayout) findViewById(R.id.skill12);
 
 
-        skill1.setOnClickListener(new View.OnClickListener() {
+        /*skill1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 lessonStart.setImageResource(R.drawable.lesson_circle_lvl2);
+            }
+        });*/
+
+        skill1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
             }
         });
 

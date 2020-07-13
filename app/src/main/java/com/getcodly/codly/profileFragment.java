@@ -115,7 +115,6 @@ public class profileFragment extends Fragment {
                 url_old = dataSnapshot.child("imgUrl").getValue(String.class);//paste here google drive picture shareable link but change "open?" to "uc?"
                 Log.d("profile_Activity", url_old);
                 name = dataSnapshot.child("name").getValue(String.class);
-
             }
 
             @Override

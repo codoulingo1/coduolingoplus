@@ -11,9 +11,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-8750577101117973~1026781335"/>
         <activity android:name=".PythonActivity"></activity>
         <activity
-            android:name=".mainScreen"
+            android:name=".PythonActivity2"
             android:label="@string/title_activity_python"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
@@ -73,7 +76,7 @@
             android:name=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".PythonActivity2"
+            android:name=".mainScreen"
             android:theme="@style/AppTheme.NoActionBar"> <!-- This is the default activity! -->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
