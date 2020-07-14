@@ -31,14 +31,14 @@
         android:textSize="22sp"
         android:layout_marginTop="10dp"
         android:clickable="true"
-        android:id="@+id/changeNameBtn"/>
+        android:id="@+id/changeImageBtn"/>
 
     <TextView
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_alignParentRight="true"
     android:text="שם משתמש"
-    android:layout_below="@id/changeNameBtn"
+    android:layout_below="@id/changeImageBtn"
     android:layout_marginTop="15dp"
     android:fontFamily="@font/rubik_medium"
     android:textSize="18sp"

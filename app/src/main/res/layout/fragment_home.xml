@@ -2,7 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F3F4F9">
+    android:background="#F3F4F9"
+    android:padding="15dp">
 
     <TextView
         android:layout_width="wrap_content"
@@ -13,17 +14,15 @@
         android:textSize="38dp"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
-        android:layout_margin="15dp"
         android:id="@+id/label" />
 
     <RelativeLayout
-        android:layout_width="384dp"
+        android:layout_width="match_parent"
         android:layout_height="119dp"
         android:layout_centerHorizontal="true"
         android:layout_alignParentTop="true"
         android:layout_below="@id/label"
         android:layout_marginTop="100dp"
-        android:elevation="3dp"
         android:background="@drawable/course_bg"
         android:id="@+id/course1">
 
@@ -73,11 +72,11 @@
             android:layout_marginRight="10dp"/>
 
         <View
+            android:id="@+id/clickView1"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/clickView1"
-            android:clickable="true"
-            android:background="@drawable/ripple_anim2"/>
+            android:background="@drawable/ripple_anim2"
+            android:clickable="true" />
 
     </RelativeLayout>
 

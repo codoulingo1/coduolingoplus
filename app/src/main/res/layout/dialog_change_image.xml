@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="15dp">
+
+    <TextView
+        android:id="@+id/textView14"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="בחר אפשרות"
+        android:fontFamily="@font/rubik_bold"
+        android:textSize="26sp"
+        android:layout_alignParentRight="true" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="30sp"
+        android:textSize="20sp"
+        android:fontFamily="@font/rubik_light"
+        android:text="צילום תמונה"
+        android:layout_below="@id/textView14"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="15dp"
+        android:id="@+id/textView15"
+        android:clickable="true"
+        android:background="?attr/selectableItemBackground"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"
+        android:layout_below="@id/textView15"
+        android:layout_marginTop="7dp"
+        android:id="@id/line1"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="30sp"
+        android:text="בחירת תמונה מהגלריה"
+        android:layout_below="@+id/line1"
+        android:textSize="20sp"
+        android:fontFamily="@font/rubik_light"
+        android:layout_marginTop="5dp"
+        android:layout_alignParentRight="true"
+        android:id="@+id/textView16"
+        android:clickable="true"
+        android:background="?attr/selectableItemBackground"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"
+        android:layout_below="@id/textView16"
+        android:layout_marginTop="7dp"
+        android:id="@id/line3"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="30sp"
+        android:layout_below="@+id/line3"
+        android:textSize="20sp"
+        android:fontFamily="@font/rubik_light"
+        android:layout_marginTop="5dp"
+        android:layout_alignParentRight="true"
+        android:text="מחק תמונת פרופיל"
+        android:clickable="true"
+        android:background="?attr/selectableItemBackground"
+        android:id="@+id/deleteProfilePic"/>
+
+    <ImageView
+        android:id="@+id/profilePreview"
+        android:layout_width="300dp"
+        android:layout_height="240dp"
+        android:layout_marginTop="20dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/deleteProfilePic"
+        android:visibility="gone"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="שמירת תמונה"
+        android:textSize="24sp"
+        android:fontFamily="@font/rubik_light"
+        android:layout_below="@id/profilePreview"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:id="@+id/saveImageBtn"
+        android:visibility="gone"/>
+
+    <ProgressBar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+        android:layout_below="@id/saveImageBtn"
+        android:layout_marginTop="15dp"
+        android:id="@+id/uploadProgressBar"
+        android:visibility="gone"/>
+
+</RelativeLayout>
