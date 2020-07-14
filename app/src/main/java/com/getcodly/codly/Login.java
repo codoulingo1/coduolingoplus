@@ -137,12 +137,11 @@ public class Login extends AppCompatActivity {
 
     private void handleSignInResult(Task<GoogleSignInAccount> completedTask){
         try {
-
             GoogleSignInAccount acc = completedTask.getResult(ApiException.class);
-            Toast.makeText(Login.this,"Signed In Successfully",Toast.LENGTH_SHORT).show();
+            Toast.makeText(Login.this,"Signed In Successfully", Toast.LENGTH_SHORT).show();
             FirebaseGoogleAuth(acc);
         }
-        catch (ApiException e){
+        catch (ApiException e) {
             Toast.makeText(Login.this,"Sign In Failed",Toast.LENGTH_SHORT).show();
             FirebaseGoogleAuth(null);
         }
