@@ -32,7 +32,7 @@
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".Login"
+            android:name=".mainScreen"
             android:label="@string/title_activity_courses_screen"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
@@ -77,7 +77,7 @@
             android:name=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".mainScreen"
+            android:name=".Login"
             android:theme="@style/AppTheme.NoActionBar"> <!-- This is the default activity! -->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

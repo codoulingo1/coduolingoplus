@@ -67,11 +67,11 @@ public class sign_upActivity extends AppCompatActivity {
             } catch (Exception e){
                 personPhoto = "";
             }
-            ReadWrite.write(this.getFilesDir()+ File.separator + "user", personEmail.replace('.', ' ') + "G");
+            ReadWrite.write(this.getFilesDir()+ File.separator + "user", user.getUid());
             FirebaseDatabase database = FirebaseDatabase.getInstance();
 
             DatabaseReference myRef = database.getReference("Users");
-            DatabaseReference fireBase = myRef.child(String.valueOf(personEmail.replace('.', ' ') + "G"));
+            DatabaseReference fireBase = myRef.child(String.valueOf(user.getUid()));
             fireBase.child("id").setValue("nonGmail");
             fireBase.child("email").setValue(personEmail);
             fireBase.child("imgUrl").setValue(personPhoto);

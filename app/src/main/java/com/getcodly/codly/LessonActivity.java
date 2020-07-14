@@ -216,7 +216,7 @@ public class LessonActivity extends AppCompatActivity {
             overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
         }
         else{
-            qs.setText("finished");
+            //qs.setText("finished");
         }}
     public void progress(){
         int b = 100 * (j-1);

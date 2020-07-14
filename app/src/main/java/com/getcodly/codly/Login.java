@@ -181,11 +181,11 @@ public class Login extends AppCompatActivity {
                 newFile.mkdirs();
                 Log.d("Create", "dir");
             }*/
-            ReadWrite.write(this.getFilesDir()+File.separator+ "user", personEmail.replace('.', ' ') + "G");
+            ReadWrite.write(this.getFilesDir()+File.separator+ "user", account.getId());
             FirebaseDatabase database = FirebaseDatabase.getInstance();
             if(!emails.contains(personEmail.replace('.', ' ') + "G")){
                 DatabaseReference myRef = database.getReference("Users");
-                DatabaseReference user = myRef.child(String.valueOf(personEmail.replace('.', ' ') + "G"));
+                DatabaseReference user = myRef.child(String.valueOf(account.getId()));
                 user.child("id").setValue(personId);
                 user.child("email").setValue(personEmail);
                 user.child("imgUrl").setValue(personPhoto.toString());
