@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -30,12 +31,15 @@ public class sign_upActivity extends AppCompatActivity {
     Button mLoginBtn;
     String personPhoto;
     EditText inp_name;
+    private FirebaseAnalytics mFirebaseAnalytics;
+    private String method;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
         FirebaseAuth.getInstance().signOut();
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
         emailField = (EditText) findViewById(R.id.emailField2);
         passwordField = (EditText) findViewById(R.id.passwordField2);
         inp_name = (EditText) findViewById(R.id.inpName);
@@ -61,6 +65,10 @@ public class sign_upActivity extends AppCompatActivity {
         if(user == null){
 
         } else {
+            method = "email";
+            Bundle bundle = new Bundle();
+            bundle.putString(FirebaseAnalytics.Param.METHOD, method);
+            mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SIGN_UP, bundle);
             String personEmail = user.getEmail();
             try {
                 personPhoto = user.getPhotoUrl().toString();

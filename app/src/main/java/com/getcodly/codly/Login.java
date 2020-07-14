@@ -26,6 +26,7 @@ import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -49,12 +50,15 @@ public class Login extends AppCompatActivity {
     ImageButton sign_up_email;
     ImageButton imgBtnGoogle;
     TextView loginWithExisting;
+    private FirebaseAnalytics mFirebaseAnalytics;
+    private String method;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
         emails=DownloadReadlessons.get_emails();
         sign_up_email = (ImageButton) findViewById(R.id.imageButtonMail);
         imgBtnGoogle = (ImageButton) findViewById(R.id.imageButtonGoogle);
@@ -132,7 +136,7 @@ public class Login extends AppCompatActivity {
     }
 
     private void handleSignInResult(Task<GoogleSignInAccount> completedTask){
-        try{
+        try {
 
             GoogleSignInAccount acc = completedTask.getResult(ApiException.class);
             Toast.makeText(Login.this,"Signed In Successfully",Toast.LENGTH_SHORT).show();
@@ -170,6 +174,7 @@ public class Login extends AppCompatActivity {
     private void updateUI(FirebaseUser fUser){
         GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(getApplicationContext());
         if(account !=  null){
+
             String personName = account.getDisplayName();
             String personGivenName = account.getGivenName();
             String personFamilyName = account.getFamilyName();
@@ -183,7 +188,7 @@ public class Login extends AppCompatActivity {
             }*/
             ReadWrite.write(this.getFilesDir()+File.separator+ "user", personEmail.replace('.', ' ') + "G");
             FirebaseDatabase database = FirebaseDatabase.getInstance();
-            if(!emails.contains(personEmail.replace('.', ' ') + "G")){
+            if(!emails.contains(personEmail.replace('.', ' ') + "G")) {
                 DatabaseReference myRef = database.getReference("Users");
                 DatabaseReference user = myRef.child(String.valueOf(personEmail.replace('.', ' ') + "G"));
                 user.child("id").setValue(personId);
@@ -200,10 +205,12 @@ public class Login extends AppCompatActivity {
                 user.child("xp").setValue(0);
                 user.child("progress").setValue("");
                 user.child("friends").setValue("");
-                Toast.makeText(Login.this,"שלום " + personName ,Toast.LENGTH_SHORT).show();
+                method = "Google";
+                Bundle bundle = new Bundle();
+                bundle.putString(FirebaseAnalytics.Param.METHOD, method);
+                mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SIGN_UP, bundle);
                 startActivity(new Intent(Login.this, mainScreen.class));
         }else{
-                Toast.makeText(Login.this,"שלום " + personName ,Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(Login.this, mainScreen.class));
         }
         }

@@ -51,7 +51,6 @@ public class finalLesson extends AppCompatActivity {
 
             }
         });
-
         finishLsnBtn = findViewById(R.id.finishLsnBtn);
         finishLsnBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,6 +58,7 @@ public class finalLesson extends AppCompatActivity {
                 StartAdTransfer();
             }
         });
+        //finishLsnBtn.setVisibility(View.INVISIBLE);
 
         mInterstitialAd = new InterstitialAd(this);
         //mInterstitialAd.setAdUnitId("ca-app-pub-8750577101117973/5953828477"); Real ad ID, not for testing!
@@ -71,15 +71,20 @@ public class finalLesson extends AppCompatActivity {
                 startActivity(new Intent(finalLesson.this , tree.class));
                 mInterstitialAd.loadAd(new AdRequest.Builder().build());
             }
+            @Override
+            public void onAdFailedToLoad(int errorCode) {
+                Log.d("AdError", String.valueOf(errorCode));
+                Log.d("AdError", "savta");
+            }
         });
-
+        something();
     }
 
     public void StartAdTransfer(){
         if (mInterstitialAd.isLoaded()){
             mInterstitialAd.show();
         } else {
-            startActivity(new Intent(this, tree.class));
+            //startActivity(new Intent(this, tree.class));
         }
     }
 
@@ -167,8 +172,10 @@ public class finalLesson extends AppCompatActivity {
                 if(!str_old_progress.contains(MainActivity.id)) {
                     //user.child("progress").setValue(old_progress + " " + MainActivity.id);
                 }
-                startActivity(new Intent(finalLesson.this, finalLesson.class));
+
+                finishLsnBtn.setVisibility(View.VISIBLE);
             }
+
         }.start();
     }
 
