@@ -43,65 +43,48 @@ public class MainActivity extends AppCompatActivity {
         builder.setView(R.layout.activity_main);
         final AlertDialog dialog = builder.create();
         dialog.setMessage("טוען שיעור: " + name);
-        if(tree.LessonType.equals("practice")){
-            DownloadReadlessons.downloadPractice(tree.practiceID, 5, MainActivity.this);
+        for (int i = 1; i<20; i++){
+            try {
+                Target target = new Target() {
+                    @Override
+                    public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
+                    }
+
+                    @Override
+                    public void onBitmapFailed(Drawable errorDrawable) {
+
+                    }
+
+                    @Override
+                    public void onPrepareLoad(Drawable placeHolderDrawable) {
+
+                    }
+                };
+                Picasso.with(MainActivity.this).load(DownloadReadlessons.readImage(id, name, String.valueOf(i), MainActivity.this)).resizeDimen(R.dimen.image_size, R.dimen.image_size).into(target);
+                Log.d("imageUrl", DownloadReadlessons.readImage(id, name, String.valueOf(i), MainActivity.this));
+            }
+            catch (Exception e) {
+                break;
+            }
         }
-        DownloadReadlessons.downloadlesson(id, MainActivity.this);
-
-        mcountdown = new CountDownTimer(1, 1) {
-            @Override
-            public void onTick(long l) {
-                //dialog.show();
-                Log.d("Loading", "Loading");
-                progressTime();
-                loadingTextView.setText("טוען שיעור: " + name);
-            }
-
-            @Override
-            public void onFinish() {
-                dialog.dismiss();
-                for (int i = 1; i<20; i++){
-                    try {
-                        Target target = new Target() {
-                            @Override
-                            public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
-                            }
-
-                            @Override
-                            public void onBitmapFailed(Drawable errorDrawable) {
-
-                            }
-
-                            @Override
-                            public void onPrepareLoad(Drawable placeHolderDrawable) {
-
-                            }
-                        };
-                        Picasso.with(MainActivity.this).load(DownloadReadlessons.readImage(id, name, String.valueOf(i), MainActivity.this)).resizeDimen(R.dimen.image_size, R.dimen.image_size).into(target);
-                        Log.d("imageUrl", DownloadReadlessons.readImage(id, name, String.valueOf(i), MainActivity.this));
-                    }
-                    catch (Exception e) {
-                        break;
-                    }
+        if(tree.LessonType.equals("practice")){
+            DownloadReadlessons.downloadPractice(tree.practiceID, 5, MainActivity.this, new DownloadReadlessons.MyCallback() {
+                @Override
+                public void onCallback(String value) {
+                    Log.d("MainActivity", value);
+                    startActivity(new Intent(MainActivity.this, LessonActivity.class));
                 }
-                mcountdown = new CountDownTimer(2000, 1000) {
-                    @Override
-                    public void onTick(long l) {
-                        //dialog.show();
-                        Log.d("Loading", "Loading");
-                        progressTime();
-                        loadingTextView.setText("טוען שיעור: " + name);
-                    }
-
-                    @Override
-                    public void onFinish() {
-                        dialog.dismiss();
-                        startActivity(new Intent(MainActivity.this, LessonActivity.class));
-                    }
-                }.start();
-            }
-        }.start();
-
+            });
+        }
+        else {
+            DownloadReadlessons.downloadlesson(id, MainActivity.this, new DownloadReadlessons.MyCallback() {
+                @Override
+                public void onCallback(String value) {
+                    Log.d("MainActivity", value);
+                    startActivity(new Intent(MainActivity.this, LessonActivity.class));
+                }
+            });
+        }
     } //savta
 
     void progressTime(){

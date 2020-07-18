@@ -50,18 +50,15 @@ public class profileFragment extends Fragment {
     TextView setName;
     public static ArrayList<String> list;
     String url_old;
+    boolean b = false;
+    String streak;
     public static String name;
-    CountDownTimer mcountdown;
     private GoogleSignInClient mGoogleSignInClient;
     FirebaseAuth mAuth;
     Button toSearch;
-    Button ןמהןאקף;
     HashMap<String, String> old_streak;
     TextView setStreak;
     public static HashMap<String, String> ret;
-    Button changeName;
-    EditText cgName;
-    boolean changed = false;
     ImageButton profileSettingsBtn;
     private FriendsFragment friendsFragment;
 
@@ -77,6 +74,7 @@ public class profileFragment extends Fragment {
         mAuth = FirebaseAuth.getInstance();
         tabLayout = (TabLayout) v.findViewById(R.id.tabs);
         profileSettingsBtn = (ImageButton) v.findViewById(R.id.profileSettings);
+        //listView = (ListView) v.findViewById(R.id.viewPager);
         profImg = (ImageView) v.findViewById(R.id.imageView2);
         setStreak = (TextView) v.findViewById(R.id.streakView);
         setName = (TextView) v.findViewById(R.id.set_name);
@@ -92,10 +90,6 @@ public class profileFragment extends Fragment {
                 .requestEmail()
                 .build();
         mGoogleSignInClient = GoogleSignIn.getClient(getActivity(), gso);
-        old_streak = DownloadReadlessons.get_last_lesson(ReadWrite.read(getActivity().getFilesDir()+File.separator+ "user"));
-        String idp = ReadWrite.read(getActivity().getFilesDir()+ File.separator + "user");
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("Users").child(idp);
         profileSettingsBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -107,111 +101,46 @@ public class profileFragment extends Fragment {
             }
         });
 
-        myRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                // This method is called once with the initial value and again
-                // whenever data at this location is updated.
-                url_old = dataSnapshot.child("imgUrl").getValue(String.class);//paste here google drive picture shareable link but change "open?" to "uc?"
-                Log.d("profile_Activity", url_old);
-                name = dataSnapshot.child("name").getValue(String.class);
-            }
 
-            @Override
-            public void onCancelled(DatabaseError error) {
-                // Failed to read value
-                Log.w("Failed to read value.", error.toException());
-            }
-        });
-
-        mcountdown = new CountDownTimer(1000, 1000) {
-            @Override
-            public void onTick(long l) {
-                //dialog.show();
-                Log.d("Loading", "Loading");
-            }
-
-            @Override
-            public void onFinish() {
-                try {
-                    Picasso.with(getActivity()).load(url_old).resizeDimen(R.dimen.image_size, R.dimen.image_size).placeholder(R.drawable.goj).into(profImg);
-                } catch (Exception e) {
-                    profImg.setImageResource(R.drawable.user_pic);
-                }
-                try {
-                    setName.setText(name);
-                    ret = new HashMap<>();
-                    int i = 0;
-                    list = new ArrayList<String>();
-                    for (String friend : old_streak.get("friends").split("-")) {
+        try {
+            old_streak = DownloadReadlessons.get_last_lesson2(ReadWrite.read(getActivity().getFilesDir() + File.separator + "user"), new DownloadReadlessons.HashCallback() {
+                @Override
+                public void onCallback(HashMap value) {
+                    if (!b) {
+                        b = true;
+                        name = (String) value.get("name");
+                        streak = (String) value.get("streak");
+                        url_old = (String) value.get("img");
+                        setName.setText(name);
+                        setStreak.setText(streak);
+                        ret = new HashMap<>();
+                        int i = 0;
+                        list = new ArrayList<String>();
                         try {
-                            list.add(friend.split("/")[1]);
-                            ret.put(String.valueOf(i), friend.split("/")[0]);
-                            Log.d("hi", friend.split("/")[0]);
-                            i++;
+                            Picasso.with(getActivity()).load(url_old).resizeDimen(R.dimen.image_size, R.dimen.image_size).placeholder(R.drawable.goj).into(profImg);
                         } catch (Exception e) {
-
+                            profImg.setImageResource(R.drawable.user_pic);
                         }
-                    }
-                    String[] stringArray = list.toArray(new String[list.size()]);
-                    ArrayAdapter<String> itemsAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, android.R.id.text1, stringArray);
-                    listView.setAdapter(itemsAdapter);
-                    int year = Integer.parseInt(old_streak.get("year"));
-                    int month = Integer.parseInt(old_streak.get("month"));
-                    int day = Integer.parseInt(old_streak.get("date"));
-                    Calendar calendar = Calendar.getInstance();
+                        for (String friend : value.get("friends").toString().split("-")) {
+                            try {
+                                list.add(friend.split("/")[1]);
+                                ret.put(String.valueOf(i), friend.split("/")[0]);
+                                Log.d("hi", friend.split("/")[0]);
+                                i++;
+                            } catch (Exception e) {
 
-                    // Move calendar to yesterday
-                    calendar.add(Calendar.DATE, -1);
-
-                    // Get current date of calendar which point to the yesterday now
-                    int yesterday = calendar.get(Calendar.DATE);
-                    Calendar calendar_3 = Calendar.getInstance();
-
-                    // Move calendar to yesterday
-                    calendar_3.add(Calendar.DATE, -2);
-
-                    // Get current date of calendar which point to the yesterday now
-                    int bf = calendar_3.get(Calendar.DATE);
-                    Calendar calendar2 = Calendar.getInstance();
-                    int today = calendar2.get(Calendar.DATE);
-                    Log.d("hello", String.valueOf(today));
-                    if (year == calendar.get(Calendar.YEAR) - 1900) {
-                        Log.d("1", "1");
-                        if (month == calendar.get(Calendar.MONTH)) {
-                            Log.d("2", "2");
-                            if (day == yesterday) {
-                                Log.d("3", "3");
-                                setStreak.setText("Streak: " + String.valueOf(Integer.parseInt(old_streak.get("streak"))));
-                            } else if (day == today) {
-                                Log.d("3", "3");
-                                setStreak.setText("Streak: " + String.valueOf(old_streak.get("streak")));
-
-                            } else if (day == bf && old_streak.get("streak freeze").equals("true")) {
-                                setStreak.setText("Streak: " + String.valueOf(old_streak.get("streak")));
-                                FirebaseDatabase database = FirebaseDatabase.getInstance();
-                                DatabaseReference myRef = database.getReference("Users").child(ReadWrite.read(getActivity().getFilesDir() + File.separator + "user"));
-                                myRef.child("lastLessonD").child("year").setValue(calendar.get(Calendar.YEAR) - 1900);
-                                myRef.child("lastLessonD").child("month").setValue(calendar.get(Calendar.MONTH));
-                                myRef.child("lastLessonD").child("date").setValue(calendar.get(Calendar.DATE));
-                                myRef.child("streak freeze").setValue("false");
-
-                            } else {
-                                Log.d("3", "3");
-                                setStreak.setText("Streak: 0");
-                                FirebaseDatabase database = FirebaseDatabase.getInstance();
-                                DatabaseReference myRef = database.getReference("Users").child(ReadWrite.read(getActivity().getFilesDir() + File.separator + "user"));
-                                myRef.child("streak freeze").setValue("false");
-                                myRef.child("streak").setValue(0);
                             }
                         }
+                        String[] stringArray = list.toArray(new String[list.size()]);
+                        ArrayAdapter<String> itemsAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, android.R.id.text1, stringArray);
+                        //listView.setAdapter(itemsAdapter);
                     }
                 }
-                catch (Exception e){
+            });
+        }
+        catch (Exception e){
 
-                }
-            }
-        }.start();
+        }
 
         /*listView.setOnItemClickListener(new AdapterView.OnItemClickListener()
         {
