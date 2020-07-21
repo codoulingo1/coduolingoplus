@@ -132,7 +132,11 @@ public class profileFragment extends Fragment {
                             }
                         }
                         String[] stringArray = list.toArray(new String[list.size()]);
-                        ArrayAdapter<String> itemsAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, android.R.id.text1, stringArray);
+                        try {
+                            ArrayAdapter<String> itemsAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, android.R.id.text1, stringArray);
+                        }catch (Exception e){
+
+                        }
                         //listView.setAdapter(itemsAdapter);
                     }
                 }

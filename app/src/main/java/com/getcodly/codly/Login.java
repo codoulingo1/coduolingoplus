@@ -189,6 +189,7 @@ public class Login extends AppCompatActivity {
             FirebaseDatabase database = FirebaseDatabase.getInstance();
             if(!emails.contains(personEmail.replace('.', ' ') + "G")) {
                 DatabaseReference myRef = database.getReference("Users");
+                myRef.child(String.valueOf(account.getId())).setValue("a");
                 DatabaseReference user = myRef.child(String.valueOf(account.getId()));
                 user.child("id").setValue(personId);
                 user.child("email").setValue(personEmail);
