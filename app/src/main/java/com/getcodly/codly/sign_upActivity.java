@@ -40,7 +40,7 @@ public class sign_upActivity extends AppCompatActivity {
                     ".{4,}" +               //at least 4 characters
                     "$");
     FirebaseAuth.AuthStateListener mAuthListener;
-    FirebaseAuth mAuth;
+    private FirebaseAuth mAuth;
     TextInputLayout emailField;
     TextInputLayout passwordField;
     ImageButton mLoginBtn;
@@ -133,6 +133,8 @@ public class sign_upActivity extends AppCompatActivity {
             String email = emailField.getEditText().getText().toString();
             String password = passwordField.getEditText().getText().toString();
 
+            Log.d("emailThing", email + password);
+
             mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
@@ -141,7 +143,7 @@ public class sign_upActivity extends AppCompatActivity {
                         FirebaseUser user = mAuth.getCurrentUser();
                         updateUI(user);
                     } else {
-                        // If sign in fails, display a message to the user.
+                        Log.w("taskthing", task.getException());
                         emailError.setVisibility(View.VISIBLE);
                         updateUI(null);
                     }

@@ -272,7 +272,6 @@ public class DownloadReadlessons {
                     // whenever data at this location is updated.
                     for (DataSnapshot fire_email : dataSnapshot.getChildren()) {
                         Address.add(fire_email.getKey());
-
                     }
 
                 }
