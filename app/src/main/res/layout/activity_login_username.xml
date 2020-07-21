@@ -3,55 +3,82 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent"
+    android:padding="15dp"
+    android:background="#F3F4F9">
+
+    <ImageView
+        android:layout_width="350dp"
+        android:layout_height="300dp"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="25dp"
+        android:src="@drawable/ic_undraw_secure_login_pdn4"
+        android:id="@+id/welcome_img"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ברוכים הבאים!"
+        android:textSize="36dp"
+        android:layout_below="@+id/welcome_img"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="15dp"
+        android:fontFamily="@font/rubik_medium"
+        android:textColor="#42445F"
+        android:id="@+id/signuplabel"/>
 
     <Button
         android:id="@+id/buttonReset"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Password Reset"
-        tools:layout_editor_absoluteX="133dp"
-        tools:layout_editor_absoluteY="546dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="350dp"/>
+        android:layout_marginTop="350dp"
+        android:visibility="gone"/>
 
-    <TextView
-        android:layout_width="wrap_content"
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_marginTop="25dp"
-        android:layout_marginRight="10dp"
-        android:text="מייל"
-        android:textSize="24sp" />
+        android:layout_below="@id/signuplabel"
+        android:layout_marginTop="10dp"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/emailField2">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_marginTop="125dp"
-        android:layout_marginRight="10dp"
-        android:text="סיסמה"
-        android:textSize="24sp" />
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:ems="10"
+            android:hint="אימייל"
+            android:fontFamily="@font/rubik_medium"
+            android:textColor="#42445F"
+            android:inputType="textEmailAddress"
+            android:background="@drawable/edit_text_round"
+            android:padding="10dp" />
 
-    <EditText
-        android:id="@+id/emailField"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textEmailAddress"
-        android:layout_marginTop="25dp"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="100dp"/>
+    </com.google.android.material.textfield.TextInputLayout>
 
-    <EditText
-        android:id="@+id/passwordField"
-        android:layout_width="300dp"
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPassword"
-        android:layout_marginTop="125dp"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="100dp"/>
+        android:layout_below="@id/emailField2"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/passwordField">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:ems="10"
+            android:hint="סיסמה"
+            android:fontFamily="@font/rubik_medium"
+            android:textColor="#42445F"
+            android:inputType="textPassword"
+            android:background="@drawable/edit_text_round"
+            android:padding="10dp" />
+
+    </com.google.android.material.textfield.TextInputLayout>
 
     <Button
         android:id="@+id/signInBtn"
@@ -59,14 +86,51 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="250dp"
-        android:text="התחבר"/>
-    <Button
-        android:id="@+id/signUpBtn1"
+        android:text="התחבר"
+        android:visibility="gone"/>
+
+    <ImageButton
+        android:id="@+id/signInBtn1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="500dp"
-        android:text="הרשמה"/>
+        android:layout_marginTop="70dp"
+        android:src="@drawable/signinbtn"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter"
+        android:background="@null"
+        android:layout_below="@id/passwordField"
+        />
+
+    <ImageButton
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/ic_back"
+        android:scaleType="fitCenter"
+        android:background="#F3F4F9"
+        android:id="@+id/backBtn"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/passwordField"
+        android:layout_marginTop="10dp"
+        android:text="שכחתי סיסמה"
+        android:textColor="#42445F"
+        android:fontFamily="@font/rubik_light"
+        android:textSize="22dp"
+        android:id="@+id/forgotPassword"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/signInBtn1"
+        android:layout_marginTop="10dp"
+        android:text="@string/createNew"
+        android:textColor="#42445F"
+        android:fontFamily="@font/rubik_light"
+        android:textSize="26dp"
+        android:id="@+id/createAccount"/>
 
 
 </RelativeLayout>

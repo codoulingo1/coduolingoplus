@@ -59,10 +59,14 @@ public class Search extends AppCompatActivity {
                         // This method is called once with the initial value and again
                         // whenever data at this location is updated.
                         for (DataSnapshot fire_email : dataSnapshot.getChildren()) {
-                            if(fire_email.child("name").getValue(String.class).contains(ed.getQuery().toString().toLowerCase())){
-                                names.add(fire_email.child("name").getValue(String.class));
-                                hashMap.put(String.valueOf(i), fire_email.getKey());
-                                i++;
+                            try {
+                                if(fire_email.child("name").getValue(String.class).toLowerCase().contains(ed.getQuery().toString().toLowerCase())){
+                                    names.add(fire_email.child("name").getValue(String.class));
+                                    hashMap.put(String.valueOf(i), fire_email.getKey());
+                                    i++;
+                                }
+                            } catch (Exception e) {
+
                             }
                         }
                     }

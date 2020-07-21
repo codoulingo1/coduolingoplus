@@ -6,13 +6,17 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -21,18 +25,31 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.io.File;
+import java.util.regex.Pattern;
 
 public class sign_upActivity extends AppCompatActivity {
 
+    private static final Pattern PASSWORD_PATTERN =
+            Pattern.compile("^" +
+                    //"(?=.*[0-9])" +         //at least 1 digit
+                    //"(?=.*[a-z])" +         //at least 1 lower case letter
+                    //"(?=.*[A-Z])" +         //at least 1 upper case letter
+                    //"(?=.*[a-zA-Z])" +      //any letter
+                    //"(?=.*[@#$%^&+=])" +    //at least 1 special character
+                    "(?=\\S+$)" +           //no white spaces
+                    ".{4,}" +               //at least 4 characters
+                    "$");
     FirebaseAuth.AuthStateListener mAuthListener;
     FirebaseAuth mAuth;
-    EditText emailField;
-    EditText passwordField;
-    Button mLoginBtn;
+    TextInputLayout emailField;
+    TextInputLayout passwordField;
+    ImageButton mLoginBtn;
     String personPhoto;
-    EditText inp_name;
+    TextInputLayout inp_name;
     private FirebaseAnalytics mFirebaseAnalytics;
     private String method;
+    ImageButton backBtn;
+    TextView emailError;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,15 +57,23 @@ public class sign_upActivity extends AppCompatActivity {
         setContentView(R.layout.activity_sign_up);
         FirebaseAuth.getInstance().signOut();
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
-        emailField = (EditText) findViewById(R.id.emailField2);
-        passwordField = (EditText) findViewById(R.id.passwordField2);
-        inp_name = (EditText) findViewById(R.id.inpName);
-        mLoginBtn = (Button) findViewById(R.id.signInBtn2);
+        emailField = findViewById(R.id.emailField2);
+        passwordField = findViewById(R.id.passwordField);
+        backBtn = findViewById(R.id.backBtn);
+        inp_name =  findViewById(R.id.usernameField);
+        mLoginBtn = findViewById(R.id.signUpBtn1);
+        emailError = findViewById(R.id.emailError);
         mAuth = FirebaseAuth.getInstance();
         mLoginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 signUp();
+            }
+        });
+        backBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(sign_upActivity.this, Login.class));
             }
         });
     }
@@ -61,8 +86,8 @@ public class sign_upActivity extends AppCompatActivity {
         updateUI(currentUser);
     }
 
-    private void updateUI(FirebaseUser user){
-        if(user == null){
+    private void updateUI(FirebaseUser user) {
+        if (user == null) {
 
         } else {
             method = "email";
@@ -72,10 +97,10 @@ public class sign_upActivity extends AppCompatActivity {
             String personEmail = user.getEmail();
             try {
                 personPhoto = user.getPhotoUrl().toString();
-            } catch (Exception e){
+            } catch (Exception e) {
                 personPhoto = "";
             }
-            ReadWrite.write(this.getFilesDir()+ File.separator + "user", user.getUid());
+            ReadWrite.write(this.getFilesDir() + File.separator + "user", user.getUid());
             FirebaseDatabase database = FirebaseDatabase.getInstance();
 
             DatabaseReference myRef = database.getReference("Users");
@@ -83,7 +108,7 @@ public class sign_upActivity extends AppCompatActivity {
             fireBase.child("id").setValue("nonGmail");
             fireBase.child("email").setValue(personEmail);
             fireBase.child("imgUrl").setValue(personPhoto);
-            String personName = inp_name.getText().toString();
+            String personName = inp_name.getEditText().getText().toString();
             fireBase.child("name").setValue(personName);
             fireBase.child("pas").setValue(Text.getRandomString(10));
             fireBase.child("phoneNum").setValue(0);
@@ -95,31 +120,71 @@ public class sign_upActivity extends AppCompatActivity {
             fireBase.child("progress").setValue("");
             fireBase.child("xp").setValue(0);
             fireBase.child("friends").setValue("");
-            Toast.makeText(sign_upActivity.this,"שלום " + personName ,Toast.LENGTH_SHORT).show();
-            startActivity(new Intent(sign_upActivity.this, tree.class));
+            Toast.makeText(sign_upActivity.this, "שלום " + personName, Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(sign_upActivity.this, mainScreen.class));
             Toast.makeText(sign_upActivity.this, "Success", Toast.LENGTH_LONG).show();
         }
     }
-    private void signUp(){
-        String email = emailField.getText().toString();
-        String password = passwordField.getText().toString();
 
-        mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if (task.isSuccessful()) {
-                    // Sign in success, update UI with the signed-in user's information
-                    Log.d("savta", "createUserWithEmail:success");
-                    FirebaseUser user = mAuth.getCurrentUser();
-                    updateUI(user);
-                } else {
-                    // If sign in fails, display a message to the user.
-                    Log.w("savta", "createUserWithEmail:failure", task.getException());
-                    Toast.makeText(sign_upActivity.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
-                    updateUI(null);
+    private void signUp() {
+        if(!validateEmail() | !validatePassword()){
+            return;
+        } else {
+            String email = emailField.getEditText().getText().toString();
+            String password = passwordField.getEditText().getText().toString();
+
+            mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                @Override
+                public void onComplete(@NonNull Task<AuthResult> task) {
+                    if (task.isSuccessful()) {
+                        Log.d("savta", "createUserWithEmail:success");
+                        FirebaseUser user = mAuth.getCurrentUser();
+                        updateUI(user);
+                    } else {
+                        // If sign in fails, display a message to the user.
+                        emailError.setVisibility(View.VISIBLE);
+                        updateUI(null);
+                    }
+
                 }
+            });
+        }
+    }
 
-            }
-        });
+    private Boolean validateEmail() {
+        String emailInput = emailField.getEditText().getText().toString().trim();
+
+        if (emailInput.isEmpty()) {
+            emailField.setErrorEnabled(true);
+            emailField.setError("אנא הכניסו מייל.");
+            return false;
+        } else if (!Patterns.EMAIL_ADDRESS.matcher(emailInput).matches()) {
+            emailField.setErrorEnabled(true);
+            emailField.setError("אנא הכניסו מייל תקין.");
+            return false;
+        } else {
+            emailField.setError(null);
+            emailField.setErrorEnabled(false);
+            return true;
+        }
+    }
+
+    private Boolean validatePassword(){
+        String passInput = passwordField.getEditText().getText().toString();
+
+        if (passInput.isEmpty()){
+            passwordField.setErrorEnabled(true);
+            passwordField.setError("אנא הכניסו סיסמה.");
+            return false;
+
+        } else if(!PASSWORD_PATTERN.matcher(passInput).matches()){
+            passwordField.setErrorEnabled(true);
+            passwordField.setError("הסיסמה חייבת להיות לפחות 4 תווים וללא רווחים.");
+            return false;
+        } else {
+            emailField.setError(null);
+            emailField.setErrorEnabled(false);
+            return true;
+        }
     }
 }

@@ -5,11 +5,15 @@ import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.os.Environment;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -17,13 +21,19 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDialogFragment;
 import androidx.core.app.ActivityCompat;
 
+import java.io.BufferedReader;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
 public class SaveDialog extends AppCompatDialogFragment {
 
     private EditText mFileName;
     private ImageButton saveBtn;
+    String CodeToSave;
+    Boolean isButtonEnabled = false;
 
     @NonNull
     @Override
@@ -37,25 +47,100 @@ public class SaveDialog extends AppCompatDialogFragment {
 
         mFileName = (EditText) view.findViewById(R.id.fileName);
         saveBtn = view.findViewById(R.id.saveBtn);
+        CodeToSave = iframe2.htmlCodeParent;
+        saveBtn.setClickable(false);
+
+
+        mFileName.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (mFileName.getText().toString().trim().length() > 0){
+                    saveBtn.setImageResource(R.drawable.save_btn_color);
+                    isButtonEnabled = true;
+                } else {
+                    saveBtn.setImageResource(R.drawable.save_btn_gray);
+                    isButtonEnabled = false;
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+        saveBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (isButtonEnabled == true){
+                    mFileName.setText("");
+                    saveBtn.setImageResource(R.drawable.save_btn_gray);
+                    isButtonEnabled = false;
+                    save(v);
+                    //dismiss();
+                }
+            }
+        });
 
         return  builder.create();
     }
 
     public void save(View v){
-        String fileName = mFileName.getText().toString();
+        String fileName = mFileName.getText().toString().trim();
         FileOutputStream fos = null;
 
         try {
-
             fos = getActivity().openFileOutput(fileName, Context.MODE_PRIVATE);
-            //fos.write();
+            fos.write(CodeToSave.getBytes());
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (fos != null){
+                try {
+                    fos.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
         }
     }
 
     public void load(View v){
+        String fileName = mFileName.getText().toString();
+        FileInputStream fis = null;
+        try {
+            fis = getActivity().openFileInput(fileName);
+            InputStreamReader isr = new InputStreamReader(fis);
+            BufferedReader br = new BufferedReader(isr);
+            StringBuilder sb = new StringBuilder();
+            String text;
 
+            while((text = br.readLine()) != null){
+                sb.append(text).append("\n");
+            }
+
+            mFileName.setText(sb.toString());
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (fis != null){
+                try {
+                    fis.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
     }
 }

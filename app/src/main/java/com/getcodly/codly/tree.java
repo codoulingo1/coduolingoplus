@@ -94,7 +94,7 @@ public class tree extends AppCompatActivity {
                             Log.d("3", "3");
                             streak.setText(String.valueOf(Integer.parseInt(date.get("streak"))));
                         }
-                        else if(day==today){
+                        else if(day==today) {
                             Log.d("3", "3");
                             streak.setText(String.valueOf(date.get("streak")));
                         }
@@ -106,7 +106,6 @@ public class tree extends AppCompatActivity {
                             myRef.child("lastLessonD").child("month").setValue(calendar.get(Calendar.MONTH));
                             myRef.child("lastLessonD").child("date").setValue(calendar.get(Calendar.DATE));
                             myRef.child("streak freeze").setValue("false");
-
                         }
                         else{
                             Log.d("3", "3");

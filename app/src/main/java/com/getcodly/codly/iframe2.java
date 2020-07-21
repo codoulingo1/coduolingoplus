@@ -30,6 +30,7 @@ public class iframe2 extends AppCompatActivity {
     private codeFrament CodeFrament;
     private browserFragment BrowserFragment;
     private TabLayout tabs;
+    public static String htmlCodeParent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -101,7 +102,8 @@ public class iframe2 extends AppCompatActivity {
             case R.id.saveProject:
                 Toast.makeText(iframe2.this, "Hello", Toast.LENGTH_SHORT);
                 Log.d("worked", codeFrament.htmlInp.getText().toString()); //codeFragment.htmlInp.getText().toString is the file which is supposed to be saved/shared
-
+                htmlCodeParent = codeFrament.htmlInp.getText().toString();
+                openDialog();
 
                 return true;
             case R.id.shareProject:
@@ -109,5 +111,10 @@ public class iframe2 extends AppCompatActivity {
                 return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void openDialog(){
+        SaveDialog saveDialog = new SaveDialog();
+        saveDialog.show(getSupportFragmentManager(), "save dialog");
     }
 }

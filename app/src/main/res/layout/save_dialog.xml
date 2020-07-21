@@ -44,7 +44,7 @@
         android:background="@color/white"
         android:layout_below="@id/explainText"
         android:layout_marginTop="20dp"
-        android:id="@+id/saveBtn"/>
+        android:id="@+id/saveBtn" />
 
 
 
