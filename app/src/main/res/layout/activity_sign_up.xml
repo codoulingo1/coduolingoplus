@@ -126,6 +126,7 @@
         android:scaleType="fitCenter"
         android:background="#F3F4F9"
         android:id="@+id/backBtn"/>
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
