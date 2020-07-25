@@ -25,11 +25,10 @@
         android:id="@+id/Explanation"
         android:layout_width="396dp"
         android:layout_height="371dp"
-        android:fontFamily="@font/rubik_light"
-        android:singleLine="false"
-        android:text="חופש הוא מושג מופשט המתאר העדר אילוצים ואפשרויות פעולה לא מוגבלות. שאלת החופש נוגעת להרבה תחומים בחיי האדם בהם התחום הפילוסופי, הפוליטי-מדיני, החברתי, הפסיכולוגי והמנטלי. מושג החופש מתפרש גם לסוגים שונים כגון: חירות האדם, עצמאות, חירות מחשבה, חופש הביטוי, חופש דת וחופשה "
         android:layout_below="@+id/progressBar"
         android:layout_marginTop="25dp"
+        android:fontFamily="@font/rubik_light"
+        android:singleLine="false"
         android:textDirection="anyRtl"
         android:textSize="20sp" />
 

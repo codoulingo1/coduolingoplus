@@ -23,6 +23,9 @@ public class mainScreen extends AppCompatActivity {
 
     HashMap<String, String> date;
     public static String streak;
+    public static String name;
+    public static String img;
+    public static String friends;
     public static String progress;
     FirebaseAuth mAuth;
 
@@ -60,6 +63,9 @@ public class mainScreen extends AppCompatActivity {
                 Log.d("v", "v");
                 int year = Integer.parseInt(value.get("year"));
                 progress = String.valueOf(value.get("cProgress"));
+                name = String.valueOf(value.get("name"));
+                img = String.valueOf(value.get("img"));
+                friends = String.valueOf(value.get("friends"));
                 //int month = Integer.parseInt(date.get("month"));
                 int day = Integer.parseInt(value.get("date"));
                 Calendar calendar = Calendar.getInstance();

@@ -28,6 +28,7 @@ import java.util.List;
 public class Search extends AppCompatActivity {
     CountDownTimer mcountdown;
     Handler handler;
+    boolean b;
     ListView listView;
     HashMap<String, String> hashMap;
     SearchView ed;

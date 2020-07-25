@@ -133,6 +133,7 @@ public class SettingsFragment extends Fragment {
                             DatabaseReference fireBase = myRef.child(ReadWrite.read(getActivity().getFilesDir()+File.separator + "user"));
 
                             fireBase.child("name").setValue(yourNameEditText.getText().toString());
+                            mainScreen.name = yourNameEditText.getText().toString();
                             Toast.makeText(getContext(), "השם השתנה בהצלחה", Toast.LENGTH_SHORT).show();
                             loadProfileSettings();
                             isChanged = false;
@@ -189,6 +190,7 @@ public class SettingsFragment extends Fragment {
 
     private void checkFilePermissions() {
         if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
+
 
         } else {
             Log.d("malbona", "malbona");

@@ -109,7 +109,7 @@ public class profileFragment extends Fragment {
                     if (!b) {
                         b = true;
                         name = (String) value.get("name");
-                        streak = (String) value.get("streak");
+                        streak = mainScreen.streak;
                         url_old = (String) value.get("img");
                         setName.setText(name);
                         setStreak.setText(streak);
