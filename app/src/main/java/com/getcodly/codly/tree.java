@@ -57,68 +57,7 @@ public class tree extends AppCompatActivity {
         }
         LessonActivity.j = 1;
         date = DownloadReadlessons.get_last_lesson(ReadWrite.read(this.getFilesDir()+File.separator+ "user"));
-        mcountdown = new CountDownTimer(1000, 1000) {
-            @Override
-            public void onTick(long l) {
-                //dialog.show();
-                //Log.d("Loading", "Loading");
-            }
-
-            @Override
-            public void onFinish() {
-                int year = Integer.parseInt(date.get("year"));
-                int month = Integer.parseInt(date.get("month"));
-                int day = Integer.parseInt(date.get("date"));
-                Calendar calendar = Calendar.getInstance();
-
-                // Move calendar to yesterday
-                calendar.add(Calendar.DATE, -1);
-
-                // Get current date of calendar which point to the yesterday now
-                int yesterday = calendar.get(Calendar.DATE);
-                Calendar calendar_3 = Calendar.getInstance();
-
-                // Move calendar to yesterday
-                calendar_3.add(Calendar.DATE, -2);
-
-                // Get current date of calendar which point to the yesterday now
-                int bf = calendar_3.get(Calendar.DATE);
-                Calendar calendar2 = Calendar.getInstance();
-                int today = calendar2.get(Calendar.DATE);
-                Log.d("hello", String.valueOf(today));
-                if(year==calendar.get(Calendar.YEAR)-1900){
-                    Log.d("1", "1");
-                    if(month==calendar.get(Calendar.MONTH)){
-                        Log.d("2", "2");
-                        if(day==yesterday){
-                            Log.d("3", "3");
-                            streak.setText(String.valueOf(Integer.parseInt(date.get("streak"))));
-                        }
-                        else if(day==today) {
-                            Log.d("3", "3");
-                            streak.setText(String.valueOf(date.get("streak")));
-                        }
-                        else if(day==bf && date.get("streak freeze").equals("true")){
-                            streak.setText(String.valueOf(date.get("streak")));
-                            FirebaseDatabase database = FirebaseDatabase.getInstance();
-                            DatabaseReference myRef = database.getReference("Users").child(ReadWrite.read(tree.this.getFilesDir()+File.separator + "user"));
-                            myRef.child("lastLessonD").child("year").setValue(calendar.get(Calendar.YEAR)-1900);
-                            myRef.child("lastLessonD").child("month").setValue(calendar.get(Calendar.MONTH));
-                            myRef.child("lastLessonD").child("date").setValue(calendar.get(Calendar.DATE));
-                            myRef.child("streak freeze").setValue("false");
-                        }
-                        else{
-                            Log.d("3", "3");
-                            streak.setText("0");
-                            FirebaseDatabase database = FirebaseDatabase.getInstance();
-                            DatabaseReference myRef = database.getReference("Users").child(ReadWrite.read(tree.this.getFilesDir()+File.separator + "user"));
-                            myRef.child("streak freeze").setValue("false");
-                            myRef.child("streak").setValue(0);
-                        }
-                    }
-                }
-            }
-        }.start();
+        streak.setText(mainScreen.streak);
         profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -153,7 +92,7 @@ public class tree extends AppCompatActivity {
     }
 
     void startLesson(List<String> id, String name){
-        String old_progress = String.valueOf(date.get("cProgress"));
+        String old_progress = mainScreen.progress;
         LessonType = "";
         for(String d : id){
             List<String> str_old_progress = Arrays.asList(old_progress.split(""));

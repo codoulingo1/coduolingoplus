@@ -208,7 +208,7 @@ public class DownloadReadlessons {
                 // This method is called once with the initial value and again
                 // whenever data at this location is uploaded
                 ret.put("year", dataSnapshot.child("lastLessonD").child("year").getValue().toString());
-                ret.put("month", dataSnapshot.child("lastLessonD").child("month").getValue().toString());
+                //ret.put("month", dataSnapshot.child("lastLessonD").child("month").getValue().toString());
                 ret.put("date", dataSnapshot.child("lastLessonD").child("date").getValue().toString());
                 ret.put("streak", dataSnapshot.child("streak").getValue().toString());
                 ret.put("cProgress", dataSnapshot.child("progress").getValue().toString());//2
@@ -239,7 +239,7 @@ public class DownloadReadlessons {
                     // whenever data at this location is uploaded
                     ret.put("streak", dataSnapshot.child("streak").getValue().toString());
                     ret.put("year", dataSnapshot.child("lastLessonD").child("year").getValue().toString());
-                    ret.put("month", dataSnapshot.child("lastLessonD").child("month").getValue().toString());
+                    //ret.put("month", dataSnapshot.child("lastLessonD").child("month").getValue().toString());
                     ret.put("date", dataSnapshot.child("lastLessonD").child("date").getValue().toString());
                     ret.put("cProgress", dataSnapshot.child("progress").getValue().toString());//2
                     ret.put("xp", dataSnapshot.child("xp").getValue().toString());

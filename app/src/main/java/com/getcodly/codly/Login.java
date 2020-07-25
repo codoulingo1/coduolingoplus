@@ -187,7 +187,7 @@ public class Login extends AppCompatActivity {
             }*/
             ReadWrite.write(this.getFilesDir()+File.separator+ "user", account.getId());
             FirebaseDatabase database = FirebaseDatabase.getInstance();
-            if(!emails.contains(personEmail.replace('.', ' ') + "G")) {
+            if(!emails.contains(account.getId())) {
                 DatabaseReference myRef = database.getReference("Users");
                 myRef.child(String.valueOf(account.getId())).setValue("a");
                 DatabaseReference user = myRef.child(String.valueOf(account.getId()));
@@ -198,7 +198,6 @@ public class Login extends AppCompatActivity {
                 user.child("pas").setValue(Text.getRandomString(10));
                 user.child("phoneNum").setValue("");
                 user.child("lastLessonD").child("year").setValue(0);
-                user.child("lastLessonD").child("month").setValue(0);
                 user.child("lastLessonD").child("date").setValue(0);
                 user.child("streak").setValue(1);
                 user.child("streak freeze").setValue("false");

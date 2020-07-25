@@ -28,17 +28,11 @@ import java.util.HashMap;
 
 public class FriendProfile extends AppCompatActivity {
     Button follow;
-    Button skill1;
-    Button skill2;
-    Button skill3;
     ImageView profImg;
     TextView setName;
-    String url_old;
     HashMap old_streak;
     HashMap old_friends;
     String name;
-    private Button btnSignOut;
-    CountDownTimer mcountdown;
     private GoogleSignInClient mGoogleSignInClient;
     FirebaseAuth mAuth;
     Button backToTree;
@@ -59,60 +53,33 @@ public class FriendProfile extends AppCompatActivity {
                 .build();
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
         String idp = Search.selected;
-        old_streak = DownloadReadlessons.get_last_lesson(Search.selected);
-        old_friends = DownloadReadlessons.get_last_lesson(String.valueOf(ReadWrite.read(FriendProfile.this.getFilesDir()+File.separator+ "user")));
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("Users").child(idp);
-        myRef.addValueEventListener(new ValueEventListener() {
+        old_streak = DownloadReadlessons.get_last_lesson2(Search.selected, new DownloadReadlessons.HashCallback() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                // This method is called once with the initial value and again
-                // whenever data at this location is updated.
-                url_old = dataSnapshot.child("imgUrl").getValue(String.class);//paste here google drive picture shareable link but change "open?" to "uc?"
-                Log.d("profile_Activity", url_old);
-                name = dataSnapshot.child("name").getValue(String.class);
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError error) {
-                // Failed to read value
-                Log.w("Failed to read value.", error.toException());
-            }
-        });
-        mcountdown = new CountDownTimer(1000, 1000) {
-            @Override
-            public void onTick(long l) {
-                //dialog.show();
-                Log.d("Loading", "Loading");
-            }
-
-            @Override
-            public void onFinish() {
-                //Log.d("profile_Activity2", url_old);
-                /*try {
-                    Picasso.with(profile_Activity.this).load(url_old).resizeDimen(R.dimen.image_size, R.dimen.image_size).placeholder(R.drawable.goj).into(profImg);
-                }catch (Exception e){
-                    Log.d("savta", "Image Error");
-                }*/
+            public void onCallback(HashMap<String, String> value) {
                 try {
-                    Picasso.with(FriendProfile.this).load(url_old).resizeDimen(R.dimen.image_size, R.dimen.image_size).placeholder(R.drawable.goj).into(profImg);
+                    Picasso.with(FriendProfile.this).load(value.get("img")).resizeDimen(R.dimen.image_size, R.dimen.image_size).placeholder(R.drawable.goj).into(profImg);
                 }catch(Exception e){
                     profImg.setImageResource(R.drawable.user_pic);
                 }
 
-                setName.setText(name);
-                String streak = String.valueOf(old_streak.get("streak"));
+                setName.setText(value.get("name"));
+                name = value.get("name");
+                String streak = String.valueOf(value.get("streak"));
                 setStreak.setText(String.valueOf(streak));
-                String friends = String.valueOf(old_friends.get("friends"));
-                if(friends.contains(Search.selected)){
-                    follow.setText("הסר מרשימת החברים");
-                }
-                else{
-                    follow.setText("הוסף לרשימת החברים");
-                }
+                old_friends = DownloadReadlessons.get_last_lesson2(ReadWrite.read(FriendProfile.this.getFilesDir() + File.separator + "user"), new DownloadReadlessons.HashCallback() {
+                    @Override
+                    public void onCallback(HashMap<String, String> value) {
+                        String friends = String.valueOf(value.get("friends"));
+                        if(friends.contains(Search.selected)){
+                            follow.setText("הסר מרשימת החברים");
+                        }
+                        else{
+                            follow.setText("הוסף לרשימת החברים");
+                        }
+                    }
+                });
             }
-        }.start();
+        });
         backToTree.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

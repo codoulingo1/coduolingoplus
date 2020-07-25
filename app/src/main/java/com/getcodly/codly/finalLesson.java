@@ -112,29 +112,29 @@ public class finalLesson extends AppCompatActivity {
                     //qs.setText("כל הכבוד!");
 
                     int year = Integer.parseInt(value.get("year"));
-                    int month = Integer.parseInt(value.get("month"));
+                    //int month = Integer.parseInt(value.get("month"));
                     int day = Integer.parseInt(value.get("date"));
                     int xp = (int) Double.parseDouble(value.get("xp"));
-                    String old_progress = String.valueOf(value.get("cProgress"));
+                    String old_progress = String.valueOf(mainScreen.progress);
                     Calendar calendar = Calendar.getInstance();
 
                     // Move calendar to yesterday
-                    calendar.add(Calendar.DATE, -1);
+                    calendar.add(Calendar.DAY_OF_YEAR, -1);
 
                     // Get current date of calendar which point to the yesterday now
-                    int yesterday = calendar.get(Calendar.DATE);
+                    int yesterday = calendar.get(Calendar.DAY_OF_YEAR);
                     Calendar calendar2 = Calendar.getInstance();
-                    int today = calendar2.get(Calendar.DATE);
+                    int today = calendar2.get(Calendar.DAY_OF_YEAR);
+                    int this_year = calendar2.get(Calendar.YEAR);
                     Log.d("0", String.valueOf(calendar.get(Calendar.YEAR)));
-                    if (year == calendar.get(Calendar.YEAR) - 1900) {
+                    if (year == calendar.get(Calendar.YEAR)) {
                         Log.d("1", "1");
-                        if (month == calendar.get(Calendar.MONTH)) {
-                            Log.d("2", "2");
                             if (day == yesterday) {
                                 Log.d("3", "3");
                                 FirebaseDatabase database = FirebaseDatabase.getInstance();
                                 DatabaseReference myRef = database.getReference("Users").child(ReadWrite.read(finalLesson.this.getFilesDir() + File.separator + "user"));
-                                myRef.child("streak").setValue(String.valueOf(Integer.parseInt(value.get("streak")) + 1));
+                                myRef.child("streak").setValue(String.valueOf(Integer.parseInt(mainScreen.streak) + 1));
+                                mainScreen.streak = mainScreen.streak + 1;
                             } else if (day == today) {
                                 Log.d("3", "3");
                             } else {
@@ -142,31 +142,35 @@ public class finalLesson extends AppCompatActivity {
                                 FirebaseDatabase database = FirebaseDatabase.getInstance();
                                 DatabaseReference myRef = database.getReference("Users").child(ReadWrite.read(finalLesson.this.getFilesDir() + File.separator + "user"));
                                 myRef.child("streak").setValue(0);
+                                mainScreen.streak = "0";
                                 Log.d("error", "day");
                             }
-                        } else {
-                            FirebaseDatabase database = FirebaseDatabase.getInstance();
-                            DatabaseReference myRef = database.getReference("Users").child(ReadWrite.read(finalLesson.this.getFilesDir() + File.separator + "user"));
-                            myRef.child("streak").setValue(0);
-                            Log.d("error", "month");
-                        }
-                    } else {
+                    }
+                    else if (year == calendar2.get(Calendar.YEAR) - 1 && today == 1 && day == 365 || day == 366){
+                        Log.d("3", "3");
+                        FirebaseDatabase database = FirebaseDatabase.getInstance();
+                        DatabaseReference myRef = database.getReference("Users").child(ReadWrite.read(finalLesson.this.getFilesDir() + File.separator + "user"));
+                        myRef.child("streak").setValue(String.valueOf(Integer.parseInt(mainScreen.streak) + 1));
+                        mainScreen.streak = mainScreen.streak + 1;
+                    }
+                    else {
                         FirebaseDatabase database = FirebaseDatabase.getInstance();
                         DatabaseReference myRef = database.getReference("Users").child(ReadWrite.read(finalLesson.this.getFilesDir() + File.separator + "user"));
                         myRef.child("streak").setValue(0);
+                        mainScreen.streak = "0";
                         Log.d("error", "year");
                     }
                     FirebaseDatabase database = FirebaseDatabase.getInstance();
                     DatabaseReference myRef = database.getReference("Users");
                     DatabaseReference user = myRef.child(ReadWrite.read(finalLesson.this.getFilesDir() + File.separator + "user"));
-                    Date currentTime = Calendar.getInstance().getTime();
-                    Timestamp ts = new Timestamp(currentTime.getTime());
-                    user.child("lastLessonD").setValue(ts);
+                    user.child("lastLessonD").child("date").setValue(today);
+                    user.child("lastLessonD").child("year").setValue(this_year);
                     user.child("xp").setValue(xp + LessonActivity.shared_xp2);
                     LessonActivity.shared_xp2 = LessonActivity.shared_xp.intValue();
                     List<String> str_old_progress = Arrays.asList(old_progress.split(" "));
                     if (!str_old_progress.contains(MainActivity.id)) {
                         //user.child("progress").setValue(old_progress + " " + MainActivity.id);
+                        //mainScreen.progress = mainScreen.progress + " " + MainActivity.id;
                     }
 
                     finishLsnBtn.setVisibility(View.VISIBLE);
