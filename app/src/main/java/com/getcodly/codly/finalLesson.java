@@ -160,7 +160,7 @@ public class finalLesson extends AppCompatActivity {
                         mainScreen.streak = "0";
                         Log.d("error", "year");
                     }
-                    FirebaseDatabase database = FirebaseDatabase.getInstance();
+                    FirebaseDatabase database = FirebaseDatabase.getInstance();//
                     DatabaseReference myRef = database.getReference("Users");
                     DatabaseReference user = myRef.child(ReadWrite.read(finalLesson.this.getFilesDir() + File.separator + "user"));
                     user.child("lastLessonD").child("date").setValue(today);
