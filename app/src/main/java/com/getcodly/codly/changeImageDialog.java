@@ -85,7 +85,7 @@ public class changeImageDialog extends AppCompatDialogFragment {
                 FirebaseDatabase database = FirebaseDatabase.getInstance();
                 DatabaseReference myRef = database.getReference("Users");
                 DatabaseReference fireBase = myRef.child(ReadWrite.read(getActivity().getFilesDir()+ File.separator + "user"));
-
+                mainScreen.img = "";
                 fireBase.child("imgUrl").setValue("");
                 dismiss();
             }

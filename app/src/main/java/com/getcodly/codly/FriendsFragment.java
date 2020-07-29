@@ -49,27 +49,16 @@ public class FriendsFragment extends Fragment {
                 startActivity(intent);
             }
         });
-
-        CountDownTimer mcountdown = new CountDownTimer(1000, 1000) {
-            @Override
-            public void onTick(long l) {
-
-            }
-
-            @Override
-            public void onFinish() {
-                try {
-                    list = profileFragment.list;
-                    String stringArray[] = (String[]) list.toArray(new String[list.size()]);
-                    ArrayAdapter<String> itemsAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, android.R.id.text1, stringArray);
-                    listView.setAdapter(itemsAdapter);
-                    ret = profileFragment.ret;
-                    name = profileFragment.name;
-                } catch (Exception e){
-                    Log.d("Crash", "It did not crash");
-                }
-            }
-        }.start();
+        try {
+            list = profileFragment.list;
+            String stringArray[] = (String[]) list.toArray(new String[list.size()]);
+            ArrayAdapter<String> itemsAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, android.R.id.text1, stringArray);
+            listView.setAdapter(itemsAdapter);
+            ret = profileFragment.ret;
+            name = profileFragment.name;
+        } catch (Exception e){
+            Log.d("Crash", "It did not crash");
+        }
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener()
         {

@@ -103,44 +103,39 @@ public class profileFragment extends Fragment {
 
 
         try {
-            old_streak = DownloadReadlessons.get_last_lesson2(ReadWrite.read(getActivity().getFilesDir() + File.separator + "user"), new DownloadReadlessons.HashCallback() {
-                @Override
-                public void onCallback(HashMap value) {
-                    if (!b) {
-                        b = true;
-                        name = (String) value.get("name");
-                        streak = mainScreen.streak;
-                        url_old = (String) value.get("img");
-                        setName.setText(name);
-                        setStreak.setText(streak);
-                        ret = new HashMap<>();
-                        int i = 0;
-                        list = new ArrayList<String>();
-                        try {
-                            Picasso.with(getActivity()).load(url_old).resizeDimen(R.dimen.image_size, R.dimen.image_size).placeholder(R.drawable.goj).into(profImg);
-                        } catch (Exception e) {
-                            profImg.setImageResource(R.drawable.user_pic);
-                        }
-                        for (String friend : value.get("friends").toString().split("-")) {
-                            try {
-                                list.add(friend.split("/")[1]);
-                                ret.put(String.valueOf(i), friend.split("/")[0]);
-                                Log.d("hi", friend.split("/")[0]);
-                                i++;
-                            } catch (Exception e) {
+            if (!b) {
+                b = true;
+                name = mainScreen.name;
+                streak = mainScreen.streak;
+                url_old = mainScreen.img;
+                setName.setText(name);
+                setStreak.setText(streak);
+                ret = new HashMap<>();
+                int i = 0;
+                list = new ArrayList<String>();
+                try {
+                    Picasso.with(getActivity()).load(url_old).resizeDimen(R.dimen.image_size, R.dimen.image_size).placeholder(R.drawable.goj).into(profImg);
+                } catch (Exception e) {
+                    profImg.setImageResource(R.drawable.user_pic);
+                }
+                for (String friend : mainScreen.friends.split("-")) {
+                    try {
+                        list.add(friend.split("/")[1]);
+                        ret.put(String.valueOf(i), friend.split("/")[0]);
+                        Log.d("hi", friend.split("/")[0]);
+                        i++;
+                    } catch (Exception e) {
 
-                            }
-                        }
-                        String[] stringArray = list.toArray(new String[list.size()]);
-                        try {
-                            ArrayAdapter<String> itemsAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, android.R.id.text1, stringArray);
-                        }catch (Exception e){
-
-                        }
-                        //listView.setAdapter(itemsAdapter);
                     }
                 }
-            });
+                String[] stringArray = list.toArray(new String[list.size()]);
+                try {
+                    ArrayAdapter<String> itemsAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, android.R.id.text1, stringArray);
+                }catch (Exception e){
+
+                }
+                //listView.setAdapter(itemsAdapter);
+            }
         }
         catch (Exception e){
 
