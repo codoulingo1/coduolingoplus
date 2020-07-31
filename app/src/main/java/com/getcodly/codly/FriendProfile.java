@@ -66,18 +66,13 @@ public class FriendProfile extends AppCompatActivity {
                 name = value.get("name");
                 String streak = String.valueOf(value.get("streak"));
                 setStreak.setText(String.valueOf(streak));
-                old_friends = DownloadReadlessons.get_last_lesson2(ReadWrite.read(FriendProfile.this.getFilesDir() + File.separator + "user"), new DownloadReadlessons.HashCallback() {
-                    @Override
-                    public void onCallback(HashMap<String, String> value) {
-                        String friends = String.valueOf(value.get("friends"));
-                        if(friends.contains(Search.selected)){
-                            follow.setText("הסר מרשימת החברים");
-                        }
-                        else{
-                            follow.setText("הוסף לרשימת החברים");
-                        }
-                    }
-                });
+                String friends = mainScreen.friends;
+                if(friends.contains(Search.selected)){
+                    follow.setText("הסר מרשימת החברים");
+                }
+                else{
+                    follow.setText("הוסף לרשימת החברים");
+                }
             }
         });
         backToTree.setOnClickListener(new View.OnClickListener() {
@@ -89,12 +84,13 @@ public class FriendProfile extends AppCompatActivity {
         follow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String friends = String.valueOf(old_friends.get("friends"));
+                String friends = mainScreen.friends;
                 if(friends.contains(Search.selected)){
                     FirebaseDatabase database = FirebaseDatabase.getInstance();
 
                     DatabaseReference myRef = database.getReference("Users");
                     DatabaseReference fireBase = myRef.child(String.valueOf(ReadWrite.read(FriendProfile.this.getFilesDir() + File.separator + "user")));
+                    mainScreen.friends = friends.replaceAll("-" + Search.selected + "/" + name, "");
                     fireBase.child("friends").setValue(friends.replaceAll("-" + Search.selected + "/" + name, ""));
                     follow.setText("הוסף לרשימת החברים");
                 }
@@ -103,9 +99,11 @@ public class FriendProfile extends AppCompatActivity {
 
                     DatabaseReference myRef = database.getReference("Users");
                     DatabaseReference fireBase = myRef.child(String.valueOf(ReadWrite.read(FriendProfile.this.getFilesDir() + File.separator + "user")));
+                    mainScreen.friends = friends + "-" + Search.selected + "/" + name;
                     fireBase.child("friends").setValue(friends + "-" + Search.selected + "/" + name);
                     follow.setText("הסר מרשימת החברים");
                 }
+                Log.d("mainScreen.friends", mainScreen.friends);
             }
         });
 

@@ -36,6 +36,9 @@ public class DownloadReadlessons {
     public static interface HashCallback {
         void onCallback(HashMap <String, String> value);
     }
+    public static interface ListCallback {
+        void onCallback(List<String> value);
+    }
 
         public static String downloadlesson(String ID, final Context c, MyCallback m) {
             //final AtomicBoolean done = new AtomicBoolean(false);
@@ -284,4 +287,33 @@ public class DownloadReadlessons {
             });
             return Address;
         }
+    public static void get_names(HashCallback m) {
+        final HashMap<String, String> names = new HashMap<>();
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("Users");
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // This method is called once with the initial value and again
+                // whenever data at this location is updated.
+                for (DataSnapshot fire_email : dataSnapshot.getChildren()) {
+                    try {
+                        names.put(fire_email.child("name").getValue().toString(), fire_email.getKey());
+                        Log.d("hi", names.toString());
+                    }
+                    catch (Exception e){
+                        e.printStackTrace();
+                    }
+                }
+                m.onCallback(names);
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+                Log.w("Failed to read value.", error.toException());
+            }
+        });
+    }
 }

@@ -28,7 +28,8 @@ import java.util.List;
 public class Search extends AppCompatActivity {
     CountDownTimer mcountdown;
     Handler handler;
-    boolean b;
+    HashMap <String, String> f;
+    boolean b = false;
     ListView listView;
     HashMap<String, String> hashMap;
     SearchView ed;
@@ -45,69 +46,58 @@ public class Search extends AppCompatActivity {
         handler = new Handler();
         final int delay = 500; //milliseconds
         ed.setIconified(false);
+        DownloadReadlessons.get_names(new DownloadReadlessons.HashCallback() {
+                                          @Override
+                                          public void onCallback(HashMap<String, String> value) {
+                                                b = true;
+                                                f = value;
+                                          }
+                                      }
+        );
 
-        handler.postDelayed(new Runnable(){
-            public void run(){
-                i = 0;
-                hashMap = new HashMap<>();
-                final ArrayList names;
-                names = new ArrayList<>();
-                FirebaseDatabase database = FirebaseDatabase.getInstance();
-                DatabaseReference myRef = database.getReference("Users");
-                myRef.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-                        // This method is called once with the initial value and again
-                        // whenever data at this location is updated.
-                        for (DataSnapshot fire_email : dataSnapshot.getChildren()) {
-                            try {
-                                if(fire_email.child("name").getValue(String.class).toLowerCase().contains(ed.getQuery().toString().toLowerCase())){
-                                    names.add(fire_email.child("name").getValue(String.class));
-                                    hashMap.put(String.valueOf(i), fire_email.getKey());
-                                    i++;
+
+                handler.postDelayed(new Runnable() {
+                    public void run() {
+                        if (b) {
+                            i = 0;
+                            hashMap = new HashMap<>();
+                            final ArrayList names;
+                            names = new ArrayList<>();
+
+                            // This method is called once with the initial value and again
+                            // whenever data at this location is updated.
+                            for (String fire_email : f.keySet()) {
+                                try {
+                                    if (fire_email.toLowerCase().contains(ed.getQuery().toString().toLowerCase())) {
+                                        names.add(fire_email);
+                                        hashMap.put(String.valueOf(i), f.get(fire_email));
+                                        i++;
+                                    }
+                                } catch (Exception e) {
+
                                 }
-                            } catch (Exception e) {
-
                             }
+
+                            //Creating a HashMap object
+
+                            //Getting Collection of values from HashMap
+
+                            Collection<String> values = names;
+
+                            //Creating an ArrayList of values
+
+                            ArrayList<String> listOfValues = new ArrayList<String>(values);
+
+                            // Convert ArrayList to Array
+
+                            String stringArray[] = listOfValues.toArray(new String[listOfValues.size()]);
+                            ArrayAdapter<String> itemsAdapter =
+                                    new ArrayAdapter<String>(Search.this, android.R.layout.simple_list_item_1, android.R.id.text1, stringArray);
+                            listView.setAdapter(itemsAdapter);
+                            handler.postDelayed(this, delay);
                         }
                     }
-
-                    @Override
-                    public void onCancelled(DatabaseError error) {
-                        // Failed to read value
-                        Log.w("Failed to read value.", error.toException());
-                    }
-                });
-                mcountdown = new CountDownTimer(1000, 100) {
-                    @Override
-                    public void onTick(long l) {
-                        //dialog.show();
-                        Log.d("Loading", "Loading");
-                    }
-
-                    @Override
-                    public void onFinish() {
-                        //Creating a HashMap object
-
-                        //Getting Collection of values from HashMap
-
-                        Collection<String> values = names;
-
-                        //Creating an ArrayList of values
-
-                        ArrayList<String> listOfValues = new ArrayList<String>(values);
-
-                        // Convert ArrayList to Array
-
-                        String stringArray[] = listOfValues.toArray(new String[listOfValues.size()]);
-                        ArrayAdapter<String> itemsAdapter =
-                                new ArrayAdapter<String>(Search.this, android.R.layout.simple_list_item_1, android.R.id.text1,  stringArray);
-                        listView.setAdapter(itemsAdapter);
-                    }
-                }.start();
-                        handler.postDelayed(this, delay);
-            }
-        }, delay);
+                }, delay);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener()
         {
             public void onItemClick(AdapterView<?> arg0, View arg1, int position, long arg3)
