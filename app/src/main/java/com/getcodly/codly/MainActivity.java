@@ -75,6 +75,14 @@ public class MainActivity extends AppCompatActivity {
                     startActivity(new Intent(MainActivity.this, LessonActivity.class));
                 }
             });
+        }else if (tree.LessonType.equals("comp")){
+            DownloadReadlessons.downloadcomp(id, MainActivity.this, new DownloadReadlessons.MyCallback() {
+                @Override
+                public void onCallback(String value) {
+                    Log.d("MainActivity", value);
+                    startActivity(new Intent(MainActivity.this, LessonActivity.class));
+                }
+            });
         }
         else {
             DownloadReadlessons.downloadlesson(id, MainActivity.this, new DownloadReadlessons.MyCallback() {

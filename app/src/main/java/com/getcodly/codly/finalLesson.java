@@ -164,6 +164,11 @@ public class finalLesson extends AppCompatActivity {
                     DatabaseReference myRef = database.getReference("Users");
                     DatabaseReference user = myRef.child(ReadWrite.read(finalLesson.this.getFilesDir() + File.separator + "user"));
                     user.child("lastLessonD").child("date").setValue(today);
+                    if (tree.LessonType.equals("comp")) {
+                        DatabaseReference user_2 = myRef.child(mainScreen.userId);
+                        user_2.child("comp_w").setValue("l");
+                        LessonActivity.shared_xp2 = LessonActivity.shared_xp2 * 2;
+                    }
                     user.child("lastLessonD").child("year").setValue(this_year);
                     user.child("xp").setValue(xp + LessonActivity.shared_xp2);
                     LessonActivity.shared_xp2 = LessonActivity.shared_xp.intValue();

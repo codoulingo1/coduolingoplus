@@ -43,7 +43,7 @@ public class LessonActivity extends AppCompatActivity {
     public static int pr;
     HashMap <String, String> date;
     CountDownTimer mcountdown;
-    public static int shared_xp2;
+    public static int shared_xp2 = 0;
 
     ImageButton continueBtn20;
 

@@ -12,18 +12,25 @@ import android.view.MenuItem;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.io.File;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.Random;
 
 public class mainScreen extends AppCompatActivity {
 
     HashMap<String, String> date;
     public static String streak;
     public static String name;
+    public static String userId = "";
+    public static String sel;
     public static String img;
     public static String friends;
     public static String progress;
@@ -57,6 +64,7 @@ public class mainScreen extends AppCompatActivity {
                 return true;
             }
         });
+
         date = DownloadReadlessons.get_last_lesson2(ReadWrite.read(this.getFilesDir() + File.separator + "user"), new DownloadReadlessons.HashCallback() {
             @Override
             public void onCallback(HashMap<String, String> value) {
@@ -66,6 +74,40 @@ public class mainScreen extends AppCompatActivity {
                 name = String.valueOf(value.get("name"));
                 img = String.valueOf(value.get("img"));
                 friends = String.valueOf(value.get("friends"));
+                FirebaseDatabase database1 = FirebaseDatabase.getInstance();
+                DatabaseReference myRef1 = database1.getReference("Users").child(ReadWrite.read(mainScreen.this.getFilesDir() + File.separator + "user"));
+                myRef1.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        // This method is called once with the initial value and again
+                        // whenever data at this location is uploaded
+                        if (!dataSnapshot.child("comp").getValue().toString().equals("")){
+                            myRef1.child("comp").setValue("");
+                            userId = dataSnapshot.child("comp").getValue().toString();
+                            DownloadReadlessons.get_progress(userId, new DownloadReadlessons.HashCallback() {
+                                @Override
+                                public void onCallback(HashMap<String, String> value) {
+                                    String progress_2 = value.get("progress");
+                                    int sel_num = 0;
+                                    sel = progress.split(" ")[new Random().nextInt(progress.split(" ").length)];
+                                    while (!Arrays.asList(progress_2.split(" ")).contains(sel)){
+                                        sel = progress.split(" ")[new Random().nextInt(progress.split(" ").length)];
+                                    }
+                                    DatabaseReference myRef2 = database1.getReference("Users").child(userId);
+                                    myRef2.child("start_comp").setValue(sel);
+                                    startComp(sel);
+                                }
+                            });
+
+                        }
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
                 //int month = Integer.parseInt(date.get("month"));
                 int day = Integer.parseInt(value.get("date"));
                 Calendar calendar = Calendar.getInstance();
@@ -135,6 +177,45 @@ public class mainScreen extends AppCompatActivity {
                 }
             }
         });
+        FirebaseDatabase database_start = FirebaseDatabase.getInstance();
+        DatabaseReference myRef_start = database_start.getReference("Users").child(ReadWrite.read(mainScreen.this.getFilesDir() + File.separator + "user")).child("start_comp");
+        myRef_start.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // This method is called once with the initial value and again
+                // whenever data at this location is uploaded
+                if (!dataSnapshot.getValue().toString().equals("")){
+                    sel = dataSnapshot.getValue().toString();
+                    myRef_start.setValue("");
+                    startComp(sel);
+
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+        DatabaseReference myRef_win = database_start.getReference("Users").child(ReadWrite.read(mainScreen.this.getFilesDir() + File.separator + "user")).child("comp_w");
+        myRef_win.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // This method is called once with the initial value and again
+                // whenever data at this location is uploaded
+                if (dataSnapshot.getValue().toString().equals("l")){
+                    myRef_win.setValue("");
+                    startActivity(new Intent(mainScreen.this, mainScreen.class));
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_containerMain, new HomeFragment()).commit();
     }
 
@@ -150,6 +231,12 @@ public class mainScreen extends AppCompatActivity {
             //not logged in
             startActivity(new Intent(mainScreen.this, Login.class));
         }
+    }
+    void startComp(String id) {
+        tree.LessonType = "comp";
+        MainActivity.id = id;
+        MainActivity.name = "comp";
+        startActivity(new Intent(mainScreen.this, MainActivity.class));
     }
 
 

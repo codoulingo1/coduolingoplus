@@ -203,7 +203,11 @@ public class Login extends AppCompatActivity {
                 user.child("streak freeze").setValue("false");
                 user.child("xp").setValue(0);
                 user.child("progress").setValue("");
+                user.child("start_comp").setValue("");
+                user.child("comp_w").setValue("");
+                user.child("comp").setValue("");
                 user.child("friends").setValue("");
+                user.child("email").setValue(personEmail);
                 method = "Google";
                 Bundle bundle = new Bundle();
                 bundle.putString(FirebaseAnalytics.Param.METHOD, method);

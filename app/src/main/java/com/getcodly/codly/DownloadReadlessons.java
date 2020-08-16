@@ -88,6 +88,61 @@ public class DownloadReadlessons {
             });
             return "a";
         }
+    public static String downloadcomp(String ID, final Context c, MyCallback m) {
+        //final AtomicBoolean done = new AtomicBoolean(false);
+        //String init="Inital Value";
+        //shared.set(init);
+
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("Lessons").child(ID);
+        myRef.addValueEventListener(new ValueEventListener() {
+
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                final File newFile = new File(c.getFilesDir() + "/id/");
+                if (!newFile.exists()) {
+                    newFile.mkdirs();
+                    Log.d("Create", "dir");
+                }
+
+                String folder_main = dataSnapshot.child("LessonID").getValue(String.class) + dataSnapshot.child("LessonName").getValue(String.class);
+                MainActivity.name = dataSnapshot.child("LessonName").getValue(String.class);
+                // This method is called once with the initial value and again
+                // whenever data at this location is updated.
+                int qs_num = 0;
+                for (DataSnapshot snap : dataSnapshot.getChildren()) {
+                    try {
+                    if (snap.getValue(String.class).length() != 0 && !snap.getValue(String.class).split("\\]|\\[")[1].replace("\\n", System.getProperty("line.separator")).equals("explain")) {
+                        Log.d(folder_main + snap.getKey(), "Value is: " + snap.getKey() + "    " + snap.getValue(String.class));
+                        File f = new File(c.getFilesDir() + "/id/" + folder_main + snap.getKey() + ".txt");
+                        if (!f.getParentFile().exists())
+                            f.getParentFile().mkdirs();
+                        if (!f.exists()) {
+                            try {
+                                f.createNewFile();
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                        qs_num++;
+                        ReadWrite.write(c.getFilesDir() + "/id/" + folder_main + "qs" + String.valueOf(qs_num), snap.getValue(String.class));
+                    }
+                } catch (Exception e) {
+
+                    }
+                    }
+                m.onCallback("done");
+                //done.set(true);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+                Log.w("error", "Failed to read value.", error.toException());
+            }
+        });
+        return "a";
+    }
 
         public static String downloadPractice(final String[] ID, final int maxQS, final Context c, MyCallback m) {
             FirebaseDatabase database = FirebaseDatabase.getInstance(); //hello
@@ -262,6 +317,27 @@ public class DownloadReadlessons {
             });
             return ret;
         }
+    public static HashMap<String, String> get_progress(String email, HashCallback m) {
+        final HashMap<String, String> ret = new HashMap<>();
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("Users").child(email).child("progress");
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // This method is called once with the initial value and again
+                // whenever data at this location is uploaded
+                ret.put("progress", dataSnapshot.getValue().toString());
+                m.onCallback(ret);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+                Log.w("Failed to read value.", error.toException());
+            }
+        });
+        return ret;
+    }
 
         public static List<String> get_emails() {
             final List<String> Address;

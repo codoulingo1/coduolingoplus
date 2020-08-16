@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -28,6 +29,7 @@ import java.util.HashMap;
 
 public class FriendProfile extends AppCompatActivity {
     Button follow;
+    Button inv;
     ImageView profImg;
     TextView setName;
     HashMap old_streak;
@@ -46,6 +48,7 @@ public class FriendProfile extends AppCompatActivity {
         setName = (TextView) findViewById(R.id.set_name);
         backToTree =  (Button) findViewById(R.id.back_to_tree);
         follow =  (Button) findViewById(R.id.follow);
+        inv =  (Button) findViewById(R.id.inv);
         setStreak = (TextView) findViewById(R.id.streak);
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
@@ -104,6 +107,26 @@ public class FriendProfile extends AppCompatActivity {
                     follow.setText("הסר מרשימת החברים");
                 }
                 Log.d("mainScreen.friends", mainScreen.friends);
+            }
+        });
+        inv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FirebaseDatabase database = FirebaseDatabase.getInstance();
+
+                DatabaseReference myRef = database.getReference("Users");
+                DatabaseReference fireBase = myRef.child(Search.selected);
+                mainScreen.userId = Search.selected;
+                fireBase.child("comp").setValue(ReadWrite.read(FriendProfile.this.getFilesDir() + File.separator + "user"));
+                inv.setText("ממתין לאישור");
+                final Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        fireBase.child("comp").setValue("");
+                        //Do something after 60s
+                    }
+                }, 60000);
             }
         });
 
