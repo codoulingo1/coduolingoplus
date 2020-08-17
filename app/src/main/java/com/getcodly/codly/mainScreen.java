@@ -3,6 +3,8 @@ package com.getcodly.codly;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -28,6 +30,7 @@ public class mainScreen extends AppCompatActivity {
 
     HashMap<String, String> date;
     public static String streak;
+    public static String invName;
     public static String name;
     public static String userId = "";
     public static String sel;
@@ -84,18 +87,29 @@ public class mainScreen extends AppCompatActivity {
                         if (!dataSnapshot.child("comp").getValue().toString().equals("")){
                             myRef1.child("comp").setValue("");
                             userId = dataSnapshot.child("comp").getValue().toString();
-                            DownloadReadlessons.get_progress(userId, new DownloadReadlessons.HashCallback() {
+                            DownloadReadlessons.get_last_lesson2(userId, new DownloadReadlessons.HashCallback() {
                                 @Override
                                 public void onCallback(HashMap<String, String> value) {
-                                    String progress_2 = value.get("progress");
+                                    String progress_2 = value.get("cProgress");
+                                    invName = value.get("name");
                                     int sel_num = 0;
                                     sel = progress.split(" ")[new Random().nextInt(progress.split(" ").length)];
                                     while (!Arrays.asList(progress_2.split(" ")).contains(sel)){
+                                        sel_num++;
                                         sel = progress.split(" ")[new Random().nextInt(progress.split(" ").length)];
+                                        if (sel_num>1000){
+                                            break;
+                                        }
                                     }
-                                    DatabaseReference myRef2 = database1.getReference("Users").child(userId);
-                                    myRef2.child("start_comp").setValue(sel);
-                                    startComp(sel);
+                                    if (sel_num<=1000){
+                                        Comp_Invite dialogBack = new Comp_Invite();
+                                        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+                                        ft.add(dialogBack, "snooze_dialog");
+                                        ft.commitAllowingStateLoss();
+                                    }
+                                    //DatabaseReference myRef2 = database1.getReference("Users").child(userId);
+                                    //myRef2.child("start_comp").setValue(sel);
+                                    //startComp(sel);
                                 }
                             });
 
