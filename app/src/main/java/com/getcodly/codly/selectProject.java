@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.ListView;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 
 public class selectProject extends AppCompatActivity {
@@ -34,17 +35,15 @@ public class selectProject extends AppCompatActivity {
             }
         });
 
-        File path = new File(selectProject.this.getFilesDir() + "/codes/" + "");
-        File list[] = path.listFiles();
+        File path = new File(selectProject.this.getFilesDir() + "/" + "codes");
+        File[] list = path.listFiles();
+        Log.d("test5", list[0].toString());
 
         Log.d("testnum7", ReadWrite.read(selectProject.this.getFilesDir() + "/" + "codes/" + "abc") + "1");
-        for( int i=0; i< list.length; i++)
+        myList = new ArrayList();
+        for( int i=0; i < list.length; i++)
         {
-            try {
-                myList.add(list[i].getName());
-            } catch (Exception e){
-
-            }
+            myList.add(list[i].getName());
         }
 
         ArrayAdapter<String> mProjectAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, myList);
