@@ -18,6 +18,7 @@ import android.os.CountDownTimer;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -67,6 +68,7 @@ public class SettingsFragment extends Fragment {
     private static final int PICK_IMAGE_REQUEST = 1;
     TextView mButtonChooseImage;
     changeImageDialog changeImageDialoge = new changeImageDialog();
+    public static int isBacking = 0;
 
 
 
@@ -203,4 +205,30 @@ public class SettingsFragment extends Fragment {
             ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 0);
         }
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        if(getView() == null){
+            return;
+        }
+
+        getView().setFocusableInTouchMode(true);
+        getView().requestFocus();
+        getView().setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+
+                if (event.getAction() == KeyEvent.ACTION_UP && keyCode == KeyEvent.KEYCODE_BACK){
+                    startActivity(new Intent(getContext(), mainScreen.class));
+                    isBacking = 1;
+                    return true;
+                }
+                return false;
+            }
+        });
+    }
+
+
 }

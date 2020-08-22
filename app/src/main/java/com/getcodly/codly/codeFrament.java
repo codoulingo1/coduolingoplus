@@ -85,6 +85,7 @@ public class codeFrament extends Fragment  { //was extends Fragment, might need 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 submitBtn.setImageResource(R.drawable.next3);
+                htmlCode = htmlInp.getText().toString();
             }
 
             @Override

@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -22,6 +23,7 @@ import androidx.appcompat.app.AppCompatDialogFragment;
 import androidx.core.app.ActivityCompat;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -78,10 +80,23 @@ public class SaveDialog extends AppCompatDialogFragment {
             @Override
             public void onClick(View v) {
                 if (isButtonEnabled == true){
+                    String fileName = mFileName.getText().toString();
                     mFileName.setText("");
+                    String htmlCodeToSave = codeFrament.htmlCode;
                     saveBtn.setImageResource(R.drawable.save_btn_gray);
+                    String fileNameBetter = getContext().getFilesDir() + "/" + "codes/" + fileName;
+                    File f = new File(fileNameBetter);
+                    f.getParentFile().mkdirs();
+                    if (!f.exists()) {
+                        try {
+                            f.createNewFile();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
                     isButtonEnabled = false;
-                    save(v);
+                    ReadWrite.write(fileNameBetter, htmlCodeToSave);
+                    Log.d("testyTest", ReadWrite.read(fileNameBetter));
                     //dismiss();
                 }
             }
@@ -90,7 +105,7 @@ public class SaveDialog extends AppCompatDialogFragment {
         return  builder.create();
     }
 
-    public void save(View v){
+    /*public void save(View v){
         String fileName = mFileName.getText().toString().trim();
         FileOutputStream fos = null;
 
@@ -142,5 +157,5 @@ public class SaveDialog extends AppCompatDialogFragment {
                 }
             }
         }
-    }
+    }*/
 }

@@ -38,6 +38,7 @@ public class mainScreen extends AppCompatActivity {
     public static String friends;
     public static String progress;
     FirebaseAuth mAuth;
+    public static Fragment selectedFragment = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,8 +50,6 @@ public class mainScreen extends AppCompatActivity {
         bottomNav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                Fragment selectedFragment = null;
-
                 switch (item.getItemId()) {
                     case R.id.navigation_home:
                         selectedFragment = new HomeFragment();
@@ -202,7 +201,6 @@ public class mainScreen extends AppCompatActivity {
                     sel = dataSnapshot.getValue().toString();
                     myRef_start.setValue("");
                     startComp(sel);
-
                 }
 
             }
@@ -222,7 +220,6 @@ public class mainScreen extends AppCompatActivity {
                     myRef_win.setValue("");
                     startActivity(new Intent(mainScreen.this, mainScreen.class));
                 }
-
             }
 
             @Override

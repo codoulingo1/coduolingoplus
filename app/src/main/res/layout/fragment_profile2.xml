@@ -69,11 +69,11 @@
             android:layout_below="@id/topBar5"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="25dp"
-            android:fontFamily="@font/rubik_light"
+            android:fontFamily="@font/rubik_bold"
             android:textAlignment="center"
-            android:textColor="#090909"
+            android:textColor="#676766"
             android:textSize="24sp"
-            android:text="s"/>
+            android:text="שם משתמש"/>
 
         <TextView
             android:id="@+id/streakView"
@@ -85,7 +85,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="10dp"
             android:fontFamily="@font/rubik_bold"
-            android:text="סטריק: "
+            android:text="סטריק: 0"
             android:textSize="20sp" />
 
         <de.hdodenhof.circleimageview.CircleImageView
