@@ -64,7 +64,10 @@ public class codeFrament extends Fragment  { //was extends Fragment, might need 
         mViewPager = (ViewPager) v.findViewById(R.id.view_pager6000);
         tabsHost = getActivity().findViewById(R.id.tabs6000);
         detectLanguage();
-
+        if (selectProject.codeToLoad != null){
+            String codeToLoad2 = selectProject.codeToLoad;
+            htmlInp.setText(codeToLoad2);
+        }
 
         submitBtn.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -19,6 +20,7 @@ public class selectProject extends AppCompatActivity {
     Button createNew;
     ListView projectList;
     List myList;
+    public static String codeToLoad;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,18 +39,57 @@ public class selectProject extends AppCompatActivity {
 
         File path = new File(selectProject.this.getFilesDir() + "/" + "codes");
         File[] list = path.listFiles();
-        Log.d("test5", list[0].toString());
-
-        Log.d("testnum7", ReadWrite.read(selectProject.this.getFilesDir() + "/" + "codes/" + "abc") + "1");
         myList = new ArrayList();
-        for( int i=0; i < list.length; i++)
-        {
-            myList.add(list[i].getName());
+        if(list != null){
+            for( int i=0; i < list.length; i++)
+            {
+                myList.add(list[i].getName().replace(".txt", ""));
+
+                ArrayAdapter<String> mProjectAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, myList);
+
+                projectList.setAdapter(mProjectAdapter);
+
+                projectList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        String selectedCode = String.valueOf(myList.get(position));
+                        codeToLoad = ReadWrite.read(selectProject.this.getFilesDir() + "/" + "codes/" + selectedCode);
+                        Log.d("codeToLoad", codeToLoad);
+                        startActivity(new Intent(selectProject.this, iframe2.class));
+                    }
+                });
+            }
         }
+    }
 
-        ArrayAdapter<String> mProjectAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, myList);
+    @Override
+    protected void onResume() {
 
-        projectList.setAdapter(mProjectAdapter);
+        super.onResume();
+        codeToLoad = null;
 
+        File path = new File(selectProject.this.getFilesDir() + "/" + "codes");
+        File[] list = path.listFiles();
+        myList = new ArrayList();
+        if(list != null){
+            for( int i=0; i < list.length; i++)
+            {
+                myList.add(list[i].getName().replace(".txt", ""));
+
+                ArrayAdapter<String> mProjectAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, myList);
+
+                projectList.setAdapter(mProjectAdapter);
+
+                projectList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        String selectedCode = String.valueOf(myList.get(position));
+                        codeToLoad = ReadWrite.read(selectProject.this.getFilesDir() + "/" + "codes/" + selectedCode);
+                        Log.d("codeToLoad", codeToLoad);
+                        startActivity(new Intent(selectProject.this, iframe2.class));
+                    }
+                });
+            }
+        }
     }
 }

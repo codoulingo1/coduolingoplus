@@ -87,13 +87,6 @@ public class SaveDialog extends AppCompatDialogFragment {
                     String fileNameBetter = getContext().getFilesDir() + "/" + "codes/" + fileName;
                     File f = new File(fileNameBetter);
                     f.getParentFile().mkdirs();
-                    if (!f.exists()) {
-                        try {
-                            f.createNewFile();
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                    }
                     isButtonEnabled = false;
                     ReadWrite.write(fileNameBetter, htmlCodeToSave);
                     Log.d("testyTest", ReadWrite.read(fileNameBetter));
