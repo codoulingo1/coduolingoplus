@@ -6,21 +6,6 @@
     android:layout_height="match_parent"
     android:padding="10dp">
 
-    <ImageButton
-        android:id="@+id/continueBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentBottom="true"
-        android:adjustViewBounds="true"
-        android:background="#80FFFFFF"
-        android:maxWidth="60dp"
-        android:maxHeight="60dp"
-        android:scaleType="fitCenter"
-        app:srcCompat="@drawable/next"
-        android:layout_marginBottom="15dp"
-        android:layout_marginLeft="15dp"/>
-
     <TextView
         android:id="@+id/Explanation"
         android:layout_width="396dp"
@@ -45,12 +30,27 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:adjustViewBounds="true"
         android:scaleType="fitCenter"
         android:layout_below="@id/Explanation"
         android:layout_marginTop="15dp"
         android:layout_centerHorizontal="true" />
+
+    <ImageButton
+        android:id="@+id/continueBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentBottom="true"
+        android:adjustViewBounds="true"
+        android:background="#80FFFFFF"
+        android:maxWidth="60dp"
+        android:maxHeight="60dp"
+        android:scaleType="fitCenter"
+        app:srcCompat="@drawable/next"
+        android:layout_marginBottom="15dp"
+        android:layout_marginLeft="15dp"/>
 
 </RelativeLayout>
