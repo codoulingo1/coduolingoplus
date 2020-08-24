@@ -6,70 +6,78 @@
     tools:context="com.getcodly.codly.tree"
     android:background="#F3F4F9">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
 
 
         <RelativeLayout
-            android:layout_width="100dp"
-            android:layout_height="120dp"
-            android:layout_centerHorizontal="true"
-            android:clickable="true"
-            android:id="@+id/skill12"
-            android:layout_alignParentTop="true"
-            android:layout_marginTop="25dp">
-
-            <ProgressBar
-                android:id="@+id/progressBar2"
-                style="?android:attr/progressBarStyleHorizontal"
-                android:layout_width="match_parent"
-                android:layout_height="7dp"
-                android:layout_centerHorizontal="true"
-                android:progressDrawable="@drawable/pb_lessons"
-                android:progress="60"
-                android:layout_marginTop="0dp"
-                android:layout_alignParentBottom="true"
-                android:layout_marginBottom="25dp"
-                />
-
-            <TextView
-                android:id="@+id/lessonText1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="4dp"
-                android:fontFamily="@font/rubik_light"
-                android:text="מה זה XML"
-                android:textColor="#636475"
-                android:layout_above="@id/progressBar2"
-                />
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
             <RelativeLayout
-                android:layout_width="80dp"
-                android:layout_height="80dp"
+                android:id="@+id/skill12"
+                android:layout_width="100dp"
+                android:layout_height="120dp"
+                android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"
-                android:id="@+id/n">
-                <ImageView
-                    android:id="@+id/lessonStart"
+                android:layout_marginTop="25dp"
+                android:clickable="true">
+
+                <ProgressBar
+                    android:id="@+id/progressBar2"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="7dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="25dp"
+                    android:layout_marginTop="0dp"
+                    android:progress="60"
+                    android:progressDrawable="@drawable/pb_lessons" />
+
+                <RelativeLayout
+                    android:id="@+id/n"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
-                    app:srcCompat="@drawable/lesson_circle"
-                    android:layout_centerHorizontal="true"
-                    />
+                    android:layout_centerHorizontal="true">
 
-                <ImageView
-                    android:id="@+id/imageView4"
-                    android:layout_width="55dp"
-                    android:layout_height="55dp"
-                    android:layout_centerInParent="true"
-                    app:srcCompat="@drawable/ic_coding" />
+                    <ImageView
+                        android:id="@+id/lessonStart"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_centerHorizontal="true"
+                        app:srcCompat="@drawable/lesson_circle" />
+
+                    <ImageView
+                        android:id="@+id/imageView4"
+                        android:layout_width="55dp"
+                        android:layout_height="55dp"
+                        android:layout_centerInParent="true"
+                        app:srcCompat="@drawable/ic_coding" />
+                </RelativeLayout>
+
+                <TextView
+                    android:id="@+id/lessonText1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_above="@id/progressBar2"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="4dp"
+                    android:fontFamily="@font/rubik_light"
+                    android:text="מה זה XML"
+                    android:textColor="#636475" />
+
+
             </RelativeLayout>
+
+            <Button
+                android:id="@+id/button7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="680dp"
+                android:layout_marginLeft="320dp"
+                android:text="תכנתו בפייתון" />
 
 
         </RelativeLayout>
 
-    </RelativeLayout>
 </ScrollView>

@@ -12,18 +12,15 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".selectProject"></activity>
+        <activity android:name=".selectPyProject"></activity>
         <activity android:name=".Comp_Invite" />
         <activity android:name=".compL" />
         <activity android:name=".PythonActivity" />
         <activity
             android:name=".PythonActivity2"
-            android:label="@string/title_activity_python"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:label="עורך הקוד"/>
         <activity
             android:name=".finalLesson"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".Tree_new"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".FriendProfile" />
         <activity

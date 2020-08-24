@@ -28,6 +28,7 @@ public class PythonActivity2 extends AppCompatActivity {
 
     private pythonCode CodeFrament;
     private pythonRun BrowserFragment;
+    String pyCodeParent;
     private TabLayout tabs;
 
     @Override
@@ -99,13 +100,9 @@ public class PythonActivity2 extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.saveProject:
                 Toast.makeText(PythonActivity2.this, "Hello", Toast.LENGTH_SHORT);
-                Log.d("worked", codeFrament.htmlInp.getText().toString()); //codeFragment.htmlInp.getText().toString is the file which is supposed to be saved/shared
-                if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
-
-                } else {
-                    Log.d("malbona", "malbona");
-                    ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 0);
-                }
+                Log.d("worked", pythonCode.htmlInp.getText().toString()); //codeFragment.htmlInp.getText().toString is the file which is supposed to be saved/shared
+                iframe2.htmlCodeParent = pythonCode.htmlInp.getText().toString();
+                openDialog();
 
                 return true;
             case R.id.shareProject:
@@ -113,5 +110,10 @@ public class PythonActivity2 extends AppCompatActivity {
                 return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void openDialog(){
+        pySaveDialog saveDialog = new pySaveDialog();
+        saveDialog.show(getSupportFragmentManager(), "save dialog");
     }
 }

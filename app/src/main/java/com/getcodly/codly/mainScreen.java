@@ -11,6 +11,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 
+import com.chaquo.python.Python;
+import com.chaquo.python.android.AndroidPlatform;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -44,6 +46,9 @@ public class mainScreen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_screen);
+        if (! Python.isStarted()) {
+            Python.start(new AndroidPlatform(mainScreen.this ));
+        }
         mAuth = FirebaseAuth.getInstance();
         BottomNavigationView bottomNav = findViewById(R.id.bottomNav);
 
@@ -96,11 +101,11 @@ public class mainScreen extends AppCompatActivity {
                                     while (!Arrays.asList(progress_2.split(" ")).contains(sel)){
                                         sel_num++;
                                         sel = progress.split(" ")[new Random().nextInt(progress.split(" ").length)];
-                                        if (sel_num>1000){
+                                        if (sel_num>200){
                                             break;
                                         }
                                     }
-                                    if (sel_num<=1000){
+                                    if (sel_num<=200){
                                         Comp_Invite dialogBack = new Comp_Invite();
                                         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
                                         ft.add(dialogBack, "snooze_dialog");

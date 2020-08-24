@@ -9,6 +9,7 @@ import android.os.Environment;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.google.firebase.database.DatabaseReference;
@@ -26,28 +27,20 @@ import java.util.List;
 public class tree extends AppCompatActivity {
 
     //FirebaseAuth mAuth;
-    Button skill1;
-    Button skill2;
-    Button skill3;
-    Button profile;
+    RelativeLayout skill1;
     CountDownTimer mcountdown;
     public static String[] practiceID;
     public static String LessonType;
     HashMap <String, String> date;
-    TextView streak;
-    Button toHTML;
+    Button toPython;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_tree);
+        setContentView(R.layout.activity_tree_new);
         //mAuth = FirebaseAuth.getInstance();
-        skill1 = (Button) findViewById(R.id.skill1);
-        skill2 = (Button) findViewById(R.id.skill2);
-        skill3 = (Button) findViewById(R.id.skill3);
-        profile = (Button) findViewById(R.id.profile);
-        streak = (TextView) findViewById(R.id.streak);
-        toHTML = (Button) findViewById(R.id.toHTML);
+        skill1 = (RelativeLayout) findViewById(R.id.skill12);
+        toPython = (Button) findViewById(R.id.button7);
         File dirName = new File(Environment.getExternalStorageDirectory() + "/" + "id" + "/");
         try {
             FileUtils.deleteDirectory(dirName);
@@ -57,35 +50,16 @@ public class tree extends AppCompatActivity {
         }
         LessonActivity.j = 1;
         date = DownloadReadlessons.get_last_lesson(ReadWrite.read(this.getFilesDir()+File.separator+ "user"));
-        streak.setText(mainScreen.streak);
-        profile.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(tree.this, profile_Activity.class));
-            }
-        });
         skill1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startLesson(Arrays.asList("57983"), "Math");
+                startLesson(Arrays.asList("0000-1-1"), "מבוא לפיתוח אתרים");
             } //savta
         });
-        skill2.setOnClickListener(new View.OnClickListener() {
+        toPython.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startPractice(new String[]{"1", "57983"});
-            }
-        });
-        skill3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startLesson(Arrays.asList("0000-1-1"), "מבוא לפיתוח אתרים");
-            }
-        });
-        toHTML.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(tree.this, selectProject.class)); //iframe2
+                startActivity(new Intent(tree.this, selectPyProject.class)); //iframe2
                 overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
             }
         });

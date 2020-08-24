@@ -132,7 +132,7 @@ public class codeFrament extends Fragment  { //was extends Fragment, might need 
         final Handler handler = new Handler();
         final int delay = 3000; //milliseconds
 
-        handler.postDelayed(new Runnable(){
+        /*handler.postDelayed(new Runnable(){
             public void run(){
                 String[] c = new String[]{"hello", "hi"};
                 String text = htmlInp.getText().toString();
@@ -156,7 +156,7 @@ public class codeFrament extends Fragment  { //was extends Fragment, might need 
                 }
                 handler.postDelayed(this, delay);
             }
-        }, delay);
+        }, delay);*/
         return v;
     }
 

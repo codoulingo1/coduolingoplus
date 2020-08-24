@@ -30,7 +30,7 @@ import java.util.Arrays;
 import java.util.Locale;
 
 public class pythonCode extends Fragment {
-    public static String pythonCode;
+    public static String pythonCode = "";
     ImageButton submitBtn;
     public static EditText htmlInp;
     Button help1;
@@ -55,6 +55,10 @@ public class pythonCode extends Fragment {
         help1 = (Button) v.findViewById(R.id.help1);
         help2 = (Button) v.findViewById(R.id.help2);
         help3 = (Button) v.findViewById(R.id.help3);
+        if (selectPyProject.pyCodeToLoad != null){
+            String codeToLoad2 = selectPyProject.pyCodeToLoad;
+            htmlInp.setText(codeToLoad2);
+        }
         mViewPager = (ViewPager) v.findViewById(R.id.view_pager6000);
         tabsHost = getActivity().findViewById(R.id.tabs6000);
         detectLanguage();
@@ -71,61 +75,7 @@ public class pythonCode extends Fragment {
             }
         });
 
-        /*help1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String finalCode;
-                int CurrentSelection = htmlInp.getSelectionStart();
-                int endSelection = htmlInp.length();
-                String code = htmlInp.getText().toString();
-                String newCode1 = code.substring(0, CurrentSelection) + "<";
-                try {
-                    String newCode2 = code.substring(CurrentSelection + 1, endSelection);
-                    finalCode = newCode1 + newCode2;
-                }catch (Exception e){
-                    finalCode = newCode1;
-                }
-                htmlInp.setText(finalCode);
-                htmlInp.setSelection(htmlInp.getSelectionStart() + 1); //Moves the cursor to the correct place
-            }
-        });
-        help2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String finalCode;
-                int CurrentSelection = htmlInp.getSelectionStart();
-                int endSelection = htmlInp.length();
-                String code = htmlInp.getText().toString();
-                String newCode1 = code.substring(0, CurrentSelection) + ">";
-                try {
-                    String newCode2 = code.substring(CurrentSelection + 1, endSelection);
-                    finalCode = newCode1 + newCode2;
-                }catch (Exception e){
-                    finalCode = newCode1;
-                }
-                htmlInp.setText(finalCode);
-                htmlInp.setSelection(htmlInp.getSelectionStart() + 1); //Moves the cursor to the correct place
-            }
-        });
 
-        help3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String finalCode;
-                int CurrentSelection = htmlInp.getSelectionStart();
-                int endSelection = htmlInp.length();
-                String code = htmlInp.getText().toString();
-                String newCode1 = code.substring(0, CurrentSelection) + "/";
-                try {
-                    String newCode2 = code.substring(CurrentSelection + 1, endSelection);
-                    finalCode = newCode1 + newCode2;
-                }catch (Exception e){
-                    finalCode = newCode1;
-                }
-                htmlInp.setText(finalCode);
-                htmlInp.setSelection(htmlInp.getSelectionStart() + 1); //Moves the cursor to the correct place
-            }
-        });*/
         htmlInp.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -135,6 +85,7 @@ public class pythonCode extends Fragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 submitBtn.setImageResource(R.drawable.next3);
+                pythonCode = htmlInp.getText().toString();
             }
 
             @Override
@@ -178,7 +129,7 @@ public class pythonCode extends Fragment {
         final Handler handler = new Handler();
         final int delay = 3000; //milliseconds
 
-        handler.postDelayed(new Runnable(){
+        /*handler.postDelayed(new Runnable(){
             public void run(){
                 String[] c = new String[]{"hello", "hi"};
                 String text = htmlInp.getText().toString();
@@ -202,7 +153,7 @@ public class pythonCode extends Fragment {
                 }
                 handler.postDelayed(this, delay);
             }
-        }, delay);
+        }, delay);*/
         return v;
     }
 

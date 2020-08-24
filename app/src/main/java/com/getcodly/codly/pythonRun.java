@@ -39,7 +39,6 @@ public class pythonRun extends Fragment {
         pyInp = (EditText) v.findViewById(R.id.pyInp);
         pyEnt = (Button) v.findViewById(R.id.pyEnt);
         ReadWrite.write(getActivity().getFilesDir() + "/" + "a", "");
-        Python.start(new AndroidPlatform(getActivity()));
         new Thread(new Runnable() {
             public void run(){
                 Timer timer = new Timer();
@@ -67,6 +66,7 @@ public class pythonRun extends Fragment {
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
+                try{
                 //Log.d("hi", ReadWrite.read(PythonActivity.this.getFilesDir() + "/" + "a") + "0");
                 if (!ReadWrite.read(getActivity().getFilesDir() + "/" + "pyOut").equals(last)) {
                     Log.d("hi", ReadWrite.read(getActivity().getFilesDir() + "/" + "pyOut"));
@@ -82,6 +82,8 @@ public class pythonRun extends Fragment {
                             pyInp.setVisibility(View.VISIBLE);
                         }
                     });
+                }}catch (Exception e){
+
                 }
             }
         }, 0, 1000);
