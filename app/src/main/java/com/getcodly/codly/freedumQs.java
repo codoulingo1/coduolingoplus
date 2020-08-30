@@ -53,6 +53,7 @@ public class freedumQs extends AppCompatActivity {
     TextView l;
     Button buttonl;
     HashMap<String, String> freedum_hashmap;
+    ImageButton backBtn;
     RelativeLayout popup;
     RelativeLayout popupWrong;
     ImageButton continueBtn4;
@@ -66,6 +67,7 @@ public class freedumQs extends AppCompatActivity {
         popupWrong = (RelativeLayout) findViewById(R.id.popup2);
         //continueBtn.setBackgroundColor(Color.TRANSPARENT);
         popup = (RelativeLayout) findViewById(R.id.Popup1);
+        backBtn = (ImageButton) findViewById(R.id.backBtn2);
         opt1 = (Button) findViewById(R.id.Opt1);
         opt2 = (Button) findViewById(R.id.Opt2);
         opt3 = (Button) findViewById(R.id.Opt3);
@@ -92,20 +94,19 @@ public class freedumQs extends AppCompatActivity {
 
     public void freedumQs() {
         freedum_hashmap = LessonActivity.shared_hashmap;
-        TextView fr = (TextView)findViewById(R.id.freedumQuestion);
-        SpannableStringBuilder builder=new SpannableStringBuilder();
+        TextView fr = (TextView) findViewById(R.id.freedumQuestion);
+        SpannableStringBuilder builder = new SpannableStringBuilder();
         for (int i = 0; i < 10; i = i + 1) {
             try {
-                if (i % 2 == 0 || i==0) {
+                if (i % 2 == 0 || i == 0) {
                     builder.append(freedum_hashmap.get("qs").split("\\*")[i]);
-                }
-                else{
+                } else {
                     SpannableString txtSpannable = new SpannableString(freedum_hashmap.get("qs").split("\\*")[i]);
                     StyleSpan boldSpan = new StyleSpan(Typeface.BOLD);
                     txtSpannable.setSpan(boldSpan, 0, freedum_hashmap.get("qs").split("\\*")[i].length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
                     builder.append(txtSpannable);
                 }
-            }catch (Exception e){
+            } catch (Exception e) {
                 break;
             }
         }
@@ -119,33 +120,28 @@ public class freedumQs extends AppCompatActivity {
         opt2.setText(optAns[1]);
         try {
             opt3.setText(optAns[2]);
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             opt3.setVisibility(View.INVISIBLE);
         }
         try {
             opt4.setText(optAns[3]);
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             opt4.setVisibility(View.INVISIBLE);
         }
         opt1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(isClicked1 != 1){
+                if (isClicked1 != 1) {
                     isClicked1 = 1;
                     opt1.setScaleX(1.1f);
                     opt1.setScaleY(1.1f);
 
-                    if (opt1.getText().toString().equals(freedum_hashmap.get("Answer"))){
+                    if (opt1.getText().toString().equals(freedum_hashmap.get("Answer"))) {
                         isCorrect = 2;
-                    }
-                    else {
+                    } else {
                         isCorrect = 1;
                     }
-                }
-                else
-                {
+                } else {
                     isCorrect = 0;
                     isClicked1 = 0;
                     opt1.setScaleX(1);
@@ -158,20 +154,17 @@ public class freedumQs extends AppCompatActivity {
         opt2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(isClicked2 != 1){
+                if (isClicked2 != 1) {
                     isClicked2 = 1;
                     opt2.setScaleX(1.1f);
                     opt2.setScaleY(1.1f);
 
-                    if (opt2.getText().toString().equals(freedum_hashmap.get("Answer"))){
+                    if (opt2.getText().toString().equals(freedum_hashmap.get("Answer"))) {
                         isCorrect = 2;
-                    }
-                    else {
+                    } else {
                         isCorrect = 1;
                     }
-                }
-                else
-                {
+                } else {
                     isCorrect = 0;
                     isClicked2 = 0;
                     opt2.setScaleX(1);
@@ -179,23 +172,21 @@ public class freedumQs extends AppCompatActivity {
                 }
 
             }
-        });opt3.setOnClickListener(new View.OnClickListener() {
+        });
+        opt3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(isClicked3 != 1){
+                if (isClicked3 != 1) {
                     isClicked3 = 1;
                     opt3.setScaleX(1.1f);
                     opt3.setScaleY(1.1f);
 
-                    if (opt3.getText().toString().equals(freedum_hashmap.get("Answer"))){
+                    if (opt3.getText().toString().equals(freedum_hashmap.get("Answer"))) {
                         isCorrect = 2;
-                    }
-                    else {
+                    } else {
                         isCorrect = 1;
                     }
-                }
-                else
-                {
+                } else {
                     isCorrect = 0;
                     isClicked3 = 0;
                     opt3.setScaleX(1);
@@ -203,23 +194,21 @@ public class freedumQs extends AppCompatActivity {
                 }
 
             }
-        });opt4.setOnClickListener(new View.OnClickListener() {
+        });
+        opt4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(isClicked4 != 1){
+                if (isClicked4 != 1) {
                     isClicked4 = 1;
                     opt4.setScaleX(1.1f);
                     opt4.setScaleY(1.1f);
 
-                    if (opt4.getText().toString().equals(freedum_hashmap.get("Answer"))){
+                    if (opt4.getText().toString().equals(freedum_hashmap.get("Answer"))) {
                         isCorrect = 2;
-                    }
-                    else {
+                    } else {
                         isCorrect = 1;
                     }
-                }
-                else
-                {
+                } else {
                     isCorrect = 0;
                     isClicked4 = 0;
                     opt4.setScaleX(1);
@@ -229,8 +218,18 @@ public class freedumQs extends AppCompatActivity {
             }
         });
 
+        backBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (LessonActivity.j > 1) {
+                    LessonActivity.j = LessonActivity.j - 1;
+                    LessonActivity.shared_xp = LessonActivity.shared_xp - 1;
+                    startActivity(new Intent(freedumQs.this, LessonActivity.class));
+                    overridePendingTransition(0, 0);
+                }
+            }
+        });
     }
-
     void showCorrect() {
 
         /*popup.setVisibility(View.VISIBLE);

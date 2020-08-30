@@ -27,6 +27,7 @@ public class ExplainationQS extends AppCompatActivity {
     public static ImageView ExpImage;
     ImageButton continueBtn;
     private AnimatedVectorDrawable animation;
+    ImageButton backBtn;
     ProgressBar pb;
 
     @Override
@@ -34,6 +35,7 @@ public class ExplainationQS extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_explaination_q_s);
         continueBtn = (ImageButton) findViewById(R.id.continueBtn);
+        backBtn = (ImageButton) findViewById(R.id.backBtn);
         ExpImage = (ImageView) findViewById(R.id.imageView);
         String url = LessonActivity.shared_hashmap.get("Image"); //paste here google drive picture shareable link but change "open?" to "uc?"
         if(!url.equals("none")){
@@ -85,6 +87,17 @@ public class ExplainationQS extends AppCompatActivity {
                 //continueBtn.setImageResource(R.drawable.avd_anim);
                 //animate();
 
+            }
+        });
+        backBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (LessonActivity.j>1) {
+                    LessonActivity.j = LessonActivity.j - 1;
+                    LessonActivity.shared_xp = LessonActivity.shared_xp - 1;
+                    startActivity(new Intent(ExplainationQS.this, LessonActivity.class));
+                    overridePendingTransition(0, 0);
+                }
             }
         });
     }

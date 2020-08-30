@@ -41,6 +41,7 @@ public class FreeText extends AppCompatActivity {
     TextView qs;
     ImageButton submit;
     RelativeLayout popupTruee;
+    ImageButton backBtn;
     ImageButton continueBtn10;
     RelativeLayout popup11;
     ImageButton continueBtn11;
@@ -53,6 +54,7 @@ public class FreeText extends AppCompatActivity {
         popupTruee = (RelativeLayout) findViewById(R.id.PopupTruee);
         continueBtn10 = (ImageButton) findViewById(R.id.continueBtn10);
         ProgressBar pb = (ProgressBar) findViewById(R.id.progressBar);
+        backBtn = (ImageButton) findViewById(R.id.backBtn4);
         popup11 = (RelativeLayout) findViewById(R.id.popup11);
         continueBtn11 = (ImageButton) findViewById(R.id.continueBtn11);
         pb.setProgress(LessonActivity.pr);
@@ -93,6 +95,17 @@ public class FreeText extends AppCompatActivity {
             }
         }
         );
+        backBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (LessonActivity.j > 1) {
+                    LessonActivity.j = LessonActivity.j - 1;
+                    LessonActivity.shared_xp = LessonActivity.shared_xp - 1;
+                    startActivity(new Intent(FreeText.this, LessonActivity.class));
+                    overridePendingTransition(0, 0);
+                }
+            }
+        });
         inp.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {

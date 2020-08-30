@@ -28,6 +28,7 @@ public class NonFreedum extends AppCompatActivity {
     String org;
     List<String> back_ch = new ArrayList<String>();
     String unuateksto;
+    ImageButton backBtn;
     int wrloc;
     public String f;
     RelativeLayout popupTrue;
@@ -52,6 +53,7 @@ public class NonFreedum extends AppCompatActivity {
         final Button opt4 = (Button) findViewById(R.id.button4);
         final Button opt5 = (Button) findViewById(R.id.button5);
         final Button opt6 = (Button) findViewById(R.id.button6);
+        backBtn = (ImageButton) findViewById(R.id.backBtn3);
         check = (ImageButton) findViewById(R.id.check);
         continueBtnFalse = (ImageButton) findViewById(R.id.continueBtnFalse);
         continueBtnTrue = (ImageButton) findViewById(R.id.continueBtnTrue);
@@ -163,6 +165,17 @@ public class NonFreedum extends AppCompatActivity {
                 //when play is clicked show stop button and hide play button
                 rese();
 
+            }
+        });
+        backBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (LessonActivity.j > 1) {
+                    LessonActivity.j = LessonActivity.j - 1;
+                    LessonActivity.shared_xp = LessonActivity.shared_xp - 1;
+                    startActivity(new Intent(NonFreedum.this, LessonActivity.class));
+                    overridePendingTransition(0, 0);
+                }
             }
         });
         check.setOnClickListener(new View.OnClickListener() {

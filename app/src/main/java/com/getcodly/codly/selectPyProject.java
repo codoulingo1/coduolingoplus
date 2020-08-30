@@ -37,7 +37,7 @@ public class selectPyProject extends AppCompatActivity {
             }
         });
 
-        File path = new File(selectPyProject.this.getFilesDir() + "/" + "pyCodes");
+        File path = new File(selectPyProject.this.getFilesDir() + "/" + "codes");
         File[] list = path.listFiles();
         myList = new ArrayList();
         if(list != null){
@@ -53,7 +53,7 @@ public class selectPyProject extends AppCompatActivity {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                         String selectedCode = String.valueOf(myList.get(position));
-                        pyCodeToLoad = ReadWrite.read(selectPyProject.this.getFilesDir() + "/" + "pyCodes/" + selectedCode);
+                        pyCodeToLoad = ReadWrite.read(selectPyProject.this.getFilesDir() + "/" + "codes/" + selectedCode);
                         Log.d("codeToLoad", pyCodeToLoad);
                         startActivity(new Intent(selectPyProject.this, PythonActivity2.class));
                     }
@@ -68,7 +68,7 @@ public class selectPyProject extends AppCompatActivity {
         super.onResume();
         pyCodeToLoad = null;
 
-        File path = new File(selectPyProject.this.getFilesDir() + "/" + "pyCodes");
+        File path = new File(selectPyProject.this.getFilesDir() + "/" + "codes");
         File[] list = path.listFiles();
         myList = new ArrayList();
         if(list != null){
@@ -84,7 +84,7 @@ public class selectPyProject extends AppCompatActivity {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                         String selectedCode = String.valueOf(myList.get(position));
-                        pyCodeToLoad = ReadWrite.read(selectPyProject.this.getFilesDir() + "/" + "pyCodes/" + selectedCode);
+                        pyCodeToLoad = ReadWrite.read(selectPyProject.this.getFilesDir() + "/" + "codes/" + selectedCode);
                         Log.d("codeToLoad", pyCodeToLoad);
                         startActivity(new Intent(selectPyProject.this, PythonActivity2.class));
                     }

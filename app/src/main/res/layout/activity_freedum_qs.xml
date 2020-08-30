@@ -6,6 +6,21 @@
     android:layout_height="match_parent"
     android:background="#F3F4F9">
 
+    <ImageButton
+        android:id="@+id/backBtn2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginBottom="21dp"
+        android:layout_marginLeft="341dp"
+        android:adjustViewBounds="true"
+        android:background="#80FFFFFF"
+        android:maxHeight="60dp"
+        android:maxWidth="60dp"
+        android:scaleType="fitCenter"
+        app:srcCompat="@drawable/next" />
+
     <Button
         android:id="@+id/Opt4"
         android:layout_width="375dp"

@@ -13,6 +13,62 @@
             android:layout_height="match_parent">
 
             <RelativeLayout
+                android:id="@+id/skill13"
+                android:layout_width="100dp"
+                android:layout_height="120dp"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="79dp"
+                android:clickable="true">
+
+                <ProgressBar
+                    android:id="@+id/progressBar3"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="7dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="25dp"
+                    android:layout_marginTop="0dp"
+                    android:progress="60"
+                    android:progressDrawable="@drawable/pb_lessons" />
+
+                <RelativeLayout
+                    android:id="@+id/n3"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_centerHorizontal="true">
+
+                    <ImageView
+                        android:id="@+id/lessonStart3"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_centerHorizontal="true"
+                        app:srcCompat="@drawable/lesson_circle" />
+
+                    <ImageView
+                        android:id="@+id/imageView3"
+                        android:layout_width="55dp"
+                        android:layout_height="55dp"
+                        android:layout_centerInParent="true"
+                        app:srcCompat="@drawable/ic_coding" />
+                </RelativeLayout>
+
+                <TextView
+                    android:id="@+id/lessonText3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_above="@id/progressBar3"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="4dp"
+                    android:fontFamily="@font/rubik_light"
+                    android:text="הקוד הראשון שלי"
+                    android:textColor="#636475" />
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
                 android:id="@+id/skill12"
                 android:layout_width="100dp"
                 android:layout_height="120dp"
@@ -63,7 +119,7 @@
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="4dp"
                     android:fontFamily="@font/rubik_light"
-                    android:text="מה זה XML"
+                    android:text="מבוא"
                     android:textColor="#636475" />
 
 
