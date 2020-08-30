@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="300dp"
+    android:padding="10dp"
+    android:background="@drawable/bottom_sheet_background"
+    android:id="@+id/bottomSheetContainer">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="בחר סוג פרוייקט"
+        android:layout_centerHorizontal="true"
+        android:textSize="24dp"
+        android:fontFamily="@font/rubik_bold"
+        android:textColor="#42445F"
+        android:id="@+id/choose_project"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="@drawable/ripple_anim3"
+        android:layout_below="@id/choose_project"
+        android:layout_marginTop="10dp"
+        android:elevation="1dp"
+        android:padding="10dp"
+        android:id="@+id/websiteSelect">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="אתר אינטרנט"
+            android:fontFamily="@font/rubik_bold"
+            android:textColor="#5A5A6E"
+            android:textSize="20dp"
+            android:layout_alignParentRight="true"
+            android:id="@+id/textView100"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textView100"
+            android:text="תבנית ריקה לאתר אינטרנט חדש המשלב קוד HTML, JavaScript וCSS."
+            android:fontFamily="@font/rubik_light"
+            android:textColor="#42445F"
+            android:textSize="17dp"
+            android:layout_alignParentRight="true"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="@drawable/ripple_anim3"
+        android:layout_below="@id/websiteSelect"
+        android:layout_marginTop="20dp"
+        android:elevation="1dp"
+        android:padding="10dp"
+        android:id="@+id/pythonSelect">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="תוכנת פייתון"
+            android:fontFamily="@font/rubik_bold"
+            android:textColor="#5A5A6E"
+            android:textSize="20dp"
+            android:layout_alignParentRight="true"
+            android:id="@+id/textView101"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textView101"
+            android:text="קובץ פייתון ריק ליצירת תוכנות בשפת פייתון."
+            android:fontFamily="@font/rubik_light"
+            android:textColor="#42445F"
+            android:textSize="17dp"
+            android:layout_alignParentRight="true"/>
+
+    </RelativeLayout>
+
+</RelativeLayout>

@@ -69,7 +69,8 @@
             android:text="שיעור נוכחי: משתנים ולולאות"
             android:textSize="13dp"
             android:layout_below="@id/courseName1"
-            android:layout_marginRight="10dp"/>
+            android:layout_marginRight="10dp"
+            android:layout_toRightOf="@+id/courseImage1"/>
 
         <View
             android:id="@+id/clickView1"

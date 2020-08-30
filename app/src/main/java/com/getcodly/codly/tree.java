@@ -67,7 +67,7 @@ public class tree extends AppCompatActivity {
         toPython.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(tree.this, selectPyProject.class)); //iframe2
+                startActivity(new Intent(tree.this, selectProject.class)); //iframe2
                 overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
             }
         });

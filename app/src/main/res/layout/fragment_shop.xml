@@ -15,7 +15,7 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
         android:layout_margin="15dp"
-        android:id="@+id/label" />
+        android:id="@+id/label"/>
 
     <RelativeLayout
         android:id="@+id/c"
@@ -27,7 +27,7 @@
         android:layout_marginTop="100dp"
         android:background="@drawable/course_bg"
         android:clickable="true"
-        android:elevation="3dp">
+        android:elevation="1dp">
 
         <ImageView
             android:layout_width="150dp"
