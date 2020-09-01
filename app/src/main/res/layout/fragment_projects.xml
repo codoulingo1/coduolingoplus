@@ -10,5 +10,5 @@
         android:id="@+id/imageView5"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@drawable/ic_google_logo" />
+        android:src="@drawable/projects_placeholder" />
 </RelativeLayout>

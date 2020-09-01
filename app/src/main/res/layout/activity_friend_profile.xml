@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F3F4F9">
+    android:background="#F3F4F9"
+    android:padding="10dp">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -15,7 +16,7 @@
             android:id="@+id/back_to_tree"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Back to the tree"
+            android:text="חזור אחורה"
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
             android:layout_marginBottom="25dp"
@@ -55,22 +56,30 @@
             android:text="Streak:"
             android:textSize="20sp" />
 
-        <Button
-            android:id="@+id/follow"
-            android:layout_width="142dp"
-            android:layout_height="45dp"
-            android:layout_centerHorizontal="true"
-            android:text="עקוב"
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_below="@id/streak"
-            android:layout_marginTop="10dp"/>
+            android:layout_marginTop="10dp"
+            android:layout_centerHorizontal="true">
 
-        <Button
-            android:id="@+id/inv"
-            android:layout_width="142dp"
-            android:layout_height="45dp"
-            android:layout_below="@id/streak"
-            android:layout_marginTop="109dp"
-            android:text="הזמן לתחרות" />
+            <Button
+                android:id="@+id/follow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:text="עקוב" />
+
+            <Button
+                android:id="@+id/inv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_marginEnd="203dp"
+                android:layout_toStartOf="@+id/follow"
+                android:text="הזמן לתחרות" />
+
+        </RelativeLayout>
 
     </RelativeLayout>
-</LinearLayout>
+</RelativeLayout>

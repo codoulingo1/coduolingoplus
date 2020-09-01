@@ -65,9 +65,7 @@ public class selectProject extends AppCompatActivity {
             for( int i=0; i < list.length; i++)
             {
                 myList.add(list[i].getName().replace(".txt", ""));
-
                 ArrayAdapter<String> mProjectAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, myList);
-
                 projectList.setAdapter(mProjectAdapter);
 
                 projectList.setOnItemClickListener(new AdapterView.OnItemClickListener() {

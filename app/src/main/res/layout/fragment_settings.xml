@@ -65,7 +65,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
-        android:text="שינוי סיסמה"
+        android:text="שינוי סיסמה (עדיין בפיתוח - לא עובד)"
         android:layout_below="@id/yourNameEdit"
         android:layout_marginTop="15dp"
         android:textColor="#5B9A9C"
