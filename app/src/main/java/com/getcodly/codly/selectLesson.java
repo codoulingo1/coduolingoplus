@@ -8,6 +8,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -45,7 +46,8 @@ public class selectLesson extends AppCompatActivity {
                     tree.practiceID = (String[]) fin.toArray(new String[0]);
                     startActivity(new Intent(selectLesson.this, MainActivity.class));
                 } catch (Exception e){
-
+                    Toast.makeText(selectLesson.this,
+                            "עדיין לא למדת מספיק שיעורים בשביל לתרגל", Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -61,14 +63,14 @@ public class selectLesson extends AppCompatActivity {
             public void onItemClick(AdapterView<?> arg0, View arg1, int position, long arg3)
             {
                 List<String> str_old_progress = Arrays.asList(mainScreen.progress.split(" "));
-                    if (str_old_progress.contains(tree.idShare[position])){
-                        MainActivity.id = tree.idShare[position];
-                        MainActivity.name = tree.namesShare[position];
+                    if (str_old_progress.contains(tree.idShare.get(position))){
+                        MainActivity.id = tree.idShare.get(position);
+                        MainActivity.name = tree.namesShare.get(position);
 
                         startActivity(new Intent(selectLesson.this, MainActivity.class));
                         overridePendingTransition(0,0);
                 }
-                    else if (tree.idShare[position].equals(MainActivity.id)){
+                    else if (tree.idShare.get(position).equals(MainActivity.id)){
                         startActivity(new Intent(selectLesson.this, MainActivity.class));
                         overridePendingTransition(0,0);
                     }

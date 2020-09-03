@@ -95,7 +95,7 @@ public class selectProject extends AppCompatActivity {
         if(list != null){
             for( int i=0; i < list.length; i++)
             {
-                myList.add(list[i].getName().replace(".txt", ""));
+                myList.add(list[i].getName().replace(".txt", "").replaceAll("pyy", ".py").replaceAll("htmll", ".html"));
 
                 ArrayAdapter<String> mProjectAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, myList);
 
@@ -104,10 +104,15 @@ public class selectProject extends AppCompatActivity {
                 projectList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        String selectedCode = String.valueOf(myList.get(position));
+                        String selectedCode = String.valueOf(myList.get(position)).replaceAll(".html", "htmll").replaceAll(".py", "pyy");
                         codeToLoad = ReadWrite.read(selectProject.this.getFilesDir() + "/" + "codes/" + selectedCode);
                         Log.d("codeToLoad", codeToLoad);
-                        startActivity(new Intent(selectProject.this, iframe2.class));
+                        if (selectedCode.contains("htmll")) {
+                            startActivity(new Intent(selectProject.this, iframe2.class));
+                        }
+                        if (selectedCode.contains("pyy")) {
+                            startActivity(new Intent(selectProject.this, PythonActivity2.class));
+                        }
                     }
                 });
             }
