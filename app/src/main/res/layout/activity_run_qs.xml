@@ -15,9 +15,10 @@
     <EditText
         android:id="@+id/inp"
         android:layout_width="match_parent"
-        android:layout_height="248dp"
+        android:layout_height="326dp"
         android:layout_below="@+id/textView"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="14dp"
+        android:background="@color/codeBackground"
         android:fontFamily="@font/veramono"
         android:gravity="top"
         android:inputType="textMultiLine|textNoSuggestions"
@@ -26,8 +27,7 @@
         android:overScrollMode="always"
         android:scrollbarStyle="insideInset"
         android:scrollbars="vertical"
-        android:textColor="@color/white"
-        android:background="@color/codeBackground"/>
+        android:textColor="@color/white" />
 
     <ProgressBar
         android:id="@+id/progressBar"
@@ -40,11 +40,11 @@
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="326dp"
-        android:layout_height="wrap_content"
+        android:layout_width="403dp"
+        android:layout_height="103dp"
         android:layout_alignParentRight="true"
         android:layout_marginRight="@dimen/default_gap"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="60dp"
         android:fontFamily="@font/rubik_light"
         android:textColor="#0B0A0A"
         android:textSize="22sp" />
@@ -164,8 +164,8 @@
     <TextView
         android:id="@+id/out"
         android:layout_width="match_parent"
-        android:layout_height="279dp"
-        android:layout_marginTop="350dp"
+        android:layout_height="159dp"
+        android:layout_marginTop="508dp"
         android:textColor="#000000"
         android:textSize="18sp" />
 

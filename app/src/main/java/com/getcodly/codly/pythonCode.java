@@ -55,8 +55,8 @@ public class pythonCode extends Fragment {
         help1 = (Button) v.findViewById(R.id.help1);
         help2 = (Button) v.findViewById(R.id.help2);
         help3 = (Button) v.findViewById(R.id.help3);
-        if (selectPyProject.pyCodeToLoad != null){
-            String codeToLoad2 = selectPyProject.pyCodeToLoad;
+        if (selectProject.codeToLoad != null){
+            String codeToLoad2 = selectProject.codeToLoad;
             htmlInp.setText(codeToLoad2);
         }
         mViewPager = (ViewPager) v.findViewById(R.id.view_pager6000);

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".FriendsFragment">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/addFriendBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_margin="15dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginRight="2dp"
+            android:layout_marginStart="15dp"
+            android:fontFamily="@font/rubik_bold"
+            android:text="חזור על שיעורים"
+            android:textColor="#5A5A6E"
+            android:textSize="24sp" />
+            <Button
+            android:id="@+id/practice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentLeft="true"
+                android:layout_marginBottom="1dp"
+                android:layout_marginEnd="1dp"
+                android:layout_marginRight="1dp"
+                android:layout_marginStart="1dp"
+                android:layout_marginVertical="15dp"
+            android:fontFamily="@font/rubik_bold"
+            android:text="תרגל"
+            android:textColor="#5A5A6E"
+            android:textSize="24sp" />
+
+        <Button
+            android:id="@+id/nextLesson"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginBottom="1dp"
+            android:layout_marginEnd="1dp"
+            android:layout_marginRight="1dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginVertical="15dp"
+            android:fontFamily="@font/rubik_bold"
+            android:text="המשך לשיעור הבא"
+            android:textColor="#5A5A6E"
+            android:textSize="24sp" />
+
+        <ListView
+            android:id="@+id/friendList2"
+            android:layout_width="match_parent"
+            android:layout_height="387dp"
+            android:layout_below="@+id/addFriendBtn"
+            android:layout_marginTop="11dp" />
+    </RelativeLayout>
+</RelativeLayout>

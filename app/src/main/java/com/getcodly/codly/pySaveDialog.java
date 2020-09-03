@@ -85,7 +85,7 @@ public class pySaveDialog extends AppCompatDialogFragment {
                     mFileName.setText("");
                     String htmlCodeToSave = pythonCode.pythonCode;
                     saveBtn.setImageResource(R.drawable.save_btn_gray);
-                    String fileNameBetter = getContext().getFilesDir() + "/" + "codes/" + fileName;
+                    String fileNameBetter = getContext().getFilesDir() + "/" + "codes/" + fileName + "pyy";
                     File f = new File(fileNameBetter);
                     f.getParentFile().mkdirs();
                     isButtonEnabled = false;

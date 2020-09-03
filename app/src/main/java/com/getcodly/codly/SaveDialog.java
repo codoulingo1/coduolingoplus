@@ -84,7 +84,7 @@ public class SaveDialog extends AppCompatDialogFragment {
                     mFileName.setText("");
                     String htmlCodeToSave = codeFrament.htmlCode;
                     saveBtn.setImageResource(R.drawable.save_btn_gray);
-                    String fileNameBetter = getContext().getFilesDir() + "/" + "codes/" + fileName;
+                    String fileNameBetter = getContext().getFilesDir() + "/" + "codes/" + fileName + "htmll";
                     File f = new File(fileNameBetter);
                     f.getParentFile().mkdirs();
                     isButtonEnabled = false;

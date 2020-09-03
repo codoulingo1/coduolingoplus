@@ -75,6 +75,9 @@ public class runQs extends AppCompatActivity {
         Log.d(String.valueOf(LessonActivity.shared_hashmap.get("additional").length()), String.valueOf(LessonActivity.shared_hashmap.get("additional").length()));
         final EditText inp = (EditText) findViewById(R.id.inp);
         inp.setText(LessonActivity.shared_hashmap.get("additional"));
+        if (LessonActivity.shared_hashmap.get("type").equals("showPy")){
+            inp.setKeyListener(null);
+        }
         TextView out = (TextView) findViewById(R.id.out);
         submit.setOnClickListener(new View.OnClickListener() {
                                       @Override
