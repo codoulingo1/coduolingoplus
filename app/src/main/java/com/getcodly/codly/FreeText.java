@@ -69,7 +69,7 @@ public class FreeText extends AppCompatActivity {
                 }
                 else{
                     SpannableString txtSpannable = new SpannableString(LessonActivity.shared_hashmap.get("qs").split("\\*")[i]);
-                    StyleSpan boldSpan = new StyleSpan(Typeface.BOLD);
+                    StyleSpan boldSpan = new StyleSpan(Typeface.BOLD); //additional = קוד מקורי
                     txtSpannable.setSpan(boldSpan, 0, LessonActivity.shared_hashmap.get("qs").split("\\*")[i].length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
                     builder.append(txtSpannable);
                 }
