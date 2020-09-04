@@ -17,7 +17,7 @@
         android:layout_width="match_parent"
         android:layout_height="326dp"
         android:layout_below="@+id/textView"
-        android:layout_marginTop="14dp"
+        android:layout_marginTop="11dp"
         android:background="@color/codeBackground"
         android:fontFamily="@font/veramono"
         android:gravity="top"

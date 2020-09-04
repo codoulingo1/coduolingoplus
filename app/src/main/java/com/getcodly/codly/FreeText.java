@@ -87,12 +87,20 @@ public class FreeText extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String ans = inp.getText().toString();
-                if (Text.eqnova(ans, LessonActivity.shared_hashmap.get("Answer"), LessonActivity.shared_hashmap.get("additional").length())) {
-                    showCorrect();
-                }
-
-                else{
-                    showWrong();
+                try {
+                    if (Text.eqnova(ans, LessonActivity.shared_hashmap.get("Answer"), LessonActivity.shared_hashmap.get("additional").length())) {
+                        showCorrect();
+                    }
+                    else{
+                        showWrong();
+                        }
+                }catch (Exception e){
+                    if ((ans.equals(LessonActivity.shared_hashmap.get("Answer")))) {
+                        showCorrect();
+                    }
+                    else{
+                        showWrong();
+                    }
                 }
             }
         }

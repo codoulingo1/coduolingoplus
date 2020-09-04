@@ -26,6 +26,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Objects;
 
 public class LessonActivity extends AppCompatActivity {
 
@@ -106,27 +107,32 @@ public class LessonActivity extends AppCompatActivity {
         progress();
         Log.d("j", String.valueOf(j));
         if (hashMap.get("type").equals("freedum")){
+            Log.d("finished", "finished1");
             startActivity(new Intent(LessonActivity.this, freedumQs.class));
             overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
         }
         else if(hashMap.get("type").equals("explain")){
+            Log.d("finished", "finished2");
             startActivity(new Intent(LessonActivity.this, ExplainationQS.class));
             overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
         }
         else if(hashMap.get("type").equals("nonfreetext")){
+            Log.d("finished", "finished3");
             startActivity(new Intent(LessonActivity.this, NonFreedum.class));
             overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
         }
         else if(hashMap.get("type").equals("freetext")){
+            Log.d("finished", "finished4");
             startActivity(new Intent(LessonActivity.this, FreeText.class));
             overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
         }
-        else if(hashMap.get("type").equals("runPy")|| hashMap.get("type").equals("showPy")){
+        else if(hashMap.get("type").equals("runPy") || hashMap.get("type").equals("showPy")){
+            Log.d("finished", "finished5");
             startActivity(new Intent(LessonActivity.this, runQs.class));
             overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
         }
         else{
-            //qs.setText("finished");
+            Log.d("finished", "finished6");
         }}
     public void progress(){
         int b = 100 * (j-1);

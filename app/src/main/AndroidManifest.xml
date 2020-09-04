@@ -12,6 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".selectProject"></activity>
+        <activity android:name=".runQs"></activity>
         <activity android:name=".selectLesson"></activity>
         <activity android:name=".selectPyProject"></activity>
         <activity android:name=".Comp_Invite" />

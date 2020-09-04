@@ -71,10 +71,10 @@ public class ExplainationQS extends AppCompatActivity {
         continueBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                LessonActivity.j++;
                 LessonActivity.shared_xp = LessonActivity.shared_xp + 1;
                 //LessonActivity.points++;
                 if(LessonActivity.shared_hashmap.get("additional").equals("none")) {
+                    LessonActivity.j = LessonActivity.j + 1;
                     startActivity(new Intent(ExplainationQS.this, LessonActivity.class));
                     overridePendingTransition(0, 0);
                 }
