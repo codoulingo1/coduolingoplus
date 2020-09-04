@@ -19,6 +19,7 @@ import org.apache.commons.io.FileUtils;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.HashMap;
@@ -28,6 +29,8 @@ public class tree extends AppCompatActivity {
 
     //FirebaseAuth mAuth;
     RelativeLayout skill1;
+    public static ArrayList<String> idShare;
+    public static ArrayList<String> namesShare;
     CountDownTimer mcountdown;
     public static String[] practiceID;
     public static String LessonType;
@@ -54,7 +57,7 @@ public class tree extends AppCompatActivity {
         skill1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startLesson(Arrays.asList("1-1-1"), "מבוא לפייתון");
+                startLesson(Arrays.asList("1-1-1~מבוא לפייתון"));
             } //savta
         });
         toPython.setOnClickListener(new View.OnClickListener() {
@@ -66,16 +69,22 @@ public class tree extends AppCompatActivity {
         });
     }
 
-    void startLesson(List<String> id, String name){
+    void startLesson(List<String> id){
         String old_progress = mainScreen.progress;
+        idShare = new ArrayList();
+        namesShare = new ArrayList();
         LessonType = "";
+        for(String i : id){
+            idShare.add(i.split("~")[0]);
+            namesShare.add(i.split("~")[1]);
+        }
         for(String d : id){
             List<String> str_old_progress = Arrays.asList(old_progress.split(""));
             if(!str_old_progress.contains(d)) {
-                MainActivity.id = d;
-                MainActivity.name = name;
+                MainActivity.id = d.split("~")[0];
+                MainActivity.name = d.split("~")[1];
 
-                startActivity(new Intent(tree.this, MainActivity.class));
+                startActivity(new Intent(tree.this, selectLesson.class));
                 overridePendingTransition(0,0);
             }
         }

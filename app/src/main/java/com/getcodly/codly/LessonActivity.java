@@ -121,7 +121,7 @@ public class LessonActivity extends AppCompatActivity {
             startActivity(new Intent(LessonActivity.this, FreeText.class));
             overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
         }
-        else if(hashMap.get("type").equals("runPy")){
+        else if(hashMap.get("type").equals("runPy")|| hashMap.get("type").equals("showPy")){
             startActivity(new Intent(LessonActivity.this, runQs.class));
             overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
         }
