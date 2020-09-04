@@ -133,7 +133,7 @@ public class freedumQs extends AppCompatActivity {
                     opt1.setScaleX(1.1f);
                     opt1.setScaleY(1.1f);
                     opt2.setScaleX(1f);
-                    opt2.setScaleY(1f);
+                    opt2.setScaleY(1f);//
                     opt3.setScaleX(1f);
                     opt3.setScaleY(1f);
                     opt4.setScaleX(1f);
