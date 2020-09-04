@@ -59,7 +59,7 @@ public class finalLesson extends AppCompatActivity {
                 StartAdTransfer();
             }
         });
-        //finishLsnBtn.setVisibility(View.INVISIBLE);
+        finishLsnBtn.setVisibility(View.INVISIBLE);
 
         mInterstitialAd = new InterstitialAd(this);
         //mInterstitialAd.setAdUnitId("ca-app-pub-8750577101117973/5953828477"); Real ad ID, not for testing!
