@@ -34,7 +34,7 @@ import java.util.concurrent.TimeUnit;
 public class freedumQs extends AppCompatActivity {
 
     ImageButton continueBtn;
-    int isCorrect = 0; //0 = empty, 1 = false, 2 = correct
+    Boolean isCorrect = false;
 
     Button opt1;
     Button opt2;
@@ -42,11 +42,6 @@ public class freedumQs extends AppCompatActivity {
     Button opt4;
 
     private AnimatedVectorDrawable animation;
-
-    int isClicked1 = 0;
-    int isClicked2 = 0;
-    int isClicked3 = 0;
-    int isClicked4 = 0;
 
 
     ProgressBar pb;
@@ -58,6 +53,14 @@ public class freedumQs extends AppCompatActivity {
     RelativeLayout popupWrong;
     ImageButton continueBtn4;
     ImageButton continueBtn6;
+
+
+    Boolean isOpt1Pressed = false;
+    Boolean isOpt2Pressed = false;
+    Boolean isOpt3Pressed = false;
+    Boolean isOpt4Pressed = false;
+
+    String selectedOpt = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,18 +78,13 @@ public class freedumQs extends AppCompatActivity {
         continueBtn4 = (ImageButton) findViewById(R.id.continueBtn4);
         continueBtn6 = (ImageButton) findViewById(R.id.continueBtn6);
         pb = (ProgressBar) findViewById(R.id.progressBar);
+
         //l = (TextView) findViewById(R.id.l2);
         //buttonl = (Button) findViewById(R.id.buttonl);
         continueBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(isCorrect == 2){
-                    showCorrect();
-                }else if (isCorrect == 1){
-                    showWrong();
-                } else if(isCorrect == 0){
-
-                }
+                if (selectedOpt.equals(freedum_hashmap.get("Answer")));
             }
         });
         freedumQs();
@@ -131,90 +129,122 @@ public class freedumQs extends AppCompatActivity {
         opt1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (isClicked1 != 1) {
-                    isClicked1 = 1;
+                if (isOpt1Pressed = false){
                     opt1.setScaleX(1.1f);
                     opt1.setScaleY(1.1f);
-
-                    if (opt1.getText().toString().equals(freedum_hashmap.get("Answer"))) {
-                        isCorrect = 2;
-                    } else {
-                        isCorrect = 1;
-                    }
+                    opt2.setScaleX(1f);
+                    opt2.setScaleY(1f);
+                    opt3.setScaleX(1f);
+                    opt3.setScaleY(1f);
+                    opt4.setScaleX(1f);
+                    opt4.setScaleY(1f);
+                    continueBtn.setVisibility(View.VISIBLE);
+                    selectedOpt = opt1.getText().toString();
+                    isOpt1Pressed = true;
                 } else {
-                    isCorrect = 0;
-                    isClicked1 = 0;
-                    opt1.setScaleX(1);
-                    opt1.setScaleY(1);
+                    opt1.setScaleX(1f);
+                    opt1.setScaleY(1f);
+                    opt2.setScaleX(1f);
+                    opt2.setScaleY(1f);
+                    opt3.setScaleX(1f);
+                    opt3.setScaleY(1f);
+                    opt4.setScaleX(1f);
+                    opt4.setScaleY(1f);
+                    continueBtn.setVisibility(View.INVISIBLE);
+                    selectedOpt = null;
+                    isOpt1Pressed = false;
                 }
-
             }
         });
 
         opt2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (isClicked2 != 1) {
-                    isClicked2 = 1;
+                if (isOpt2Pressed = false){
+                    opt1.setScaleX(1f);
+                    opt1.setScaleY(1f);
                     opt2.setScaleX(1.1f);
                     opt2.setScaleY(1.1f);
-
-                    if (opt2.getText().toString().equals(freedum_hashmap.get("Answer"))) {
-                        isCorrect = 2;
-                    } else {
-                        isCorrect = 1;
-                    }
+                    opt3.setScaleX(1f);
+                    opt3.setScaleY(1f);
+                    opt4.setScaleX(1f);
+                    opt4.setScaleY(1f);
+                    continueBtn.setVisibility(View.VISIBLE);
+                    selectedOpt = opt2.getText().toString();
+                    isOpt2Pressed = true;
                 } else {
-                    isCorrect = 0;
-                    isClicked2 = 0;
-                    opt2.setScaleX(1);
-                    opt2.setScaleY(1);
+                    opt1.setScaleX(1f);
+                    opt1.setScaleY(1f);
+                    opt2.setScaleX(1f);
+                    opt2.setScaleY(1f);
+                    opt3.setScaleX(1f);
+                    opt3.setScaleY(1f);
+                    opt4.setScaleX(1f);
+                    opt4.setScaleY(1f);
+                    continueBtn.setVisibility(View.INVISIBLE);
+                    selectedOpt = null;
+                    isOpt2Pressed = false;
                 }
-
             }
         });
         opt3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (isClicked3 != 1) {
-                    isClicked3 = 1;
+                if (isOpt2Pressed = false){
+                    opt1.setScaleX(1f);
+                    opt1.setScaleY(1f);
+                    opt2.setScaleX(1f);
+                    opt2.setScaleY(1f);
                     opt3.setScaleX(1.1f);
                     opt3.setScaleY(1.1f);
-
-                    if (opt3.getText().toString().equals(freedum_hashmap.get("Answer"))) {
-                        isCorrect = 2;
-                    } else {
-                        isCorrect = 1;
-                    }
+                    opt4.setScaleX(1f);
+                    opt4.setScaleY(1f);
+                    continueBtn.setVisibility(View.VISIBLE);
+                    selectedOpt = opt3.getText().toString();
+                    isOpt3Pressed = true;
                 } else {
-                    isCorrect = 0;
-                    isClicked3 = 0;
-                    opt3.setScaleX(1);
-                    opt3.setScaleY(1);
+                    opt1.setScaleX(1f);
+                    opt1.setScaleY(1f);
+                    opt2.setScaleX(1f);
+                    opt2.setScaleY(1f);
+                    opt3.setScaleX(1f);
+                    opt3.setScaleY(1f);
+                    opt4.setScaleX(1f);
+                    opt4.setScaleY(1f);
+                    continueBtn.setVisibility(View.INVISIBLE);
+                    selectedOpt = null;
+                    isOpt3Pressed = false;
                 }
-
             }
         });
         opt4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (isClicked4 != 1) {
-                    isClicked4 = 1;
+                if (isOpt2Pressed = false){
+                    opt1.setScaleX(1f);
+                    opt1.setScaleY(1f);
+                    opt2.setScaleX(1f);
+                    opt2.setScaleY(1f);
+                    opt3.setScaleX(1.1f);
+                    opt3.setScaleY(1.1f);
                     opt4.setScaleX(1.1f);
                     opt4.setScaleY(1.1f);
-
-                    if (opt4.getText().toString().equals(freedum_hashmap.get("Answer"))) {
-                        isCorrect = 2;
-                    } else {
-                        isCorrect = 1;
-                    }
+                    continueBtn.setVisibility(View.VISIBLE);
+                    selectedOpt = opt4.getText().toString();
+                    isOpt4Pressed = true;
                 } else {
-                    isCorrect = 0;
-                    isClicked4 = 0;
-                    opt4.setScaleX(1);
-                    opt4.setScaleY(1);
+                    opt1.setScaleX(1f);
+                    opt1.setScaleY(1f);
+                    opt2.setScaleX(1f);
+                    opt2.setScaleY(1f);
+                    opt3.setScaleX(1f);
+                    opt3.setScaleY(1f);
+                    opt4.setScaleX(1f);
+                    opt4.setScaleY(1f);
+                    continueBtn.setVisibility(View.INVISIBLE);
+                    selectedOpt = null;
+                    isOpt4Pressed = false;
                 }
-
             }
         });
 

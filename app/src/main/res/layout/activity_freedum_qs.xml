@@ -144,14 +144,14 @@
 
     <TextView
         android:id="@+id/freedumQuestion"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/topBar"
         android:layout_alignParentRight="true"
         android:layout_marginTop="20dp"
         android:fontFamily="@font/rubik_light"
         android:text="כמה כוכבים יש בדגל האמריקאי?"
-        android:textSize="24sp"
+        android:textSize="20sp"
         android:layout_marginRight="15dp"/>
 
     <RelativeLayout

@@ -27,21 +27,6 @@
         android:id="@+id/course1">
 
 
-        <ProgressBar
-            android:id="@+id/progressBarCourse1"
-            style="?android:attr/progressBarStyleHorizontal"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentRight="true"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginBottom="10dp"
-            android:layout_toRightOf="@id/courseImage1"
-            android:progressDrawable="@drawable/pb_course">
-        </ProgressBar>
-
-
         <ImageView
             android:layout_width="192dp"
             android:layout_height="match_parent"
@@ -56,7 +41,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:fontFamily="@font/rubik_medium"
-            android:text="תכנות למתחילים"
+            android:text="פייתון למתחילים"
             android:textSize="15dp"
             android:layout_margin="10dp"
             android:textColor="#A1A1A1"
@@ -66,7 +51,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:fontFamily="@font/rubik_light"
-            android:text="שיעור נוכחי: משתנים ולולאות"
+            android:text="שיעור נוכחי: לא זמין"
             android:textSize="13dp"
             android:layout_below="@id/courseName1"
             android:layout_marginRight="10dp"
@@ -74,6 +59,54 @@
 
         <View
             android:id="@+id/clickView1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/ripple_anim2"
+            android:clickable="true" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="119dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/course1"
+        android:layout_marginTop="25dp"
+        android:background="@drawable/course_bg"
+        android:id="@+id/course2">
+
+        <ImageView
+            android:layout_width="192dp"
+            android:layout_height="match_parent"
+            android:id="@+id/courseImage2"
+            android:src="@drawable/ic_course_bg2"
+            android:layout_alignParentLeft="true"
+            android:background="@drawable/course_img_bg2"
+            ></ImageView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:fontFamily="@font/rubik_medium"
+            android:text="פיתוח אתרים"
+            android:textSize="15dp"
+            android:layout_margin="10dp"
+            android:textColor="#A1A1A1"
+            android:id="@+id/courseName2"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:fontFamily="@font/rubik_light"
+            android:text="שיעור נוכחי: לא זמין"
+            android:textSize="13dp"
+            android:layout_below="@id/courseName2"
+            android:layout_marginRight="10dp"
+            android:layout_toRightOf="@+id/courseImage2"/>
+
+        <View
+            android:id="@+id/clickView2"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@drawable/ripple_anim2"

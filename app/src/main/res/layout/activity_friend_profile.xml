@@ -75,8 +75,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
-                android:layout_marginEnd="203dp"
-                android:layout_toStartOf="@+id/follow"
+
                 android:text="הזמן לתחרות" />
 
         </RelativeLayout>
