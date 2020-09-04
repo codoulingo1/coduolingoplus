@@ -84,7 +84,9 @@ public class NonFreedum extends AppCompatActivity {
         final Button dlt = (Button) findViewById(R.id.dlt);
         final Button dltall = (Button) findViewById(R.id.dltall);
         Button[] ops = {opt1, opt2, opt3, opt4, opt5, opt6};
+        unuateksto = unuateksto.replaceAll("_", "%1$s");
         unuateksto = Text.replace(unuateksto, '%', '£', 0);
+
         back_ch.add(unuateksto);
         int opnum = 0;
         for (Button op : ops){

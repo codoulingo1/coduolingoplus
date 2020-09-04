@@ -14,8 +14,9 @@
         android:layout_marginTop="25dp"
         android:fontFamily="@font/rubik_light"
         android:singleLine="false"
+        android:textColor="#0E0C0C"
         android:textDirection="anyRtl"
-        android:textSize="18sp" />
+        android:textSize="24sp" />
 
 
 
