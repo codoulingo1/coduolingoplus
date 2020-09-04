@@ -130,7 +130,7 @@ public class FreeText extends AppCompatActivity {
                 //LessonActivity.points++;
                 startActivity(new Intent(FreeText.this, LessonActivity.class));
             }
-        });*/
+        });savta*/
         submit.setImageResource(R.drawable.avd_anim);
         animate();
         codeToLoad = inp.getText().toString();
