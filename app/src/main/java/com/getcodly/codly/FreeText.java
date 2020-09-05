@@ -27,6 +27,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.view.textclassifier.TextSelection;
+import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -46,6 +47,8 @@ public class FreeText extends AppCompatActivity {
     RelativeLayout popup11;
     ImageButton continueBtn11;
     private AnimatedVectorDrawable animation;
+    WebView webView;
+    EditText inp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +63,8 @@ public class FreeText extends AppCompatActivity {
         pb.setProgress(LessonActivity.pr);
         submit = (ImageButton) findViewById(R.id.button);
         qs = (TextView) findViewById(R.id.textView);
+        inp = (EditText) findViewById(R.id.inp);
+        webView = findViewById(R.id.HtmlView2);
         Log.d("finished", "freetext");
         SpannableStringBuilder builder=new SpannableStringBuilder();
         for (int i = 0; i < 10; i = i + 1) {
@@ -79,7 +84,7 @@ public class FreeText extends AppCompatActivity {
         }
         qs.setText(builder);
         Log.d(String.valueOf(LessonActivity.shared_hashmap.get("additional").length()), String.valueOf(LessonActivity.shared_hashmap.get("additional").length()));
-        final EditText inp = (EditText) findViewById(R.id.inp);
+        EditText inp = (EditText) findViewById(R.id.inp);
         if (!LessonActivity.shared_hashmap.get("additional").equals("none")) {
             inp.setText(LessonActivity.shared_hashmap.get("additional"));
         }
@@ -127,17 +132,9 @@ public class FreeText extends AppCompatActivity {
 
     }
     void showCorrect() {
-        /*popupTruee.setVisibility(View.VISIBLE);
-        continueBtn10.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                LessonActivity.j++;
-                //LessonActivity.points++;
-                startActivity(new Intent(FreeText.this, LessonActivity.class));
-            }
-        });*/
         submit.setImageResource(R.drawable.avd_anim);
         animate();
+        webView.loadData(inp.getText().toString(), "text/html", "UTF-8");
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

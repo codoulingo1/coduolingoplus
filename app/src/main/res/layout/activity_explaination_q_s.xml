@@ -16,10 +16,7 @@
         android:singleLine="false"
         android:textColor="#0E0C0C"
         android:textDirection="anyRtl"
-        android:textSize="24sp" />
-
-
-
+        android:textSize="20sp" />
 
     <ImageView
         android:id="@+id/imageView"
