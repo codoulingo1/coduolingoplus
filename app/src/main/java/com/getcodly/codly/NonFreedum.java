@@ -299,6 +299,7 @@ public class NonFreedum extends AppCompatActivity {
         check.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                check.setClickable(false);
                 LessonActivity.j++;
                 LessonActivity.shared_xp = LessonActivity.shared_xp + 1.5;
                 //LessonActivity.points++;

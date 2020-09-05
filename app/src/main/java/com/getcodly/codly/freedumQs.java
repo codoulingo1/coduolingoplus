@@ -67,6 +67,7 @@ public class freedumQs extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_freedum_qs);
         continueBtn = (ImageButton) findViewById(R.id.continueBtn3);
+        continueBtn.setVisibility(View.INVISIBLE);
         popupWrong = (RelativeLayout) findViewById(R.id.popup2);
         //continueBtn.setBackgroundColor(Color.TRANSPARENT);
         popup = (RelativeLayout) findViewById(R.id.Popup1);
@@ -84,13 +85,18 @@ public class freedumQs extends AppCompatActivity {
         continueBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (selectedOpt.equals(freedum_hashmap.get("Answer")));
+                if (selectedOpt.equals(freedum_hashmap.get("Answer"))){
+                    showCorrect();
+                }
+                else{
+                    showWrong();
+                }
             }
         });
-        freedumQs();
+        freedumQss();
     }
 
-    public void freedumQs() {
+    public void freedumQss() {
         freedum_hashmap = LessonActivity.shared_hashmap;
         TextView fr = (TextView) findViewById(R.id.freedumQuestion);
         SpannableStringBuilder builder = new SpannableStringBuilder();
@@ -150,8 +156,8 @@ public class freedumQs extends AppCompatActivity {
                     opt3.setScaleY(1f);
                     opt4.setScaleX(1f);
                     opt4.setScaleY(1f);
-                    continueBtn.setVisibility(View.INVISIBLE);
-                    selectedOpt = null;
+                    continueBtn.setVisibility(View.VISIBLE);
+                    selectedOpt = opt1.getText().toString();
                     isOpt1Pressed = false;
                 }
             }
@@ -181,8 +187,8 @@ public class freedumQs extends AppCompatActivity {
                     opt3.setScaleY(1f);
                     opt4.setScaleX(1f);
                     opt4.setScaleY(1f);
-                    continueBtn.setVisibility(View.INVISIBLE);
-                    selectedOpt = null;
+                    continueBtn.setVisibility(View.VISIBLE);
+                    selectedOpt = opt2.getText().toString();
                     isOpt2Pressed = false;
                 }
             }
@@ -211,8 +217,8 @@ public class freedumQs extends AppCompatActivity {
                     opt3.setScaleY(1f);
                     opt4.setScaleX(1f);
                     opt4.setScaleY(1f);
-                    continueBtn.setVisibility(View.INVISIBLE);
-                    selectedOpt = null;
+                    continueBtn.setVisibility(View.VISIBLE);
+                    selectedOpt = opt3.getText().toString();
                     isOpt3Pressed = false;
                 }
             }
@@ -241,13 +247,12 @@ public class freedumQs extends AppCompatActivity {
                     opt3.setScaleY(1f);
                     opt4.setScaleX(1f);
                     opt4.setScaleY(1f);
-                    continueBtn.setVisibility(View.INVISIBLE);
-                    selectedOpt = null;
+                    continueBtn.setVisibility(View.VISIBLE);
+                    selectedOpt = opt4.getText().toString();
                     isOpt4Pressed = false;
                 }
             }
         });
-
         backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -277,6 +282,7 @@ public class freedumQs extends AppCompatActivity {
         continueBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                continueBtn.setClickable(false);
                 LessonActivity.j++;
                 LessonActivity.shared_xp = LessonActivity.shared_xp + 1.5;
                 //LessonActivity.points++;

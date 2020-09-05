@@ -166,7 +166,9 @@ public class DownloadReadlessons {
                             if (snap.getValue(String.class).length() != 0) {
                                 try {
                                     String[] arr = snap.getValue(String.class).split("\\]|\\[");
-                                    if (!arr[1].replace("\\n", System.getProperty("line.separator")).equals("explain")) {
+                                    if (!arr[1].replace("\\n", System.getProperty("line.separator")).equals("explain")
+                                            && !arr[1].replace("\\n", System.getProperty("line.separator")).equals("runPy")
+                                            && !arr[1].replace("\\n", System.getProperty("line.separator")).equals("showPy")) {
                                         first.add(snap.getValue(String.class));
                                     }
                                 } catch (Exception e) {

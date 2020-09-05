@@ -57,7 +57,7 @@ public class tree extends AppCompatActivity {
         skill1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startLesson(Arrays.asList("1-1-2~הקוד הראשון שלי"));
+                startLesson(Arrays.asList("1-1-2~הקוד הראשון שלי", "1-1-1~מבוא לפייתון"));
             } //savta
         });
         toPython.setOnClickListener(new View.OnClickListener() {
@@ -79,15 +79,15 @@ public class tree extends AppCompatActivity {
             namesShare.add(i.split("~")[1]);
         }
         for(String d : id){
-            List<String> str_old_progress = Arrays.asList(old_progress.split(""));
-            if(!str_old_progress.contains(d)) {
+            List<String> str_old_progress = Arrays.asList(old_progress.split(" "));
+            Log.d(str_old_progress.toString(), String.valueOf(str_old_progress.contains(d.split("~")[0])));
+            if(!str_old_progress.toString().contains(d.split("~")[0])) {
                 MainActivity.id = d.split("~")[0];
                 MainActivity.name = d.split("~")[1];
-
-                startActivity(new Intent(tree.this, selectLesson.class));
-                overridePendingTransition(0,0);
             }
         }
+        startActivity(new Intent(tree.this, selectLesson.class));
+        overridePendingTransition(0,0);
     }
     void startPractice(String[] id) {
         LessonType = "practice";

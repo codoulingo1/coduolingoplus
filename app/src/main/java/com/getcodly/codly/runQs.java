@@ -124,7 +124,7 @@ public class runQs extends AppCompatActivity {
             }
         });*/
         try {
-            Python.start(new AndroidPlatform(runQs.this));
+            //Python.start(new AndroidPlatform(runQs.this));
             Python py = Python.getInstance();
             PyObject pyFile = py.getModule("compiler_2");
             out.setText(pyFile.callAttr("main").toString().replace("|", System.getProperty("line.separator")));
@@ -139,6 +139,7 @@ public class runQs extends AppCompatActivity {
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                submit.setClickable(false);
                 LessonActivity.j++;
                 LessonActivity.shared_xp = LessonActivity.shared_xp + 2;
                 //LessonActivity.points++;

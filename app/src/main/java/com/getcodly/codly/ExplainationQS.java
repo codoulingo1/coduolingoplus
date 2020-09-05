@@ -74,6 +74,7 @@ public class ExplainationQS extends AppCompatActivity {
                 LessonActivity.shared_xp = LessonActivity.shared_xp + 1;
                 //LessonActivity.points++;
                 if(LessonActivity.shared_hashmap.get("additional").equals("none")) {
+                    continueBtn.setClickable(false);
                     LessonActivity.j = LessonActivity.j + 1;
                     startActivity(new Intent(ExplainationQS.this, LessonActivity.class));
                     overridePendingTransition(0, 0);

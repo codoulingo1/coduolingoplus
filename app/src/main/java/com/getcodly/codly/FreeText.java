@@ -141,6 +141,7 @@ public class FreeText extends AppCompatActivity {
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                submit.setClickable(false);
                 LessonActivity.j++;
                 LessonActivity.shared_xp = LessonActivity.shared_xp + 2;
                 //LessonActivity.points++;
