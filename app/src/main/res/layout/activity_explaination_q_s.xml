@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="371dp"
         android:layout_below="@+id/topBar"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="56dp"
         android:fontFamily="@font/rubik_light"
         android:singleLine="false"
         android:textColor="#0E0C0C"
@@ -22,11 +22,10 @@
         android:id="@+id/imageView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:adjustViewBounds="true"
-        android:scaleType="fitCenter"
         android:layout_below="@id/Explanation"
-        android:layout_marginTop="15dp"
-        android:layout_centerHorizontal="true" />
+        android:layout_marginTop="13dp"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter" />
 
     <ImageButton
         android:id="@+id/continueBtn"

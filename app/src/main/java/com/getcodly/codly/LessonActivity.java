@@ -123,16 +123,26 @@ public class LessonActivity extends AppCompatActivity {
         }
         else if(hashMap.get("type").equals("freetext")){
             Log.d("finished", "finished4");
+            startActivity(new Intent(LessonActivity.this, FreeTextR.class));
+            overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
+        }
+        else if(hashMap.get("type").equals("freepy")){
+            Log.d("finished", "finished5");
+            startActivity(new Intent(LessonActivity.this, FreeTextPy.class));
+            overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
+        }
+        else if(hashMap.get("type").equals("freehtml")){
+            Log.d("finished", "finished6");
             startActivity(new Intent(LessonActivity.this, FreeText.class));
             overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
         }
         else if(hashMap.get("type").equals("runPy") || hashMap.get("type").equals("showPy")){
-            Log.d("finished", "finished5");
+            Log.d("finished", "finished7");
             startActivity(new Intent(LessonActivity.this, runQs.class));
             overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
         }
         else{
-            Log.d("finished", "finished6");
+            Log.d("finished", "finished8");
         }}
     public void progress(){
         int b = 100 * (j-1);

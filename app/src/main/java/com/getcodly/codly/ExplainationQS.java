@@ -25,6 +25,7 @@ import java.util.HashMap;
 
 public class ExplainationQS extends AppCompatActivity {
     public static ImageView ExpImage;
+    int add_num = 0;
     ImageButton continueBtn;
     private AnimatedVectorDrawable animation;
     ImageButton backBtn;
@@ -80,10 +81,32 @@ public class ExplainationQS extends AppCompatActivity {
                     overridePendingTransition(0, 0);
                 }
                 else{
+                    try {
+                        String check = explanation_hashmap.get("additional").split("~")[add_num];
+                    } catch (Exception e){
+                        continueBtn.setClickable(false);
+                        LessonActivity.j = LessonActivity.j + 1;
+                        startActivity(new Intent(ExplainationQS.this, LessonActivity.class));
+                        overridePendingTransition(0, 0);
+                    }
                     builder.append(System.getProperty("line.separator"));
-                    builder.append((LessonActivity.shared_hashmap.get("additional")));
+                    for (int i = 0; i < 10; i = i + 1) {
+                        try {
+                            if (i % 2 == 0 || i==0) {
+                                builder.append(explanation_hashmap.get("additional").split("~")[add_num].split("\\*")[i]);
+                            }
+                            else{
+                                SpannableString txtSpannable = new SpannableString(explanation_hashmap.get("additional").split("~")[add_num].split("\\*")[i]);
+                                StyleSpan boldSpan = new StyleSpan(Typeface.BOLD);
+                                txtSpannable.setSpan(boldSpan, 0, explanation_hashmap.get("additional").split("~")[add_num].split("\\*")[i].length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                                builder.append(txtSpannable);
+                            }
+                        }catch (Exception e){
+                            break;
+                        }
+                    }
+                    add_num = add_num + 1;
                     fr.setText(builder);
-                    LessonActivity.shared_hashmap.put("additional", "none");
                 }
                 //continueBtn.setImageResource(R.drawable.avd_anim);
                 //animate();

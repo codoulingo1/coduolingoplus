@@ -11,22 +11,24 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".selectProject"></activity>
-        <activity android:name=".runQs"></activity>
-        <activity android:name=".selectLesson"></activity>
-        <activity android:name=".selectPyProject"></activity>
+        <activity android:name=".TestPy"></activity>
+        <activity android:name=".FreeTextPy" />
+        <activity android:name=".FreeTextR" />
+        <activity android:name=".selectProject" />
+        <activity android:name=".runQs" />
+        <activity android:name=".selectLesson" />
+        <activity android:name=".selectPyProject" />
         <activity android:name=".Comp_Invite" />
         <activity android:name=".compL" />
         <activity android:name=".PythonActivity" />
         <activity
             android:name=".PythonActivity2"
-            android:label="עורך הקוד"/>
+            android:label="עורך הקוד" />
         <activity
             android:name=".finalLesson"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".FriendProfile" />
         <activity
-
             android:name=".Search"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="adjustPan" />
@@ -92,18 +94,18 @@
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
     </application>
-    <uses-permission android:name="android.permission.WRITE_INTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission. ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.SEND_SMS" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission
         android:name="android.permission.READ_EXTERNAL_STORAGE"
         tools:remove="android:maxSdkVersion" />
-
     <uses-permission
         android:name="android.permission.WRITE_EXTERNAL_STORAGE"
         tools:remove="android:maxSdkVersion" />
+    <uses-permission android:name="android.permission.WRITE_INTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission. ACCESS_FINE_LOCATION" />
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
 </manifest>
