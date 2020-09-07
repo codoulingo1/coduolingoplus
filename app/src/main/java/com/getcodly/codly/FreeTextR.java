@@ -70,6 +70,10 @@ public class FreeTextR extends AppCompatActivity {
         if (!LessonActivity.shared_hashmap.get("additional").equals("none")) {
             inp.setText(LessonActivity.shared_hashmap.get("additional"));
         }
+        if (!tree.loadAgain.equals("")){
+            inp.setText(tree.loadAgain);
+            tree.loadAgain = "";
+        }
         submit.setOnClickListener(new View.OnClickListener() {
                                       @Override
                                       public void onClick(View v) {
@@ -79,6 +83,7 @@ public class FreeTextR extends AppCompatActivity {
                                                   showCorrect();
                                               }
                                               else{
+                                                  tree.loadAgain = ans;
                                                   showWrong();
                                               }
                                           }catch (Exception e){
@@ -86,6 +91,7 @@ public class FreeTextR extends AppCompatActivity {
                                                   showCorrect();
                                               }
                                               else{
+                                                  tree.loadAgain = ans;
                                                   showWrong();
                                               }
                                           }

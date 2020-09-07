@@ -32,6 +32,7 @@ public class tree extends AppCompatActivity {
     public static ArrayList<String> idShare;
     public static ArrayList<String> namesShare;
     CountDownTimer mcountdown;
+    public static String loadAgain = "";
     public static String[] practiceID;
     public static String LessonType;
     HashMap <String, String> date;
@@ -42,7 +43,7 @@ public class tree extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tree_new);
         //mAuth = FirebaseAuth.getInstance();
-        skill1 = (RelativeLayout) findViewById(R.id.skill12);
+        skill1 = (RelativeLayout) findViewById(R.id.skill15);
 
         toPython = (Button) findViewById(R.id.button7);
         File dirName = new File(Environment.getExternalStorageDirectory() + "/" + "id" + "/");

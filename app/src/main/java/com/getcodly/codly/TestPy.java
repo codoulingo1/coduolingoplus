@@ -74,6 +74,10 @@ public class TestPy extends AppCompatActivity {
         if (!LessonActivity.shared_hashmap.get("additional").equals("none")) {
             inp.setText(LessonActivity.shared_hashmap.get("additional"));
         }
+        if (!tree.loadAgain.equals("")){
+            inp.setText(tree.loadAgain);
+            tree.loadAgain = "";
+        }
         submit.setOnClickListener(new View.OnClickListener() {
                                       @Override
                                       public void onClick(View v) {
@@ -89,6 +93,7 @@ public class TestPy extends AppCompatActivity {
                                                   if (from.equals(LessonActivity.shared_hashmap.get("Answer"))){
                                                       showCorrect();
                                                   }else{
+                                                      tree.loadAgain = ans;
                                                       showWrong();
                                                   }
                                               }catch (Exception e) {
@@ -111,6 +116,7 @@ public class TestPy extends AppCompatActivity {
                                               if (f.equals(LessonActivity.shared_hashmap.get("Answer"))){
                                                   showCorrect();
                                               }else{
+                                                  tree.loadAgain = ans;
                                                   showWrong();
                                               }
                                           }
