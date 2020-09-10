@@ -13,6 +13,7 @@ import android.text.SpannableStringBuilder;
 import android.text.style.StyleSpan;
 import android.util.Log;
 import android.view.View;
+import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
@@ -38,6 +39,8 @@ public class NonFreedum extends AppCompatActivity {
     Button opt1;
     ProgressBar pb;
     private ObjectAnimator progressAnimator;
+    WebView htmlView;
+    TextView qs;
 
     private AnimatedVectorDrawable animation;
 
@@ -57,9 +60,10 @@ public class NonFreedum extends AppCompatActivity {
         check = (ImageButton) findViewById(R.id.check);
         continueBtnFalse = (ImageButton) findViewById(R.id.continueBtnFalse);
         continueBtnTrue = (ImageButton) findViewById(R.id.continueBtnTrue);
-        final TextView qs = (TextView) findViewById(R.id.textView2);
+        qs = (TextView) findViewById(R.id.textView2);
         pb = (ProgressBar) findViewById(R.id.progressBar);
         popupFalse = (RelativeLayout) findViewById(R.id.popupFalse);
+        htmlView = findViewById(R.id.htmlView3);
         popupTrue = (RelativeLayout) findViewById(R.id.PopupTrue);
         pb.setProgress(LessonActivity.pr);
         SpannableStringBuilder builder=new SpannableStringBuilder();
@@ -284,18 +288,9 @@ public class NonFreedum extends AppCompatActivity {
     }
 
     void showCorrect(){
-        /*popupTrue.setVisibility(View.VISIBLE);
-        continueBtnTrue.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                LessonActivity.j++;
-                //LessonActivity.points++;
-                startActivity(new Intent(NonFreedum.this, LessonActivity.class));
-                overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
-            }
-        });*/
         check.setImageResource(R.drawable.avd_anim);
         animate();
+        htmlView.loadData(ans.getText().toString(), "text/html", "UTF-8");
         check.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -50,8 +50,7 @@
                     android:id="@+id/imageView4"
                     android:layout_width="55dp"
                     android:layout_height="55dp"
-                    android:layout_centerInParent="true"
-                    app:srcCompat="@drawable/py1" />
+                    android:layout_centerInParent="true" />
             </RelativeLayout>
 
             <TextView
