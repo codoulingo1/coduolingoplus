@@ -51,6 +51,9 @@ public class runQs extends AppCompatActivity {
         continueBtn11 = (ImageButton) findViewById(R.id.continueBtn11);
         pb.setProgress(LessonActivity.pr);
         runA = (ImageButton) findViewById(R.id.runA);
+        if (LessonActivity.shared_hashmap.get("type").equals("showpy")){
+            runA.setVisibility(View.GONE);
+        }
         submit = (ImageButton) findViewById(R.id.button);
         qs = (TextView) findViewById(R.id.textView);
         out = (TextView) findViewById(R.id.out);

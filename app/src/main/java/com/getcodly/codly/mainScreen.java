@@ -88,8 +88,10 @@ public class mainScreen extends AppCompatActivity {
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         // This method is called once with the initial value and again
                         // whenever data at this location is uploaded
-                        if (!dataSnapshot.child("comp").getValue().toString().equals("")){
-                            myRef1.child("comp").setValue("");
+                        if (!dataSnapshot.child("comp").getValue().toString().equals("")) {
+                            if (System.currentTimeMillis() - Long.parseLong(dataSnapshot.child("comp_time").getValue().toString()) < 15000){
+                                myRef1.child("comp").setValue("");
+                                myRef1.child("comp_time").setValue("1");
                             userId = dataSnapshot.child("comp").getValue().toString();
                             DownloadReadlessons.get_last_lesson2(userId, new DownloadReadlessons.HashCallback() {
                                 @Override
@@ -98,14 +100,14 @@ public class mainScreen extends AppCompatActivity {
                                     invName = value.get("name");
                                     int sel_num = 0;
                                     sel = progress.split(" ")[new Random().nextInt(progress.split(" ").length)];
-                                    while (!Arrays.asList(progress_2.split(" ")).contains(sel)){
+                                    while (!Arrays.asList(progress_2.split(" ")).contains(sel)) {
                                         sel_num++;
                                         sel = progress.split(" ")[new Random().nextInt(progress.split(" ").length)];
-                                        if (sel_num>200){
+                                        if (sel_num > 200) {
                                             break;
                                         }
                                     }
-                                    if (sel_num<=200){
+                                    if (sel_num <= 200) {
                                         Comp_Invite dialogBack = new Comp_Invite();
                                         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
                                         ft.add(dialogBack, "snooze_dialog");
@@ -116,7 +118,10 @@ public class mainScreen extends AppCompatActivity {
                                     //startComp(sel);
                                 }
                             });
-
+                        }else{
+                                myRef1.child("comp").setValue("");
+                                myRef1.child("comp_time").setValue("1");
+                            }
                         }
 
                     }

@@ -118,15 +118,14 @@ public class FriendProfile extends AppCompatActivity {
                 DatabaseReference fireBase = myRef.child(Search.selected);
                 mainScreen.userId = Search.selected;
                 fireBase.child("comp").setValue(ReadWrite.read(FriendProfile.this.getFilesDir() + File.separator + "user"));
+                fireBase.child("comp_time").setValue(String.valueOf(System.currentTimeMillis()));
                 inv.setText("ממתין לאישור");
-                final Handler handler = new Handler();
-                handler.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        fireBase.child("comp").setValue("");
-                        //Do something after 60s
-                    }
-                }, 60000);
+                try {
+                    Thread.sleep(500);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                startActivity(new Intent(FriendProfile.this, CompW.class));
             }
         });
 
