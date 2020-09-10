@@ -45,7 +45,9 @@
         android:layout_alignParentRight="true"
         android:layout_marginRight="@dimen/default_gap"
         android:layout_marginTop="60dp"
+        android:singleLine="false"
         android:fontFamily="@font/rubik_light"
+        android:textDirection="anyRtl"
         android:textColor="#0B0A0A"
         android:textSize="22sp" />
 

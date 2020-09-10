@@ -120,6 +120,7 @@ public class sign_upActivity extends AppCompatActivity {
             fireBase.child("start_comp").setValue("");
             fireBase.child("comp_w").setValue("");
             fireBase.child("comp").setValue("");
+            fireBase.child("comp_time").setValue("1");
             fireBase.child("xp").setValue(0);
             fireBase.child("friends").setValue("");
             Toast.makeText(sign_upActivity.this, "שלום " + personName, Toast.LENGTH_SHORT).show();

@@ -29,6 +29,7 @@ public class tree extends AppCompatActivity {
 
     //FirebaseAuth mAuth;
     RelativeLayout skill1;
+    RelativeLayout skill2;
     public static ArrayList<String> idShare;
     public static ArrayList<String> namesShare;
     CountDownTimer mcountdown;
@@ -44,6 +45,7 @@ public class tree extends AppCompatActivity {
         setContentView(R.layout.activity_tree_new);
         //mAuth = FirebaseAuth.getInstance();
         skill1 = (RelativeLayout) findViewById(R.id.skill15);
+        skill2 = (RelativeLayout) findViewById(R.id.skill16);
 
         toPython = (Button) findViewById(R.id.button7);
         File dirName = new File(Environment.getExternalStorageDirectory() + "/" + "id" + "/");
@@ -58,7 +60,13 @@ public class tree extends AppCompatActivity {
         skill1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startLesson(Arrays.asList("1-1-1~מבוא לפייתון", "1-1-2~הקוד הראשון שלי"));
+                startLesson(Arrays.asList("1-1-2~הקוד הראשון שלי", "1-1-1~מבוא לפייתון"));
+            } //savta
+        });
+        skill2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startLesson(Arrays.asList("1-2-3~תכנות אינטראקטיבי", "1-2-2~טקסטים ומספרים", "1-2-1~מבוא למשתנים"));
             } //savta
         });
         toPython.setOnClickListener(new View.OnClickListener() {

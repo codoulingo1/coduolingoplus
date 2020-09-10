@@ -136,13 +136,18 @@ public class LessonActivity extends AppCompatActivity {
             startActivity(new Intent(LessonActivity.this, FreeText.class));
             overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
         }
-        else if(hashMap.get("type").equals("runPy") || hashMap.get("type").equals("showPy")){
+        else if(hashMap.get("type").equals("runpy") || hashMap.get("type").equals("showpy")){
             Log.d("finished", "finished7");
             startActivity(new Intent(LessonActivity.this, runQs.class));
             overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
         }
-        else{
+        else if(hashMap.get("type").equals("testpy")){
             Log.d("finished", "finished8");
+            startActivity(new Intent(LessonActivity.this, TestPy.class));
+            overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
+        }
+        else{
+            Log.d("finished", "finished9");
         }}
     public void progress(){
         int b = 100 * (j-1);

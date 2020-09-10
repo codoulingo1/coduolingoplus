@@ -206,6 +206,7 @@ public class Login extends AppCompatActivity {
                 user.child("start_comp").setValue("");
                 user.child("comp_w").setValue("");
                 user.child("comp").setValue("");
+                user.child("comp_time").setValue("1");
                 user.child("friends").setValue("");
                 user.child("email").setValue(personEmail);
                 method = "Google";
