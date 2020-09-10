@@ -67,7 +67,7 @@ public class LessonActivity extends AppCompatActivity {
         }
         if (j>1 & j<maxJ+1){
             try {
-                //pb.setMax(100); // 100 maximum value for the progress value
+                //pb.setMax(100); // 100 maximum value for the progress valuea
                 lessonCreator(id, name, j);
             }
             catch(Exception e) {
