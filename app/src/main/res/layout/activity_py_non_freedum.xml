@@ -89,12 +89,12 @@
         android:id="@+id/textView3"
         android:layout_width="match_parent"
         android:layout_height="313dp"
-        android:layout_below="@+id/textView2"
-        android:layout_marginTop="5dp"
-        android:background="@color/codeBackground"
-        android:fontFamily="@font/veramono"
         android:textColor="#FFFFFF"
-        android:textSize="16dp" />
+        android:fontFamily="@font/veramono"
+        android:textSize="16dp"
+        android:background="@color/codeBackground"
+        android:layout_below="@+id/textView2"
+        android:layout_marginTop="5dp"/>
 
     <Button
         android:id="@+id/dlt"
@@ -118,7 +118,7 @@
         android:layout_marginBottom="10dp"
         android:text="מחק הכל" />
 
-    <WebView
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/textView3"

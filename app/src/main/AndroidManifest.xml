@@ -11,7 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".CompW"></activity>
+        <activity android:name=".pyNonFreedum"></activity>
+        <activity android:name=".CompW" />
         <activity android:name=".TestPy" />
         <activity android:name=".FreeTextPy" />
         <activity android:name=".FreeTextR" />
@@ -95,7 +96,6 @@
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
     </application>
-    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission
         android:name="android.permission.READ_EXTERNAL_STORAGE"
@@ -106,7 +106,8 @@
     <uses-permission android:name="android.permission.WRITE_INTERNAL_STORAGE" />
     <uses-permission android:name="android.permission. ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-
     <uses-permission android:name="android.permission.SEND_SMS" />
+
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
 
 </manifest>

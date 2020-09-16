@@ -102,18 +102,23 @@ public class TestPy extends AppCompatActivity {
                                               }
                                           }else{
                                               //הרצה על כמה בדיקות ועל כמה קלטים
-                                              String f = "";
+                                              StringBuilder f = new StringBuilder();
                                               for (String e : LessonActivity.shared_hashmap.get("Content").split(",")){
                                                   String new_ans = ans;
-                                                  for (String e2 : e.split("-")){
-                                                      new_ans = new_ans.replaceFirst("input() ", e2);
-                                                  }
+                                                  new_ans = new_ans.replaceAll("input", "inp").replaceAll("print", "pr");
+                                                  String[] inpp = new String[e.split("-").length];
+                                                  inpp = e.split("-");
+                                                  Log.d(new_ans, new_ans);
+                                                  ReadWrite.write(TestPy.this.getFilesDir()
+                                                          + "/" + "pyCode", new_ans);
                                                   Python py = Python.getInstance();
                                                   PyObject pyFile = py.getModule("compiler_2");
-                                                  String from = pyFile.callAttr("main").toString();
-                                                  f = f + from;
+                                                  String from = pyFile.callAttr("main_2", (Object) inpp).toString();
+                                                  Log.d(e, from + "|");
+                                                  f.append(from);
                                               }
-                                              if (f.equals(LessonActivity.shared_hashmap.get("Answer"))){
+                                              //Log.d(f.toString(), f.toString());
+                                              if (f.toString().equals(LessonActivity.shared_hashmap.get("Answer"))){
                                                   showCorrect();
                                               }else{
                                                   tree.loadAgain = ans;
@@ -167,7 +172,7 @@ public class TestPy extends AppCompatActivity {
                 if(LessonActivity.shared_xp>=11){
                     LessonActivity.shared_xp = LessonActivity.shared_xp - 1;
                 }
-                startActivity(new Intent(TestPy.this, FreeText.class));
+                startActivity(new Intent(TestPy.this, TestPy.class));
                 overridePendingTransition(0, 0);
             }
         });

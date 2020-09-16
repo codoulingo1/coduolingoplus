@@ -8,15 +8,15 @@
 
     <TextView
         android:id="@+id/Explanation"
-        android:layout_width="match_parent"
-        android:layout_height="371dp"
+        android:layout_width="389dp"
+        android:layout_height="389dp"
         android:layout_below="@+id/topBar"
-        android:layout_marginTop="56dp"
+        android:layout_marginTop="39dp"
         android:fontFamily="@font/rubik_light"
         android:singleLine="false"
         android:textColor="#0E0C0C"
         android:textDirection="anyRtl"
-        android:textSize="20sp" />
+        android:textSize="24sp" />
 
     <ImageView
         android:id="@+id/imageView"

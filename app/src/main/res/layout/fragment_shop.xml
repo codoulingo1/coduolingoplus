@@ -44,10 +44,10 @@
             android:layout_alignParentTop="true"
             android:layout_marginRight="15dp"
             android:layout_marginTop="55dp"
-            android:fontFamily="@font/rubik_light"
-            android:text="שומר את הסטריק במקרה שיום שלם לא עושים שיעור."
-            android:textColor="#6B6767"
             android:clickable="false"
+            android:fontFamily="@font/rubik_light"
+            android:text="שומר את הסטריק במקרה שיום שלם לא עושים שיעור"
+            android:textColor="#6B6767"
             android:textSize="16dp" />
 
         <TextView

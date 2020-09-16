@@ -146,8 +146,13 @@ public class LessonActivity extends AppCompatActivity {
             startActivity(new Intent(LessonActivity.this, TestPy.class));
             overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
         }
-        else{
+        else if(hashMap.get("type").equals("pynonfreetext")){
             Log.d("finished", "finished9");
+            startActivity(new Intent(LessonActivity.this, pyNonFreedum.class));
+            overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
+        }
+        else{
+            Log.d("finished", "finished10");
         }}
     public void progress(){
         int b = 100 * (j-1);
