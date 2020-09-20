@@ -52,20 +52,22 @@
         android:textSize="22sp" />
 
     <RelativeLayout
+        android:id="@+id/a"
         android:layout_width="match_parent"
         android:layout_height="70dp"
-        android:background="@color/white"
-        android:layout_alignParentBottom="true">
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="-1dp"
+        android:background="@color/white">
 
         <ImageButton
             android:id="@+id/button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:layout_marginTop="10dp"
             android:layout_alignParentLeft="true"
             android:layout_marginBottom="5dp"
             android:layout_marginLeft="18dp"
+            android:layout_marginTop="10dp"
             android:adjustViewBounds="true"
             android:background="#80FFFFFF"
             android:maxHeight="60dp"
@@ -167,6 +169,7 @@
     <TextView
         android:id="@+id/out"
         android:layout_width="match_parent"
+        android:layout_above="@id/a"
         android:layout_below="@id/inp"
         android:layout_marginTop="10dp"
         android:layout_height="159dp"

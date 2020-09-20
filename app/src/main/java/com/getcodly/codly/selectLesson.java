@@ -41,7 +41,7 @@ public class selectLesson extends AppCompatActivity {
                 new_names.add(n);
             }
         }
-        ArrayAdapter<String> itemsAdapter = new ArrayAdapter<String>(selectLesson.this, android.R.layout.simple_list_item_1, android.R.id.text1, tree.namesShare);
+        ArrayAdapter<String> itemsAdapter = new ArrayAdapter<String>(selectLesson.this, android.R.layout.simple_list_item_1, android.R.id.text1, new_names);
         l_list.setAdapter(itemsAdapter);
         l = (Button) findViewById(R.id.nextLesson);
         prac.setOnClickListener(new View.OnClickListener() {

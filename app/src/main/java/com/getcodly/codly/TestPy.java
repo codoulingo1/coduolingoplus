@@ -103,26 +103,32 @@ public class TestPy extends AppCompatActivity {
                                           }else{
                                               //הרצה על כמה בדיקות ועל כמה קלטים
                                               StringBuilder f = new StringBuilder();
-                                              for (String e : LessonActivity.shared_hashmap.get("Content").split(",")){
+                                              try {
+                                              for (String e : LessonActivity.shared_hashmap.get("Content").split(",")) {
                                                   String new_ans = ans;
                                                   new_ans = new_ans.replaceAll("input", "inp").replaceAll("print", "pr");
                                                   String[] inpp = new String[e.split("-").length];
                                                   inpp = e.split("-");
                                                   Log.d(new_ans, new_ans);
-                                                  ReadWrite.write(TestPy.this.getFilesDir()
-                                                          + "/" + "pyCode", new_ans);
-                                                  Python py = Python.getInstance();
-                                                  PyObject pyFile = py.getModule("compiler_2");
-                                                  String from = pyFile.callAttr("main_2", (Object) inpp).toString();
-                                                  Log.d(e, from + "|");
-                                                  f.append(from);
-                                              }
-                                              //Log.d(f.toString(), f.toString());
-                                              if (f.toString().equals(LessonActivity.shared_hashmap.get("Answer"))){
-                                                  showCorrect();
-                                              }else{
-                                                  tree.loadAgain = ans;
-                                                  showWrong();
+
+                                                      ReadWrite.write(TestPy.this.getFilesDir()
+                                                              + "/" + "pyCode", new_ans);
+                                                      Python py = Python.getInstance();
+                                                      PyObject pyFile = py.getModule("compiler_2");
+                                                      String from = pyFile.callAttr("main_2", (Object) inpp).toString();
+                                                      Log.d(e, from + "|");
+                                                      f.append(from);
+                                                  }
+                                                  //Log.d(f.toString(), f.toString());
+                                                  if (f.toString().equals(LessonActivity.shared_hashmap.get("Answer"))) {
+                                                      showCorrect();
+                                                  } else {
+                                                      tree.loadAgain = ans;
+                                                      showWrong();
+                                                  }
+                                              }catch (Exception e){
+                                                  Log.d("eroor", e.getLocalizedMessage());
+                                                  out.setText(e.getLocalizedMessage());
                                               }
                                           }
                                       }
