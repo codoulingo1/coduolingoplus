@@ -8,6 +8,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -19,6 +20,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class selectLesson extends AppCompatActivity {
     Button l;
+    ArrayList new_names;
     ListView l_list;
     Button prac;
     ArrayList fin;
@@ -31,6 +33,14 @@ public class selectLesson extends AppCompatActivity {
         l_list = (ListView) findViewById(R.id.friendList2);
         Collections.reverse(tree.namesShare);
         Collections.reverse(tree.idShare);
+        new_names = new ArrayList();
+        for (String n : tree.namesShare){
+            if (mainScreen.progress.contains(n)){
+                new_names.add(n + "חזור על השיעור - ");
+            }else {
+                new_names.add(n);
+            }
+        }
         ArrayAdapter<String> itemsAdapter = new ArrayAdapter<String>(selectLesson.this, android.R.layout.simple_list_item_1, android.R.id.text1, tree.namesShare);
         l_list.setAdapter(itemsAdapter);
         l = (Button) findViewById(R.id.nextLesson);

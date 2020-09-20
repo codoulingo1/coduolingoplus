@@ -8,10 +8,10 @@
 
     <TextView
         android:id="@+id/Explanation"
-        android:layout_width="389dp"
-        android:layout_height="389dp"
+        android:layout_width="373dp"
+        android:layout_height="395dp"
         android:layout_below="@+id/topBar"
-        android:layout_marginTop="39dp"
+        android:layout_marginTop="42dp"
         android:fontFamily="@font/rubik_light"
         android:singleLine="false"
         android:textColor="#0E0C0C"
@@ -21,9 +21,9 @@
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="368dp"
         android:layout_below="@id/Explanation"
-        android:layout_marginTop="13dp"
+        android:layout_marginTop="-105dp"
         android:adjustViewBounds="true"
         android:scaleType="fitCenter" />
 

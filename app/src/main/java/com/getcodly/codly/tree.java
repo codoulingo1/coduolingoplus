@@ -29,6 +29,10 @@ public class tree extends AppCompatActivity {
 
     //FirebaseAuth mAuth;
     RelativeLayout skill1;
+    RelativeLayout skill2;
+    RelativeLayout skill3;
+    RelativeLayout skill4;
+    RelativeLayout skill5;
     public static ArrayList<String> idShare;
     public static ArrayList<String> namesShare;
     CountDownTimer mcountdown;
@@ -44,6 +48,10 @@ public class tree extends AppCompatActivity {
         setContentView(R.layout.activity_tree_new);
         //mAuth = FirebaseAuth.getInstance();
         skill1 = (RelativeLayout) findViewById(R.id.skill15);
+        skill2 = (RelativeLayout) findViewById(R.id.skill16);
+        skill3 = (RelativeLayout) findViewById(R.id.skill17);
+        skill4 = (RelativeLayout) findViewById(R.id.skill18);
+        skill5 = (RelativeLayout) findViewById(R.id.skill19);
 
         toPython = (Button) findViewById(R.id.button7);
         File dirName = new File(Environment.getExternalStorageDirectory() + "/" + "id" + "/");
@@ -58,7 +66,31 @@ public class tree extends AppCompatActivity {
         skill1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                startLesson(Arrays.asList("1-1-2~הקוד הראשון שלי", "1-1-1~מבוא לפייתון"));
+            } //savta
+        });
+        skill2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startLesson(Arrays.asList("1-2-3~תכנות אינטראקטיבי", "1-2-2~טקסטים ומספרים", "1-2-1~מבוא למשתנים"));
+            } //savta
+        });
+        skill3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
                 startLesson(Arrays.asList("1-3-2~הפקודות else וelif", "1-3-1~תנאים"));
+            } //savta
+        });
+        skill4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startLesson(Arrays.asList("1-5-1~לולאת while"));
+            } //savta
+        });
+        skill5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startLesson(Arrays.asList("1-4-1~שגיאות וחריגים"));
             } //savta
         });
         toPython.setOnClickListener(new View.OnClickListener() {
