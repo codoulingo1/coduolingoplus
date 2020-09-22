@@ -36,7 +36,7 @@ public class selectLesson extends AppCompatActivity {
         new_names = new ArrayList();
         for (String n : tree.namesShare){
             if (mainScreen.progress.contains(n)){
-                new_names.add(n + "חזור על השיעור - ");
+                new_names.add(n + " - חזור על השיעור");
             }else {
                 new_names.add(n);
             }

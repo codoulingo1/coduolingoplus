@@ -15,9 +15,9 @@
     <EditText
         android:id="@+id/inp"
         android:layout_width="match_parent"
-        android:layout_height="326dp"
+        android:layout_height="284dp"
         android:layout_below="@+id/textView"
-        android:layout_marginTop="11dp"
+        android:layout_marginTop="15dp"
         android:background="@color/codeBackground"
         android:fontFamily="@font/veramono"
         android:gravity="top"
@@ -40,15 +40,15 @@
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="403dp"
-        android:layout_height="103dp"
+        android:layout_width="400dp"
+        android:layout_height="142dp"
         android:layout_alignParentRight="true"
-        android:layout_marginRight="@dimen/default_gap"
+        android:layout_marginRight="11dp"
         android:layout_marginTop="60dp"
-        android:singleLine="false"
         android:fontFamily="@font/rubik_light"
-        android:textDirection="anyRtl"
+        android:singleLine="false"
         android:textColor="#0B0A0A"
+        android:textDirection="anyRtl"
         android:textSize="22sp" />
 
     <RelativeLayout
@@ -169,10 +169,11 @@
     <TextView
         android:id="@+id/out"
         android:layout_width="match_parent"
+        android:layout_height="159dp"
         android:layout_above="@id/a"
         android:layout_below="@id/inp"
-        android:layout_marginTop="10dp"
-        android:layout_height="159dp"
+        android:layout_marginBottom="3dp"
+        android:layout_marginTop="8dp"
         android:textColor="#000000"
         android:textSize="18sp" />
 

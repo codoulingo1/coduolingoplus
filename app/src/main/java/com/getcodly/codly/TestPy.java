@@ -129,6 +129,7 @@ public class TestPy extends AppCompatActivity {
                                               }catch (Exception e){
                                                   Log.d("eroor", e.getLocalizedMessage());
                                                   out.setText(e.getLocalizedMessage());
+
                                               }
                                           }
                                       }
