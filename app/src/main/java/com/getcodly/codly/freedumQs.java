@@ -72,6 +72,7 @@ public class freedumQs extends AppCompatActivity {
         //continueBtn.setBackgroundColor(Color.TRANSPARENT);
         popup = (RelativeLayout) findViewById(R.id.Popup1);
         backBtn = (ImageButton) findViewById(R.id.backBtn2);
+        final TextView wt = (TextView) findViewById(R.id.textView6);
         opt1 = (Button) findViewById(R.id.Opt1);
         opt2 = (Button) findViewById(R.id.Opt2);
         opt3 = (Button) findViewById(R.id.Opt3);
@@ -89,6 +90,8 @@ public class freedumQs extends AppCompatActivity {
                     showCorrect();
                 }
                 else{
+                    wt.setTextSize(14);
+                    wt.setText("התשובה:" + LessonActivity.shared_hashmap.get("Answer"));
                     showWrong();
                 }
             }

@@ -43,6 +43,7 @@ public class FreeTextPy extends AppCompatActivity {
         popupTruee = (RelativeLayout) findViewById(R.id.PopupTruee);
         continueBtn10 = (ImageButton) findViewById(R.id.continueBtn10);
         ProgressBar pb = (ProgressBar) findViewById(R.id.progressBar);
+        final TextView wt = (TextView) findViewById(R.id.textView11);
         backBtn = (ImageButton) findViewById(R.id.backBtn4);
         popup11 = (RelativeLayout) findViewById(R.id.popup11);
         continueBtn11 = (ImageButton) findViewById(R.id.continueBtn11);
@@ -98,6 +99,8 @@ public class FreeTextPy extends AppCompatActivity {
                                               }
                                               else{
                                                   tree.loadAgain = ans;
+                                                  wt.setTextSize(14);
+                                                  wt.setText("התשובה:" + LessonActivity.shared_hashmap.get("Answer"));
                                                   showWrong();
                                               }
                                           }catch (Exception e){
@@ -106,6 +109,8 @@ public class FreeTextPy extends AppCompatActivity {
                                               }
                                               else{
                                                   tree.loadAgain = ans;
+                                                  wt.setTextSize(14);
+                                                  wt.setText("התשובה:" + LessonActivity.shared_hashmap.get("Answer"));
                                                   showWrong();
                                               }
                                           }

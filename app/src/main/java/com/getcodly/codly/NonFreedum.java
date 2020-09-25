@@ -35,6 +35,7 @@ public class NonFreedum extends AppCompatActivity {
     RelativeLayout popupTrue;
     RelativeLayout popupFalse;
     ImageButton continueBtnTrue;
+    public static int w;
     ImageButton continueBtnFalse;
     Button opt1;
     ProgressBar pb;
@@ -55,6 +56,7 @@ public class NonFreedum extends AppCompatActivity {
         final Button opt3 = (Button) findViewById(R.id.button3);
         final Button opt4 = (Button) findViewById(R.id.button4);
         final Button opt5 = (Button) findViewById(R.id.button5);
+        final TextView wt = (TextView) findViewById(R.id.textView6);
         final Button opt6 = (Button) findViewById(R.id.button6);
         backBtn = (ImageButton) findViewById(R.id.backBtn3);
         check = (ImageButton) findViewById(R.id.check);
@@ -208,6 +210,11 @@ public class NonFreedum extends AppCompatActivity {
                             startActivity(new Intent(NonFreedum.this, NonFreedum.class));
                         }
                     });*/
+                    NonFreedum.w++;
+                    if (NonFreedum.w > 1){
+                        wt.setTextSize(13);
+                        wt.setText(LessonActivity.shared_hashmap.get("Answer"));
+                    }
                     showWrong();
                 }
 

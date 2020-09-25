@@ -11,6 +11,7 @@
         android:layout_width="375dp"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
+        android:textAllCaps="false"
         android:layout_alignParentRight="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="125dp"
@@ -24,6 +25,7 @@
         android:layout_width="375dp"
         android:layout_height="wrap_content"
         android:text="ישנם 51 כוכבים בדגל"
+        android:textAllCaps="false"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="350dp"
@@ -37,6 +39,7 @@
         android:layout_width="375dp"
         android:layout_height="wrap_content"
         android:text="ישנם 51 כוכבים בדגל"
+        android:textAllCaps="false"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="200dp"
@@ -48,6 +51,7 @@
     <Button
         android:id="@+id/Opt2"
         android:layout_width="375dp"
+        android:textAllCaps="false"
         android:layout_height="wrap_content"
         android:text="ישנם 51 כוכבים בדגל"
         android:layout_alignParentTop="true"
@@ -102,7 +106,7 @@
             android:layout_centerVertical="true"
             android:layout_marginRight="20dp"
             android:fontFamily="@font/rubik_bold"
-            android:text="טעות"
+            android:text="נסה שוב"
             android:textColor="#de302b"
             android:textSize="46sp" />
     </RelativeLayout>
