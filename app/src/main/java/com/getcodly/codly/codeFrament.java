@@ -17,6 +17,7 @@ import android.text.SpannableStringBuilder;
 import android.text.TextWatcher;
 import android.text.style.ForegroundColorSpan;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -45,6 +46,7 @@ public class codeFrament extends Fragment  { //was extends Fragment, might need 
     Button help3;
     ViewPager mViewPager;
     TabLayout tabsHost;
+    String blankTemplate = "<!doctype html>\n<html>\n    <head>\n        \n    </head>\n    \n    <body>\n        \n    </body>\n</html>";
 
     private AnimatedVectorDrawable animation;
 
@@ -67,6 +69,8 @@ public class codeFrament extends Fragment  { //was extends Fragment, might need 
         if (selectProject.codeToLoad != null){
             String codeToLoad2 = selectProject.codeToLoad;
             htmlInp.setText(codeToLoad2);
+        } else {
+            htmlInp.setText(blankTemplate);
         }
 
         submitBtn.setOnClickListener(new View.OnClickListener() {
@@ -76,6 +80,20 @@ public class codeFrament extends Fragment  { //was extends Fragment, might need 
                 animate();
                 htmlCode = htmlInp.getText().toString();
                 openFragment();
+            }
+        });
+
+        htmlInp.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                // If the event is a key-down event on the "enter" button
+                if ((event.getAction() == KeyEvent.ACTION_DOWN) &&
+                        (keyCode == KeyEvent.KEYCODE_ENTER)) {
+                    // Perform action on key press
+
+                    return true;
+                }
+                return false;
             }
         });
 

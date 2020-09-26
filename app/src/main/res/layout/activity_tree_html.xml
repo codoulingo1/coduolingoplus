@@ -40,7 +40,7 @@
                 android:layout_centerHorizontal="true">
 
                 <ImageView
-                    android:id="@+id/lessonStart"
+                    android:id="@+id/lessonStartHtml1"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:layout_centerHorizontal="true"
@@ -97,7 +97,7 @@
                 android:layout_centerHorizontal="true">
 
                 <ImageView
-                    android:id="@+id/lessonStart1"
+                    android:id="@+id/lessonStartHtml2"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:layout_centerHorizontal="true"
@@ -154,7 +154,7 @@
                 android:layout_centerHorizontal="true">
 
                 <ImageView
-                    android:id="@+id/lessonStart2"
+                    android:id="@+id/lessonStartHtml3"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:layout_centerHorizontal="true"
@@ -212,7 +212,7 @@
                 android:layout_centerHorizontal="true">
 
                 <ImageView
-                    android:id="@+id/lessonStart3"
+                    android:id="@+id/lessonStartHtml4"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:layout_centerHorizontal="true"
@@ -270,7 +270,7 @@
                 android:layout_centerHorizontal="true">
 
                 <ImageView
-                    android:id="@+id/lessonStart4"
+                    android:id="@+id/lessonStartHtml5"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:layout_centerHorizontal="true"

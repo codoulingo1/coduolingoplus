@@ -9,6 +9,7 @@ import android.os.Environment;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -41,6 +42,11 @@ public class tree extends AppCompatActivity {
     public static String LessonType;
     HashMap <String, String> date;
     Button toPython;
+    ImageView LessonStart1;
+    ImageView LessonStart2;
+    ImageView LessonStart3;
+    ImageView LessonStart4;
+    ImageView LessonStart5;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +58,14 @@ public class tree extends AppCompatActivity {
         skill3 = (RelativeLayout) findViewById(R.id.skill17);
         skill4 = (RelativeLayout) findViewById(R.id.skill18);
         skill5 = (RelativeLayout) findViewById(R.id.skill19);
+        LessonStart1 = findViewById(R.id.lessonStart);
+        LessonStart2 = findViewById(R.id.lessonStart1);
+        LessonStart3 = findViewById(R.id.lessonStart2);
+        LessonStart4 = findViewById(R.id.lessonStart3);
+        LessonStart5 = findViewById(R.id.lessonStart4);
+
+
+        checkIfGreen();
 
         toPython = (Button) findViewById(R.id.button7);
         File dirName = new File(Environment.getExternalStorageDirectory() + "/" + "id" + "/");
@@ -130,6 +144,25 @@ public class tree extends AppCompatActivity {
         }
         return ret;
     }
+
+    void checkIfGreen(){
+        if(ifLfinished(Arrays.asList("1-1-2","1-1-1"))){
+            LessonStart1.setImageResource(R.drawable.lesson_circle_lvl2);
+        }
+        if(ifLfinished(Arrays.asList("1-2-1","1-2-2","1-2-3"))){
+            LessonStart2.setImageResource(R.drawable.lesson_circle_lvl2);
+        }
+        if(ifLfinished(Arrays.asList("1-3-1","1-3-2"))){
+            LessonStart3.setImageResource(R.drawable.lesson_circle_lvl2);
+        }
+        if(ifLfinished(Arrays.asList("1-4-1"))){
+            LessonStart4.setImageResource(R.drawable.lesson_circle_lvl2);
+        }
+        if(ifLfinished(Arrays.asList("1-5-1"))){
+            LessonStart5.setImageResource(R.drawable.lesson_circle_lvl2);
+        }
+    }
+
     void startPractice(String[] id) {
         LessonType = "practice";
         MainActivity.id = "prac";

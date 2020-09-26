@@ -77,17 +77,17 @@ public class selectLesson extends AppCompatActivity {
             public void onItemClick(AdapterView<?> arg0, View arg1, int position, long arg3)
             {
                 List<String> str_old_progress = Arrays.asList(mainScreen.progress.split(" "));
-                    if (str_old_progress.toString().contains(tree.idShare.get(position))){
-                        MainActivity.id = tree.idShare.get(position);
-                        MainActivity.name = tree.namesShare.get(position);
+                if (str_old_progress.toString().contains(tree.idShare.get(position))){
+                    MainActivity.id = tree.idShare.get(position);
+                    MainActivity.name = tree.namesShare.get(position);
 
-                        startActivity(new Intent(selectLesson.this, MainActivity.class));
-                        overridePendingTransition(0,0);
+                    startActivity(new Intent(selectLesson.this, MainActivity.class));
+                    overridePendingTransition(0,0);
                 }
-                    else if (tree.idShare.get(position).equals(MainActivity.id)){
-                        startActivity(new Intent(selectLesson.this, MainActivity.class));
-                        overridePendingTransition(0,0);
-                    }
+                else if (tree.idShare.get(position).equals(MainActivity.id)){
+                    startActivity(new Intent(selectLesson.this, MainActivity.class));
+                    overridePendingTransition(0,0);
+                }
             }
         });
     }

@@ -6,9 +6,6 @@
     android:layout_height="match_parent"
     tools:context="com.getcodly.codly.NonFreedum"
     android:background="#F3F4F9">
-
-
-
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
@@ -123,6 +120,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/textView3"
         android:layout_above="@id/check"
+        android:layout_marginBottom="5dp"
         android:id="@+id/htmlView3"/>
 
     <ImageButton
