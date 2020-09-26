@@ -104,22 +104,23 @@ public class tree_html extends AppCompatActivity {
         return ret;
     }
 
-    void startLesson(List<String> id){
+    void startLesson(List<String> id) {
         String old_progress = mainScreen.progress;
         idShare = new ArrayList();
         namesShare = new ArrayList();
         LessonType = "";
-        for(String i : id){
+        for (String i : id) {
             idShare.add(i.split("~")[0]);
             namesShare.add(i.split("~")[1]);
         }
-        for(String d : id){
+        for (String d : id) {
             List<String> str_old_progress = Arrays.asList(old_progress.split(" "));
             Log.d(str_old_progress.toString(), String.valueOf(str_old_progress.contains(d.split("~")[0])));
-            if(!str_old_progress.toString().contains(d.split("~")[0])) {
+            if (!str_old_progress.toString().contains(d.split("~")[0])) {
                 MainActivity.id = d.split("~")[0];
                 MainActivity.name = d.split("~")[1];
             }
         }
 
+    }
 }
