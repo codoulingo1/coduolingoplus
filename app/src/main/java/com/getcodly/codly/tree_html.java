@@ -142,12 +142,16 @@ public class tree_html extends AppCompatActivity {
         }
         return ret;
     }
-    boolean ifHfinished(List<String> id){
+    boolean ifHfinished(List<String> id, List<String> old_id){
         boolean ret = true;
         for (String i : id){
             if (mainScreen.progress.contains(i)) {
                 ret = false;
+                break;
             }
+        }
+        if (ifLfinished(old_id)){
+            ret = false;
         }
         return ret;
     }
