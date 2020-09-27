@@ -121,6 +121,5 @@ public class tree_html extends AppCompatActivity {
                 MainActivity.name = d.split("~")[1];
             }
         }
-
     }
 }
