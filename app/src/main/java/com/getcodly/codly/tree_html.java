@@ -2,6 +2,7 @@ package com.getcodly.codly;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.util.Log;
@@ -53,6 +54,7 @@ public class tree_html extends AppCompatActivity {
         LessonStart4 = findViewById(R.id.lessonStartHtml4);
         LessonStart5 = findViewById(R.id.lessonStartHtml5);
 
+
         checkIfGreen();
 
         LessonActivity.j = 1;
@@ -78,28 +80,74 @@ public class tree_html extends AppCompatActivity {
     }
 
     void checkIfGreen(){
-        if(ifLfinished(Arrays.asList("1-1-2","1-1-1"))){
+        if (ifLfinished(Arrays.asList("1-1-1", "1-1-2"))){
             LessonStart1.setImageResource(R.drawable.lesson_circle_lvl2);
         }
-        if(ifLfinished(Arrays.asList("1-2-1","1-2-2","1-2-3"))){
+        if (ifHfinished(Arrays.asList("1-1-1", "1-1-2"))){
+            LessonStart1.setImageResource(R.drawable.lesson_circle_lvl0);
+        }
+        if (ifLfinished(Arrays.asList("1-2-1", "1-2-2", "1-2-3"))){
             LessonStart2.setImageResource(R.drawable.lesson_circle_lvl2);
         }
-        if(ifLfinished(Arrays.asList("1-3-1","1-3-2"))){
+        if (ifHfinished(Arrays.asList("1-2-1", "1-2-2", "1-2-3"))){
+            LessonStart2.setImageResource(R.drawable.lesson_circle_lvl0);
+        }
+        if (ifLfinished(Arrays.asList("1-3-1", "1-3-2"))){
             LessonStart3.setImageResource(R.drawable.lesson_circle_lvl2);
         }
-        if(ifLfinished(Arrays.asList("1-4-1"))){
+        if (ifHfinished(Arrays.asList("1-3-1", "1-3-2"))){
+            LessonStart3.setImageResource(R.drawable.lesson_circle_lvl0);
+        }
+        if (ifLfinished(Arrays.asList("1-5-1"))){
             LessonStart4.setImageResource(R.drawable.lesson_circle_lvl2);
         }
-        if(ifLfinished(Arrays.asList("1-5-1"))){
+        if (ifHfinished(Arrays.asList("1-5-1"))){
+            LessonStart4.setImageResource(R.drawable.lesson_circle_lvl0);
+        }
+        if (ifLfinished(Arrays.asList("1-4-1"))){
             LessonStart5.setImageResource(R.drawable.lesson_circle_lvl2);
         }
+        if (ifHfinished(Arrays.asList("1-4-1"))){
+            LessonStart5.setImageResource(R.drawable.lesson_circle_lvl0);
+        }
     }
-
+    void startLesson(List<String> id, List<String> id_alt) {
+        if (ifLfinished(id_alt)) {
+            String old_progress = mainScreen.progress;
+            idShare = new ArrayList();
+            namesShare = new ArrayList();
+            LessonType = "";
+            for (String i : id) {
+                idShare.add(i.split("~")[0]);
+                namesShare.add(i.split("~")[1]);
+            }
+            for (String d : id) {
+                List<String> str_old_progress = Arrays.asList(old_progress.split(" "));
+                Log.d(str_old_progress.toString(), String.valueOf(str_old_progress.contains(d.split("~")[0])));
+                if (!str_old_progress.toString().contains(d.split("~")[0])) {
+                    MainActivity.id = d.split("~")[0];
+                    MainActivity.name = d.split("~")[1];
+                }
+            }
+            startActivity(new Intent(tree_html.this, selectLesson.class));
+            overridePendingTransition(0, 0);
+        }
+    }
     boolean ifLfinished(List<String> id){
         boolean ret = true;
         for (String i : id){
-            if (!mainScreen.progress.contains(i))
+            if (!mainScreen.progress.contains(i)) {
                 ret = false;
+            }
+        }
+        return ret;
+    }
+    boolean ifHfinished(List<String> id){
+        boolean ret = true;
+        for (String i : id){
+            if (mainScreen.progress.contains(i)) {
+                ret = false;
+            }
         }
         return ret;
     }

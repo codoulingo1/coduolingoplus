@@ -51,7 +51,7 @@
                     android:layout_width="55dp"
                     android:layout_height="55dp"
                     android:layout_centerInParent="true"
-                    app:srcCompat="@drawable/ic_python_language_logotype" />
+                    app:srcCompat="@drawable/l1" />
             </RelativeLayout>
 
             <TextView
@@ -64,7 +64,7 @@
                 android:layout_marginTop="4dp"
                 android:fontFamily="@font/rubik_light"
                 android:text="מבוא לפייתון"
-                android:textColor="#636475" />
+                android:textColor="#050507" />
 
 
         </RelativeLayout>
@@ -108,7 +108,7 @@
                     android:layout_width="45dp"
                     android:layout_height="45dp"
                     android:layout_centerInParent="true"
-                    app:srcCompat="@drawable/ic_web_page" />
+                    app:srcCompat="@drawable/l3" />
             </RelativeLayout>
 
             <TextView
@@ -121,7 +121,7 @@
                 android:layout_marginTop="4dp"
                 android:fontFamily="@font/rubik_light"
                 android:text="משתנים"
-                android:textColor="#636475" />
+                android:textColor="#08080C" />
 
 
         </RelativeLayout>
@@ -165,7 +165,7 @@
                     android:layout_width="55dp"
                     android:layout_height="55dp"
                     android:layout_centerInParent="true"
-                    app:srcCompat="@drawable/ic_website_design" />
+                    app:srcCompat="@drawable/l2" />
             </RelativeLayout>
 
             <TextView
@@ -178,7 +178,7 @@
                 android:layout_marginTop="4dp"
                 android:fontFamily="@font/rubik_light"
                 android:text="תנאים"
-                android:textColor="#636475" />
+                android:textColor="#050507" />
 
 
         </RelativeLayout>
@@ -223,7 +223,7 @@
                     android:layout_width="45dp"
                     android:layout_height="45dp"
                     android:layout_centerInParent="true"
-                    app:srcCompat="@drawable/ic_logo" />
+                    app:srcCompat="@drawable/l5" />
             </RelativeLayout>
 
             <TextView
@@ -236,7 +236,7 @@
                 android:layout_marginTop="4dp"
                 android:fontFamily="@font/rubik_light"
                 android:text="לולאות"
-                android:textColor="#636475" />
+                android:textColor="#040405" />
 
 
         </RelativeLayout>
@@ -281,7 +281,7 @@
                     android:layout_width="45dp"
                     android:layout_height="45dp"
                     android:layout_centerInParent="true"
-                    app:srcCompat="@drawable/ic_ui" />
+                    app:srcCompat="@drawable/l4" />
             </RelativeLayout>
 
             <TextView
@@ -293,8 +293,8 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="4dp"
                 android:fontFamily="@font/rubik_light"
-                android:text="מבני נתונים"
-                android:textColor="#636475" />
+                android:text="שגיאות"
+                android:textColor="#000000" />
 
 
         </RelativeLayout>

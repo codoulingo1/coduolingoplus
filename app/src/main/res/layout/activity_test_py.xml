@@ -12,26 +12,23 @@
     android:background="#F3F4F9">
     <!--android:scrollbarStyle="insideInset" - this is something bad-->
 
+
     <EditText
         android:id="@+id/inp"
         android:layout_width="match_parent"
         android:layout_height="390dp"
         android:layout_below="@+id/textView"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="23dp"
         android:background="@color/codeBackground"
         android:fontFamily="@font/veramono"
         android:gravity="top"
         android:inputType="textMultiLine|textNoSuggestions"
-        android:lines="5"
-        android:minLines="5"
+        android:lines="20"
+        android:minLines="20"
         android:overScrollMode="always"
         android:scrollbarStyle="insideInset"
         android:scrollbars="vertical"
         android:textColor="@color/white" />
-
-
-
-
 
     <RelativeLayout
         android:layout_width="match_parent"
