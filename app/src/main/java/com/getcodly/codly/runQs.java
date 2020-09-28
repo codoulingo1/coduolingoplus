@@ -34,6 +34,7 @@ public class runQs extends AppCompatActivity {
     ImageButton submit;
     ImageButton runA;
     RelativeLayout popupTruee;
+    ImageButton backBtn;
     TextView out;
     ImageButton continueBtn10;
     RelativeLayout popup11;
@@ -47,6 +48,7 @@ public class runQs extends AppCompatActivity {
         popupTruee = (RelativeLayout) findViewById(R.id.PopupTruee);
         continueBtn10 = (ImageButton) findViewById(R.id.continueBtn10);
         ProgressBar pb = (ProgressBar) findViewById(R.id.progressBar);
+        backBtn = (ImageButton) findViewById(R.id.backBtn2);
         popup11 = (RelativeLayout) findViewById(R.id.popup11);
         continueBtn11 = (ImageButton) findViewById(R.id.continueBtn11);
         pb.setProgress(LessonActivity.pr);
@@ -97,6 +99,17 @@ public class runQs extends AppCompatActivity {
             public void onFocusChange(View v, boolean hasFocus) {
                 if (!hasFocus) {
                     hideKeyboard(v);
+                }
+            }
+        });
+        backBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (LessonActivity.j > 1) {
+                    LessonActivity.j = LessonActivity.j - 1;
+                    LessonActivity.shared_xp = LessonActivity.shared_xp - 1;
+                    startActivity(new Intent(runQs.this, LessonActivity.class));
+                    overridePendingTransition(0, 0);
                 }
             }
         });

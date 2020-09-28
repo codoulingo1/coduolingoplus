@@ -29,15 +29,6 @@
         android:scrollbars="vertical"
         android:textColor="@color/white" />
 
-    <ProgressBar
-        android:id="@+id/progressBar"
-        android:layout_width="347dp"
-        android:layout_height="17dp"
-        android:progressDrawable="@drawable/pb_lsn"
-        style="?android:attr/progressBarStyleHorizontal"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp" />
-
     <TextView
         android:id="@+id/textView"
         android:layout_width="400dp"
@@ -50,6 +41,53 @@
         android:textColor="#0B0A0A"
         android:textDirection="anyRtl"
         android:textSize="22sp" />
+
+    <RelativeLayout
+        android:id="@+id/topBar"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_alignParentTop="true"
+        android:background="@color/white"
+        android:elevation="2dp">
+
+        <ImageButton
+            android:id="@+id/fwdBtn6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="15dp"
+            android:layout_toLeftOf="@+id/progressBar"
+            android:adjustViewBounds="true"
+            android:background="#80FFFFFF"
+            android:maxHeight="25dp"
+            android:maxWidth="25dp"
+            android:scaleType="fitCenter"
+            app:srcCompat="@drawable/ic_back_button" />
+
+        <ImageButton
+            android:id="@+id/backBtn2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="15dp"
+            android:layout_toRightOf="@+id/progressBar"
+            android:adjustViewBounds="true"
+            android:background="#80FFFFFF"
+            android:maxHeight="25dp"
+            android:maxWidth="25dp"
+            android:scaleType="fitCenter"
+            app:srcCompat="@drawable/ic_left_arrow" />
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="300dp"
+            android:layout_height="10dp"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:progressDrawable="@drawable/pb_lsn" />
+
+    </RelativeLayout>
 
     <RelativeLayout
         android:id="@+id/a"
