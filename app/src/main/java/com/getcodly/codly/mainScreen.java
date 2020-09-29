@@ -75,6 +75,7 @@ public class mainScreen extends AppCompatActivity {
         date = DownloadReadlessons.get_last_lesson2(ReadWrite.read(this.getFilesDir() + File.separator + "user"), new DownloadReadlessons.HashCallback() {
             @Override
             public void onCallback(HashMap<String, String> value) {
+
                 Log.d("v", "v");
                 int year = Integer.parseInt(value.get("year"));
                 progress = String.valueOf(value.get("cProgress"));
@@ -88,42 +89,45 @@ public class mainScreen extends AppCompatActivity {
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         // This method is called once with the initial value and again
                         // whenever data at this location is uploaded
-                        if (!dataSnapshot.child("comp").getValue().toString().equals("")) {
-                            if (System.currentTimeMillis() - Long.parseLong(dataSnapshot.child("comp_time").getValue().toString()) < 15000){
-                                myRef1.child("comp").setValue("");
-                                myRef1.child("comp_time").setValue("1");
-                            userId = dataSnapshot.child("comp").getValue().toString();
-                            DownloadReadlessons.get_last_lesson2(userId, new DownloadReadlessons.HashCallback() {
-                                @Override
-                                public void onCallback(HashMap<String, String> value) {
-                                    String progress_2 = value.get("cProgress");
-                                    invName = value.get("name");
-                                    int sel_num = 0;
-                                    sel = progress.split(" ")[new Random().nextInt(progress.split(" ").length)];
-                                    while (!Arrays.asList(progress_2.split(" ")).contains(sel)) {
-                                        sel_num++;
-                                        sel = progress.split(" ")[new Random().nextInt(progress.split(" ").length)];
-                                        if (sel_num > 200) {
-                                            break;
+                        try {
+                            if (!dataSnapshot.child("comp").getValue().toString().equals("")) {
+                                if (System.currentTimeMillis() - Long.parseLong(dataSnapshot.child("comp_time").getValue().toString()) < 15000){
+                                    myRef1.child("comp").setValue("");
+                                    myRef1.child("comp_time").setValue("1");
+                                    userId = dataSnapshot.child("comp").getValue().toString();
+                                    DownloadReadlessons.get_last_lesson2(userId, new DownloadReadlessons.HashCallback() {
+                                        @Override
+                                        public void onCallback(HashMap<String, String> value) {
+                                            String progress_2 = value.get("cProgress");
+                                            invName = value.get("name");
+                                            int sel_num = 0;
+                                            sel = progress.split(" ")[new Random().nextInt(progress.split(" ").length)];
+                                            while (!Arrays.asList(progress_2.split(" ")).contains(sel)) {
+                                                sel_num++;
+                                                sel = progress.split(" ")[new Random().nextInt(progress.split(" ").length)];
+                                                if (sel_num > 200) {
+                                                    break;
+                                                }
+                                            }
+                                            if (sel_num <= 200) {
+                                                Comp_Invite dialogBack = new Comp_Invite();
+                                                FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+                                                ft.add(dialogBack, "snooze_dialog");
+                                                ft.commitAllowingStateLoss();
+                                            }
+                                            //DatabaseReference myRef2 = database1.getReference("Users").child(userId);
+                                            //myRef2.child("start_comp").setValue(sel);
+                                            //startComp(sel);
                                         }
-                                    }
-                                    if (sel_num <= 200) {
-                                        Comp_Invite dialogBack = new Comp_Invite();
-                                        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-                                        ft.add(dialogBack, "snooze_dialog");
-                                        ft.commitAllowingStateLoss();
-                                    }
-                                    //DatabaseReference myRef2 = database1.getReference("Users").child(userId);
-                                    //myRef2.child("start_comp").setValue(sel);
-                                    //startComp(sel);
+                                    });
+                                }else{
+                                    myRef1.child("comp").setValue("");
+                                    myRef1.child("comp_time").setValue("1");
                                 }
-                            });
-                        }else{
-                                myRef1.child("comp").setValue("");
-                                myRef1.child("comp_time").setValue("1");
                             }
-                        }
+                        } catch (Exception e) {
 
+                        }
                     }
 
                     @Override
@@ -200,19 +204,23 @@ public class mainScreen extends AppCompatActivity {
                 }
             }
         });
+
         FirebaseDatabase database_start = FirebaseDatabase.getInstance();
         DatabaseReference myRef_start = database_start.getReference("Users").child(ReadWrite.read(mainScreen.this.getFilesDir() + File.separator + "user")).child("start_comp");
         myRef_start.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+                try {
+                    if (!dataSnapshot.getValue().toString().equals("")){
+                        sel = dataSnapshot.getValue().toString();
+                        myRef_start.setValue("");
+                        startComp(sel);
+                    }
+                } catch (Exception e){
+
+                }
                 // This method is called once with the initial value and again
                 // whenever data at this location is uploaded
-                if (!dataSnapshot.getValue().toString().equals("")){
-                    sel = dataSnapshot.getValue().toString();
-                    myRef_start.setValue("");
-                    startComp(sel);
-                }
-
             }
 
             @Override

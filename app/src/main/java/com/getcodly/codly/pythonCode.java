@@ -57,6 +57,7 @@ public class pythonCode extends Fragment {
         help3 = (Button) v.findViewById(R.id.help3);
         if (selectProject.codeToLoad != null){
             String codeToLoad2 = selectProject.codeToLoad;
+            codeToLoad2 = codeToLoad2.replace("\\n", System.getProperty("line.separator"));
             htmlInp.setText(codeToLoad2);
         }
         mViewPager = (ViewPager) v.findViewById(R.id.view_pager6000);

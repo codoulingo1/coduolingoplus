@@ -69,7 +69,7 @@ public class finalLesson extends AppCompatActivity {
         mInterstitialAd.setAdListener(new AdListener(){
             @Override
             public void onAdClosed() {
-                startActivity(new Intent(finalLesson.this , tree.class));
+                startActivity(new Intent(finalLesson.this , mainScreen.class));
                 mInterstitialAd.loadAd(new AdRequest.Builder().build());
             }
             @Override
@@ -85,7 +85,7 @@ public class finalLesson extends AppCompatActivity {
         if (mInterstitialAd.isLoaded()){
             mInterstitialAd.show();
         } else {
-            //startActivity(new Intent(this, tree.class));
+            //startActivity(new Intent(this, mainScreen.class));
         }
     }
 

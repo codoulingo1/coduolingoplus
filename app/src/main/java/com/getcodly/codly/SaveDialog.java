@@ -83,6 +83,7 @@ public class SaveDialog extends AppCompatDialogFragment {
                     String fileName = mFileName.getText().toString();
                     mFileName.setText("");
                     String htmlCodeToSave = codeFrament.htmlCode;
+                    htmlCodeToSave = htmlCodeToSave.replace(System.getProperty("line.separator"), "\\n");
                     saveBtn.setImageResource(R.drawable.save_btn_gray);
                     String fileNameBetter = getContext().getFilesDir() + "/" + "codes/" + fileName + "htmll";
                     File f = new File(fileNameBetter);

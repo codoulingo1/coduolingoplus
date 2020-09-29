@@ -1,4 +1,4 @@
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,312 +7,334 @@
     android:background="#F3F4F9">
 
 
-
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="200dp"
+        android:background="#CFCCFF"
+        android:id="@+id/topImage"
+        android:layout_alignParentTop="true">
 
-        <RelativeLayout
-            android:id="@+id/skill15"
-            android:layout_width="100dp"
-            android:layout_height="120dp"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="25dp"
-            android:clickable="true">
-
-            <ProgressBar
-                android:id="@+id/progressBar2"
-                style="?android:attr/progressBarStyleHorizontal"
-                android:layout_width="match_parent"
-                android:layout_height="7dp"
-                android:layout_alignParentBottom="true"
-                android:layout_centerHorizontal="true"
-                android:layout_marginBottom="25dp"
-                android:layout_marginTop="0dp"
-                android:progress="0"
-                android:progressDrawable="@drawable/pb_lessons" />
-
-            <RelativeLayout
-                android:id="@+id/n"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
-                android:layout_centerHorizontal="true">
-
-                <ImageView
-                    android:id="@+id/lessonStart"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    android:layout_centerHorizontal="true"
-                    app:srcCompat="@drawable/lesson_circle" />
-
-                <ImageView
-                    android:id="@+id/imageView4"
-                    android:layout_width="55dp"
-                    android:layout_height="55dp"
-                    android:layout_centerInParent="true"
-                    app:srcCompat="@drawable/l1" />
-            </RelativeLayout>
-
-            <TextView
-                android:id="@+id/lessonText1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_above="@id/progressBar2"
-                android:layout_alignParentBottom="true"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="4dp"
-                android:fontFamily="@font/rubik_light"
-                android:text="מבוא לפייתון"
-                android:textColor="#050507" />
-
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/skill16"
-            android:layout_width="100dp"
-            android:layout_height="120dp"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="25dp"
-            android:clickable="true"
-            android:layout_below="@id/skill15">
-
-            <ProgressBar
-                android:id="@+id/progressBar3"
-                style="?android:attr/progressBarStyleHorizontal"
-                android:layout_width="match_parent"
-                android:layout_height="7dp"
-                android:layout_alignParentBottom="true"
-                android:layout_centerHorizontal="true"
-                android:layout_marginBottom="25dp"
-                android:layout_marginTop="0dp"
-                android:progress="0"
-                android:progressDrawable="@drawable/pb_lessons" />
-
-            <RelativeLayout
-                android:id="@+id/n1"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
-                android:layout_centerHorizontal="true">
-
-                <ImageView
-                    android:id="@+id/lessonStart1"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    android:layout_centerHorizontal="true"
-                    app:srcCompat="@drawable/lesson_circle" />
-
-                <ImageView
-                    android:id="@+id/imageView1"
-                    android:layout_width="45dp"
-                    android:layout_height="45dp"
-                    android:layout_centerInParent="true"
-                    app:srcCompat="@drawable/l3" />
-            </RelativeLayout>
-
-            <TextView
-                android:id="@+id/lessonText2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_above="@id/progressBar3"
-                android:layout_alignParentBottom="true"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="4dp"
-                android:fontFamily="@font/rubik_light"
-                android:text="משתנים"
-                android:textColor="#08080C" />
-
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/skill17"
-            android:layout_width="100dp"
-            android:layout_height="120dp"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="25dp"
-            android:clickable="true"
-            android:layout_below="@id/skill16">
-
-            <ProgressBar
-                android:id="@+id/progressBar4"
-                style="?android:attr/progressBarStyleHorizontal"
-                android:layout_width="match_parent"
-                android:layout_height="7dp"
-                android:layout_alignParentBottom="true"
-                android:layout_centerHorizontal="true"
-                android:layout_marginBottom="25dp"
-                android:layout_marginTop="0dp"
-                android:progress="0"
-                android:progressDrawable="@drawable/pb_lessons" />
-
-            <RelativeLayout
-                android:id="@+id/n2"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
-                android:layout_centerHorizontal="true">
-
-                <ImageView
-                    android:id="@+id/lessonStart2"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    android:layout_centerHorizontal="true"
-                    app:srcCompat="@drawable/lesson_circle" />
-
-                <ImageView
-                    android:id="@+id/imageView2"
-                    android:layout_width="55dp"
-                    android:layout_height="55dp"
-                    android:layout_centerInParent="true"
-                    app:srcCompat="@drawable/l2" />
-            </RelativeLayout>
-
-            <TextView
-                android:id="@+id/lessonText3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_above="@id/progressBar4"
-                android:layout_alignParentBottom="true"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="4dp"
-                android:fontFamily="@font/rubik_light"
-                android:text="תנאים"
-                android:textColor="#050507" />
-
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/skill18"
-            android:layout_width="100dp"
-            android:layout_height="120dp"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="50dp"
-            android:layout_marginTop="25dp"
-            android:clickable="true"
-            android:layout_below="@id/skill17">
-
-            <ProgressBar
-                android:id="@+id/progressBar5"
-                style="?android:attr/progressBarStyleHorizontal"
-                android:layout_width="match_parent"
-                android:layout_height="7dp"
-                android:layout_alignParentBottom="true"
-                android:layout_centerHorizontal="true"
-                android:layout_marginBottom="25dp"
-                android:layout_marginTop="0dp"
-                android:progress="0"
-                android:progressDrawable="@drawable/pb_lessons" />
-
-            <RelativeLayout
-                android:id="@+id/n3"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
-                android:layout_centerHorizontal="true">
-
-                <ImageView
-                    android:id="@+id/lessonStart3"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    android:layout_centerHorizontal="true"
-                    app:srcCompat="@drawable/lesson_circle" />
-
-                <ImageView
-                    android:id="@+id/imageView3"
-                    android:layout_width="45dp"
-                    android:layout_height="45dp"
-                    android:layout_centerInParent="true"
-                    app:srcCompat="@drawable/l5" />
-            </RelativeLayout>
-
-            <TextView
-                android:id="@+id/lessonText4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_above="@id/progressBar5"
-                android:layout_alignParentBottom="true"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="4dp"
-                android:fontFamily="@font/rubik_light"
-                android:text="לולאות"
-                android:textColor="#040405" />
-
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/skill19"
-            android:layout_width="100dp"
-            android:layout_height="120dp"
-            android:layout_alignParentLeft="true"
-            android:layout_marginLeft="50dp"
-            android:layout_marginTop="25dp"
-            android:clickable="true"
-            android:layout_below="@id/skill17">
-
-            <ProgressBar
-                android:id="@+id/progressBar6"
-                style="?android:attr/progressBarStyleHorizontal"
-                android:layout_width="match_parent"
-                android:layout_height="7dp"
-                android:layout_alignParentBottom="true"
-                android:layout_centerHorizontal="true"
-                android:layout_marginBottom="25dp"
-                android:layout_marginTop="0dp"
-                android:progress="0"
-                android:progressDrawable="@drawable/pb_lessons" />
-
-            <RelativeLayout
-                android:id="@+id/n4"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
-                android:layout_centerHorizontal="true">
-
-                <ImageView
-                    android:id="@+id/lessonStart4"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    android:layout_centerHorizontal="true"
-                    app:srcCompat="@drawable/lesson_circle" />
-
-                <ImageView
-                    android:id="@+id/imageView5"
-                    android:layout_width="45dp"
-                    android:layout_height="45dp"
-                    android:layout_centerInParent="true"
-                    app:srcCompat="@drawable/l4" />
-            </RelativeLayout>
-
-            <TextView
-                android:id="@+id/lessonText5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_above="@id/progressBar6"
-                android:layout_alignParentBottom="true"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="4dp"
-                android:fontFamily="@font/rubik_light"
-                android:text="שגיאות"
-                android:textColor="#000000" />
-
-
-        </RelativeLayout>
-
-        <Button
-            android:id="@+id/button7"
-            android:layout_width="100dp"
-            android:layout_height="60dp"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentRight="true"
-            android:layout_marginEnd="15dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginBottom="-30dp"
-            android:layout_marginRight="15dp"
-            android:layout_marginTop="680dp"
-            android:text="תכנתו בפייתון" />
-
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="170dp"
+            android:src="@drawable/people_doing_stuff"
+            android:layout_centerVertical="true" />
 
     </RelativeLayout>
 
-</ScrollView>
+    <ScrollView
+        android:id="@+id/scrollView2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/topImage">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <RelativeLayout
+                android:id="@+id/skill15"
+                android:layout_width="100dp"
+                android:layout_height="120dp"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="25dp"
+                android:clickable="true">
+
+                <ProgressBar
+                    android:id="@+id/progressBar2"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="7dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="25dp"
+                    android:layout_marginTop="0dp"
+                    android:progress="0"
+                    android:progressDrawable="@drawable/pb_lessons" />
+
+                <RelativeLayout
+                    android:id="@+id/n"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_centerHorizontal="true">
+
+                    <ImageView
+                        android:id="@+id/lessonStart"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_centerHorizontal="true"
+                        app:srcCompat="@drawable/lesson_circle" />
+
+                    <ImageView
+                        android:id="@+id/imageView4"
+                        android:layout_width="55dp"
+                        android:layout_height="55dp"
+                        android:layout_centerInParent="true"
+                        app:srcCompat="@drawable/l1" />
+                </RelativeLayout>
+
+                <TextView
+                    android:id="@+id/lessonText1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_above="@id/progressBar2"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="4dp"
+                    android:fontFamily="@font/rubik_light"
+                    android:text="מבוא לפייתון"
+                    android:textColor="#050507" />
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/skill16"
+                android:layout_width="100dp"
+                android:layout_height="120dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="25dp"
+                android:clickable="true"
+                android:layout_below="@id/skill15">
+
+                <ProgressBar
+                    android:id="@+id/progressBar3"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="7dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="25dp"
+                    android:layout_marginTop="0dp"
+                    android:progress="0"
+                    android:progressDrawable="@drawable/pb_lessons" />
+
+                <RelativeLayout
+                    android:id="@+id/n1"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_centerHorizontal="true">
+
+                    <ImageView
+                        android:id="@+id/lessonStart1"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_centerHorizontal="true"
+                        app:srcCompat="@drawable/lesson_circle" />
+
+                    <ImageView
+                        android:id="@+id/imageView1"
+                        android:layout_width="45dp"
+                        android:layout_height="45dp"
+                        android:layout_centerInParent="true"
+                        app:srcCompat="@drawable/l3" />
+                </RelativeLayout>
+
+                <TextView
+                    android:id="@+id/lessonText2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_above="@id/progressBar3"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="4dp"
+                    android:fontFamily="@font/rubik_light"
+                    android:text="משתנים"
+                    android:textColor="#08080C" />
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/skill17"
+                android:layout_width="100dp"
+                android:layout_height="120dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="25dp"
+                android:clickable="true"
+                android:layout_below="@id/skill16">
+
+                <ProgressBar
+                    android:id="@+id/progressBar4"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="7dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="25dp"
+                    android:layout_marginTop="0dp"
+                    android:progress="0"
+                    android:progressDrawable="@drawable/pb_lessons" />
+
+                <RelativeLayout
+                    android:id="@+id/n2"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_centerHorizontal="true">
+
+                    <ImageView
+                        android:id="@+id/lessonStart2"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_centerHorizontal="true"
+                        app:srcCompat="@drawable/lesson_circle" />
+
+                    <ImageView
+                        android:id="@+id/imageView2"
+                        android:layout_width="55dp"
+                        android:layout_height="55dp"
+                        android:layout_centerInParent="true"
+                        app:srcCompat="@drawable/l2" />
+                </RelativeLayout>
+
+                <TextView
+                    android:id="@+id/lessonText3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_above="@id/progressBar4"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="4dp"
+                    android:fontFamily="@font/rubik_light"
+                    android:text="תנאים"
+                    android:textColor="#050507" />
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/skill18"
+                android:layout_width="100dp"
+                android:layout_height="120dp"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="50dp"
+                android:layout_marginTop="25dp"
+                android:clickable="true"
+                android:layout_below="@id/skill17">
+
+                <ProgressBar
+                    android:id="@+id/progressBar5"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="7dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="25dp"
+                    android:layout_marginTop="0dp"
+                    android:progress="0"
+                    android:progressDrawable="@drawable/pb_lessons" />
+
+                <RelativeLayout
+                    android:id="@+id/n3"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_centerHorizontal="true">
+
+                    <ImageView
+                        android:id="@+id/lessonStart3"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_centerHorizontal="true"
+                        app:srcCompat="@drawable/lesson_circle" />
+
+                    <ImageView
+                        android:id="@+id/imageView3"
+                        android:layout_width="45dp"
+                        android:layout_height="45dp"
+                        android:layout_centerInParent="true"
+                        app:srcCompat="@drawable/l5" />
+                </RelativeLayout>
+
+                <TextView
+                    android:id="@+id/lessonText4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_above="@id/progressBar5"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="4dp"
+                    android:fontFamily="@font/rubik_light"
+                    android:text="לולאות"
+                    android:textColor="#040405" />
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/skill19"
+                android:layout_width="100dp"
+                android:layout_height="120dp"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="50dp"
+                android:layout_marginTop="25dp"
+                android:clickable="true"
+                android:layout_below="@id/skill17">
+
+                <ProgressBar
+                    android:id="@+id/progressBar6"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="7dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="25dp"
+                    android:layout_marginTop="0dp"
+                    android:progress="0"
+                    android:progressDrawable="@drawable/pb_lessons" />
+
+                <RelativeLayout
+                    android:id="@+id/n4"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_centerHorizontal="true">
+
+                    <ImageView
+                        android:id="@+id/lessonStart4"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_centerHorizontal="true"
+                        app:srcCompat="@drawable/lesson_circle" />
+
+                    <ImageView
+                        android:id="@+id/imageView5"
+                        android:layout_width="45dp"
+                        android:layout_height="45dp"
+                        android:layout_centerInParent="true"
+                        app:srcCompat="@drawable/l4" />
+                </RelativeLayout>
+
+                <TextView
+                    android:id="@+id/lessonText5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_above="@id/progressBar6"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="4dp"
+                    android:fontFamily="@font/rubik_light"
+                    android:text="שגיאות"
+                    android:textColor="#000000" />
+
+
+            </RelativeLayout>
+
+            <Button
+                android:id="@+id/button7"
+                android:layout_width="100dp"
+                android:layout_height="60dp"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginEnd="15dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginBottom="-30dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="680dp"
+                android:text="תכנתו בפייתון" />
+
+        </RelativeLayout>
+
+
+    </ScrollView>
+
+</RelativeLayout>

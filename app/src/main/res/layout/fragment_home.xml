@@ -24,7 +24,8 @@
         android:layout_below="@id/label"
         android:layout_marginTop="100dp"
         android:background="@drawable/course_bg"
-        android:id="@+id/course1">
+        android:id="@+id/course1"
+        android:elevation="2dp">
 
 
         <ImageView
@@ -73,16 +74,25 @@
         android:layout_below="@id/course1"
         android:layout_marginTop="25dp"
         android:background="@drawable/course_bg"
-        android:id="@+id/course2">
+        android:id="@+id/course2"
+        android:elevation="2dp">
 
-        <ImageView
+        <RelativeLayout
             android:layout_width="192dp"
             android:layout_height="match_parent"
-            android:id="@+id/courseImage2"
-            android:src="@drawable/ic_course_bg2"
-            android:layout_alignParentLeft="true"
-            android:background="@drawable/course_img_bg2"
-            ></ImageView>
+            android:background="@drawable/course_img_bg2">
+
+            <ImageView
+                android:layout_width="160dp"
+                android:layout_height="100dp"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true"
+                android:id="@+id/courseImage2"
+                android:src="@drawable/ic_web_course" />
+
+        </RelativeLayout>
+
+
 
         <TextView
             android:layout_width="wrap_content"
@@ -102,8 +112,7 @@
             android:text="שיעור נוכחי: לא זמין"
             android:textSize="13dp"
             android:layout_below="@id/courseName2"
-            android:layout_marginRight="10dp"
-            android:layout_toRightOf="@+id/courseImage2"/>
+            android:layout_marginRight="10dp" />
 
         <View
             android:id="@+id/clickView2"
@@ -113,5 +122,16 @@
             android:clickable="true" />
 
     </RelativeLayout>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:text="מסך פרוייקטים"
+        android:id="@+id/toProjects"
+        android:background="#47C5A0"
+        android:textColor="@color/white"
+        android:fontFamily="@font/rubik_bold"
+        android:textSize="24sp"/>
 
 </RelativeLayout>

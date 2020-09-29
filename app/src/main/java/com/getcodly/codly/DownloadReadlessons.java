@@ -297,17 +297,31 @@ public class DownloadReadlessons {
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     // This method is called once with the initial value and again
                     // whenever data at this location is uploaded
-                    ret.put("streak", dataSnapshot.child("streak").getValue().toString());
-                    ret.put("year", dataSnapshot.child("lastLessonD").child("year").getValue().toString());
-                    //ret.put("month", dataSnapshot.child("lastLessonD").child("month").getValue().toString());
-                    ret.put("date", dataSnapshot.child("lastLessonD").child("date").getValue().toString());
-                    ret.put("cProgress", dataSnapshot.child("progress").getValue().toString());//2
-                    ret.put("xp", dataSnapshot.child("xp").getValue().toString());
-                    ret.put("name", dataSnapshot.child("name").getValue().toString());
-                    ret.put("img", dataSnapshot.child("imgUrl").getValue().toString());
-                    ret.put("email", dataSnapshot.child("email").getValue().toString());
-                    ret.put("streak freeze", dataSnapshot.child("streak freeze").getValue().toString());
-                    ret.put("friends", dataSnapshot.child("friends").getValue().toString());
+                    try {
+                        ret.put("streak", dataSnapshot.child("streak").getValue().toString());
+                        ret.put("year", dataSnapshot.child("lastLessonD").child("year").getValue().toString());
+                        //ret.put("month", dataSnapshot.child("lastLessonD").child("month").getValue().toString());
+                        ret.put("date", dataSnapshot.child("lastLessonD").child("date").getValue().toString());
+                        ret.put("cProgress", dataSnapshot.child("progress").getValue().toString());//2
+                        ret.put("xp", dataSnapshot.child("xp").getValue().toString());
+                        ret.put("name", dataSnapshot.child("name").getValue().toString());
+                        ret.put("img", dataSnapshot.child("imgUrl").getValue().toString());
+                        ret.put("email", dataSnapshot.child("email").getValue().toString());
+                        ret.put("streak freeze", dataSnapshot.child("streak freeze").getValue().toString());
+                        ret.put("friends", dataSnapshot.child("friends").getValue().toString());
+                    } catch (Exception e){
+                        ret.put("streak", "0");
+                        ret.put("year", "0");
+                        //ret.put("month", dataSnapshot.child("lastLessonD").child("month").getValue().toString());
+                        ret.put("date", "0");
+                        ret.put("cProgress", "0");//2
+                        ret.put("xp", "0");
+                        ret.put("name", "0");
+                        ret.put("img", "0");
+                        ret.put("email", "0");
+                        ret.put("streak freeze", "0");
+                        ret.put("friends", "0");
+                    }
                     m.onCallback(ret);
                 }
 

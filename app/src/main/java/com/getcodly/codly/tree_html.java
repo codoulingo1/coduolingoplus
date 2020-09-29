@@ -46,13 +46,11 @@ public class tree_html extends AppCompatActivity {
         skill2 = findViewById(R.id.skill16);
         skill3 = findViewById(R.id.skill17);
         skill4 = findViewById(R.id.skill18);
-        skill5 = findViewById(R.id.skill19);
 
         LessonStart1 = findViewById(R.id.lessonStartHtml1);
         LessonStart2 = findViewById(R.id.lessonStartHtml2);
         LessonStart3 = findViewById(R.id.lessonStartHtml3);
         LessonStart4 = findViewById(R.id.lessonStartHtml4);
-        LessonStart5 = findViewById(R.id.lessonStartHtml5);
 
 
         checkIfGreen();
@@ -62,20 +60,26 @@ public class tree_html extends AppCompatActivity {
         skill1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startLesson(Arrays.asList("2-1-2~מבוא לפיתוח אתרים 2", "2-1-1~מבוא לפיתוח אתרים"));
+                startLesson(Arrays.asList("2-1-2~יצירת פסקאות", "2-1-1~מבוא לפיתוח אתרים"), Arrays.asList(""));
             } //savta
         });
         skill2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startLesson(Arrays.asList("2-2-1~מבנה של אתר"));
+                startLesson(Arrays.asList("2-2-1~מבנה של אתר"), Arrays.asList("2-1-2"));
             } //savta
         });
         skill3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startLesson(Arrays.asList("2-3-2~יצירת האתר הראשון 2", "2-3-1~יצירת האתר הראשון"));
+                startLesson(Arrays.asList("2-3-2~יצירת האתר הראשון 2", "2-3-1~יצירת האתר הראשון"), Arrays.asList("2-2-2"));
             } //savta
+        });
+        skill4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startLesson(Arrays.asList("2-4-1~תגיות מתקדמות"), Arrays.asList("2-3-2"));
+            }
         });
     }
 
@@ -108,12 +112,12 @@ public class tree_html extends AppCompatActivity {
     void startLesson(List<String> id, List<String> id_alt) {
         if (ifLfinished(id_alt)) {
             String old_progress = mainScreen.progress;
-            idShare = new ArrayList();
-            namesShare = new ArrayList();
-            LessonType = "";
+            tree.idShare = new ArrayList();
+            tree.namesShare = new ArrayList();
+            tree.LessonType = "";
             for (String i : id) {
-                idShare.add(i.split("~")[0]);
-                namesShare.add(i.split("~")[1]);
+                tree.idShare.add(i.split("~")[0]);
+                tree.namesShare.add(i.split("~")[1]);
             }
             for (String d : id) {
                 List<String> str_old_progress = Arrays.asList(old_progress.split(" "));
@@ -148,24 +152,5 @@ public class tree_html extends AppCompatActivity {
             ret = false;
         }
         return ret;
-    }
-
-    void startLesson(List<String> id) {
-        String old_progress = mainScreen.progress;
-        idShare = new ArrayList();
-        namesShare = new ArrayList();
-        LessonType = "";
-        for (String i : id) {
-            idShare.add(i.split("~")[0]);
-            namesShare.add(i.split("~")[1]);
-        }
-        for (String d : id) {
-            List<String> str_old_progress = Arrays.asList(old_progress.split(" "));
-            Log.d(str_old_progress.toString(), String.valueOf(str_old_progress.contains(d.split("~")[0])));
-            if (!str_old_progress.toString().contains(d.split("~")[0])) {
-                MainActivity.id = d.split("~")[0];
-                MainActivity.name = d.split("~")[1];
-            }
-        }
     }
 }

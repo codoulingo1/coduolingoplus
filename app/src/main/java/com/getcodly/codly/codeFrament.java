@@ -68,6 +68,7 @@ public class codeFrament extends Fragment  { //was extends Fragment, might need 
         detectLanguage();
         if (selectProject.codeToLoad != null){
             String codeToLoad2 = selectProject.codeToLoad;
+            codeToLoad2 = codeToLoad2.replace("\\n", System.getProperty("line.separator"));
             htmlInp.setText(codeToLoad2);
         } else {
             htmlInp.setText(blankTemplate);
