@@ -37,7 +37,7 @@ public class sign_upActivity extends AppCompatActivity {
                     //"(?=.*[a-zA-Z])" +      //any letter
                     //"(?=.*[@#$%^&+=])" +    //at least 1 special character
                     "(?=\\S+$)" +           //no white spaces
-                    ".{4,}" +               //at least 4 characters
+                    ".{6,}" +               //at least 4 characters
                     "$");
     FirebaseAuth.AuthStateListener mAuthListener;
     private FirebaseAuth mAuth;
@@ -184,7 +184,7 @@ public class sign_upActivity extends AppCompatActivity {
 
         } else if(!PASSWORD_PATTERN.matcher(passInput).matches()){
             passwordField.setErrorEnabled(true);
-            passwordField.setError("הסיסמה חייבת להיות לפחות 4 תווים וללא רווחים.");
+            passwordField.setError("הסיסמה חייבת להיות לפחות 6 תווים וללא רווחים.");
             return false;
         } else {
             emailField.setError(null);
