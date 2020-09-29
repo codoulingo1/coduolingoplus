@@ -80,35 +80,29 @@ public class tree_html extends AppCompatActivity {
     }
 
     void checkIfGreen(){
-        if (ifLfinished(Arrays.asList("1-1-1", "1-1-2"))){
+        if (ifLfinished(Arrays.asList("2-1-2", "2-1-1"))){
             LessonStart1.setImageResource(R.drawable.lesson_circle_lvl2);
         }
-        if (ifHfinished(Arrays.asList("1-1-1", "1-1-2"))){
+        if (ifHfinished(Arrays.asList("2-1-2", "2-1-1"), Arrays.asList(""))){
             LessonStart1.setImageResource(R.drawable.lesson_circle_lvl0);
         }
-        if (ifLfinished(Arrays.asList("1-2-1", "1-2-2", "1-2-3"))){
+        if (ifLfinished(Arrays.asList("2-2-1"))){
             LessonStart2.setImageResource(R.drawable.lesson_circle_lvl2);
         }
-        if (ifHfinished(Arrays.asList("1-2-1", "1-2-2", "1-2-3"))){
+        if (ifHfinished(Arrays.asList("2-2-1"), Arrays.asList("2-1-2"))){
             LessonStart2.setImageResource(R.drawable.lesson_circle_lvl0);
         }
-        if (ifLfinished(Arrays.asList("1-3-1", "1-3-2"))){
+        if (ifLfinished(Arrays.asList("2-3-1", "2-3-2"))){
             LessonStart3.setImageResource(R.drawable.lesson_circle_lvl2);
         }
-        if (ifHfinished(Arrays.asList("1-3-1", "1-3-2"))){
+        if (ifHfinished(Arrays.asList("2-3-1", "2-3-2"), Arrays.asList("2-2-1"))){
             LessonStart3.setImageResource(R.drawable.lesson_circle_lvl0);
         }
-        if (ifLfinished(Arrays.asList("1-5-1"))){
+        if (ifLfinished(Arrays.asList("2-4-1"))){
             LessonStart4.setImageResource(R.drawable.lesson_circle_lvl2);
         }
-        if (ifHfinished(Arrays.asList("1-5-1"))){
+        if (ifHfinished(Arrays.asList("2-4-1"), Arrays.asList("2-3-2"))){
             LessonStart4.setImageResource(R.drawable.lesson_circle_lvl0);
-        }
-        if (ifLfinished(Arrays.asList("1-4-1"))){
-            LessonStart5.setImageResource(R.drawable.lesson_circle_lvl2);
-        }
-        if (ifHfinished(Arrays.asList("1-4-1"))){
-            LessonStart5.setImageResource(R.drawable.lesson_circle_lvl0);
         }
     }
     void startLesson(List<String> id, List<String> id_alt) {
@@ -142,13 +136,16 @@ public class tree_html extends AppCompatActivity {
         }
         return ret;
     }
-    boolean ifHfinished(List<String> id){
+    boolean ifHfinished(List<String> id, List<String> old_id){
         boolean ret = true;
         for (String i : id){
             if (mainScreen.progress.contains(i)) {
                 ret = false;
                 break;
             }
+        }
+        if (ifLfinished(old_id)){
+            ret = false;
         }
         return ret;
     }
