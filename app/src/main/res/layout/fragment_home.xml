@@ -47,16 +47,18 @@
             android:layout_margin="10dp"
             android:textColor="#A1A1A1"
             android:id="@+id/courseName1"/>
+
         <TextView
+            android:id="@+id/t1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:fontFamily="@font/rubik_light"
-            android:text="שיעור נוכחי: לא זמין"
-            android:textSize="13dp"
             android:layout_below="@id/courseName1"
             android:layout_marginRight="10dp"
-            android:layout_toRightOf="@+id/courseImage1"/>
+            android:layout_toRightOf="@+id/courseImage1"
+            android:fontFamily="@font/rubik_light"
+            android:text="שיעור נוכחי: לא זמין"
+            android:textSize="13dp" />
 
         <View
             android:id="@+id/clickView1"
@@ -104,15 +106,17 @@
             android:layout_margin="10dp"
             android:textColor="#A1A1A1"
             android:id="@+id/courseName2"/>
+
         <TextView
+            android:id="@+id/t2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
+            android:layout_below="@id/courseName2"
+            android:layout_marginRight="10dp"
             android:fontFamily="@font/rubik_light"
             android:text="שיעור נוכחי: לא זמין"
-            android:textSize="13dp"
-            android:layout_below="@id/courseName2"
-            android:layout_marginRight="10dp" />
+            android:textSize="13dp" />
 
         <View
             android:id="@+id/clickView2"
@@ -124,14 +128,14 @@
     </RelativeLayout>
 
     <Button
+        android:id="@+id/toProjects"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:text="מסך פרוייקטים"
-        android:id="@+id/toProjects"
         android:background="#47C5A0"
-        android:textColor="@color/white"
         android:fontFamily="@font/rubik_bold"
-        android:textSize="24sp"/>
+        android:text="הפרויקטים שלי"
+        android:textColor="@color/white"
+        android:textSize="24sp" />
 
 </RelativeLayout>

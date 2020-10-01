@@ -69,7 +69,12 @@ public class finalLesson extends AppCompatActivity {
         mInterstitialAd.setAdListener(new AdListener(){
             @Override
             public void onAdClosed() {
-                startActivity(new Intent(finalLesson.this , mainScreen.class));
+                if (mainScreen.w.equals("py")){
+                    startActivity(new Intent(finalLesson.this, tree.class));
+                }
+                else if (mainScreen.w.equals("html")){
+                    startActivity(new Intent(finalLesson.this, tree_html.class));
+                }
                 mInterstitialAd.loadAd(new AdRequest.Builder().build());
             }
             @Override
@@ -141,8 +146,8 @@ public class finalLesson extends AppCompatActivity {
                                 Log.d("3", "3");
                                 FirebaseDatabase database = FirebaseDatabase.getInstance();
                                 DatabaseReference myRef = database.getReference("Users").child(ReadWrite.read(finalLesson.this.getFilesDir() + File.separator + "user"));
-                                myRef.child("streak").setValue(0);
-                                mainScreen.streak = "0";
+                                myRef.child("streak").setValue(1);
+                                mainScreen.streak = "1";
                                 Log.d("error", "day");
                             }
                     }
@@ -156,8 +161,8 @@ public class finalLesson extends AppCompatActivity {
                     else {
                         FirebaseDatabase database = FirebaseDatabase.getInstance();
                         DatabaseReference myRef = database.getReference("Users").child(ReadWrite.read(finalLesson.this.getFilesDir() + File.separator + "user"));
-                        myRef.child("streak").setValue(0);
-                        mainScreen.streak = "0";
+                        myRef.child("streak").setValue(1);
+                        mainScreen.streak = "1";
                         Log.d("error", "year");
                     }
                     FirebaseDatabase database = FirebaseDatabase.getInstance();//

@@ -26,12 +26,15 @@ import java.io.File;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Random;
 
 public class mainScreen extends AppCompatActivity {
 
     HashMap<String, String> date;
     public static String streak;
+    public static boolean b = false;
+    public static String w;
     public static String invName;
     public static String name;
     public static String userId = "";
@@ -77,6 +80,7 @@ public class mainScreen extends AppCompatActivity {
             public void onCallback(HashMap<String, String> value) {
 
                 Log.d("v", "v");
+                b = true;
                 int year = Integer.parseInt(value.get("year"));
                 progress = String.valueOf(value.get("cProgress"));
                 name = String.valueOf(value.get("name"));
@@ -175,11 +179,11 @@ public class mainScreen extends AppCompatActivity {
                     }
                     else{
                         Log.d("3", "3");
-                        streak = "0";
+                        streak = "1";
                         FirebaseDatabase database = FirebaseDatabase.getInstance();
                         DatabaseReference myRef = database.getReference("Users").child(ReadWrite.read(mainScreen.this.getFilesDir()+File.separator + "user"));
                         myRef.child("streak freeze").setValue("false");
-                        myRef.child("streak").setValue(0);
+                        myRef.child("streak").setValue(1);
                     }
                 }
                 else if (year == calendar2.get(Calendar.YEAR) - 1 && today == 1 && (day == 365 || day == 366)){
@@ -196,11 +200,11 @@ public class mainScreen extends AppCompatActivity {
                 }
                 else{
                     Log.d("3", "3");
-                    streak = "0";
+                    streak = "1";
                     FirebaseDatabase database = FirebaseDatabase.getInstance();
                     DatabaseReference myRef = database.getReference("Users").child(ReadWrite.read(mainScreen.this.getFilesDir()+File.separator + "user"));
                     myRef.child("streak freeze").setValue("false");
-                    myRef.child("streak").setValue(0);
+                    myRef.child("streak").setValue(1);
                 }
             }
         });
@@ -267,7 +271,4 @@ public class mainScreen extends AppCompatActivity {
         MainActivity.name = "comp";
         startActivity(new Intent(mainScreen.this, MainActivity.class));
     }
-
-
-
 }

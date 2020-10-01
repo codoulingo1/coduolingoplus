@@ -74,6 +74,7 @@ public class tree extends AppCompatActivity {
             Log.d("malbona", "malbona");
         }
         LessonActivity.j = 1;
+        mainScreen.w = "py";
         date = DownloadReadlessons.get_last_lesson(ReadWrite.read(this.getFilesDir()+File.separator+ "user"));
         if (ifLfinished(Arrays.asList("1-1-1", "1-1-2"))){
             LessonStart1.setImageResource(R.drawable.lesson_circle_lvl2);
