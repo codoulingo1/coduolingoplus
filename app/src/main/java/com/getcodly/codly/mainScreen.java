@@ -33,7 +33,6 @@ public class mainScreen extends AppCompatActivity {
 
     HashMap<String, String> date;
     public static String streak;
-    public static boolean b = false;
     public static String w;
     public static String invName;
     public static String name;
@@ -80,7 +79,6 @@ public class mainScreen extends AppCompatActivity {
             public void onCallback(HashMap<String, String> value) {
 
                 Log.d("v", "v");
-                b = true;
                 int year = Integer.parseInt(value.get("year"));
                 progress = String.valueOf(value.get("cProgress"));
                 name = String.valueOf(value.get("name"));
