@@ -46,8 +46,6 @@ public class tree extends AppCompatActivity {
     public static String[] practiceID;
     public static String LessonType;
     HashMap <String, String> date;
-    Button toPython;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,7 +63,6 @@ public class tree extends AppCompatActivity {
         LessonStart4 = findViewById(R.id.lessonStart3);
         LessonStart5 = findViewById(R.id.lessonStart4);
 
-        toPython = (Button) findViewById(R.id.button7);
         File dirName = new File(Environment.getExternalStorageDirectory() + "/" + "id" + "/");
         try {
             FileUtils.deleteDirectory(dirName);
@@ -135,13 +132,6 @@ public class tree extends AppCompatActivity {
             public void onClick(View v) {
                 startLesson(Arrays.asList("1-4-1~שגיאות וחריגים"), Arrays.asList("1-3-2"));
             } //savta
-        });
-        toPython.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(tree.this, selectProject.class)); //iframe2
-                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-            }
         });
     }
 

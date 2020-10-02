@@ -81,21 +81,12 @@
         android:id="@+id/course2"
         android:elevation="2dp">
 
-        <RelativeLayout
+        <ImageView
+            android:id="@+id/courseImage2"
             android:layout_width="192dp"
             android:layout_height="match_parent"
-            android:background="@drawable/course_img_bg2">
-
-            <ImageView
-                android:layout_width="160dp"
-                android:layout_height="100dp"
-                android:layout_centerVertical="true"
-                android:layout_centerHorizontal="true"
-                android:id="@+id/courseImage2"
-                android:src="@drawable/ic_web_course" />
-
-        </RelativeLayout>
-
+            android:layout_alignParentLeft="true"
+            android:src="@drawable/ic_web_course" />
 
 
         <TextView
