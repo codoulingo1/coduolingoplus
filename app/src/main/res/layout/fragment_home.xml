@@ -81,31 +81,43 @@
         android:id="@+id/course2"
         android:elevation="2dp">
 
-        <ImageView
-            android:id="@+id/courseImage2"
+        <RelativeLayout
             android:layout_width="192dp"
             android:layout_height="match_parent"
+            android:background="@drawable/course_img_bg2"
             android:layout_alignParentLeft="true"
-            android:src="@drawable/ic_web_course" />
+            android:id="@+id/courseImage22">
+
+            <ImageView
+                android:id="@+id/courseImage2"
+                android:layout_width="180dp"
+                android:layout_centerHorizontal="true"
+                android:layout_height="match_parent"
+                android:src="@drawable/ic_web_course" />
+
+        </RelativeLayout>
 
 
         <TextView
+            android:id="@+id/courseName2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
+            android:layout_marginStart="80dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
             android:fontFamily="@font/rubik_medium"
             android:text="פיתוח אתרים"
-            android:textSize="15dp"
-            android:layout_margin="10dp"
             android:textColor="#A1A1A1"
-            android:id="@+id/courseName2"/>
+            android:textSize="15dp" />
 
         <TextView
             android:id="@+id/t2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
             android:layout_below="@id/courseName2"
+            android:layout_alignParentRight="true"
             android:layout_marginRight="10dp"
             android:fontFamily="@font/rubik_light"
             android:text="שיעור נוכחי: עדיין בפיתוח"
@@ -124,7 +136,11 @@
         android:id="@+id/toProjects"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
         android:background="#47C5A0"
         android:fontFamily="@font/rubik_bold"
         android:text="הפרויקטים שלי"
