@@ -318,7 +318,7 @@ public class NonFreedum extends AppCompatActivity {
                 if(LessonActivity.shared_xp>=11){
                     LessonActivity.shared_xp = LessonActivity.shared_xp - 1;
                 }
-                startActivity(new Intent(NonFreedum.this, NonFreedum.class));
+
             }
         });
     }
