@@ -72,7 +72,7 @@ public class tree_html extends AppCompatActivity {
         skill3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startLesson(Arrays.asList("2-3-2~יצירת האתר הראשון 2", "2-3-1~יצירת האתר הראשון"), Arrays.asList("2-2-1"));
+                startLesson(Arrays.asList("2-3-2~עיצוב טקסט", "2-3-1~יצירת האתר הראשון"), Arrays.asList("2-2-1"));
             } //savta
         });
         skill4.setOnClickListener(new View.OnClickListener() {

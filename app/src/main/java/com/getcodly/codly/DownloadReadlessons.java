@@ -129,11 +129,11 @@ public class DownloadReadlessons {
                     }
                 } catch (Exception e) {
 
-                    }
-                    }
+                 }
+             }
                 m.onCallback("done");
                 //done.set(true);
-            }
+                }
 
             @Override
             public void onCancelled(DatabaseError error) {

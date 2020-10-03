@@ -137,6 +137,7 @@ public class ExplainationQS extends AppCompatActivity {
                 .setDuration(300)
                 .start();
     }
+
     /*public void animate(){
         Drawable d = continueBtn.getDrawable();
         if (d instanceof AnimatedVectorDrawable) {
