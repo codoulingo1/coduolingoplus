@@ -235,7 +235,7 @@
         android:layout_width="match_parent"
         android:layout_height="140dp"
         android:background="#ffc1c2"
-        android:visibility="visible"
+        android:visibility="gone"
         android:layout_alignParentBottom="true"
         android:elevation="3dp">
 
@@ -261,6 +261,7 @@
             android:layout_marginRight="20dp"
             android:fontFamily="@fonts/rubik_bold"
             android:text="נסה שוב"
+            android:visibility="gone"
             android:textColor="#de302b"
             android:textSize="46sp" />
 
@@ -269,6 +270,7 @@
             android:layout_height="wrap_content"
             android:text="הצג תשובה"
             android:id="@+id/showAns"
+            android:visibility="visible"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"/>
     </RelativeLayout>

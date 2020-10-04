@@ -42,6 +42,7 @@ public class NonFreedum extends AppCompatActivity {
     private ObjectAnimator progressAnimator;
     WebView htmlView;
     TextView qs;
+    Button showAnswer;
 
     private AnimatedVectorDrawable animation;
 
@@ -56,6 +57,7 @@ public class NonFreedum extends AppCompatActivity {
         final Button opt3 = (Button) findViewById(R.id.button3);
         final Button opt4 = (Button) findViewById(R.id.button4);
         final Button opt5 = (Button) findViewById(R.id.button5);
+        showAnswer = findViewById(R.id.showAns);
         final TextView wt = (TextView) findViewById(R.id.textView6);
         final Button opt6 = (Button) findViewById(R.id.button6);
         backBtn = (ImageButton) findViewById(R.id.backBtn3);
@@ -65,9 +67,17 @@ public class NonFreedum extends AppCompatActivity {
         qs = (TextView) findViewById(R.id.textView2);
         pb = (ProgressBar) findViewById(R.id.progressBar);
         popupFalse = (RelativeLayout) findViewById(R.id.popupFalse);
+        ans = findViewById(R.id.textView3);
         htmlView = findViewById(R.id.htmlView3);
         popupTrue = (RelativeLayout) findViewById(R.id.PopupTrue);
         pb.setProgress(LessonActivity.pr);
+        showAnswer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                popupFalse.setVisibility(View.GONE);
+                ans.setText(LessonActivity.shared_hashmap.get("Answer"));
+            }
+        });
         SpannableStringBuilder builder=new SpannableStringBuilder();
         for (int i = 0; i < 10; i = i + 1) {
             try {
@@ -104,7 +114,6 @@ public class NonFreedum extends AppCompatActivity {
                 op.setVisibility(View.INVISIBLE);
             }
         }
-        ans = (TextView) findViewById(R.id.textView3);
         List<Integer> first_del =  Text.betweenIndex(unuateksto, '£', 's');
         char[] ch_new_text = unuateksto.toCharArray();
         for (int d : first_del){
@@ -212,8 +221,7 @@ public class NonFreedum extends AppCompatActivity {
                     });*/
                     NonFreedum.w++;
                     if (NonFreedum.w > 1){
-                        wt.setTextSize(13);
-                        wt.setText(LessonActivity.shared_hashmap.get("Answer"));
+
                     }
                     showWrong();
                 }
@@ -272,7 +280,8 @@ public class NonFreedum extends AppCompatActivity {
                 ch_new_text[d] = ' ';
             }
             ans.setText(String.valueOf(ch_new_text));
-            back_ch.remove(back_ch.size() - 1);}
+            back_ch.remove(back_ch.size() - 1);
+        }
 
 
         else {
