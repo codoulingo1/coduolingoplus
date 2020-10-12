@@ -2,12 +2,15 @@ package com.getcodly.codly;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.os.Environment;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.AccelerateInterpolator;
+import android.view.animation.DecelerateInterpolator;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -36,7 +39,7 @@ import java.util.List;
 public class finalLesson extends AppCompatActivity {
 
     private InterstitialAd mInterstitialAd;
-    ImageButton finishLsnBtn;
+    Button finishLsnBtn;
     boolean b = false;
     HashMap<String, String> date;
     CountDownTimer mcountdown;
@@ -53,6 +56,16 @@ public class finalLesson extends AppCompatActivity {
             }
         });
         finishLsnBtn = findViewById(R.id.finishLsnBtn);
+
+        finishLsnBtn.setAlpha(0);
+
+        finishLsnBtn.animate().alpha(0).setDuration(1000).setInterpolator(new DecelerateInterpolator()).withEndAction(new Runnable() {
+            @Override
+            public void run() {
+                finishLsnBtn.animate().alpha(1).setDuration(1000).setInterpolator(new AccelerateInterpolator()).start();
+            }
+        }).start();
+
         finishLsnBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -95,12 +108,13 @@ public class finalLesson extends AppCompatActivity {
     }
 
     void something() {
+        Context context = finalLesson.this;
         date = DownloadReadlessons.get_last_lesson2(ReadWrite.read(this.getFilesDir() + File.separator + "user"), new DownloadReadlessons.HashCallback() {
             @Override
             public void onCallback(HashMap<String, String> value) {
                 if (!b) {
                     b = true;
-                    File dirName = new File(Environment.getExternalStorageDirectory() + "/" + "id" + "/");
+                    File dirName = new File(context.getFilesDir() + "/" + "id" + "/");
                     boolean a = false;
                     Log.d("bona", "bona");
 
@@ -110,7 +124,8 @@ public class finalLesson extends AppCompatActivity {
                         e.printStackTrace();
                         Log.d("malbona", "malbona");
                     }
-                    Log.d(String.valueOf(a), String.valueOf(a));
+                    a = dirName.exists();
+                    Log.d("Test if deleted", String.valueOf(a));
                     //Log.d(String.valueOf(file.exists()), String.valueOf(deleted));
 
                     //pb.setProgress(pr);
@@ -175,6 +190,9 @@ public class finalLesson extends AppCompatActivity {
                         LessonActivity.shared_xp2 = LessonActivity.shared_xp2 * 2;
                     }
                     user.child("lastLessonD").child("year").setValue(this_year);
+
+                    //put xp thing here
+
                     user.child("xp").setValue(xp + LessonActivity.shared_xp2);
                     LessonActivity.shared_xp2 = LessonActivity.shared_xp.intValue();
                     List<String> str_old_progress = Arrays.asList(old_progress.split(" "));

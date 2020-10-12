@@ -3,6 +3,7 @@ package com.getcodly.codly;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.text.Layout;
 import android.util.Log;
@@ -14,6 +15,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 
@@ -41,6 +43,7 @@ public class selectProject extends AppCompatActivity {
             public void onClick(View v) {
                 BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(selectProject.this, R.style.BottomSheetDialogTheme);
                 View bottomSheetView = LayoutInflater.from(getApplicationContext()).inflate(R.layout.bottom_sheet, (RelativeLayout) findViewById(R.id.bottomSheetContainer));
+
                 bottomSheetView.findViewById(R.id.websiteSelect).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {

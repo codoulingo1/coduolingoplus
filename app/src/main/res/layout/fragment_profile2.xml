@@ -11,25 +11,159 @@
         android:layout_height="match_parent"
         android:layout_weight="1">
 
-        <androidx.viewpager.widget.ViewPager
-            android:id="@+id/viewPager"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="400dp"
-            android:layout_below="@id/tabs"
-            android:layout_marginTop="0dp">
+            android:layout_height="50dp"
+            android:layout_below="@+id/imageView2"
+            android:layout_marginTop="10dp"
+            android:background="@color/white"
+            android:padding="5dp"
+            android:id="@+id/progressLayout">
 
-        </androidx.viewpager.widget.ViewPager>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/level"
+                android:text="רמה 1"
+                android:layout_alignParentRight="true"
+                android:textSize="20dp"
+                android:layout_centerVertical="true"
+                android:fontFamily="@font/rubik_light"/>
 
-        <com.google.android.material.tabs.TabLayout
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1000"
+                android:textColor="#47C5A0"
+                android:layout_toLeftOf="@+id/level"
+                android:textSize="20dp"
+                android:layout_marginRight="10dp"
+                android:layout_centerVertical="true"
+                android:fontFamily="@font/rubik_light"
+                android:id="@+id/xpCount"/>
+
+            <ProgressBar
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="200dp"
+                android:layout_height="15dp"
+                android:progress="50"
+                android:id="@+id/levelProgress"
+                android:layout_toLeftOf="@+id/xpCount"
+                android:layout_toRightOf="@+id/goalText"
+                android:layout_margin="10dp"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="10dp"
+                android:progressDrawable="@drawable/progress_xp"
+                android:scaleX="-1"/>
+
+            <TextView
+                android:id="@+id/goalText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:fontFamily="@font/rubik_light"
+                android:text="1000"
+                android:textColor="#D4D4D4"
+                android:textSize="20dp"
+                android:layout_alignParentLeft="true"/>
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
             android:layout_width="match_parent"
+            android:layout_height="110dp"
+            android:layout_below="@id/progressLayout"
+            android:layout_marginTop="10dp"
+            android:background="@color/white"
+            android:padding="10dp"
+            android:id="@+id/course1Profile">
+
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_centerVertical="true"
+                android:src="@drawable/ic_web_dev_logo"
+                android:layout_alignParentRight="true"
+                android:id="@+id/courseImageProfile1"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="פיתוח אתרים"
+                android:fontFamily="@font/rubik_medium"
+                android:textColor="#5A5A6E"
+                android:textSize="20dp"
+                android:layout_toLeftOf="@id/courseImageProfile1"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="10dp"
+                android:id="@+id/courseNameProfile1"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1000 XP"
+                android:fontFamily="@font/rubik_light"
+                android:textColor="#9B9B9B"
+                android:textSize="18dp"
+                android:layout_toLeftOf="@id/courseImageProfile1"
+                android:layout_below="@id/courseNameProfile1"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="5dp"
+                android:id="@+id/courseXpCountProfile1"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toLeftOf="@+id/courseImageProfile1"
+                android:text="32%"
+                android:fontFamily="@font/rubik_medium"
+                android:textColor="#5A5A6E"
+                android:textSize="15dp"
+                android:layout_below="@+id/courseXpCountProfile1"
+                android:id="@+id/percentageProgress1"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="15dp"/>
+            <ProgressBar
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="200dp"
+                android:layout_height="10dp"
+                android:layout_below="@+id/courseXpCountProfile1"
+                android:layout_toLeftOf="@id/percentageProgress1"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="10dp"
+                android:progressDrawable="@drawable/progress_xp"
+                android:progress="50"
+                android:scaleX="-1"/>
+
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
-            android:layout_below="@id/streakView"
-            android:id="@+id/tabs">
+            android:layout_alignParentBottom="true"
+            android:layout_below="@+id/course1Profile"
+            android:layout_marginTop="50dp">
 
+            <androidx.viewpager.widget.ViewPager
+                android:id="@+id/viewPager"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:layout_below="@id/tabs"
+                android:layout_marginTop="0dp">
 
+            </androidx.viewpager.widget.ViewPager>
 
-        </com.google.android.material.tabs.TabLayout>
+            <com.google.android.material.tabs.TabLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/tabs">
+
+            </com.google.android.material.tabs.TabLayout>
+
+        </RelativeLayout>
 
 
         <!--<ImageView
@@ -41,39 +175,20 @@
             android:scaleType="fitCenter"
             android:layout_centerHorizontal="true"/> -->
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:background="@color/TopBar"
-            android:id="@+id/topBar5">
-
-            <ImageButton
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:src="@drawable/ic_settings_white_24dp"
-                android:background="@color/TopBar"
-                android:scaleType="fitCenter"
-                android:layout_marginLeft="10dp"
-                android:layout_alignParentLeft="true"
-                android:adjustViewBounds="true"
-                android:id="@+id/profileSettings"
-                android:layout_centerVertical="true"/>
-        </RelativeLayout>
-
         <TextView
             android:id="@+id/set_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toLeftOf="@id/imageView2"
             android:layout_marginRight="15dp"
-            android:layout_below="@id/topBar5"
+            android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="25dp"
             android:fontFamily="@font/rubik_bold"
             android:textAlignment="center"
             android:textColor="#676766"
-            android:textSize="24sp"
-            android:text="שם משתמש"/>
+            android:textSize="28dp"
+            android:text="שם משתמש" />
 
         <TextView
             android:id="@+id/streakView"
@@ -86,7 +201,7 @@
             android:layout_marginTop="10dp"
             android:fontFamily="@font/rubik_bold"
             android:text="סטריק: 0"
-            android:textSize="20sp" />
+            android:textSize="18dp" />
 
         <de.hdodenhof.circleimageview.CircleImageView
             xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -95,10 +210,11 @@
             android:layout_height="120dp"
             android:layout_marginTop="20dp"
             android:layout_alignParentRight="true"
-            android:layout_below="@id/topBar5"
-            app:civ_border_color="#42445F"
+            android:layout_alignParentTop="true"
+            android:layout_marginRight="15dp"
+            android:src="@drawable/user_pic"
             app:civ_border_width="2dp"
-            android:layout_marginRight="15dp"/>
+            app:civ_border_color="#676766"/>
 
         <!--<EditText
             android:id="@+id/cgName"
