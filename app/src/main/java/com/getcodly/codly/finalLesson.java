@@ -34,6 +34,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Random;
 
 
 public class finalLesson extends AppCompatActivity {
@@ -43,11 +44,17 @@ public class finalLesson extends AppCompatActivity {
     boolean b = false;
     HashMap<String, String> date;
     CountDownTimer mcountdown;
+    TextView finalXp;
+    DatabaseReference myRef;
+    FirebaseDatabase database;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_final_lesson);
+
+        database = FirebaseDatabase.getInstance();
+        myRef = database.getReference("Users").child(ReadWrite.read(finalLesson.this.getFilesDir() + File.separator + "user"));
 
         MobileAds.initialize(this, new OnInitializationCompleteListener() {
             @Override
@@ -55,6 +62,7 @@ public class finalLesson extends AppCompatActivity {
 
             }
         });
+        finalXp = findViewById(R.id.finalXP);
         finishLsnBtn = findViewById(R.id.finishLsnBtn);
 
         finishLsnBtn.setAlpha(0);
@@ -145,6 +153,22 @@ public class finalLesson extends AppCompatActivity {
                     int yesterday = calendar.get(Calendar.DAY_OF_YEAR);
                     Calendar calendar2 = Calendar.getInstance();
                     int today = calendar2.get(Calendar.DAY_OF_YEAR);
+
+                    //Geldprobleme
+                    if(today != day) {
+                        Random random = new Random();
+                        int GeldToGive = random.nextInt(2) + 1;
+                        mainScreen.Geld += GeldToGive;
+                        finalXp.setText("כסף שהושג: " + GeldToGive);
+
+                        int currentGeld = Integer.parseInt(value.get("geld"));
+                        int newGeld = currentGeld + GeldToGive;
+                        myRef.child("geld").setValue(newGeld);
+
+                    } else{
+                        finalXp.setText("נעשה כבר שיעור היום");
+                    }
+
                     int this_year = calendar2.get(Calendar.YEAR);
                     Log.d("0", String.valueOf(calendar.get(Calendar.YEAR)));
                     if (year == calendar.get(Calendar.YEAR)) {
@@ -159,8 +183,6 @@ public class finalLesson extends AppCompatActivity {
                                 Log.d("3", "3");
                             } else {
                                 Log.d("3", "3");
-                                FirebaseDatabase database = FirebaseDatabase.getInstance();
-                                DatabaseReference myRef = database.getReference("Users").child(ReadWrite.read(finalLesson.this.getFilesDir() + File.separator + "user"));
                                 myRef.child("streak").setValue(1);
                                 mainScreen.streak = "1";
                                 Log.d("error", "day");
@@ -168,8 +190,6 @@ public class finalLesson extends AppCompatActivity {
                     }
                     else if (year == calendar2.get(Calendar.YEAR) - 1 && today == 1 && day == 365 || day == 366){
                         Log.d("3", "3");
-                        FirebaseDatabase database = FirebaseDatabase.getInstance();
-                        DatabaseReference myRef = database.getReference("Users").child(ReadWrite.read(finalLesson.this.getFilesDir() + File.separator + "user"));
                         myRef.child("streak").setValue(String.valueOf(Integer.parseInt(mainScreen.streak) + 1));
                         mainScreen.streak = mainScreen.streak + 1;
                     }

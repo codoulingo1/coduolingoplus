@@ -45,9 +45,13 @@ public class mainScreen extends AppCompatActivity {
     public static String friends;
     public static String progress;
     FirebaseAuth mAuth;
+    public static TextView geldView;
     public static Fragment selectedFragment = null;
     ImageButton settingsButton;
     TextView setStreak;
+    public static int Geld = 0;
+    FirebaseDatabase database1;
+    DatabaseReference myRef1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,9 +60,16 @@ public class mainScreen extends AppCompatActivity {
         if (! Python.isStarted()) {
             Python.start(new AndroidPlatform(mainScreen.this ));
         }
+
         setStreak = findViewById(R.id.setStreak);
 
         settingsButton = findViewById(R.id.profileSettings);
+        geldView = findViewById(R.id.geldView);
+
+
+        database1 = FirebaseDatabase.getInstance();
+        myRef1 = database1.getReference("Users").child(ReadWrite.read(mainScreen.this.getFilesDir() + File.separator + "user"));
+
         settingsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -99,8 +110,13 @@ public class mainScreen extends AppCompatActivity {
                 name = String.valueOf(value.get("name"));
                 img = String.valueOf(value.get("img"));
                 friends = String.valueOf(value.get("friends"));
-                FirebaseDatabase database1 = FirebaseDatabase.getInstance();
-                DatabaseReference myRef1 = database1.getReference("Users").child(ReadWrite.read(mainScreen.this.getFilesDir() + File.separator + "user"));
+                try {
+                    Geld = Integer.parseInt(value.get("geld"));
+                } catch (Exception e){
+                    myRef1.child("geld").setValue(0);
+                }
+                geldView.setText(String.valueOf(Geld));
+
                 myRef1.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {

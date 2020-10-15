@@ -47,8 +47,7 @@ public class DownloadReadlessons {
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("Lessons").child(ID);
-        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
-
+        myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 final File newFile = new File(c.getFilesDir() + "/id/");
@@ -95,7 +94,7 @@ public class DownloadReadlessons {
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("Lessons").child(ID);
-        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+        myRef.addValueEventListener(new ValueEventListener() {
 
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -298,6 +297,7 @@ public class DownloadReadlessons {
                 // This method is called once with the initial value and again
                 // whenever data at this location is uploaded
                 try {
+                    ret.put("geld", dataSnapshot.child("geld").getValue().toString());
                     ret.put("streak", dataSnapshot.child("streak").getValue().toString());
                     ret.put("year", dataSnapshot.child("lastLessonD").child("year").getValue().toString());
                     //ret.put("month", dataSnapshot.child("lastLessonD").child("month").getValue().toString());
@@ -337,7 +337,7 @@ public class DownloadReadlessons {
         final HashMap<String, String> ret = new HashMap<>();
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("Users").child(email).child("progress");
-        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+        myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // This method is called once with the initial value and again
@@ -360,7 +360,7 @@ public class DownloadReadlessons {
         Address = new ArrayList<>();
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("Users");
-        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+        myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // This method is called once with the initial value and again
@@ -383,7 +383,7 @@ public class DownloadReadlessons {
         final HashMap<String, String> names = new HashMap<>();
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("Users");
-        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+        myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // This method is called once with the initial value and again
