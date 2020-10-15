@@ -4,21 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior">
-
-    <!--<ProgressBar
-        android:id="@+id/progressBarFinish"
-        style="?android:progressBarStyleHorizontal"
-        android:layout_width="161dp"
-        android:layout_height="155dp"
-        android:progress="50"
-        android:progressDrawable="@drawable/circle"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.371"></ProgressBar>-->
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    android:background="#F3F4F9"
+    android:padding="15dp">
 
     <TextView
         android:id="@+id/textView7"
@@ -31,35 +19,58 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="15dp"/>
 
-
-    <!--<TextView
-        android:id="@+id/textView20000"
-        android:layout_width="52dp"
-        android:layout_height="55dp"
-        android:fontFamily="@font/rubik_bold"
-        android:text="10"
-        android:textColor="@android:color/holo_orange_light"
-        android:textSize="40dp"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@id/textView7"
-        android:layout_marginTop="50dp"/>-->
-
     <ImageView
         android:layout_width="300dp"
         android:layout_height="300dp"
         android:layout_centerHorizontal="true"
         android:layout_below="@id/textView7"
         android:src="@drawable/ic_undraw_completed_ngx6"
-        android:layout_marginTop="50dp"/>
-    
-    <ImageButton
+        android:layout_marginTop="50dp"
+        android:id="@+id/finish_img"/>
+
+    <Button
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
+        android:text="המשך"
+        android:textColor="@color/white"
+        android:textSize="32dp"
+        android:fontFamily="@font/rubik_bold"
         android:adjustViewBounds="true"
-        android:background="#80FFFFFF"
-        android:src="@drawable/group15"
+        android:background="@drawable/finish_lesson_button"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:id="@+id/finishLsnBtn"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="85dp"
+        android:background="@drawable/xp_view_bg"
+        android:layout_marginBottom="15dp"
+        android:layout_above="@+id/finishLsnBtn"
+        android:padding="12dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="תשובות נכונות: עדיין בפיתוח"
+            android:textSize="20dp"
+            android:layout_alignParentRight="true"
+            android:fontFamily="@font/rubik_light"
+            android:layout_below="@id/finalXP"
+            android:id="@+id/correctAnswers"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="נקודות (XP) שהושגו: 8"
+            android:textSize="20dp"
+            android:id="@+id/finalXP"
+            android:textColor="#3F3D56"
+            android:layout_alignParentRight="true"
+            android:fontFamily="@font/rubik_medium"
+            android:layout_marginBottom="2dp"/>
+
+
+    </RelativeLayout>
 
 </RelativeLayout>

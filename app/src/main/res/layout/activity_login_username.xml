@@ -108,7 +108,8 @@
         android:src="@drawable/ic_back"
         android:scaleType="fitCenter"
         android:background="#F3F4F9"
-        android:id="@+id/backBtn"/>
+        android:id="@+id/backBtn"
+        android:layout_alignParentLeft="true"/>
 
     <TextView
         android:layout_width="match_parent"

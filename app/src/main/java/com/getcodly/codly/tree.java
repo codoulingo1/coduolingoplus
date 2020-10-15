@@ -160,6 +160,8 @@ public class tree extends AppCompatActivity {
     boolean ifLfinished(List<String> id){
         boolean ret = true;
         for (String i : id){
+            Log.d("testyTestyTest", mainScreen.progress);
+            Log.d("testy2", i);
             if (!mainScreen.progress.contains(i)) {
                 ret = false;
                 break;

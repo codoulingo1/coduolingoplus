@@ -35,7 +35,7 @@
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:clickable="false"
-            android:src="@drawable/ic_flame" />
+            android:src="@drawable/ic_streak_freeze" />
 
         <TextView
             android:layout_width="200dp"
@@ -48,7 +48,22 @@
             android:fontFamily="@font/rubik_light"
             android:text="שומר את הסטריק במקרה שיום שלם לא עושים שיעור"
             android:textColor="#6B6767"
-            android:textSize="16dp" />
+            android:textSize="16dp"
+            android:id="@+id/item1explain"/>
+
+        <TextView
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="15dp"
+            android:clickable="false"
+            android:layout_below="@+id/item1explain"
+            android:fontFamily="@font/rubik_bold"
+            android:text="מחיר: 5 מטבעות"
+            android:id="@+id/priceItem1"
+            android:textColor="#7F819C"
+            android:textSize="22dp" />
 
         <TextView
             android:layout_width="wrap_content"

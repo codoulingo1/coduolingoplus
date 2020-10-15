@@ -3,13 +3,15 @@ package com.getcodly.codly;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageButton;
+import android.widget.TextView;
 
 import com.chaquo.python.Python;
 import com.chaquo.python.android.AndroidPlatform;
@@ -28,6 +30,7 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
+import java.util.Set;
 
 public class mainScreen extends AppCompatActivity {
 
@@ -42,7 +45,13 @@ public class mainScreen extends AppCompatActivity {
     public static String friends;
     public static String progress;
     FirebaseAuth mAuth;
+    public static TextView geldView;
     public static Fragment selectedFragment = null;
+    ImageButton settingsButton;
+    TextView setStreak;
+    public static int Geld = 0;
+    FirebaseDatabase database1;
+    DatabaseReference myRef1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +60,23 @@ public class mainScreen extends AppCompatActivity {
         if (! Python.isStarted()) {
             Python.start(new AndroidPlatform(mainScreen.this ));
         }
+
+        setStreak = findViewById(R.id.setStreak);
+
+        settingsButton = findViewById(R.id.profileSettings);
+        geldView = findViewById(R.id.geldView);
+
+
+        database1 = FirebaseDatabase.getInstance();
+        myRef1 = database1.getReference("Users").child(ReadWrite.read(mainScreen.this.getFilesDir() + File.separator + "user"));
+
+        settingsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SettingsFragment settingsFragment = new SettingsFragment();
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_containerMain, settingsFragment).commit();
+            }
+        });
         mAuth = FirebaseAuth.getInstance();
         BottomNavigationView bottomNav = findViewById(R.id.bottomNav);
 
@@ -84,8 +110,13 @@ public class mainScreen extends AppCompatActivity {
                 name = String.valueOf(value.get("name"));
                 img = String.valueOf(value.get("img"));
                 friends = String.valueOf(value.get("friends"));
-                FirebaseDatabase database1 = FirebaseDatabase.getInstance();
-                DatabaseReference myRef1 = database1.getReference("Users").child(ReadWrite.read(mainScreen.this.getFilesDir() + File.separator + "user"));
+                try {
+                    Geld = Integer.parseInt(value.get("geld"));
+                } catch (Exception e){
+                    myRef1.child("geld").setValue(0);
+                }
+                geldView.setText(String.valueOf(Geld));
+
                 myRef1.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
@@ -162,13 +193,16 @@ public class mainScreen extends AppCompatActivity {
                     if(day==yesterday){
                         Log.d("3", "3");
                         streak = String.valueOf(Integer.parseInt(value.get("streak")));
+                        setStreak.setText(streak);
                     }
                     else if(day==today) {
                         Log.d("3", "3");
                         streak = String.valueOf(value.get("streak"));
+                        setStreak.setText(streak);
                     }
                     else if(day==bf && value.get("streak freeze").equals("true")){
                         streak = String.valueOf(value.get("streak"));
+                        setStreak.setText(streak);
                         FirebaseDatabase database = FirebaseDatabase.getInstance();
                         DatabaseReference myRef = database.getReference("Users").child(ReadWrite.read(mainScreen.this.getFilesDir()+File.separator + "user"));
                         myRef.child("lastLessonD").child("year").setValue(calendar.get(Calendar.YEAR));
@@ -178,6 +212,7 @@ public class mainScreen extends AppCompatActivity {
                     else{
                         Log.d("3", "3");
                         streak = "1";
+                        setStreak.setText(streak);
                         FirebaseDatabase database = FirebaseDatabase.getInstance();
                         DatabaseReference myRef = database.getReference("Users").child(ReadWrite.read(mainScreen.this.getFilesDir()+File.separator + "user"));
                         myRef.child("streak freeze").setValue("false");
@@ -187,9 +222,11 @@ public class mainScreen extends AppCompatActivity {
                 else if (year == calendar2.get(Calendar.YEAR) - 1 && today == 1 && (day == 365 || day == 366)){
                     Log.d("3", "3");
                     streak = String.valueOf(Integer.parseInt(value.get("streak")));
+                    setStreak.setText(streak);
                 }
                 else if (year == calendar2.get(Calendar.YEAR) - 1 && today == 2 && (day == 365 || day == 366) && value.get("streak freeze").equals("true")){
                     streak = String.valueOf(value.get("streak"));
+                    setStreak.setText(streak);
                     FirebaseDatabase database = FirebaseDatabase.getInstance();
                     DatabaseReference myRef = database.getReference("Users").child(ReadWrite.read(mainScreen.this.getFilesDir()+File.separator + "user"));
                     myRef.child("lastLessonD").child("year").setValue(calendar.get(Calendar.YEAR));
@@ -199,6 +236,7 @@ public class mainScreen extends AppCompatActivity {
                 else{
                     Log.d("3", "3");
                     streak = "1";
+                    setStreak.setText(streak);
                     FirebaseDatabase database = FirebaseDatabase.getInstance();
                     DatabaseReference myRef = database.getReference("Users").child(ReadWrite.read(mainScreen.this.getFilesDir()+File.separator + "user"));
                     myRef.child("streak freeze").setValue("false");
@@ -206,6 +244,7 @@ public class mainScreen extends AppCompatActivity {
                 }
             }
         });
+
 
         FirebaseDatabase database_start = FirebaseDatabase.getInstance();
         DatabaseReference myRef_start = database_start.getReference("Users").child(ReadWrite.read(mainScreen.this.getFilesDir() + File.separator + "user")).child("start_comp");
@@ -236,9 +275,13 @@ public class mainScreen extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // This method is called once with the initial value and again
                 // whenever data at this location is uploaded
-                if (dataSnapshot.getValue().toString().equals("l")){
-                    myRef_win.setValue("");
-                    startActivity(new Intent(mainScreen.this, mainScreen.class));
+                try {
+                    if (dataSnapshot.getValue().toString().equals("l")){
+                        myRef_win.setValue("");
+                        startActivity(new Intent(mainScreen.this, mainScreen.class));
+                    }
+                } catch (Exception e){
+                    startActivity(new Intent(mainScreen.this, Login.class));
                 }
             }
 
@@ -248,6 +291,8 @@ public class mainScreen extends AppCompatActivity {
             }
         });
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_containerMain, new HomeFragment()).commit();
+
+
     }
 
     public void onStart() {

@@ -9,8 +9,9 @@
         android:icon="@mipmap/app_icon"
         android:label="codly"
         android:roundIcon="@mipmap/app_icon_round"
-        android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:supportsRtl="false"
+        android:theme="@style/AppTheme"
+        tools:replace="android:supportsRtl">
         <activity android:name=".pyNonFreedum"
             android:theme="@style/AppTheme.NoActionBar"
             android:screenOrientation="portrait"/>

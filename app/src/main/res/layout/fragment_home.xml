@@ -13,7 +13,8 @@
         android:textSize="38dp"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
-        android:id="@+id/label" />
+        android:id="@+id/label"
+        android:fontFamily="@font/rubik_bold"/>
 
     <RelativeLayout
         android:layout_width="match_parent"

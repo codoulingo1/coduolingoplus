@@ -15,6 +15,7 @@ import com.squareup.picasso.Target;
 
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.concurrent.TimeUnit;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -72,6 +73,7 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onCallback(String value) {
                     Log.d("MainActivity", value);
+                    Wait(1);
                     startActivity(new Intent(MainActivity.this, LessonActivity.class));
                 }
             });
@@ -80,6 +82,7 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onCallback(String value) {
                     Log.d("MainActivity", value);
+                    Wait(1);
                     startActivity(new Intent(MainActivity.this, LessonActivity.class));
                 }
             });
@@ -89,6 +92,7 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onCallback(String value) {
                     Log.d("MainActivity", value);
+
                     startActivity(new Intent(MainActivity.this, LessonActivity.class));
                 }
             });
@@ -117,6 +121,13 @@ public class MainActivity extends AppCompatActivity {
         return;
     }
 
+    void Wait(int seconds){
+        try {
+            TimeUnit.SECONDS.sleep(seconds);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
 }
 
 

@@ -14,6 +14,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toolbar;
 
@@ -59,8 +60,8 @@ public class profileFragment extends Fragment {
     HashMap<String, String> old_streak;
     TextView setStreak;
     public static HashMap<String, String> ret;
-    ImageButton profileSettingsBtn;
     private FriendsFragment friendsFragment;
+    ProgressBar levelProgress;
 
     ViewPager viewPager;
     TabLayout tabLayout;
@@ -72,8 +73,8 @@ public class profileFragment extends Fragment {
         Log.d("fragmentTest", "savta2");
 
         mAuth = FirebaseAuth.getInstance();
+        levelProgress = v.findViewById(R.id.levelProgress);
         tabLayout = (TabLayout) v.findViewById(R.id.tabs);
-        profileSettingsBtn = (ImageButton) v.findViewById(R.id.profileSettings);
         //listView = (ListView) v.findViewById(R.id.viewPager);
         profImg = (ImageView) v.findViewById(R.id.imageView2);
         setStreak = (TextView) v.findViewById(R.id.streakView);
@@ -85,21 +86,12 @@ public class profileFragment extends Fragment {
 
 
 
+
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
                 .requestEmail()
                 .build();
         mGoogleSignInClient = GoogleSignIn.getClient(getActivity(), gso);
-        profileSettingsBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                SettingsFragment nextFrag= new SettingsFragment();
-                getActivity().getSupportFragmentManager().beginTransaction()
-                        .replace(((ViewGroup)getView().getParent()).getId(), nextFrag, "findThisFragment")
-                        .addToBackStack(null)
-                        .commit();
-            }
-        });
 
 
         try {
