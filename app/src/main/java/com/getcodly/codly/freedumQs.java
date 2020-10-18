@@ -287,6 +287,7 @@ public class freedumQs extends AppCompatActivity {
             public void onClick(View v) {
                 continueBtn.setClickable(false);
                 LessonActivity.j++;
+                mainScreen.lessonWr++;
                 LessonActivity.shared_xp = LessonActivity.shared_xp + 1.5;
                 //LessonActivity.points++;
                 startActivity(new Intent(freedumQs.this, LessonActivity.class));
@@ -300,6 +301,7 @@ public class freedumQs extends AppCompatActivity {
         continueBtn6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                mainScreen.lessonWr--;
                 if(LessonActivity.shared_xp>=11){
                     LessonActivity.shared_xp = LessonActivity.shared_xp - 1;
                 }

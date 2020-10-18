@@ -17,24 +17,13 @@ import java.io.File;
 
 public class CompW extends AppCompatActivity {
     long firstTime;
+    boolean b = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_comp_w);
         firstTime = System.currentTimeMillis();
         Handler handler = new Handler();
-        int delay = 1000; //milliseconds
-
-        handler.postDelayed(new Runnable(){
-            public void run(){
-                //do something
-                long secondTime  = System.currentTimeMillis();
-                if (secondTime - firstTime > 20000){
-                    startActivity(new Intent(CompW.this, mainScreen.class));
-                }
-                handler.postDelayed(this, delay);
-            }
-        }, delay);
         FirebaseDatabase database_start = FirebaseDatabase.getInstance();
         DatabaseReference myRef_start = database_start.getReference("Users").child(ReadWrite.read(CompW.this.getFilesDir() + File.separator + "user")).child("start_comp");
         myRef_start.addValueEventListener(new ValueEventListener() {

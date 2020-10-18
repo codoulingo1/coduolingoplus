@@ -41,7 +41,7 @@ public class tree_html extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tree_html);
-
+        mainScreen.lessonWr = 0;
         skill1 = findViewById(R.id.skill15);
         skill2 = findViewById(R.id.skill16);
         skill3 = findViewById(R.id.skill17);

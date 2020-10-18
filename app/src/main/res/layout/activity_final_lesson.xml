@@ -50,25 +50,25 @@
         android:padding="12dp">
 
         <TextView
+            android:id="@+id/correctAnswers"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="תשובות נכונות: עדיין בפיתוח"
-            android:textSize="20dp"
             android:layout_alignParentRight="true"
-            android:fontFamily="@font/rubik_light"
             android:layout_below="@id/finalXP"
-            android:id="@+id/correctAnswers"/>
+            android:fontFamily="@font/rubik_light"
+            android:text="תשובות נכונות:"
+            android:textSize="20dp" />
 
         <TextView
+            android:id="@+id/finalXP"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="נקודות (XP) שהושגו: 8"
-            android:textSize="20dp"
-            android:id="@+id/finalXP"
-            android:textColor="#3F3D56"
             android:layout_alignParentRight="true"
+            android:layout_marginBottom="2dp"
             android:fontFamily="@font/rubik_medium"
-            android:layout_marginBottom="2dp"/>
+            android:text="נקודות (XP) שהושגו:"
+            android:textColor="#3F3D56"
+            android:textSize="20dp" />
 
 
     </RelativeLayout>

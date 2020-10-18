@@ -38,6 +38,7 @@ public class mainScreen extends AppCompatActivity {
     public static String streak;
     public static String w;
     public static String invName;
+    public static int lessonWr = 0;
     public static String name;
     public static String userId = "";
     public static String sel;
@@ -57,6 +58,7 @@ public class mainScreen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_screen);
+        lessonWr = 0;
         if (! Python.isStarted()) {
             Python.start(new AndroidPlatform(mainScreen.this ));
         }
@@ -124,7 +126,6 @@ public class mainScreen extends AppCompatActivity {
                         // whenever data at this location is uploaded
                         try {
                             if (!dataSnapshot.child("comp").getValue().toString().equals("")) {
-                                if (System.currentTimeMillis() - Long.parseLong(dataSnapshot.child("comp_time").getValue().toString()) < 15000){
                                     myRef1.child("comp").setValue("");
                                     myRef1.child("comp_time").setValue("1");
                                     userId = dataSnapshot.child("comp").getValue().toString();
@@ -153,10 +154,6 @@ public class mainScreen extends AppCompatActivity {
                                             //startComp(sel);
                                         }
                                     });
-                                }else{
-                                    myRef1.child("comp").setValue("");
-                                    myRef1.child("comp_time").setValue("1");
-                                }
                             }
                         } catch (Exception e) {
 

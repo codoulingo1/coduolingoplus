@@ -44,6 +44,7 @@ public class finalLesson extends AppCompatActivity {
     boolean b = false;
     HashMap<String, String> date;
     CountDownTimer mcountdown;
+    TextView correctAns;
     TextView finalXp;
     DatabaseReference myRef;
     FirebaseDatabase database;
@@ -63,7 +64,17 @@ public class finalLesson extends AppCompatActivity {
             }
         });
         finalXp = findViewById(R.id.finalXP);
+        correctAns = findViewById(R.id.correctAnswers);
         finishLsnBtn = findViewById(R.id.finishLsnBtn);
+        LessonActivity.shared_xp2 = Math.round(Float.parseFloat(String.valueOf(mainScreen.lessonWr))/Float.parseFloat(String.valueOf(LessonActivity.j - 1)) * 15);
+        correctAns.setText("תשובות נכונות: " + mainScreen.lessonWr);
+        if (LessonActivity.shared_xp2>10){
+            finalXp.setText("נקודות (XP) שהושגו: " + String.valueOf(LessonActivity.shared_xp2));
+        }
+        else {
+            LessonActivity.shared_xp2 = 10;
+            finalXp.setText("נקודות (XP) שהושגו:" + " 10");
+        }
 
         finishLsnBtn.setAlpha(0);
 
@@ -159,14 +170,13 @@ public class finalLesson extends AppCompatActivity {
                         Random random = new Random();
                         int GeldToGive = random.nextInt(2) + 1;
                         mainScreen.Geld += GeldToGive;
-                        finalXp.setText("כסף שהושג: " + GeldToGive);
 
                         int currentGeld = Integer.parseInt(value.get("geld"));
                         int newGeld = currentGeld + GeldToGive;
                         myRef.child("geld").setValue(newGeld);
 
                     } else{
-                        finalXp.setText("נעשה כבר שיעור היום");
+
                     }
 
                     int this_year = calendar2.get(Calendar.YEAR);
@@ -207,6 +217,13 @@ public class finalLesson extends AppCompatActivity {
                     if (tree.LessonType.equals("comp")) {
                         DatabaseReference user_2 = myRef.child(mainScreen.userId);
                         user_2.child("comp_w").setValue("l");
+                        Random random = new Random();
+                        int GeldToGive = 3;
+                        mainScreen.Geld += GeldToGive * 2;
+
+                        int currentGeld = Integer.parseInt(value.get("geld"));
+                        int newGeld = currentGeld + GeldToGive * 2;
+                        myRef.child("geld").setValue(newGeld);
                         LessonActivity.shared_xp2 = LessonActivity.shared_xp2 * 2;
                     }
                     user.child("lastLessonD").child("year").setValue(this_year);
@@ -214,7 +231,6 @@ public class finalLesson extends AppCompatActivity {
                     //put xp thing here
 
                     user.child("xp").setValue(xp + LessonActivity.shared_xp2);
-                    LessonActivity.shared_xp2 = LessonActivity.shared_xp.intValue();
                     List<String> str_old_progress = Arrays.asList(old_progress.split(" "));
                     if (!str_old_progress.contains(MainActivity.id)) {
                         user.child("progress").setValue(old_progress + " " + MainActivity.id + "~" + MainActivity.name);

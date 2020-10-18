@@ -51,6 +51,7 @@ public class tree extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tree_new);
         //mAuth = FirebaseAuth.getInstance();
+        mainScreen.lessonWr = 0;
         skill1 = (RelativeLayout) findViewById(R.id.skill15);
         skill2 = (RelativeLayout) findViewById(R.id.skill16);
         skill3 = (RelativeLayout) findViewById(R.id.skill17);

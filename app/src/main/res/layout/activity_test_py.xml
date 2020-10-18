@@ -152,38 +152,48 @@
     </RelativeLayout>
 
     <RelativeLayout
-        android:id="@+id/popup11"
+        android:id="@+id/popupFalse"
         android:layout_width="match_parent"
         android:layout_height="140dp"
         android:layout_alignParentBottom="true"
         android:background="#ffc1c2"
+        android:elevation="3dp"
         android:visibility="gone">
 
-        <ImageButton
-            android:id="@+id/continueBtn11"
+        <Button
+            android:id="@+id/showAns"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:text="עבור לשאלה הבאה"
+            android:visibility="visible" />
+
+        <ImageButton
+            android:id="@+id/continueBtnFalse"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="35dp"
             android:adjustViewBounds="true"
             android:background="#ffc1c2"
-            android:maxWidth="75dp"
             android:maxHeight="75dp"
+            android:maxWidth="75dp"
             android:scaleType="fitCenter"
             app:srcCompat="@drawable/next2" />
 
         <TextView
-            android:id="@+id/textView11"
+            android:id="@+id/textView6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginRight="20dp"
             android:fontFamily="@fonts/rubik_bold"
-            android:text="טעות"
+            android:text="נסה שוב"
             android:textColor="#de302b"
-            android:textSize="46sp" />
+            android:textSize="46sp"
+            android:visibility="gone" />
     </RelativeLayout>
 
     <TextView

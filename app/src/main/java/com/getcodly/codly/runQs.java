@@ -157,6 +157,7 @@ public class runQs extends AppCompatActivity {
             public void onClick(View v) {
                 submit.setClickable(false);
                 LessonActivity.j++;
+                mainScreen.lessonWr++;
                 LessonActivity.shared_xp = LessonActivity.shared_xp + 2;
                 //LessonActivity.points++;
                 startActivity(new Intent(runQs.this, LessonActivity.class));

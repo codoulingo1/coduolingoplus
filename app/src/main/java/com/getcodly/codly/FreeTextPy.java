@@ -146,6 +146,7 @@ public class FreeTextPy extends AppCompatActivity {
             public void onClick(View v) {
                 submit.setClickable(false);
                 LessonActivity.j++;
+                mainScreen.lessonWr++;
                 LessonActivity.shared_xp = LessonActivity.shared_xp + 2;
                 //LessonActivity.points++;
                 startActivity(new Intent(FreeTextPy.this, LessonActivity.class));
@@ -158,6 +159,7 @@ public class FreeTextPy extends AppCompatActivity {
         continueBtn11.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                mainScreen.lessonWr--;
                 if(LessonActivity.shared_xp>=11){
                     LessonActivity.shared_xp = LessonActivity.shared_xp - 1;
                 }

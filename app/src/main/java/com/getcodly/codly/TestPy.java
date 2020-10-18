@@ -15,6 +15,7 @@ import android.text.style.StyleSpan;
 import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
@@ -33,6 +34,7 @@ public class TestPy extends AppCompatActivity {
     ImageButton continueBtn10;
     RelativeLayout popup11;
     ImageButton continueBtn11;
+    Button showAnswer;
     private AnimatedVectorDrawable animation;
     TextView out;
     EditText inp;
@@ -40,12 +42,13 @@ public class TestPy extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test_py);
+        showAnswer = findViewById(R.id.showAns);
         popupTruee = (RelativeLayout) findViewById(R.id.PopupTruee);
         continueBtn10 = (ImageButton) findViewById(R.id.continueBtn10);
         ProgressBar pb = (ProgressBar) findViewById(R.id.progressBar);
         backBtn = (ImageButton) findViewById(R.id.backBtn4);
-        popup11 = (RelativeLayout) findViewById(R.id.popup11);
-        continueBtn11 = (ImageButton) findViewById(R.id.continueBtn11);
+        popup11 = (RelativeLayout) findViewById(R.id.popupFalse);
+        continueBtn11 = (ImageButton) findViewById(R.id.continueBtnFalse);
         pb.setProgress(LessonActivity.pr);
         submit = (ImageButton) findViewById(R.id.button);
         qs = (TextView) findViewById(R.id.textView);
@@ -78,6 +81,14 @@ public class TestPy extends AppCompatActivity {
             inp.setText(tree.loadAgain);
             tree.loadAgain = "";
         }
+        showAnswer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                submit.setClickable(false);
+                LessonActivity.j++;
+                startActivity(new Intent(TestPy.this, LessonActivity.class));
+            }
+        });
         submit.setOnClickListener(new View.OnClickListener() {
                                       @Override
                                       public void onClick(View v) {
@@ -98,7 +109,9 @@ public class TestPy extends AppCompatActivity {
                                                   }
                                               }catch (Exception e) {
                                                   Log.d("eroor", e.getLocalizedMessage());
+                                                  tree.loadAgain = ans;
                                                   out.setText(e.getLocalizedMessage());
+                                                  showWrong();
                                               }
                                           }else{
                                               //הרצה על כמה בדיקות ועל כמה קלטים
@@ -128,7 +141,9 @@ public class TestPy extends AppCompatActivity {
                                                   }
                                               }catch (Exception e){
                                                   Log.d("eroor", e.getLocalizedMessage());
+                                                  tree.loadAgain = ans;
                                                   out.setText(e.getLocalizedMessage());
+                                                  showWrong();
 
                                               }
                                           }
@@ -164,6 +179,7 @@ public class TestPy extends AppCompatActivity {
             public void onClick(View v) {
                 submit.setClickable(false);
                 LessonActivity.j++;
+                mainScreen.lessonWr++;
                 LessonActivity.shared_xp = LessonActivity.shared_xp + 2;
                 //LessonActivity.points++;
                 startActivity(new Intent(TestPy.this, LessonActivity.class));
@@ -176,6 +192,7 @@ public class TestPy extends AppCompatActivity {
         continueBtn11.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                mainScreen.lessonWr--;
                 if(LessonActivity.shared_xp>=11){
                     LessonActivity.shared_xp = LessonActivity.shared_xp - 1;
                 }

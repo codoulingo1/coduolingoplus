@@ -306,6 +306,7 @@ public class pyNonFreedum extends AppCompatActivity {
             public void onClick(View v) {
                 check.setClickable(false);
                 LessonActivity.j++;
+                mainScreen.lessonWr++;
                 LessonActivity.shared_xp = LessonActivity.shared_xp + 1.5;
                 //LessonActivity.points++;
                 startActivity(new Intent(pyNonFreedum.this, LessonActivity.class));
@@ -318,6 +319,7 @@ public class pyNonFreedum extends AppCompatActivity {
         continueBtnFalse.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                mainScreen.lessonWr--;
                 if(LessonActivity.shared_xp>=11){
                     LessonActivity.shared_xp = LessonActivity.shared_xp - 1;
                 }

@@ -76,6 +76,7 @@ public class ExplainationQS extends AppCompatActivity {
                 //LessonActivity.points++;
                 if(LessonActivity.shared_hashmap.get("additional").equals("none")) {
                     continueBtn.setClickable(false);
+                    mainScreen.lessonWr++;
                     LessonActivity.j = LessonActivity.j + 1;
                     startActivity(new Intent(ExplainationQS.this, LessonActivity.class));
                     overridePendingTransition(0, 0);
@@ -85,6 +86,7 @@ public class ExplainationQS extends AppCompatActivity {
                         String check = explanation_hashmap.get("additional").split("~")[add_num];
                     } catch (Exception e){
                         continueBtn.setClickable(false);
+                        mainScreen.lessonWr++;
                         LessonActivity.j = LessonActivity.j + 1;
                         startActivity(new Intent(ExplainationQS.this, LessonActivity.class));
                         overridePendingTransition(0, 0);

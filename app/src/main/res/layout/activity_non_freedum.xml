@@ -234,10 +234,19 @@
         android:id="@+id/popupFalse"
         android:layout_width="match_parent"
         android:layout_height="140dp"
-        android:background="#ffc1c2"
-        android:visibility="gone"
         android:layout_alignParentBottom="true"
-        android:elevation="3dp">
+        android:background="#ffc1c2"
+        android:elevation="3dp"
+        android:visibility="gone">
+
+        <Button
+            android:id="@+id/showAns"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:text="הצג תשובה"
+            android:visibility="visible" />
 
         <ImageButton
             android:id="@+id/continueBtnFalse"
@@ -247,8 +256,8 @@
             android:layout_marginTop="35dp"
             android:adjustViewBounds="true"
             android:background="#ffc1c2"
-            android:maxWidth="75dp"
             android:maxHeight="75dp"
+            android:maxWidth="75dp"
             android:scaleType="fitCenter"
             app:srcCompat="@drawable/next2" />
 
@@ -261,18 +270,9 @@
             android:layout_marginRight="20dp"
             android:fontFamily="@fonts/rubik_bold"
             android:text="נסה שוב"
-            android:visibility="gone"
             android:textColor="#de302b"
-            android:textSize="46sp" />
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="הצג תשובה"
-            android:id="@+id/showAns"
-            android:visibility="visible"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"/>
+            android:textSize="46sp"
+            android:visibility="gone" />
     </RelativeLayout>
 
 
