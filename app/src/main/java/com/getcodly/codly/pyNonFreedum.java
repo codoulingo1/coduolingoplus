@@ -42,6 +42,7 @@ public class pyNonFreedum extends AppCompatActivity {
     Button opt1;
     ProgressBar pb;
     private ObjectAnimator progressAnimator;
+    Button showAnswer;
     TextView htmlView;
     TextView qs;
 
@@ -59,6 +60,7 @@ public class pyNonFreedum extends AppCompatActivity {
         final Button opt5 = (Button) findViewById(R.id.button5);
         final Button opt6 = (Button) findViewById(R.id.button6);
         backBtn = (ImageButton) findViewById(R.id.backBtn3);
+        showAnswer = findViewById(R.id.showAns);
         check = (ImageButton) findViewById(R.id.check);
         continueBtnFalse = (ImageButton) findViewById(R.id.continueBtnFalse);
         continueBtnTrue = (ImageButton) findViewById(R.id.continueBtnTrue);
@@ -113,6 +115,13 @@ public class pyNonFreedum extends AppCompatActivity {
         f=String.valueOf(ch_new_text);
         ans.setText(f);
         org = ans.getText().toString();
+        showAnswer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                popupFalse.setVisibility(View.GONE);
+                ans.setText(LessonActivity.shared_hashmap.get("Answer"));
+            }
+        });
         opt1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
