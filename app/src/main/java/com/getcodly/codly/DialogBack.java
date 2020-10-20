@@ -28,11 +28,18 @@ public class DialogBack extends AppCompatDialogFragment {
         }).setPositiveButton("לצאת", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                if (mainScreen.w.equals("py")){
-                    startActivity(new Intent(getContext(), tree.class));
-                }
-                else if (mainScreen.w.equals("html")){
-                    startActivity(new Intent(getContext(), tree_html.class));
+                try {
+                    LessonActivity.j = 1;
+                    if (mainScreen.w.equals("py")) {
+                        startActivity(new Intent(getContext(), tree.class));
+                    } else if (mainScreen.w.equals("html")) {
+                        startActivity(new Intent(getContext(), tree_html.class));
+                    }else{
+                        startActivity(new Intent(getContext(), mainScreen.class));
+                    }
+                }catch (Exception e){
+                    LessonActivity.j = 1;
+                    startActivity(new Intent(getContext(), mainScreen.class));
                 }
             }
         });

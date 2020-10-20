@@ -5,6 +5,7 @@ import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
@@ -37,8 +38,10 @@ public class Comp_Invite extends AppCompatDialogFragment {
                 DatabaseReference myRef2 = database1.getReference("Users").child(mainScreen.userId);
                 myRef2.child("start_comp").setValue(mainScreen.sel);
                 tree.LessonType = "comp";
+                mainScreen.w = "comp";
                 MainActivity.id = mainScreen.sel;
                 MainActivity.name = "comp";
+                Log.d("MainActivity.name", MainActivity.name);
                 startActivity(new Intent(getContext(), MainActivity.class));
             }
         });

@@ -101,12 +101,19 @@ public class finalLesson extends AppCompatActivity {
         mInterstitialAd.setAdListener(new AdListener(){
             @Override
             public void onAdClosed() {
+                Log.d("hihi", mainScreen.w);
                 if (mainScreen.w.equals("py")){
+                    Log.d("else", "hihi");
                     startActivity(new Intent(finalLesson.this, tree.class));
                 }
                 else if (mainScreen.w.equals("html")){
+                    Log.d("else", "hihi");
                     startActivity(new Intent(finalLesson.this, tree_html.class));
+                }else{
+                    Log.d("else", "hihi");
+                    startActivity(new Intent(finalLesson.this, mainScreen.class));
                 }
+                Log.d("else", "hihi");
                 mInterstitialAd.loadAd(new AdRequest.Builder().build());
             }
             @Override
@@ -214,11 +221,13 @@ public class finalLesson extends AppCompatActivity {
                     DatabaseReference myRef = database.getReference("Users");
                     DatabaseReference user = myRef.child(ReadWrite.read(finalLesson.this.getFilesDir() + File.separator + "user"));
                     user.child("lastLessonD").child("date").setValue(today);
-                    if (tree.LessonType.equals("comp")) {
+                    Log.d("lessonType", tree.LessonType);
+                    if (tree.LessonType.contains("comp")) {
                         DatabaseReference user_2 = myRef.child(mainScreen.userId);
+                        Log.d("lessonType", "true");
                         user_2.child("comp_w").setValue("l");
                         Random random = new Random();
-                        int GeldToGive = 3;
+                        int GeldToGive = random.nextInt(2) + 1;
                         mainScreen.Geld += GeldToGive * 2;
 
                         int currentGeld = Integer.parseInt(value.get("geld"));
@@ -231,10 +240,10 @@ public class finalLesson extends AppCompatActivity {
                     //put xp thing here
 
                     user.child("xp").setValue(xp + LessonActivity.shared_xp2);
-                    List<String> str_old_progress = Arrays.asList(old_progress.split(" "));
+                    List<String> str_old_progress = Arrays.asList(old_progress.split(",|\\~"));
                     if (!str_old_progress.contains(MainActivity.id)) {
-                        user.child("progress").setValue(old_progress + " " + MainActivity.id + "~" + MainActivity.name);
-                        mainScreen.progress = old_progress + " " + MainActivity.id + "~" + MainActivity.name;
+                        user.child("progress").setValue(old_progress + "," + MainActivity.id + "~" + MainActivity.name);
+                        mainScreen.progress = old_progress + "," + MainActivity.id + "~" + MainActivity.name;
                     }
 
                     finishLsnBtn.setVisibility(View.VISIBLE);

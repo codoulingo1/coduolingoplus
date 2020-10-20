@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
             }
         }
         if(tree.LessonType.equals("practice")){
-            DownloadReadlessons.downloadPractice(tree.practiceID, 5, MainActivity.this, new DownloadReadlessons.MyCallback() {
+            DownloadReadlessons.downloadPractice(tree.practiceID, 8, MainActivity.this, new DownloadReadlessons.MyCallback() {
                 @Override
                 public void onCallback(String value) {
                     Log.d("MainActivity", value);
@@ -78,12 +78,20 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
         }else if (tree.LessonType.equals("comp")){
+            Log.d("MainActivity", id + name);
             DownloadReadlessons.downloadcomp(id, MainActivity.this, new DownloadReadlessons.MyCallback() {
                 @Override
                 public void onCallback(String value) {
-                    Log.d("MainActivity", value);
-                    Wait(1);
-                    startActivity(new Intent(MainActivity.this, LessonActivity.class));
+                    Log.d("MainActivity", value+"a");
+                    Log.d("MainActivity", id);
+                    DownloadReadlessons.downloadlesson(id, MainActivity.this, new DownloadReadlessons.MyCallback() {
+                        @Override
+                        public void onCallback(String value) {
+                            Log.d("MainActivity", value);
+
+                            startActivity(new Intent(MainActivity.this, LessonActivity.class));
+                        }
+                    });
                 }
             });
         }

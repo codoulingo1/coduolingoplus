@@ -48,7 +48,7 @@ public class selectLesson extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 fin = new ArrayList();
-                List<String> str_old_progress = Arrays.asList(mainScreen.progress.split(" "));
+                List<String> str_old_progress = Arrays.asList(mainScreen.progress.split(","));
                 for (String f : tree.idShare){
                     if (str_old_progress.toString().contains(f)){
                         fin.add(f);

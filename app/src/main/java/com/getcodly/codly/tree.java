@@ -147,7 +147,7 @@ public class tree extends AppCompatActivity {
                 namesShare.add(i.split("~")[1]);
             }
             for (String d : id) {
-                List<String> str_old_progress = Arrays.asList(old_progress.split(" "));
+                List<String> str_old_progress = Arrays.asList(old_progress.split(","));
                 Log.d(str_old_progress.toString(), String.valueOf(str_old_progress.contains(d.split("~")[0])));
                 if (!str_old_progress.toString().contains(d.split("~")[0])) {
                     MainActivity.id = d.split("~")[0];

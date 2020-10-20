@@ -94,6 +94,7 @@ public class DownloadReadlessons {
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("Lessons").child(ID);
+        Log.d(String.valueOf(ID), String.valueOf(ID));
         myRef.addValueEventListener(new ValueEventListener() {
 
             @Override
@@ -106,30 +107,6 @@ public class DownloadReadlessons {
 
                 String folder_main = dataSnapshot.child("LessonID").getValue(String.class) + dataSnapshot.child("LessonName").getValue(String.class);
                 MainActivity.name = dataSnapshot.child("LessonName").getValue(String.class);
-                // This method is called once with the initial value and again
-                // whenever data at this location is updated.
-                int qs_num = 0;
-                for (DataSnapshot snap : dataSnapshot.getChildren()) {
-                    try {
-                        if (snap.getValue(String.class).length() != 0 && !snap.getValue(String.class).split("\\]|\\[")[1].replace("\\n", System.getProperty("line.separator")).equals("explain")) {
-                            Log.d(folder_main + snap.getKey(), "Value is: " + snap.getKey() + "    " + snap.getValue(String.class));
-                            File f = new File(c.getFilesDir() + "/id/" + folder_main + snap.getKey() + ".txt");
-                            if (!f.getParentFile().exists())
-                                f.getParentFile().mkdirs();
-                            if (!f.exists()) {
-                                try {
-                                    f.createNewFile();
-                                } catch (IOException e) {
-                                    e.printStackTrace();
-                                }
-                            }
-                            qs_num++;
-                            ReadWrite.write(c.getFilesDir() + "/id/" + folder_main + "qs" + String.valueOf(qs_num), snap.getValue(String.class));
-                        }
-                    } catch (Exception e) {
-
-                    }
-                }
                 m.onCallback("done");
                 //done.set(true);
             }

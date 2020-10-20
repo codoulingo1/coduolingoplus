@@ -36,7 +36,7 @@ public class mainScreen extends AppCompatActivity {
 
     HashMap<String, String> date;
     public static String streak;
-    public static String w;
+    public static String w = "c";
     public static String invName;
     public static int lessonWr = 0;
     public static String name;
@@ -58,6 +58,7 @@ public class mainScreen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_screen);
+        LessonActivity.j = 1;
         lessonWr = 0;
         if (! Python.isStarted()) {
             Python.start(new AndroidPlatform(mainScreen.this ));
@@ -135,16 +136,27 @@ public class mainScreen extends AppCompatActivity {
                                             String progress_2 = value.get("cProgress");
                                             invName = value.get("name");
                                             int sel_num = 0;
-                                            sel = progress.split(" ")[new Random().nextInt(progress.split(" ").length)];
-                                            while (!Arrays.asList(progress_2.split(" ")).contains(sel)) {
+                                            try {
+                                                sel = progress.split(",")[new Random().nextInt(progress.split(",").length)].split("~")[0];
+                                            }catch (Exception e){
+                                                Log.d("error", e.getLocalizedMessage());
+                                            }
+                                            while (!Arrays.asList(progress_2.split(",|\\~")).contains(sel)) {
                                                 sel_num++;
-                                                sel = progress.split(" ")[new Random().nextInt(progress.split(" ").length)];
+                                                try {
+                                                    sel = progress.split(",")[new Random().nextInt(progress.split(",").length)].split("~")[0];
+                                                    Log.d(progress_2.split(",")[1], sel);
+                                                }catch (Exception e){
+                                                    Log.d("error", e.getLocalizedMessage());
+                                                }
                                                 if (sel_num > 200) {
+                                                    Log.d("sel", sel);
                                                     break;
                                                 }
                                             }
                                             if (sel_num <= 200) {
                                                 Comp_Invite dialogBack = new Comp_Invite();
+                                                Log.d("sel", sel);
                                                 FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
                                                 ft.add(dialogBack, "snooze_dialog");
                                                 ft.commitAllowingStateLoss();
@@ -244,28 +256,6 @@ public class mainScreen extends AppCompatActivity {
 
 
         FirebaseDatabase database_start = FirebaseDatabase.getInstance();
-        DatabaseReference myRef_start = database_start.getReference("Users").child(ReadWrite.read(mainScreen.this.getFilesDir() + File.separator + "user")).child("start_comp");
-        myRef_start.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                try {
-                    if (!dataSnapshot.getValue().toString().equals("")){
-                        sel = dataSnapshot.getValue().toString();
-                        myRef_start.setValue("");
-                        startComp(sel);
-                    }
-                } catch (Exception e){
-
-                }
-                // This method is called once with the initial value and again
-                // whenever data at this location is uploaded
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
         DatabaseReference myRef_win = database_start.getReference("Users").child(ReadWrite.read(mainScreen.this.getFilesDir() + File.separator + "user")).child("comp_w");
         myRef_win.addValueEventListener(new ValueEventListener() {
             @Override
