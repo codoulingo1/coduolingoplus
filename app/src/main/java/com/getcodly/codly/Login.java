@@ -204,6 +204,7 @@ public class Login extends AppCompatActivity {
                 user.child("xp").setValue(0);
                 user.child("progress").setValue("");
                 user.child("start_comp").setValue("");
+                user.child("hasDoneLesson").setValue(false);
                 user.child("comp_w").setValue("");
                 user.child("comp").setValue("");
                 user.child("comp_time").setValue("1");

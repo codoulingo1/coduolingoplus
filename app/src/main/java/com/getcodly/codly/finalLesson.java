@@ -185,7 +185,7 @@ public class finalLesson extends AppCompatActivity {
                     } else{
 
                     }
-
+                    /*
                     int this_year = calendar2.get(Calendar.YEAR);
                     Log.d("0", String.valueOf(calendar.get(Calendar.YEAR)));
                     if (year == calendar.get(Calendar.YEAR)) {
@@ -216,11 +216,10 @@ public class finalLesson extends AppCompatActivity {
                         myRef.child("streak").setValue(1);
                         mainScreen.streak = "1";
                         Log.d("error", "year");
-                    }
+                    }*/
                     FirebaseDatabase database = FirebaseDatabase.getInstance();//
                     DatabaseReference myRef = database.getReference("Users");
                     DatabaseReference user = myRef.child(ReadWrite.read(finalLesson.this.getFilesDir() + File.separator + "user"));
-                    user.child("lastLessonD").child("date").setValue(today);
                     Log.d("lessonType", tree.LessonType);
                     if (tree.LessonType.contains("comp")) {
                         DatabaseReference user_2 = myRef.child(mainScreen.userId);
@@ -229,16 +228,17 @@ public class finalLesson extends AppCompatActivity {
                         Random random = new Random();
                         int GeldToGive = random.nextInt(2) + 1;
                         mainScreen.Geld += GeldToGive * 2;
-
                         int currentGeld = Integer.parseInt(value.get("geld"));
                         int newGeld = currentGeld + GeldToGive * 2;
                         myRef.child("geld").setValue(newGeld);
                         LessonActivity.shared_xp2 = LessonActivity.shared_xp2 * 2;
                     }
-                    user.child("lastLessonD").child("year").setValue(this_year);
-
                     //put xp thing here
-
+                    if (!Boolean.parseBoolean(value.get("hasDoneLesson"))){
+                        user.child("hasDoneLesson").setValue(true);
+                        user.child("streak").setValue(String.valueOf(Integer.parseInt(mainScreen.streak) + 1));
+                        mainScreen.streak = mainScreen.streak + 1;
+                    }
                     user.child("xp").setValue(xp + LessonActivity.shared_xp2);
                     List<String> str_old_progress = Arrays.asList(old_progress.split(",|\\~"));
                     if (!str_old_progress.contains(MainActivity.id)) {
