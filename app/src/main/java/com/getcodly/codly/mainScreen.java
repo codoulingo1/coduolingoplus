@@ -178,7 +178,9 @@ public class mainScreen extends AppCompatActivity {
                     }
                 });
                 //int month = Integer.parseInt(date.get("month"));
+
                 int day = Integer.parseInt(value.get("date"));
+                /*
                 Calendar calendar = Calendar.getInstance();
 
                 // Move calendar to yesterday
@@ -250,7 +252,7 @@ public class mainScreen extends AppCompatActivity {
                     DatabaseReference myRef = database.getReference("Users").child(ReadWrite.read(mainScreen.this.getFilesDir()+File.separator + "user"));
                     myRef.child("streak freeze").setValue("false");
                     myRef.child("streak").setValue(1);
-                }
+                }*/
             }
         });
 
