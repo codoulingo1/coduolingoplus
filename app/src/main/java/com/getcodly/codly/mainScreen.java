@@ -109,6 +109,8 @@ public class mainScreen extends AppCompatActivity {
 
                 Log.d("v", "v");
                 int year = Integer.parseInt(value.get("year"));
+                streak = value.get("streak");
+                setStreak.setText(streak);
                 progress = String.valueOf(value.get("cProgress"));
                 name = String.valueOf(value.get("name"));
                 img = String.valueOf(value.get("img"));

@@ -173,7 +173,7 @@ public class finalLesson extends AppCompatActivity {
                     int today = calendar2.get(Calendar.DAY_OF_YEAR);
 
                     //Geldprobleme
-                    if(today != day) {
+                    if (!Boolean.parseBoolean(value.get("hasDoneLesson"))) {
                         Random random = new Random();
                         int GeldToGive = random.nextInt(2) + 1;
                         mainScreen.Geld += GeldToGive;
@@ -237,7 +237,7 @@ public class finalLesson extends AppCompatActivity {
                     if (!Boolean.parseBoolean(value.get("hasDoneLesson"))){
                         user.child("hasDoneLesson").setValue(true);
                         user.child("streak").setValue(String.valueOf(Integer.parseInt(mainScreen.streak) + 1));
-                        mainScreen.streak = mainScreen.streak + 1;
+                        mainScreen.streak = String.valueOf(Integer.parseInt(mainScreen.streak) + 1);
                     }
                     user.child("xp").setValue(xp + LessonActivity.shared_xp2);
                     List<String> str_old_progress = Arrays.asList(old_progress.split(",|\\~"));
@@ -247,6 +247,7 @@ public class finalLesson extends AppCompatActivity {
                     }
 
                     finishLsnBtn.setVisibility(View.VISIBLE);
+                    user.child("hasDoneLesson").setValue(true);
                 }
             }
         });
