@@ -31,6 +31,23 @@ public class ShopFragment extends Fragment {
         RelativeLayout relativeClick1 = (RelativeLayout) v.findViewById(R.id.c);
         priceItem1 = v.findViewById(R.id.priceItem1);
 
+        FirebaseDatabase database1 = FirebaseDatabase.getInstance();
+
+        DatabaseReference myRef1 = database1.getReference("Users");
+        DatabaseReference fireBase1 = myRef1.child(ReadWrite.read(getActivity().getFilesDir()+ File.separator+ "user"));
+
+        HashMap<String, String> a = DownloadReadlessons.get_last_lesson2(ReadWrite.read(getActivity().getFilesDir() + File.separator + "user"), new DownloadReadlessons.HashCallback() {
+            @Override
+            public void onCallback(HashMap<String, String> value) {
+                if(Boolean.valueOf(value.get("streak freeze")) == true){
+                    priceItem1.setText("נרכש");
+                } else{
+                    //Already has a streak freeze equipped
+
+                }
+            }
+        });
+
         relativeClick1.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
@@ -42,13 +59,13 @@ public class ShopFragment extends Fragment {
                     @Override
                     public void onCallback(HashMap<String, String> value) {
                         if(Boolean.valueOf(value.get("streak freeze")) != true){
-                            if (mainScreen.Geld >= 5){
+                            if (mainScreen.Geld >= 5) {
                                 fireBase.child("streak freeze").setValue("true");
                                 fireBase.child("geld").setValue(Integer.parseInt(value.get("geld")) - 5);
                                 mainScreen.Geld -= 5;
                                 priceItem1.setText("מחומש");
                                 mainScreen.geldView.setText(String.valueOf(mainScreen.Geld));
-                            } else{
+                            } else {
                                 //Not enough geld
                             }
                         } else{

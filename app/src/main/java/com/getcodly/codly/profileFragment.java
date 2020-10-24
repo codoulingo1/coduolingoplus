@@ -1,6 +1,7 @@
 package com.getcodly.codly;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.util.Log;
@@ -61,10 +62,14 @@ public class profileFragment extends Fragment {
     TextView setStreak;
     public static HashMap<String, String> ret;
     private FriendsFragment friendsFragment;
-    ProgressBar levelProgress;
 
+    ProgressBar levelProgress;
     ViewPager viewPager;
     TabLayout tabLayout;
+    TextView levelView;
+    TextView xpView;
+    TextView goalText;
+
 
     @Nullable
     @Override
@@ -81,11 +86,15 @@ public class profileFragment extends Fragment {
         setName = (TextView) v.findViewById(R.id.set_name);
         viewPager = v.findViewById(R.id.viewPager);
         viewPager = v.findViewById(R.id.viewPager);
+        levelView = v.findViewById(R.id.level);
+        xpView = v.findViewById(R.id.xpCount);
+        goalText = v.findViewById(R.id.goalText);
+
+        setLevel();
+
+
 
         friendsFragment = new FriendsFragment();
-
-
-
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
@@ -195,6 +204,45 @@ public class profileFragment extends Fragment {
         adapter.addFragment(new ProjectsFragment(), "פרוייקטים");
 
         viewPager.setAdapter(adapter);
+    }
+
+    void setLevel(){
+        if(mainScreen.user_xp > 525){
+            levelView.setText("רמה 8");
+            goalText.setText("∞");
+            goalText.setTextColor(Color.parseColor("#47C5A0"));
+            levelProgress.setProgress(100);
+        } else if(mainScreen.user_xp > 400){
+            levelView.setText("רמה 7");
+            goalText.setText("525");
+            levelProgress.setProgress((mainScreen.user_xp - 400)*100 / (525 - 400));
+        } else if(mainScreen.user_xp > 300){
+            levelView.setText("רמה 6");
+            goalText.setText("400");
+            levelProgress.setProgress((mainScreen.user_xp - 300)*100 / (400 - 300));
+        } else if(mainScreen.user_xp > 150){
+            levelView.setText("רמה 5");
+            goalText.setText("300");
+            levelProgress.setProgress((mainScreen.user_xp - 150)*100 / (300 - 150));
+        } else if(mainScreen.user_xp > 100){
+            levelView.setText("רמה 4");
+            goalText.setText("150");
+            levelProgress.setProgress((mainScreen.user_xp - 100)*100 / (150 - 100));
+        } else if(mainScreen.user_xp > 60){
+            levelView.setText("רמה 3");
+            goalText.setText("100");
+            levelProgress.setProgress((mainScreen.user_xp - 60)*100 / (100 - 60));
+        } else if(mainScreen.user_xp > 30){
+            levelView.setText("רמה 2");
+            goalText.setText("60");
+            levelProgress.setProgress((mainScreen.user_xp - 30)*100 / (60 - 30));
+        } else if(mainScreen.user_xp <= 30){
+            levelView.setText("רמה 1");
+            goalText.setText("30");
+            levelProgress.setProgress(mainScreen.user_xp*100 / 30);
+        }
+
+        xpView.setText(String.valueOf(mainScreen.user_xp));
     }
 }
 

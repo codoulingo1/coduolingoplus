@@ -28,7 +28,7 @@
                 android:layout_alignParentRight="true"
                 android:textSize="20dp"
                 android:layout_centerVertical="true"
-                android:fontFamily="@font/rubik_light"/>
+                android:fontFamily="@font/rubik_light" />
 
             <TextView
                 android:layout_width="wrap_content"

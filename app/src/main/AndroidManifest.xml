@@ -12,6 +12,13 @@
         android:supportsRtl="false"
         android:theme="@style/AppTheme"
         tools:replace="android:supportsRtl">
+
+        <service android:name=".MyFirebaseMessagingService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+            </intent-filter>
+        </service>
+
         <activity android:name=".pyNonFreedum"
             android:theme="@style/AppTheme.NoActionBar"
             android:screenOrientation="portrait"/>
@@ -117,10 +124,6 @@
             android:screenOrientation="portrait"/>
         <activity
             android:name=".sign_upActivity"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:screenOrientation="portrait"/>
-        <activity
-            android:name=".profile_Activity"
             android:theme="@style/AppTheme.NoActionBar"
             android:screenOrientation="portrait"/>
         <activity

@@ -23,6 +23,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 import java.io.File;
 import java.util.Arrays;
@@ -53,11 +54,15 @@ public class mainScreen extends AppCompatActivity {
     public static int Geld = 0;
     FirebaseDatabase database1;
     DatabaseReference myRef1;
+    public static int user_xp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_screen);
+
+        FirebaseMessaging.getInstance().subscribeToTopic("pushNotifications");
+
         LessonActivity.j = 1;
         lessonWr = 0;
         if (! Python.isStarted()) {
@@ -115,6 +120,7 @@ public class mainScreen extends AppCompatActivity {
                 name = String.valueOf(value.get("name"));
                 img = String.valueOf(value.get("img"));
                 friends = String.valueOf(value.get("friends"));
+                user_xp = Integer.parseInt(value.get("xp"));
                 try {
                     Geld = Integer.parseInt(value.get("geld"));
                 } catch (Exception e){

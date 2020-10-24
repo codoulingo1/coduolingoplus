@@ -71,7 +71,7 @@
             android:layout_alignParentRight="true"
             android:layout_alignParentTop="true"
             android:layout_margin="15dp"
-            android:fontFamily="@font/rubik_light"
+            android:fontFamily="@font/rubik_medium"
             android:text="הקפאת סטריק"
             android:textColor="#42445F"
             android:clickable="false"
