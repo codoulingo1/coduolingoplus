@@ -134,7 +134,8 @@
                 android:layout_marginTop="10dp"
                 android:progressDrawable="@drawable/progress_xp"
                 android:progress="50"
-                android:scaleX="-1"/>
+                android:scaleX="-1"
+                android:id="@+id/courseProgressWeb"/>
 
 
 

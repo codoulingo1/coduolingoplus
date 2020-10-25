@@ -55,11 +55,16 @@ public class mainScreen extends AppCompatActivity {
     FirebaseDatabase database1;
     DatabaseReference myRef1;
     public static int user_xp;
+    public static int courseProgressPython = 0;
+    public static int courseProgressWeb = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_screen);
+
+        courseProgressWeb = 0;
+        courseProgressPython = 0;
 
         FirebaseMessaging.getInstance().subscribeToTopic("pushNotifications");
 
@@ -73,6 +78,7 @@ public class mainScreen extends AppCompatActivity {
 
         settingsButton = findViewById(R.id.profileSettings);
         geldView = findViewById(R.id.geldView);
+
 
 
         database1 = FirebaseDatabase.getInstance();
@@ -117,6 +123,7 @@ public class mainScreen extends AppCompatActivity {
                 streak = value.get("streak");
                 setStreak.setText(streak);
                 progress = String.valueOf(value.get("cProgress"));
+                setCourseProgressWeb();
                 name = String.valueOf(value.get("name"));
                 img = String.valueOf(value.get("img"));
                 friends = String.valueOf(value.get("friends"));
@@ -185,6 +192,8 @@ public class mainScreen extends AppCompatActivity {
 
                     }
                 });
+
+
                 //int month = Integer.parseInt(date.get("month"));
 
                 int day = Integer.parseInt(value.get("date"));
@@ -310,5 +319,15 @@ public class mainScreen extends AppCompatActivity {
         MainActivity.id = id;
         MainActivity.name = "comp";
         startActivity(new Intent(mainScreen.this, MainActivity.class));
+    }
+
+    void setCourseProgressWeb(){
+        for(String i : progress.split(",")){
+            if(i.startsWith("2")){
+                courseProgressWeb++;
+            }
+        }
+
+        Log.d("progressCount", String.valueOf(courseProgressWeb));
     }
 }

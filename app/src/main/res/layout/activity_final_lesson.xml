@@ -56,7 +56,7 @@
             android:layout_alignParentRight="true"
             android:layout_below="@id/finalXP"
             android:fontFamily="@font/rubik_light"
-            android:text="תשובות נכונות:"
+            android:text="כסף שהושג: "
             android:textSize="20dp" />
 
         <TextView

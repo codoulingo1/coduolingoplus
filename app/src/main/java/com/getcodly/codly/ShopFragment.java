@@ -63,14 +63,14 @@ public class ShopFragment extends Fragment {
                                 fireBase.child("streak freeze").setValue("true");
                                 fireBase.child("geld").setValue(Integer.parseInt(value.get("geld")) - 5);
                                 mainScreen.Geld -= 5;
-                                priceItem1.setText("מחומש");
+                                priceItem1.setText("נרכש");
                                 mainScreen.geldView.setText(String.valueOf(mainScreen.Geld));
                             } else {
                                 //Not enough geld
                             }
                         } else{
                             //Already has a streak freeze equipped
-                            priceItem1.setText("מחומש");
+                            priceItem1.setText("נרכש");
                         }
                     }
                 });

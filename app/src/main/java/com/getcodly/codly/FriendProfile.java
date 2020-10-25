@@ -1,6 +1,7 @@
 package com.getcodly.codly;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -34,7 +35,7 @@ public class FriendProfile extends AppCompatActivity {
     TextView setName;
     HashMap old_streak;
     HashMap old_friends;
-    String name;
+    public static String friendUsername;
     private GoogleSignInClient mGoogleSignInClient;
     FirebaseAuth mAuth;
     Button backToTree;
@@ -66,7 +67,7 @@ public class FriendProfile extends AppCompatActivity {
                 }
 
                 setName.setText(value.get("name"));
-                name = value.get("name");
+                friendUsername = value.get("name");
                 String streak = String.valueOf(value.get("streak"));
                 setStreak.setText(String.valueOf(streak));
                 String friends = mainScreen.friends;
@@ -93,8 +94,8 @@ public class FriendProfile extends AppCompatActivity {
 
                     DatabaseReference myRef = database.getReference("Users");
                     DatabaseReference fireBase = myRef.child(String.valueOf(ReadWrite.read(FriendProfile.this.getFilesDir() + File.separator + "user")));
-                    mainScreen.friends = friends.replaceAll("-" + Search.selected + "/" + name, "");
-                    fireBase.child("friends").setValue(friends.replaceAll("-" + Search.selected + "/" + name, ""));
+                    mainScreen.friends = friends.replaceAll("-" + Search.selected + "/" + friendUsername, "");
+                    fireBase.child("friends").setValue(friends.replaceAll("-" + Search.selected + "/" + friendUsername, ""));
                     follow.setText("הוסף לרשימת החברים");
                 }
                 else{
@@ -102,8 +103,8 @@ public class FriendProfile extends AppCompatActivity {
 
                     DatabaseReference myRef = database.getReference("Users");
                     DatabaseReference fireBase = myRef.child(String.valueOf(ReadWrite.read(FriendProfile.this.getFilesDir() + File.separator + "user")));
-                    mainScreen.friends = friends + "-" + Search.selected + "/" + name;
-                    fireBase.child("friends").setValue(friends + "-" + Search.selected + "/" + name);
+                    mainScreen.friends = friends + "-" + Search.selected + "/" + friendUsername;
+                    fireBase.child("friends").setValue(friends + "-" + Search.selected + "/" + friendUsername);
                     follow.setText("הסר מרשימת החברים");
                 }
                 Log.d("mainScreen.friends", mainScreen.friends);
@@ -125,7 +126,12 @@ public class FriendProfile extends AppCompatActivity {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                startActivity(new Intent(FriendProfile.this, CompW.class));
+
+                CompWait dialogBack = new CompWait();
+                FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+                ft.add(dialogBack, "snooze_dialog");
+                ft.commitAllowingStateLoss();
+
             }
         });
 

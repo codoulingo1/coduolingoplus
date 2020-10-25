@@ -67,7 +67,7 @@ public class finalLesson extends AppCompatActivity {
         correctAns = findViewById(R.id.correctAnswers);
         finishLsnBtn = findViewById(R.id.finishLsnBtn);
         LessonActivity.shared_xp2 = Math.round(Float.parseFloat(String.valueOf(mainScreen.lessonWr))/Float.parseFloat(String.valueOf(LessonActivity.j - 1)) * 15);
-        correctAns.setText("תשובות נכונות: " + mainScreen.lessonWr);
+
         if (LessonActivity.shared_xp2>10){
             finalXp.setText("נקודות (XP) שהושגו: " + String.valueOf(LessonActivity.shared_xp2));
         }
@@ -176,6 +176,7 @@ public class finalLesson extends AppCompatActivity {
                     if (!Boolean.parseBoolean(value.get("hasDoneLesson"))) {
                         Random random = new Random();
                         int GeldToGive = random.nextInt(2) + 1;
+                        correctAns.setText("כסף שהושג: " + String.valueOf(GeldToGive));
                         mainScreen.Geld += GeldToGive;
 
                         int currentGeld = Integer.parseInt(value.get("geld"));
@@ -183,7 +184,7 @@ public class finalLesson extends AppCompatActivity {
                         myRef.child("geld").setValue(newGeld);
 
                     } else{
-
+                        correctAns.setText("מטבעות שהושגו: ניתן להשיג מטבעות רק פעם ביום.");
                     }
                     /*
                     int this_year = calendar2.get(Calendar.YEAR);
