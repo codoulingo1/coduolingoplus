@@ -33,23 +33,29 @@ public class CompWait extends AppCompatDialogFragment {
     public Dialog onCreateDialog(Bundle savedInstanceState) {
 
         firstTime = System.currentTimeMillis();
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        setCancelable(false);
+        DatabaseReference myRef = database.getReference("Users");
+        DatabaseReference fireBase = myRef.child(Search.selected);
+        mainScreen.userId = Search.selected;
+        fireBase.child("comp").setValue(ReadWrite.read(getActivity().getFilesDir() + File.separator + "user"));
+        fireBase.child("comp_time").setValue(String.valueOf(System.currentTimeMillis()));
+
         Handler handler = new Handler();
         FirebaseDatabase database_start = FirebaseDatabase.getInstance();
-        DatabaseReference myRef_start = database_start.getReference("Users").child(ReadWrite.read(getActivity() + File.separator + "user")).child("start_comp");
+        DatabaseReference myRef_start = database_start.getReference("Users").child(ReadWrite.read(getActivity().getFilesDir() + File.separator + "user")).child("start_comp");
         myRef_start.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // This method is called once with the initial value and again
                 // whenever data at this location is uploaded
-                try {
-                    if (!dataSnapshot.getValue().toString().equals("")){
-                        String sel = dataSnapshot.getValue().toString();
-                        myRef_start.setValue("");
-                        startComp(sel);
-                    }
-                } catch (Exception e){
 
+                if (!dataSnapshot.getValue().equals("")){
+                    String sel = dataSnapshot.getValue().toString();
+                    myRef_start.setValue("");
+                    startComp(sel);
                 }
+
 
             }
 
@@ -67,7 +73,7 @@ public class CompWait extends AppCompatDialogFragment {
         builder.setView(view).setNegativeButton("ביטול", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-
+                fireBase.child("comp").setValue("");
             }
         });
 
@@ -79,6 +85,6 @@ public class CompWait extends AppCompatDialogFragment {
         tree.LessonType = "comp";
         MainActivity.id = id;
         MainActivity.name = "comp";
-        startActivity(new Intent(getContext(), MainActivity.class));
+        startActivity(new Intent(getActivity(), MainActivity.class));
     }
 }
