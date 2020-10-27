@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -37,6 +38,8 @@ public class FriendProfile extends AppCompatActivity {
     HashMap old_friends;
     public static String friendUsername;
     private GoogleSignInClient mGoogleSignInClient;
+    public static boolean nonShared = false;
+    String oGeld;
     FirebaseAuth mAuth;
     Button backToTree;
     TextView setStreak;
@@ -44,6 +47,11 @@ public class FriendProfile extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_friend_profile);
+        if (nonShared){
+            Toast.makeText(FriendProfile.this, "לך ולמשתמש/ת שהזמנת לתחרות אין מספיק שיעורים משותפים",
+                    Toast.LENGTH_LONG).show();
+            nonShared = false;
+        }
         mAuth = FirebaseAuth.getInstance();
         profImg = (ImageView) findViewById(R.id.imageView2);
         setName = (TextView) findViewById(R.id.set_name);
@@ -68,6 +76,7 @@ public class FriendProfile extends AppCompatActivity {
 
                 setName.setText(value.get("name"));
                 friendUsername = value.get("name");
+                oGeld = value.get("geld");
                 String streak = String.valueOf(value.get("streak"));
                 setStreak.setText(String.valueOf(streak));
                 String friends = mainScreen.friends;
@@ -113,25 +122,40 @@ public class FriendProfile extends AppCompatActivity {
         inv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FirebaseDatabase database = FirebaseDatabase.getInstance();
+                Log.d("c", String.valueOf(mainScreen.Geld));
+                Log.d("c", String.valueOf(oGeld));
+                if (mainScreen.Geld>=4 && Integer.parseInt(oGeld)>=4) {
+                    FirebaseDatabase database = FirebaseDatabase.getInstance();
 
-                DatabaseReference myRef = database.getReference("Users");
-                DatabaseReference fireBase = myRef.child(Search.selected);
-                mainScreen.userId = Search.selected;
-                fireBase.child("comp").setValue(ReadWrite.read(FriendProfile.this.getFilesDir() + File.separator + "user"));
-                fireBase.child("comp_time").setValue(String.valueOf(System.currentTimeMillis()));
-                inv.setText("ממתין לאישור");
-                try {
-                    Thread.sleep(500);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
+                    DatabaseReference myRef = database.getReference("Users");
+                    DatabaseReference fireBase = myRef.child(Search.selected);
+                    mainScreen.userId = Search.selected;
+                    fireBase.child("comp").setValue(ReadWrite.read(FriendProfile.this.getFilesDir() + File.separator + "user"));
+                    fireBase.child("comp_time").setValue(String.valueOf(System.currentTimeMillis()));
+                    inv.setText("ממתין לאישור");
+                    try {
+                        Thread.sleep(500);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+
+                    CompWait dialogBack = new CompWait();
+                    FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+                    ft.add(dialogBack, "snooze_dialog");
+                    ft.commitAllowingStateLoss();
                 }
-
-                CompWait dialogBack = new CompWait();
-                FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-                ft.add(dialogBack, "snooze_dialog");
-                ft.commitAllowingStateLoss();
-
+                else if (mainScreen.Geld>=4){
+                    Toast.makeText(FriendProfile.this, "למשתמש/ת שהוזמן לתחרות אין מספיק מטבעות קודלי בשביל להשתתף בה",
+                            Toast.LENGTH_LONG).show();
+                }
+                else if (Integer.parseInt(oGeld)>=4){
+                    Toast.makeText(FriendProfile.this, "אין לך מספיק מטבעות קודלי בשביל להתחיל תחרות",
+                            Toast.LENGTH_LONG).show();
+                }
+                else {
+                    Toast.makeText(FriendProfile.this, "לך ולמשתמש/ת השני שהוזמן לתחרות אין מספיק מטבעות קודלי בשביל להשתתף בה",
+                            Toast.LENGTH_LONG).show();
+                }
             }
         });
 
@@ -151,5 +175,9 @@ public class FriendProfile extends AppCompatActivity {
         } else {
             //Toast.makeText(profile_Activity.this, "Logged In", Toast.LENGTH_SHORT).show();
         }
+    }
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(FriendProfile.this, mainScreen.class));
     }
 }

@@ -44,7 +44,6 @@ public class tree extends AppCompatActivity {
     CountDownTimer mcountdown;
     public static String loadAgain = "";
     public static String[] practiceID;
-    public static String LessonType;
     HashMap <String, String> date;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -107,7 +106,7 @@ public class tree extends AppCompatActivity {
         skill1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startLesson(Arrays.asList("1-1-2~הקוד הראשון שלי", "1-1-1~מבוא לפייתון"), Arrays.asList(""));
+                startLesson(Arrays.asList("1-1-2~הקוד הראשון שלי", "1-4-2~רשימות"), Arrays.asList(""));
             } //savta
         });
         skill2.setOnClickListener(new View.OnClickListener() {
@@ -141,7 +140,7 @@ public class tree extends AppCompatActivity {
             String old_progress = mainScreen.progress;
             idShare = new ArrayList();
             namesShare = new ArrayList();
-            LessonType = "";
+            mainScreen.LessonType = "";
             for (String i : id) {
                 idShare.add(i.split("~")[0]);
                 namesShare.add(i.split("~")[1]);
@@ -185,7 +184,7 @@ public class tree extends AppCompatActivity {
         return ret;
     }
     void startPractice(String[] id) {
-        LessonType = "practice";
+        mainScreen.LessonType = "practice";
         MainActivity.id = "prac";
         MainActivity.name = "";
         practiceID = id;

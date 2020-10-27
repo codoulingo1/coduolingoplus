@@ -37,6 +37,11 @@ public class CompWait extends AppCompatDialogFragment {
         setCancelable(false);
         DatabaseReference myRef = database.getReference("Users");
         DatabaseReference fireBase = myRef.child(Search.selected);
+        DatabaseReference myRef2 = database.getReference("Users");
+        DatabaseReference user2 = myRef2.child(ReadWrite.read(getActivity().getFilesDir() + File.separator + "user"));
+        int GeldToGive = 4;
+        mainScreen.Geld -= GeldToGive;
+        user2.child("geld").setValue(mainScreen.Geld);
         mainScreen.userId = Search.selected;
         fireBase.child("comp").setValue(ReadWrite.read(getActivity().getFilesDir() + File.separator + "user"));
         fireBase.child("comp_time").setValue(String.valueOf(System.currentTimeMillis()));
@@ -50,10 +55,13 @@ public class CompWait extends AppCompatDialogFragment {
                 // This method is called once with the initial value and again
                 // whenever data at this location is uploaded
 
-                if (!dataSnapshot.getValue().equals("")){
+                if (!dataSnapshot.getValue().equals("") && !dataSnapshot.getValue().equals("nonShared")){
                     String sel = dataSnapshot.getValue().toString();
                     myRef_start.setValue("");
                     startComp(sel);
+                }if (dataSnapshot.getValue().equals("nonShared")){
+                    FriendProfile.nonShared = true;
+                    startActivity(new Intent(getActivity(), FriendProfile.class));
                 }
 
 
@@ -82,9 +90,9 @@ public class CompWait extends AppCompatDialogFragment {
     }
 
     void startComp(String id) {
-        tree.LessonType = "comp";
+        mainScreen.LessonType = "comp";
         MainActivity.id = id;
         MainActivity.name = "comp";
-        startActivity(new Intent(getActivity(), MainActivity.class));
+        startActivity(new Intent(getContext(), MainActivity.class));
     }
 }

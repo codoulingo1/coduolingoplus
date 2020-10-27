@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
                 break;
             }
         }
-        if(tree.LessonType.equals("practice")){
+        if(mainScreen.LessonType.equals("practice")){
             DownloadReadlessons.downloadPractice(tree.practiceID, 8, MainActivity.this, new DownloadReadlessons.MyCallback() {
                 @Override
                 public void onCallback(String value) {
@@ -77,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
                     startActivity(new Intent(MainActivity.this, LessonActivity.class));
                 }
             });
-        }else if (tree.LessonType.equals("comp")){
+        }else if (mainScreen.LessonType.equals("comp")){
             Log.d("MainActivity", id + name);
             DownloadReadlessons.downloadcomp(id, MainActivity.this, new DownloadReadlessons.MyCallback() {
                 @Override

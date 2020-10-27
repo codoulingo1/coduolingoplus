@@ -221,20 +221,18 @@ public class finalLesson extends AppCompatActivity {
                     FirebaseDatabase database = FirebaseDatabase.getInstance();//
                     DatabaseReference myRef = database.getReference("Users");
                     DatabaseReference user = myRef.child(ReadWrite.read(finalLesson.this.getFilesDir() + File.separator + "user"));
-                    Log.d("lessonType", tree.LessonType);
-                    if (tree.LessonType.contains("comp")) {
+                    Log.d("lessonType", mainScreen.LessonType);
+                    if (mainScreen.LessonType.equals("comp")) {
                         DatabaseReference user_2 = myRef.child(mainScreen.userId);
                         Log.d("lessonType", "true");
                         user_2.child("comp_w").setValue("l");
-                        Random random = new Random();
-                        int GeldToGive = random.nextInt(2) + 1;
+                        int GeldToGive = 4;
                         mainScreen.Geld += GeldToGive * 2;
                         int currentGeld = Integer.parseInt(value.get("geld"));
-                        int newGeld = currentGeld + GeldToGive * 2;
-                        myRef.child("geld").setValue(newGeld);
+                        int newGeld = currentGeld +( GeldToGive * 2);
+                        user.child("geld").setValue(newGeld);
                         LessonActivity.shared_xp2 = LessonActivity.shared_xp2 * 2;
                     }
-                    //put xp thing here
                     if (!Boolean.parseBoolean(value.get("hasDoneLesson"))){
                         user.child("hasDoneLesson").setValue(true);
                         user.child("streak").setValue(String.valueOf(Integer.parseInt(mainScreen.streak) + 1));
