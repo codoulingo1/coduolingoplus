@@ -29,6 +29,7 @@ import com.google.firebase.iid.InstanceIdResult;
 import com.google.firebase.messaging.FirebaseMessaging;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.HashMap;
@@ -50,6 +51,7 @@ public class mainScreen extends AppCompatActivity {
     public static String friends;
     public static String progress;
     FirebaseAuth mAuth;
+    public static String LessonType;
     public static TextView geldView;
     public static Fragment selectedFragment = null;
     ImageButton settingsButton;
@@ -167,6 +169,7 @@ public class mainScreen extends AppCompatActivity {
                                     DownloadReadlessons.get_last_lesson2(userId, new DownloadReadlessons.HashCallback() {
                                         @Override
                                         public void onCallback(HashMap<String, String> value) {
+                                            List<String> compL = Arrays.asList("1-1-2", "2-1-1");
                                             String progress_2 = value.get("cProgress");
                                             invName = value.get("name");
                                             int sel_num = 0;
@@ -175,7 +178,7 @@ public class mainScreen extends AppCompatActivity {
                                             }catch (Exception e){
                                                 Log.d("error", e.getLocalizedMessage());
                                             }
-                                            while (!Arrays.asList(progress_2.split(",|\\~")).contains(sel)) {
+                                            while (!Arrays.asList(progress_2.split(",|\\~")).contains(sel) | !compL.contains(sel)) {
                                                 sel_num++;
                                                 try {
                                                     sel = progress.split(",")[new Random().nextInt(progress.split(",").length)].split("~")[0];
@@ -194,6 +197,10 @@ public class mainScreen extends AppCompatActivity {
                                                 FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
                                                 ft.add(dialogBack, "snooze_dialog");
                                                 ft.commitAllowingStateLoss();
+                                            } else{
+                                                FirebaseDatabase database1 = FirebaseDatabase.getInstance();
+                                                DatabaseReference myRef2 = database1.getReference("Users").child(mainScreen.userId);
+                                                myRef2.child("start_comp").setValue("nonShared");
                                             }
                                             //DatabaseReference myRef2 = database1.getReference("Users").child(userId);
                                             //myRef2.child("start_comp").setValue(sel);
@@ -334,7 +341,7 @@ public class mainScreen extends AppCompatActivity {
         }
     }
     void startComp(String id) {
-        tree.LessonType = "comp";
+        LessonType = "comp";
         MainActivity.id = id;
         MainActivity.name = "comp";
         startActivity(new Intent(mainScreen.this, MainActivity.class));

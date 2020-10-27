@@ -59,6 +59,7 @@ public class DownloadReadlessons {
                 String folder_main = dataSnapshot.child("LessonID").getValue(String.class) + dataSnapshot.child("LessonName").getValue(String.class);
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
+                try{
                 for (DataSnapshot snap : dataSnapshot.getChildren()) {
                     if (snap.getValue(String.class).length() != 0) {
                         Log.d(folder_main + snap.getKey(), "Value is: " + snap.getKey() + "    " + snap.getValue(String.class));
@@ -74,6 +75,9 @@ public class DownloadReadlessons {
                         }
                         ReadWrite.write(c.getFilesDir() + "/id/" + folder_main + snap.getKey(), snap.getValue(String.class));
                     }
+                }
+                }catch (Exception e){
+
                 }
                 m.onCallback("done");
                 //done.set(true);

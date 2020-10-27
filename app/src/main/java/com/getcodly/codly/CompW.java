@@ -46,7 +46,7 @@ public class CompW extends AppCompatActivity {
         });
     }
     void startComp(String id) {
-        tree.LessonType = "comp";
+        mainScreen.LessonType = "comp";
         MainActivity.id = id;
         MainActivity.name = "comp";
         startActivity(new Intent(CompW.this, MainActivity.class));

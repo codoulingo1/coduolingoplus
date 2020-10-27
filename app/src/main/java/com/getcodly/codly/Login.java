@@ -199,10 +199,10 @@ public class Login extends AppCompatActivity {
                 user.child("phoneNum").setValue("");
                 user.child("lastLessonD").child("year").setValue(0);
                 user.child("lastLessonD").child("date").setValue(0);
-                user.child("streak").setValue(1);
+                user.child("streak").setValue(0);
                 user.child("streak freeze").setValue("false");
                 user.child("xp").setValue(0);
-                user.child("progress").setValue("");
+                user.child("progress").setValue(Text.getRandomString(5) + ",");
                 user.child("start_comp").setValue("");
                 user.child("hasDoneLesson").setValue(false);
                 user.child("comp_w").setValue("");

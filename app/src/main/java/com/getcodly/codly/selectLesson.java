@@ -55,7 +55,7 @@ public class selectLesson extends AppCompatActivity {
                     }
                 }
                 try {
-                    tree.LessonType = "practice";
+                    mainScreen.LessonType = "practice";
                     MainActivity.id = "prac";
                     MainActivity.name = "";
                     tree.practiceID = (String[]) fin.toArray(new String[0]);

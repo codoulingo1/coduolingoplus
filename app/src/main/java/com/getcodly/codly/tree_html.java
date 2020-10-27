@@ -114,7 +114,7 @@ public class tree_html extends AppCompatActivity {
             String old_progress = mainScreen.progress;
             tree.idShare = new ArrayList();
             tree.namesShare = new ArrayList();
-            tree.LessonType = "";
+            mainScreen.LessonType = "";
             for (String i : id) {
                 tree.idShare.add(i.split("~")[0]);
                 tree.namesShare.add(i.split("~")[1]);

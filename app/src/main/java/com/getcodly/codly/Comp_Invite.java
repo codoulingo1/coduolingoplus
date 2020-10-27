@@ -14,6 +14,8 @@ import android.widget.TextView;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.io.File;
+
 import androidx.appcompat.app.AppCompatDialogFragment;
 
 public class Comp_Invite extends AppCompatDialogFragment {
@@ -36,12 +38,22 @@ public class Comp_Invite extends AppCompatDialogFragment {
             public void onClick(DialogInterface dialog, int which) {
                 FirebaseDatabase database1 = FirebaseDatabase.getInstance();
                 DatabaseReference myRef2 = database1.getReference("Users").child(mainScreen.userId);
+                DatabaseReference myRef3 = database1.getReference("Users");
+                DatabaseReference user2 = myRef3.child(ReadWrite.read(getActivity().getFilesDir() + File.separator + "user"));
                 myRef2.child("start_comp").setValue(mainScreen.sel);
-                tree.LessonType = "comp";
+                mainScreen.LessonType = "comp";
+                int GeldToGive = 4;
+                mainScreen.Geld -= GeldToGive;
+                user2.child("geld").setValue(mainScreen.Geld);
                 mainScreen.w = "comp";
                 MainActivity.id = mainScreen.sel;
                 MainActivity.name = "comp";
-                Log.d("MainActivity.name", MainActivity.name);
+                Log.d("MainActivity.name", mainScreen.sel);
+                try {
+                    Thread.sleep(500);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
                 startActivity(new Intent(getContext(), MainActivity.class));
             }
         });

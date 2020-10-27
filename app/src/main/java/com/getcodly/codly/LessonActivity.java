@@ -112,7 +112,12 @@ public class LessonActivity extends AppCompatActivity {
         }
         else if(hashMap.get("type").equals("explain")){
             Log.d("finished", "finished2");
-            startActivity(new Intent(LessonActivity.this, ExplainationQS.class));
+            if (mainScreen.LessonType.equals("comp")){
+                LessonActivity.j = LessonActivity.j + 1;
+                startActivity(new Intent(LessonActivity.this, LessonActivity.class));
+            }else {
+                startActivity(new Intent(LessonActivity.this, ExplainationQS.class));
+            }
             overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
         }
         else if(hashMap.get("type").equals("nonfreetext")){
@@ -137,8 +142,14 @@ public class LessonActivity extends AppCompatActivity {
         }
         else if(hashMap.get("type").equals("runpy") || hashMap.get("type").equals("showpy")){
             Log.d("finished", "finished7");
-            startActivity(new Intent(LessonActivity.this, runQs.class));
-            overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
+            if (mainScreen.LessonType.equals("comp")){
+                LessonActivity.j = LessonActivity.j + 1;
+                startActivity(new Intent(LessonActivity.this, LessonActivity.class));
+            }
+            else {
+                startActivity(new Intent(LessonActivity.this, runQs.class));
+                overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
+            }
         }
         else if(hashMap.get("type").equals("testpy")){
             Log.d("finished", "finished8");
