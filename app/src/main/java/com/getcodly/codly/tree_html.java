@@ -46,11 +46,13 @@ public class tree_html extends AppCompatActivity {
         skill2 = findViewById(R.id.skill16);
         skill3 = findViewById(R.id.skill17);
         skill4 = findViewById(R.id.skill18);
+        skill5 = findViewById(R.id.skill19);
 
         LessonStart1 = findViewById(R.id.lessonStartHtml1);
         LessonStart2 = findViewById(R.id.lessonStartHtml2);
         LessonStart3 = findViewById(R.id.lessonStartHtml3);
         LessonStart4 = findViewById(R.id.lessonStartHtml4);
+        LessonStart5 = findViewById(R.id.lessonStartHtml5);
 
 
         checkIfGreen();
@@ -78,7 +80,13 @@ public class tree_html extends AppCompatActivity {
         skill4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startLesson(Arrays.asList("2-4-1~תגיות מתקדמות"), Arrays.asList("2-3-2"));
+                startLesson(Arrays.asList("2-4-2~תמונות", "2-4-1~תגיות מתקדמות"), Arrays.asList("2-3-2"));
+            }
+        });
+        skill5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startLesson(Arrays.asList("2-5-1~כפתורים"), Arrays.asList("2-4-2"));
             }
         });
     }
@@ -102,11 +110,17 @@ public class tree_html extends AppCompatActivity {
         if (ifHfinished(Arrays.asList("2-3-1", "2-3-2"), Arrays.asList("2-2-1"))){
             LessonStart3.setImageResource(R.drawable.lesson_circle_lvl0);
         }
-        if (ifLfinished(Arrays.asList("2-4-1"))){
+        if (ifLfinished(Arrays.asList("2-4-1", "2-4-2"))){
             LessonStart4.setImageResource(R.drawable.lesson_circle_lvl2);
         }
-        if (ifHfinished(Arrays.asList("2-4-1"), Arrays.asList("2-3-2"))){
+        if (ifHfinished(Arrays.asList("2-4-1", "2-4-2"), Arrays.asList("2-3-2"))){
             LessonStart4.setImageResource(R.drawable.lesson_circle_lvl0);
+        }
+        if (ifLfinished(Arrays.asList("2-5-1"))){
+            LessonStart5.setImageResource(R.drawable.lesson_circle_lvl2);
+        }
+        if (ifHfinished(Arrays.asList("2-5-1"), Arrays.asList("2-4-2"))){
+            LessonStart5.setImageResource(R.drawable.lesson_circle_lvl0);
         }
     }
     void startLesson(List<String> id, List<String> id_alt) {

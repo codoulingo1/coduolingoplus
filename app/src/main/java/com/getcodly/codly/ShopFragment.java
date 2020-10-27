@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -67,6 +68,7 @@ public class ShopFragment extends Fragment {
                                 mainScreen.geldView.setText(String.valueOf(mainScreen.Geld));
                             } else {
                                 //Not enough geld
+                                Toast.makeText(getActivity(), "אין מספיק מטבעות כדי לקנות", Toast.LENGTH_SHORT);
                             }
                         } else{
                             //Already has a streak freeze equipped

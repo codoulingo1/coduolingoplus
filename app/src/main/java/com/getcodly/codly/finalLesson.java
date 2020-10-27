@@ -242,7 +242,7 @@ public class finalLesson extends AppCompatActivity {
                     List<String> str_old_progress = Arrays.asList(old_progress.split(",|\\~"));
                     if (!str_old_progress.contains(MainActivity.id)) {
                         user.child("progress").setValue(old_progress + "," + MainActivity.id + "~" + MainActivity.name);
-                        mainScreen.progress = old_progress + "," + MainActivity.id + "~" + MainActivity.name;
+                        mainScreen.progress = old_progress + MainActivity.id + "~" + MainActivity.name + ",";
                     }
 
                     finishLsnBtn.setVisibility(View.VISIBLE);

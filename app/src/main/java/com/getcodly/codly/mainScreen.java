@@ -169,7 +169,7 @@ public class mainScreen extends AppCompatActivity {
                                     DownloadReadlessons.get_last_lesson2(userId, new DownloadReadlessons.HashCallback() {
                                         @Override
                                         public void onCallback(HashMap<String, String> value) {
-                                            List<String> compL = Arrays.asList("1-1-2", "2-1-1");
+                                            List<String> compL = Arrays.asList("2-3-2", "2-1-2", "1-3-2", "1-2-3");
                                             String progress_2 = value.get("cProgress");
                                             invName = value.get("name");
                                             int sel_num = 0;
