@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import com.chaquo.python.Python;
 import com.chaquo.python.android.AndroidPlatform;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -23,6 +24,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.iid.InstanceIdResult;
 import com.google.firebase.messaging.FirebaseMessaging;
 
 import java.io.File;
@@ -57,6 +60,7 @@ public class mainScreen extends AppCompatActivity {
     public static int user_xp;
     public static int courseProgressPython = 0;
     public static int courseProgressWeb = 0;
+    private DatabaseReference mDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +69,22 @@ public class mainScreen extends AppCompatActivity {
 
         courseProgressWeb = 0;
         courseProgressPython = 0;
+
+        database1 = FirebaseDatabase.getInstance();
+        myRef1 = database1.getReference("Users").child(ReadWrite.read(mainScreen.this.getFilesDir() + File.separator + "user"));
+
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+
+        FirebaseInstanceId.getInstance().getInstanceId().addOnSuccessListener(mainScreen.this,  new OnSuccessListener<InstanceIdResult>() {
+            @Override
+            public void onSuccess(InstanceIdResult instanceIdResult) {
+                String newToken = instanceIdResult.getToken();
+                Log.e("newToken", newToken);
+                myRef1.child("token").setValue(newToken);
+
+            }
+        });
+
 
         FirebaseMessaging.getInstance().subscribeToTopic("pushNotifications");
 
@@ -81,8 +101,7 @@ public class mainScreen extends AppCompatActivity {
 
 
 
-        database1 = FirebaseDatabase.getInstance();
-        myRef1 = database1.getReference("Users").child(ReadWrite.read(mainScreen.this.getFilesDir() + File.separator + "user"));
+
 
         settingsButton.setOnClickListener(new View.OnClickListener() {
             @Override

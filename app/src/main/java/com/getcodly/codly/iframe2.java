@@ -118,4 +118,10 @@ public class iframe2 extends AppCompatActivity {
         SaveDialog saveDialog = new SaveDialog();
         saveDialog.show(getSupportFragmentManager(), "save dialog");
     }
+
+    @Override
+    public void onBackPressed() {
+        backDialogIframe backDialogIframe2 = new backDialogIframe();
+        backDialogIframe2.show(getSupportFragmentManager(), "Example Dialog");
+    }
 }
