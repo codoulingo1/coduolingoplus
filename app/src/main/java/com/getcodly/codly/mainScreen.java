@@ -82,7 +82,7 @@ public class mainScreen extends AppCompatActivity {
             public void onSuccess(InstanceIdResult instanceIdResult) {
                 String newToken = instanceIdResult.getToken();
                 Log.e("newToken", newToken);
-                myRef1.child("token").setValue(newToken);
+                myRef1.child("token").setValue(newToken); //hi
 
             }
         });
