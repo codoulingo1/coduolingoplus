@@ -47,6 +47,8 @@ public class mainScreen extends AppCompatActivity {
     public static String name;
     public static String userId = "";
     public static String sel;
+    public static int pyXp;
+    public static int htmlXp;
     public static String img;
     public static String friends;
     public static String progress;
@@ -149,6 +151,8 @@ public class mainScreen extends AppCompatActivity {
                 img = String.valueOf(value.get("img"));
                 friends = String.valueOf(value.get("friends"));
                 user_xp = Integer.parseInt(value.get("xp"));
+                pyXp =  Integer.parseInt(value.get("pyXp"));
+                htmlXp =  Integer.parseInt(value.get("htmlXp"));
                 try {
                     Geld = Integer.parseInt(value.get("geld"));
                 } catch (Exception e){
@@ -169,7 +173,7 @@ public class mainScreen extends AppCompatActivity {
                                     DownloadReadlessons.get_last_lesson2(userId, new DownloadReadlessons.HashCallback() {
                                         @Override
                                         public void onCallback(HashMap<String, String> value) {
-                                            List<String> compL = Arrays.asList("2-3-2", "2-1-2", "1-3-2", "1-2-3");
+                                            List<String> compL = Arrays.asList("2-3-2", "2-1-2", "1-3-2", "1-2-3", "1-4-2");
                                             String progress_2 = value.get("cProgress");
                                             invName = value.get("name");
                                             int sel_num = 0;

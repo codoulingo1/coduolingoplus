@@ -201,12 +201,12 @@ public class DownloadReadlessons {
             hashMap.put("type", arr[1]);
         }
         try {
-            hashMap.put("qs", arr[3].replace("\\n", System.getProperty("line.separator")));
+            hashMap.put("qs", arr[3].replace("\\n", System.getProperty("line.separator")).replaceAll("aaa", "[").replaceAll("bbb", "]"));
         } catch (Exception e) {
             hashMap.put("qs", arr[3]);
         }
         try {
-            hashMap.put("Content", arr[5].replace("\\n", System.getProperty("line.separator")));
+            hashMap.put("Content", arr[5].replace("\\n", System.getProperty("line.separator")).replaceAll("aaa", "[").replaceAll("bbb", "]"));
         } catch (Exception e) {
             hashMap.put("Content", arr[5]);
         }
@@ -216,12 +216,12 @@ public class DownloadReadlessons {
             hashMap.put("Image", arr[7]);
         }
         try {
-            hashMap.put("Answer", arr[9].replace("\\n", System.getProperty("line.separator")));
+            hashMap.put("Answer", arr[9].replace("\\n", System.getProperty("line.separator")).replaceAll("aaa", "[").replaceAll("bbb", "]"));
         } catch (Exception e) {
             hashMap.put("Answer", arr[9]);
         }
         try {
-            hashMap.put("additional", arr[11].replace("\\n", System.getProperty("line.separator")));
+            hashMap.put("additional", arr[11].replace("\\n", System.getProperty("line.separator")).replaceAll("aaa", "[").replaceAll("bbb", "]"));
         } catch (Exception e) {
             hashMap.put("additional", arr[11]);
         }
@@ -285,6 +285,8 @@ public class DownloadReadlessons {
                     ret.put("date", dataSnapshot.child("lastLessonD").child("date").getValue().toString());
                     ret.put("cProgress", dataSnapshot.child("progress").getValue().toString());//2
                     ret.put("xp", dataSnapshot.child("xp").getValue().toString());
+                    ret.put("pyXp", dataSnapshot.child("pyXp").getValue().toString());
+                    ret.put("htmlXp", dataSnapshot.child("htmlXp").getValue().toString());
                     ret.put("name", dataSnapshot.child("name").getValue().toString());
                     ret.put("img", dataSnapshot.child("imgUrl").getValue().toString());
                     ret.put("email", dataSnapshot.child("email").getValue().toString());
@@ -298,6 +300,8 @@ public class DownloadReadlessons {
                     ret.put("date", "0");
                     ret.put("cProgress", "0");//2
                     ret.put("xp", "0");
+                    ret.put("pyXp", "0");
+                    ret.put("htmlXp", "0");
                     ret.put("name", "0");
                     ret.put("img", "0");
                     ret.put("email", "0");

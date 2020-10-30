@@ -202,6 +202,8 @@ public class Login extends AppCompatActivity {
                 user.child("streak").setValue(0);
                 user.child("streak freeze").setValue("false");
                 user.child("xp").setValue(0);
+                user.child("pyXp").setValue(0);
+                user.child("htmlXp").setValue(0);
                 user.child("progress").setValue(Text.getRandomString(5) + ",");
                 user.child("start_comp").setValue("");
                 user.child("hasDoneLesson").setValue(false);

@@ -161,6 +161,8 @@ public class finalLesson extends AppCompatActivity {
                     //int month = Integer.parseInt(value.get("month"));
                     int day = Integer.parseInt(value.get("date"));
                     int xp = (int) Double.parseDouble(value.get("xp"));
+                    int pyXp = (int) Double.parseDouble(value.get("pyXp"));
+                    int htmlXp = (int) Double.parseDouble(value.get("htmlXp"));
                     String old_progress = String.valueOf(mainScreen.progress);
                     Calendar calendar = Calendar.getInstance();
 
@@ -239,6 +241,14 @@ public class finalLesson extends AppCompatActivity {
                         mainScreen.streak = String.valueOf(Integer.parseInt(mainScreen.streak) + 1);
                     }
                     user.child("xp").setValue(xp + LessonActivity.shared_xp2);
+                    if (mainScreen.w.equals("py")){
+                        user.child("pyXp").setValue(pyXp + LessonActivity.shared_xp2);
+                        mainScreen.pyXp = pyXp + LessonActivity.shared_xp2;
+                    }
+                    else if (mainScreen.w.equals("html")){
+                        user.child("htmlXp").setValue(htmlXp + LessonActivity.shared_xp2);
+                        mainScreen.htmlXp = htmlXp + LessonActivity.shared_xp2;
+                    }
                     List<String> str_old_progress = Arrays.asList(old_progress.split(",|\\~"));
                     if (!str_old_progress.contains(MainActivity.id)) {
                         user.child("progress").setValue(old_progress + "," + MainActivity.id + "~" + MainActivity.name);

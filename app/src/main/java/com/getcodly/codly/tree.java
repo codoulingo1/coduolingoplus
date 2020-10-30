@@ -91,10 +91,10 @@ public class tree extends AppCompatActivity {
         if (ifHfinished(Arrays.asList("1-3-1", "1-3-2"), Arrays.asList("1-2-3"))){
             LessonStart3.setImageResource(R.drawable.lesson_circle_lvl0);
         }
-        if (ifLfinished(Arrays.asList("1-5-1"))){
+        if (ifLfinished(Arrays.asList("1-5-1", "1-5-2"))){
             LessonStart4.setImageResource(R.drawable.lesson_circle_lvl2);
         }
-        if (ifHfinished(Arrays.asList("1-5-1"), Arrays.asList("1-3-2"))){
+        if (ifHfinished(Arrays.asList("1-5-1", "1-5-2"), Arrays.asList("1-3-2"))){
             LessonStart4.setImageResource(R.drawable.lesson_circle_lvl0);
         }
         if (ifLfinished(Arrays.asList("1-4-1"))){
@@ -124,7 +124,7 @@ public class tree extends AppCompatActivity {
         skill4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startLesson(Arrays.asList("1-5-1~לולאת while"), Arrays.asList("1-3-2"));
+                startLesson(Arrays.asList("1-4-2~רשימות", "1-5-1~לולאת while"), Arrays.asList("1-3-2"));
             } //savta
         });
         skill5.setOnClickListener(new View.OnClickListener() {

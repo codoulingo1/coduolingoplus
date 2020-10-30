@@ -62,11 +62,11 @@ public class profileFragment extends Fragment {
     TextView setStreak;
     public static HashMap<String, String> ret;
     private FriendsFragment friendsFragment;
-
     ProgressBar levelProgress;
     ViewPager viewPager;
     TabLayout tabLayout;
     TextView levelView;
+    TextView courseXp1;
     TextView xpView;
     TextView goalText;
     ProgressBar courseProgressbarWeb;
@@ -90,6 +90,7 @@ public class profileFragment extends Fragment {
         viewPager = v.findViewById(R.id.viewPager);
         levelView = v.findViewById(R.id.level);
         xpView = v.findViewById(R.id.xpCount);
+        courseXp1= v.findViewById(R.id.courseXpCountProfile1);
         goalText = v.findViewById(R.id.goalText);
         courseProgressbarWeb = v.findViewById(R.id.courseProgressWeb);
         percentageProgress1 = v.findViewById(R.id.percentageProgress1);
@@ -252,6 +253,7 @@ public class profileFragment extends Fragment {
 
     void courseProgress(){
         courseProgressbarWeb.setProgress(mainScreen.courseProgressWeb * 100 / 8);
+        courseXp1.setText(String.valueOf(mainScreen.htmlXp));
         percentageProgress1.setText(String.valueOf(mainScreen.courseProgressWeb * 100 / 8) + "%");
 
     }
