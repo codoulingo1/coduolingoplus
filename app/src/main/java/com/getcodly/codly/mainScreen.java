@@ -147,6 +147,7 @@ public class mainScreen extends AppCompatActivity {
                 setStreak.setText(streak);
                 progress = String.valueOf(value.get("cProgress"));
                 setCourseProgressWeb();
+                setProgressPython();
                 name = String.valueOf(value.get("name"));
                 img = String.valueOf(value.get("img"));
                 friends = String.valueOf(value.get("friends"));
@@ -359,5 +360,12 @@ public class mainScreen extends AppCompatActivity {
         }
 
         Log.d("progressCount", String.valueOf(courseProgressWeb));
+    }
+    void setProgressPython(){
+        for(String i : progress.split(",")){
+            if(i.startsWith("1")){
+                courseProgressPython++;
+            }
+        }
     }
 }

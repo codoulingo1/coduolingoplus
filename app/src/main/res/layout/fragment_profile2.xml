@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -141,6 +141,8 @@
 
         </RelativeLayout>
 
+
+
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -163,6 +165,78 @@
                 android:id="@+id/tabs">
 
             </com.google.android.material.tabs.TabLayout>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="110dp"
+            android:layout_below="@id/course1Profile"
+            android:layout_marginTop="10dp"
+            android:background="@color/white"
+            android:padding="10dp"
+            android:id="@+id/course2Profile">
+
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_centerVertical="true"
+                android:src="@drawable/ic_python"
+                android:layout_alignParentRight="true"
+                android:id="@+id/courseImageProfile2"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="פייתון למתחילים"
+                android:fontFamily="@font/rubik_medium"
+                android:textColor="#5A5A6E"
+                android:textSize="20dp"
+                android:layout_toLeftOf="@id/courseImageProfile2"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="10dp"
+                android:id="@+id/courseNameProfile2"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1000 XP"
+                android:fontFamily="@font/rubik_light"
+                android:textColor="#9B9B9B"
+                android:textSize="18dp"
+                android:layout_toLeftOf="@id/courseImageProfile2"
+                android:layout_below="@id/courseNameProfile2"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="5dp"
+                android:id="@+id/courseXpCountProfile2"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toLeftOf="@+id/courseImageProfile2"
+                android:text="32%"
+                android:fontFamily="@font/rubik_medium"
+                android:textColor="#5A5A6E"
+                android:textSize="15dp"
+                android:layout_below="@+id/courseXpCountProfile2"
+                android:id="@+id/percentageProgress2"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="15dp"/>
+
+            <ProgressBar
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="200dp"
+                android:layout_height="10dp"
+                android:layout_below="@+id/courseXpCountProfile2"
+                android:layout_toLeftOf="@id/percentageProgress2"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="10dp"
+                android:progressDrawable="@drawable/progress_xp"
+                android:progress="50"
+                android:scaleX="-1"
+                android:id="@+id/courseProgressPy1"/>
+
+
 
         </RelativeLayout>
 
@@ -230,4 +304,4 @@
 
 
     </RelativeLayout>
-</LinearLayout>
+</ScrollView>

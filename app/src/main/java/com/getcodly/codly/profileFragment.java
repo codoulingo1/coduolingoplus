@@ -67,11 +67,13 @@ public class profileFragment extends Fragment {
     TabLayout tabLayout;
     TextView levelView;
     TextView courseXp1;
+    TextView courseXp2;
     TextView xpView;
     TextView goalText;
     ProgressBar courseProgressbarWeb;
+    ProgressBar courseProgressbarPy;
     TextView percentageProgress1;
-
+    TextView percentageProgress2;
 
     @Nullable
     @Override
@@ -91,9 +93,13 @@ public class profileFragment extends Fragment {
         levelView = v.findViewById(R.id.level);
         xpView = v.findViewById(R.id.xpCount);
         courseXp1= v.findViewById(R.id.courseXpCountProfile1);
+        courseXp2 = v.findViewById(R.id.courseXpCountProfile2);
         goalText = v.findViewById(R.id.goalText);
         courseProgressbarWeb = v.findViewById(R.id.courseProgressWeb);
         percentageProgress1 = v.findViewById(R.id.percentageProgress1);
+        courseProgressbarPy = v.findViewById(R.id.courseProgressPy1);
+        percentageProgress2 = v.findViewById(R.id.percentageProgress2);
+
 
         setLevel();
         courseProgress();
@@ -255,6 +261,10 @@ public class profileFragment extends Fragment {
         courseProgressbarWeb.setProgress(mainScreen.courseProgressWeb * 100 / 8);
         courseXp1.setText(String.valueOf(mainScreen.htmlXp) + " XP");
         percentageProgress1.setText(String.valueOf(mainScreen.courseProgressWeb * 100 / 8) + "%");
+
+        courseProgressbarPy.setProgress(mainScreen.courseProgressPython * 100 / 10);
+        courseXp2.setText(String.valueOf(mainScreen.pyXp) + " XP");
+        percentageProgress2.setText(String.valueOf(mainScreen.courseProgressPython * 100 / 10) + "%");
 
     }
 }
