@@ -49,6 +49,7 @@ public class mainScreen extends AppCompatActivity {
     public static String sel;
     public static int pyXp;
     public static int htmlXp;
+    public static boolean isDownload = false;
     public static String img;
     public static String friends;
     public static String progress;
@@ -146,6 +147,7 @@ public class mainScreen extends AppCompatActivity {
                 streak = value.get("streak");
                 setStreak.setText(streak);
                 progress = String.valueOf(value.get("cProgress"));
+                isDownload = true;
                 setCourseProgressWeb();
                 setProgressPython();
                 name = String.valueOf(value.get("name"));

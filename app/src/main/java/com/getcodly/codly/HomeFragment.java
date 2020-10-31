@@ -2,6 +2,7 @@ package com.getcodly.codly;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,8 +11,10 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 
 import androidx.annotation.NonNull;
@@ -26,6 +29,7 @@ public class HomeFragment extends Fragment {
     ArrayList<String> pyC;
     ArrayList<String> htmlC;
     TextView t1;
+    String progress;
     TextView t2;
     View clickView1;
     View clickView2;
@@ -71,9 +75,59 @@ public class HomeFragment extends Fragment {
                 startActivity(intent);
             }
         });
+        HashMap <String, String> date = DownloadReadlessons.get_last_lesson2(ReadWrite.read(getActivity().getFilesDir() + File.separator + "user"), new DownloadReadlessons.HashCallback() {
+            @Override
+            public void onCallback(HashMap<String, String> value) {
+                progress = value.get("cProgress");
+                if (ifLfinished(Arrays.asList("1-4-2"))){
+                    t1.setText("שגיאות");
+                }
+                else if (ifLfinished(Arrays.asList("1-3-2"))){
+                    t1.setText("לולאות");
+                }
+                else if (ifLfinished(Arrays.asList("1-2-3"))){
+                    t1.setText("תנאים");
+                }
+                else if (ifLfinished(Arrays.asList("1-1-2"))){
+                    t1.setText("משתנים");
+                }
+                else{
+                    t1.setText("מבוא לפייתון");
+                }
+                if (ifLfinished(Arrays.asList("2-4-2"))){
+                    t2.setText("קלט");
+                }
+                else if (ifLfinished(Arrays.asList("2-3-2"))){
+                    t2.setText("תגיות מתקדמות");
+                }
+                else if (ifLfinished(Arrays.asList("2-2-1"))){
+                    t2.setText("יצירת אתר ראשון");
+                }
+                else if (ifLfinished(Arrays.asList("2-1-2"))){
+                    t2.setText("מבנה של אתר");
+                }
+                else{
+                    t2.setText("מבוא");
+                }
+
+            }
+        });
 
 
 
         return v;
+    }
+    boolean ifLfinished(List<String> id){
+        boolean ret = true;
+        for (String i : id){
+            Log.d("testyTestyTest", mainScreen.progress);
+            Log.d("testy2", i);
+            if (!progress.contains(i)) {
+                ret = false;
+                break;
+            }
+        }
+        Log.d(String.valueOf(ret), String.valueOf(ret));
+        return ret;
     }
 }
