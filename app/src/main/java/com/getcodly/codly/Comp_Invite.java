@@ -37,6 +37,7 @@ public class Comp_Invite extends AppCompatDialogFragment {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 FirebaseDatabase database1 = FirebaseDatabase.getInstance();
+                
                 DatabaseReference myRef2 = database1.getReference("Users").child(mainScreen.userId);
                 DatabaseReference myRef3 = database1.getReference("Users");
                 DatabaseReference user2 = myRef3.child(ReadWrite.read(getActivity().getFilesDir() + File.separator + "user"));

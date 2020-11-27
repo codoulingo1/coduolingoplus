@@ -25,6 +25,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.auth.AuthCredential;
@@ -34,6 +35,8 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.iid.InstanceIdResult;
 
 import java.io.File;
 import java.util.List;
@@ -204,6 +207,7 @@ public class Login extends AppCompatActivity {
                 user.child("xp").setValue(0);
                 user.child("pyXp").setValue(0);
                 user.child("htmlXp").setValue(0);
+                user.child("shabes").setValue("false");
                 user.child("progress").setValue(Text.getRandomString(5) + ",");
                 user.child("start_comp").setValue("");
                 user.child("hasDoneLesson").setValue(false);

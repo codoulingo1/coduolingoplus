@@ -118,6 +118,7 @@ public class sign_upActivity extends AppCompatActivity {
             fireBase.child("streak freeze").setValue("false");
             fireBase.child("progress").setValue(Text.getRandomString(5) + ",");
             fireBase.child("start_comp").setValue("");
+            fireBase.child("shabes").setValue("false");
             fireBase.child("hasDoneLesson").setValue(false);
             fireBase.child("comp_w").setValue("");
             fireBase.child("comp").setValue("");
