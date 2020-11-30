@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <EditText
+        <MultiAutoCompleteTextView
             android:id="@+id/inputHTML"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

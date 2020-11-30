@@ -8,16 +8,20 @@ import android.graphics.Typeface;
 import android.graphics.drawable.AnimatedVectorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.text.Editable;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
+import android.text.TextWatcher;
 import android.text.style.StyleSpan;
 import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.MultiAutoCompleteTextView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -36,8 +40,9 @@ public class TestPy extends AppCompatActivity {
     ImageButton continueBtn11;
     Button showAnswer;
     private AnimatedVectorDrawable animation;
+    String[] language ={"print(", "range(", "for", "if", "while", "type(", "try", "except", "dict(", "int(", "str(", "float("};
     TextView out;
-    EditText inp;
+    MultiAutoCompleteTextView inp;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,7 +57,32 @@ public class TestPy extends AppCompatActivity {
         pb.setProgress(LessonActivity.pr);
         submit = (ImageButton) findViewById(R.id.button);
         qs = (TextView) findViewById(R.id.textView);
-        inp = (EditText) findViewById(R.id.inp);
+        inp = (MultiAutoCompleteTextView) findViewById(R.id.inp);
+        inp.setFocusableInTouchMode(true);
+        inp.requestFocus();
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>
+                (TestPy.this,android.R.layout.select_dialog_item, language);
+
+        inp.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                int loc = inp.getSelectionStart();
+                Log.d(String.valueOf(loc), String.valueOf(loc));
+                inp.setThreshold(1);//will start working from first character
+                inp.setAdapter(adapter);//setting the adapter data into the AutoCompleteTextView
+                inp.setTokenizer(new KcsMultiAutoCompleteTextView(' '));
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
         out = (TextView) findViewById(R.id.HtmlView2);
         Log.d("finished", "freetext");
         SpannableStringBuilder builder=new SpannableStringBuilder();

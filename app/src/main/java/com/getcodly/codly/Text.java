@@ -253,4 +253,11 @@ public class Text {
         }
         return eq;
     }
+    public static int adNum(String text){
+        int ret = 1;
+        for (String i : text.split(" ")){
+            ret = ret + i.length() + 1;
+        }
+        return ret;
+    }
 }

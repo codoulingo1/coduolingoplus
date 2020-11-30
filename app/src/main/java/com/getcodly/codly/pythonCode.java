@@ -20,9 +20,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.MultiAutoCompleteTextView;
 
 import com.google.android.material.tabs.TabLayout;
 
@@ -32,12 +34,13 @@ import java.util.Locale;
 public class pythonCode extends Fragment {
     public static String pythonCode = "";
     ImageButton submitBtn;
-    public static EditText htmlInp;
+    public static MultiAutoCompleteTextView htmlInp;
     Button help1;
     Button help2;
     Button help3;
     ViewPager mViewPager;
     TabLayout tabsHost;
+    String[] language ={"print(", "range(", "for", "if", "while", "type(", "try", "except", "dict(", "int(", "str(", "float("};
     public static boolean run;
 
     private AnimatedVectorDrawable animation;
@@ -51,7 +54,32 @@ public class pythonCode extends Fragment {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_python_code, container, false);
         submitBtn = (ImageButton) v.findViewById(R.id.submitHTML);
-        htmlInp = (EditText) v.findViewById(R.id.inputHTML);
+        htmlInp = (MultiAutoCompleteTextView) v.findViewById(R.id.inputHTML);
+        htmlInp.setFocusableInTouchMode(true);
+        htmlInp.requestFocus();
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>
+                (getContext(),android.R.layout.select_dialog_item, language);
+
+        htmlInp.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                int loc = htmlInp.getSelectionStart();
+                Log.d(String.valueOf(loc), String.valueOf(loc));
+                htmlInp.setThreshold(1);//will start working from first character
+                htmlInp.setAdapter(adapter);//setting the adapter data into the AutoCompleteTextView
+                htmlInp.setTokenizer(new KcsMultiAutoCompleteTextView(' '));
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
         help1 = (Button) v.findViewById(R.id.help1);
         help2 = (Button) v.findViewById(R.id.help2);
         help3 = (Button) v.findViewById(R.id.help3);
