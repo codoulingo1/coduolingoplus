@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -34,6 +35,12 @@ public class HomeFragment extends Fragment {
     View clickView1;
     View clickView2;
     Button toProjects;
+    int courseProgressWeb1 = 0;
+    int courseProgressPy1 = 0;
+    ProgressBar courseProgressWebHome;
+    ProgressBar courseProgressPyHome;
+    TextView courseProgressPercentageWebHome;
+    TextView courseProgressPercentagePyHome;
 
     @Nullable
     @Override
@@ -52,6 +59,10 @@ public class HomeFragment extends Fragment {
         clickView1 = (View) v.findViewById(R.id.clickView1);
         clickView2 = v.findViewById(R.id.clickView2);
         toProjects = v.findViewById(R.id.toProjects);
+        courseProgressWebHome = v.findViewById(R.id.progressBarHome2);
+        courseProgressPyHome = v.findViewById(R.id.progressBarHome1);
+        courseProgressPercentagePyHome = v.findViewById(R.id.homeProgressPercentage1);
+        courseProgressPercentageWebHome = v.findViewById(R.id.homeProgressPercentage2);
 
         clickView1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,7 +75,7 @@ public class HomeFragment extends Fragment {
         clickView2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), tree_html.class);
+                Intent intent = new Intent(getActivity(), tree_html_improved.class);
                 startActivity(intent);
             }
         });
@@ -79,6 +90,8 @@ public class HomeFragment extends Fragment {
             @Override
             public void onCallback(HashMap<String, String> value) {
                 progress = value.get("cProgress");
+                setCourseProgressWeb();
+                setProgressPython();
                 if (ifLfinished(Arrays.asList("1-4-2"))){
                     t1.setText("שגיאות");
                 }
@@ -113,8 +126,6 @@ public class HomeFragment extends Fragment {
             }
         });
 
-
-
         return v;
     }
     boolean ifLfinished(List<String> id){
@@ -129,5 +140,27 @@ public class HomeFragment extends Fragment {
         }
         Log.d(String.valueOf(ret), String.valueOf(ret));
         return ret;
+    }
+
+    void setCourseProgressWeb(){
+        for(String i : progress.split(",")){
+            if(i.startsWith("2")){
+                courseProgressWeb1++;
+            }
+        }
+
+        courseProgressWebHome.setProgress(courseProgressWeb1 * 100 / 8);
+        courseProgressPercentageWebHome.setText(String.valueOf(courseProgressWeb1 * 100 / 8) + "%");
+    }
+    void setProgressPython(){
+        for(String i : progress.split(",")){
+            if(i.startsWith("1")){
+                courseProgressPy1++;
+            }
+        }
+
+        courseProgressPyHome.setProgress(courseProgressPy1 * 100 / 10);
+        courseProgressPercentagePyHome.setText(String.valueOf(courseProgressPy1 * 100 / 10) + "%");
+
     }
 }

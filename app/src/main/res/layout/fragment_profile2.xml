@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F3F4F9">
+    android:background="#F3F4F9"
+    android:fillViewport="true">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -147,15 +148,17 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:layout_below="@+id/course1Profile"
-            android:layout_marginTop="50dp">
+            android:layout_below="@+id/course2Profile"
+            android:layout_marginTop="20dp">
 
             <androidx.viewpager.widget.ViewPager
                 android:id="@+id/viewPager"
                 android:layout_width="match_parent"
                 android:layout_height="250dp"
                 android:layout_below="@id/tabs"
-                android:layout_marginTop="0dp">
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="-1dp"
+                android:layout_marginEnd="0dp">
 
             </androidx.viewpager.widget.ViewPager>
 
@@ -287,9 +290,7 @@
             android:layout_alignParentRight="true"
             android:layout_alignParentTop="true"
             android:layout_marginRight="15dp"
-            android:src="@drawable/user_pic"
-            app:civ_border_width="2dp"
-            app:civ_border_color="#676766"/>
+            android:src="@drawable/user_pic" />
 
         <!--<EditText
             android:id="@+id/cgName"

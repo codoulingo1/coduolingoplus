@@ -1,0 +1,367 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="68dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button8">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <RelativeLayout
+                android:id="@+id/skill_1"
+                android:layout_width="270dp"
+                android:layout_height="80dp"
+                android:layout_marginEnd="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.954"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <RelativeLayout
+                    android:id="@+id/skill1picture"
+                    android:layout_width="80dp"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentRight="true"
+                    android:background="@drawable/skill">
+
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_centerInParent="true"
+                        android:src="@drawable/ic_coding" />
+
+                </RelativeLayout>
+
+                <TextView
+                    android:id="@+id/skillName1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:layout_toLeftOf="@id/skill1picture"
+                    android:fontFamily="@font/rubik_light"
+                    android:text="מבוא"
+                    android:textColor="#555555"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/skillName1"
+                    android:layout_marginRight="10dp"
+                    android:layout_toLeftOf="@id/skill1picture"
+                    android:fontFamily="@font/rubik_light"
+                    android:text="3/3"
+                    android:textColor="#CCCCCC"
+                    android:textSize="16dp" />
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/skill_2"
+                android:layout_width="270dp"
+                android:layout_height="80dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.954"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/skill_1">
+
+                <RelativeLayout
+                    android:id="@+id/skill2picture"
+                    android:layout_width="80dp"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentRight="true"
+                    android:background="@drawable/skill">
+
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_centerInParent="true"
+                        android:src="@drawable/ic_coding"
+                        app:srcCompat="@drawable/ic_web_page" />
+
+                </RelativeLayout>
+
+                <TextView
+                    android:id="@+id/skillName2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:layout_toLeftOf="@id/skill2picture"
+                    android:fontFamily="@font/rubik_light"
+                    android:text="מבנה של אתר"
+                    android:textColor="#555555"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/skillName2"
+                    android:layout_marginRight="10dp"
+                    android:layout_toLeftOf="@id/skill2picture"
+                    android:fontFamily="@font/rubik_light"
+                    android:text="3/3"
+                    android:textColor="#CCCCCC"
+                    android:textSize="16dp" />
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/skill_3"
+                android:layout_width="270dp"
+                android:layout_height="80dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.954"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/skill_2">
+
+                <RelativeLayout
+                    android:id="@+id/skill3picture"
+                    android:layout_width="80dp"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentRight="true"
+                    android:background="@drawable/skill">
+
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_centerInParent="true"
+                        android:src="@drawable/ic_coding"
+                        app:srcCompat="@drawable/ic_website_design" />
+
+                </RelativeLayout>
+
+                <TextView
+                    android:id="@+id/skillName3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:layout_toLeftOf="@id/skill3picture"
+                    android:fontFamily="@font/rubik_light"
+                    android:text="יצירת אתר ראשון"
+                    android:textColor="#555555"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/skillName3"
+                    android:layout_marginRight="10dp"
+                    android:layout_toLeftOf="@id/skill3picture"
+                    android:fontFamily="@font/rubik_light"
+                    android:text="3/3"
+                    android:textColor="#CCCCCC"
+                    android:textSize="16dp" />
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/skill_4"
+                android:layout_width="270dp"
+                android:layout_height="80dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.954"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/skill_3">
+
+                <RelativeLayout
+                    android:id="@+id/skill4picture"
+                    android:layout_width="80dp"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentRight="true"
+                    android:background="@drawable/skill">
+
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_centerInParent="true"
+                        android:src="@drawable/ic_coding"
+                        app:srcCompat="@drawable/ic_logo" />
+
+                </RelativeLayout>
+
+                <TextView
+                    android:id="@+id/skillName4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:layout_toLeftOf="@id/skill4picture"
+                    android:fontFamily="@font/rubik_light"
+                    android:text="תגיות מתקדמות"
+                    android:textColor="#555555"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/skillName4"
+                    android:layout_marginRight="10dp"
+                    android:layout_toLeftOf="@id/skill4picture"
+                    android:fontFamily="@font/rubik_light"
+                    android:text="3/3"
+                    android:textColor="#CCCCCC"
+                    android:textSize="16dp" />
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/skill_5"
+                android:layout_width="270dp"
+                android:layout_height="80dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.954"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/skill_4">
+
+                <RelativeLayout
+                    android:id="@+id/skill5picture"
+                    android:layout_width="80dp"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentRight="true"
+                    android:background="@drawable/skill">
+
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_centerInParent="true"
+                        android:src="@drawable/ic_coding"
+                        app:srcCompat="@drawable/ic_computer" />
+
+                </RelativeLayout>
+
+                <TextView
+                    android:id="@+id/skillName5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:layout_toLeftOf="@id/skill5picture"
+                    android:fontFamily="@font/rubik_light"
+                    android:text="קלט"
+                    android:textColor="#555555"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/skillName5"
+                    android:layout_marginRight="10dp"
+                    android:layout_toLeftOf="@id/skill5picture"
+                    android:fontFamily="@font/rubik_light"
+                    android:text="3/3"
+                    android:textColor="#CCCCCC"
+                    android:textSize="16dp" />
+
+
+            </RelativeLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#808B8B8B"
+        android:visibility="gone"
+        android:id="@+id/pageCover"
+        android:clickable="true"/>
+
+
+    <RelativeLayout
+        android:id="@+id/topSheet"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@+id/button8"
+        android:background="@drawable/top_sheet_background">
+
+        <RelativeLayout
+            android:layout_centerVertical="true"
+            android:layout_width="180dp"
+            android:layout_height="160dp"
+            android:layout_margin="10dp"
+            android:background="@drawable/course_preview"
+            android:elevation="1dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="קורס פייתון"
+                android:fontFamily="@font/rubik_medium"
+                android:textColor="#3e416e"
+                android:textSize="22dp"
+                android:layout_centerHorizontal="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="5dp"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:background="@drawable/course_preview_top"
+                android:padding="10dp"
+                android:layout_alignParentBottom="true">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:srcCompat="@drawable/ic_python" />
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/button8"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="#38AF68">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="פיתוח אתרים"
+            android:id="@+id/titleText"
+            android:textColor="@color/white"
+            android:fontFamily="@font/rubik_medium"
+            android:textSize="24dp"
+            android:layout_centerInParent="true"/>
+
+        <ImageView
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:layout_toLeftOf="@id/titleText"
+            android:layout_marginTop="19dp"
+            android:layout_marginRight="7dp"
+            app:srcCompat="@drawable/ic_down_arrow" />
+
+    </RelativeLayout>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
