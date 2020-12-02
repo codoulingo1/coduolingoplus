@@ -1,6 +1,8 @@
 package com.getcodly.codly;
 
 import android.content.Intent;
+import android.graphics.drawable.GradientDrawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -22,16 +24,20 @@ public class tree_html_improved extends AppCompatActivity {
     RelativeLayout skill3;
     RelativeLayout skill4;
     RelativeLayout skill5;
+    RelativeLayout skill6;
 
     RelativeLayout LessonStart1;
     RelativeLayout LessonStart2;
     RelativeLayout LessonStart3;
     RelativeLayout LessonStart4;
     RelativeLayout LessonStart5;
+    RelativeLayout LessonStart6;
 
     RelativeLayout switchCourseBtn;
     View pageCover;
     RelativeLayout topSheet;
+
+    RelativeLayout pythonCourse;
 
     boolean isTopSheetVisible;
 
@@ -53,16 +59,22 @@ public class tree_html_improved extends AppCompatActivity {
         skill3 = findViewById(R.id.skill_3);
         skill4 = findViewById(R.id.skill_4);
         skill5 = findViewById(R.id.skill_5);
+        skill6 = findViewById(R.id.skill_6);
+
 
         pageCover = findViewById(R.id.pageCover);
         topSheet = findViewById(R.id.topSheet);
         switchCourseBtn = findViewById(R.id.button8);
+
+        pythonCourse = findViewById(R.id.coursePython);
 
         LessonStart1 = findViewById(R.id.skill1picture);
         LessonStart2 = findViewById(R.id.skill2picture);
         LessonStart3 = findViewById(R.id.skill3picture);
         LessonStart4 = findViewById(R.id.skill4picture);
         LessonStart5 = findViewById(R.id.skill5picture);
+        LessonStart6 = findViewById(R.id.skill6picture);
+
 
 
         checkIfGreen();
@@ -128,6 +140,13 @@ public class tree_html_improved extends AppCompatActivity {
                 startLesson(Arrays.asList("2-5-1~כפתורים"), Arrays.asList("2-4-2"));
             }
         });
+        skill6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startLesson(Arrays.asList("2-6-1~כפתורים"), Arrays.asList("2-5-1"));
+            }
+        });
+
     }
 
     void checkIfGreen(){
@@ -135,31 +154,37 @@ public class tree_html_improved extends AppCompatActivity {
             LessonStart1.setBackgroundResource(R.drawable.skill2);
         }
         if (ifHfinished(Arrays.asList("2-1-2", "2-1-1"), Arrays.asList(""))){
-            LessonStart1.setBackgroundResource(R.drawable.lesson_circle_lvl0);
+            LessonStart1.setBackgroundResource(R.drawable.skill);
         }
         if (ifLfinished(Arrays.asList("2-2-1"))){
             LessonStart2.setBackgroundResource(R.drawable.skill2);
         }
         if (ifHfinished(Arrays.asList("2-2-1"), Arrays.asList("2-1-2"))){
-            LessonStart2.setBackgroundResource(R.drawable.lesson_circle_lvl0);
+            LessonStart2.setBackgroundResource(R.drawable.skill);
         }
         if (ifLfinished(Arrays.asList("2-3-1", "2-3-2"))){
             LessonStart3.setBackgroundResource(R.drawable.skill2);
         }
         if (ifHfinished(Arrays.asList("2-3-1", "2-3-2"), Arrays.asList("2-2-1"))){
-            LessonStart3.setBackgroundResource(R.drawable.lesson_circle_lvl0);
+            LessonStart3.setBackgroundResource(R.drawable.skill);
         }
         if (ifLfinished(Arrays.asList("2-4-1", "2-4-2"))){
             LessonStart4.setBackgroundResource(R.drawable.skill2);
         }
         if (ifHfinished(Arrays.asList("2-4-1", "2-4-2"), Arrays.asList("2-3-2"))){
-            LessonStart4.setBackgroundResource(R.drawable.lesson_circle_lvl0);
+            LessonStart4.setBackgroundResource(R.drawable.skill);
         }
         if (ifLfinished(Arrays.asList("2-5-1"))){
             LessonStart5.setBackgroundResource(R.drawable.skill2);
         }
         if (ifHfinished(Arrays.asList("2-5-1"), Arrays.asList("2-4-2"))){
-            LessonStart5.setBackgroundResource(R.drawable.lesson_circle_lvl0);
+            LessonStart5.setBackgroundResource(R.drawable.skill);
+        }
+        if (ifLfinished(Arrays.asList("2-6-1"))){
+            LessonStart6.setBackgroundResource(R.drawable.skill2);
+        }
+        if (ifHfinished(Arrays.asList("2-6-1"), Arrays.asList("2-4-2"))){
+            LessonStart6.setBackgroundResource(R.drawable.skill);
         }
     }
     void startLesson(List<String> id, List<String> id_alt) {

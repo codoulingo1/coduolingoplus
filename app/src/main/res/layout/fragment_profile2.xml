@@ -302,7 +302,5 @@
             android:text="הקלד את שם המשתמש החדש"
             android:visibility="gone" />-->
 
-
-
     </RelativeLayout>
 </ScrollView>

@@ -21,6 +21,7 @@ public class ExplainHtml extends AppCompatActivity {
         backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 if (LessonActivity.j > 1) {
                     LessonActivity.j = LessonActivity.j - 1;
                     LessonActivity.shared_xp = LessonActivity.shared_xp - 1;

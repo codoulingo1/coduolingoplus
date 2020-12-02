@@ -258,7 +258,7 @@ public class profileFragment extends Fragment {
     }
 
     void courseProgress(){
-        courseProgressbarWeb.setProgress(mainScreen.courseProgressWeb * 100 / 8);
+        courseProgressbarWeb.setProgress(mainScreen.courseProgressWeb * 100 / 9);
         courseXp1.setText(String.valueOf(mainScreen.htmlXp) + " XP");
         percentageProgress1.setText(String.valueOf(mainScreen.courseProgressWeb * 100 / 8) + "%");
 

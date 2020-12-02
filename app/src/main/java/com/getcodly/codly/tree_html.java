@@ -22,12 +22,14 @@ public class tree_html extends AppCompatActivity {
     RelativeLayout skill3;
     RelativeLayout skill4;
     RelativeLayout skill5;
+    RelativeLayout skill6;
 
     ImageView LessonStart1;
     ImageView LessonStart2;
     ImageView LessonStart3;
     ImageView LessonStart4;
     ImageView LessonStart5;
+    ImageView LessonStart6;
 
     public static ArrayList<String> idShare;
     public static ArrayList<String> namesShare;
@@ -47,12 +49,14 @@ public class tree_html extends AppCompatActivity {
         skill3 = findViewById(R.id.skill17);
         skill4 = findViewById(R.id.skill18);
         skill5 = findViewById(R.id.skill19);
+        skill6 = findViewById(R.id.skill20);
 
         LessonStart1 = findViewById(R.id.lessonStartHtml1);
         LessonStart2 = findViewById(R.id.lessonStartHtml2);
         LessonStart3 = findViewById(R.id.lessonStartHtml3);
         LessonStart4 = findViewById(R.id.lessonStartHtml4);
         LessonStart5 = findViewById(R.id.lessonStartHtml5);
+        LessonStart6 = findViewById(R.id.lessonStartHtml6);
 
 
         checkIfGreen();

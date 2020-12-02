@@ -34,7 +34,7 @@
                     android:layout_width="80dp"
                     android:layout_height="match_parent"
                     android:layout_alignParentRight="true"
-                    android:background="@drawable/skill">
+                    android:background="@drawable/skill_blue">
 
                     <ImageView
                         android:layout_width="50dp"
@@ -85,7 +85,7 @@
                     android:layout_width="80dp"
                     android:layout_height="match_parent"
                     android:layout_alignParentRight="true"
-                    android:background="@drawable/skill">
+                    android:background="@drawable/skill_blue">
 
                     <ImageView
                         android:layout_width="50dp"
@@ -137,7 +137,7 @@
                     android:layout_width="80dp"
                     android:layout_height="match_parent"
                     android:layout_alignParentRight="true"
-                    android:background="@drawable/skill">
+                    android:background="@drawable/skill_blue">
 
                     <ImageView
                         android:layout_width="50dp"
@@ -189,7 +189,7 @@
                     android:layout_width="80dp"
                     android:layout_height="match_parent"
                     android:layout_alignParentRight="true"
-                    android:background="@drawable/skill">
+                    android:background="@drawable/skill_blue">
 
                     <ImageView
                         android:layout_width="50dp"
@@ -241,7 +241,7 @@
                     android:layout_width="80dp"
                     android:layout_height="match_parent"
                     android:layout_alignParentRight="true"
-                    android:background="@drawable/skill">
+                    android:background="@drawable/skill_blue">
 
                     <ImageView
                         android:layout_width="50dp"
@@ -277,6 +277,58 @@
 
             </RelativeLayout>
 
+            <RelativeLayout
+                android:id="@+id/skill_6"
+                android:layout_width="270dp"
+                android:layout_height="80dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.954"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/skill_5">
+
+                <RelativeLayout
+                    android:id="@+id/skill6picture"
+                    android:layout_width="80dp"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentRight="true"
+                    android:background="@drawable/skill_blue">
+
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_centerInParent="true"
+                        android:src="@drawable/ic_coding"
+                        app:srcCompat="@drawable/ic_css" />
+
+                </RelativeLayout>
+
+                <TextView
+                    android:id="@+id/skillName6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:layout_toLeftOf="@id/skill6picture"
+                    android:fontFamily="@font/rubik_light"
+                    android:text="CSS"
+                    android:textColor="#555555"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/skillName6"
+                    android:layout_marginRight="10dp"
+                    android:layout_toLeftOf="@id/skill6picture"
+                    android:fontFamily="@font/rubik_light"
+                    android:text="3/3"
+                    android:textColor="#CCCCCC"
+                    android:textSize="16dp" />
+
+
+            </RelativeLayout>
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 
@@ -303,6 +355,7 @@
             android:layout_height="160dp"
             android:layout_margin="10dp"
             android:background="@drawable/course_preview"
+            android:id="@+id/coursePython"
             android:elevation="1dp">
 
             <TextView

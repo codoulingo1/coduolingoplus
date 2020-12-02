@@ -324,7 +324,69 @@
 
             </RelativeLayout>
 
+            <RelativeLayout
+                android:id="@+id/skill20"
+                android:layout_width="100dp"
+                android:layout_height="120dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="25dp"
+                android:clickable="true"
+                android:layout_below="@id/skill19">
+
+                <ProgressBar
+                    android:id="@+id/progressBar7"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="7dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="25dp"
+                    android:layout_marginTop="0dp"
+                    android:progress="0"
+                    android:progressDrawable="@drawable/pb_lessons" />
+
+                <RelativeLayout
+                    android:id="@+id/n6"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_centerHorizontal="true">
+
+                    <ImageView
+                        android:id="@+id/lessonStartHtml6"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_centerHorizontal="true"
+                        app:srcCompat="@drawable/lesson_circle" />
+
+                    <ImageView
+                        android:id="@+id/imageView6"
+                        android:layout_width="45dp"
+                        android:layout_height="45dp"
+                        android:layout_centerInParent="true"
+                        app:srcCompat="@drawable/ic_css" />
+                </RelativeLayout>
+
+
+
+
+
+                <TextView
+                    android:id="@+id/lessonText6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_above="@id/progressBar7"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="4dp"
+                    android:fontFamily="@font/rubik_light"
+                    android:text="CSS"
+                    android:textColor="#636475" />
+
+
+            </RelativeLayout>
+
         </RelativeLayout>
+
 
 
     </ScrollView>

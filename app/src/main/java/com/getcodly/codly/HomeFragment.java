@@ -1,6 +1,7 @@
 package com.getcodly.codly;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -149,8 +150,16 @@ public class HomeFragment extends Fragment {
             }
         }
 
-        courseProgressWebHome.setProgress(courseProgressWeb1 * 100 / 8);
-        courseProgressPercentageWebHome.setText(String.valueOf(courseProgressWeb1 * 100 / 8) + "%");
+        courseProgressWebHome.setProgress(courseProgressWeb1 * 100 / 9);
+
+        int courseProgressWeb1Finale = courseProgressWeb1 * 100 / 9;
+
+        if(courseProgressWeb1Finale == 0){
+            courseProgressPercentageWebHome.setTextColor(Color.parseColor("#F5F5F5"));
+            courseProgressPercentageWebHome.setText(String.valueOf(courseProgressWeb1Finale) + "%");
+        } else{
+            courseProgressPercentageWebHome.setText(String.valueOf(courseProgressWeb1Finale) + "%");
+        }
     }
     void setProgressPython(){
         for(String i : progress.split(",")){
@@ -159,8 +168,16 @@ public class HomeFragment extends Fragment {
             }
         }
 
-        courseProgressPyHome.setProgress(courseProgressPy1 * 100 / 10);
-        courseProgressPercentagePyHome.setText(String.valueOf(courseProgressPy1 * 100 / 10) + "%");
+        courseProgressPyHome.setProgress(courseProgressPy1 * 100 / 14);
+
+        int courseProgressPy1Finale = courseProgressPy1 * 100 / 14;
+
+        if(courseProgressPy1Finale == 0){
+            courseProgressPercentagePyHome.setTextColor(Color.parseColor("#F5F5F5"));
+            courseProgressPercentagePyHome.setText(String.valueOf(courseProgressPy1Finale) + "%");
+        } else{
+            courseProgressPercentagePyHome.setText(String.valueOf(courseProgressPy1Finale) + "%");
+        }
 
     }
 }
