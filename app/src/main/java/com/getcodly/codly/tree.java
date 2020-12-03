@@ -34,11 +34,19 @@ public class tree extends AppCompatActivity {
     RelativeLayout skill3;
     RelativeLayout skill4;
     RelativeLayout skill5;
-    ImageView LessonStart1;
-    ImageView LessonStart2;
-    ImageView LessonStart3;
-    ImageView LessonStart4;
-    ImageView LessonStart5;
+    RelativeLayout skill6;
+    TextView f1;
+    TextView f2;
+    TextView f3;
+    TextView f4;
+    TextView f5;
+    TextView f6;
+    RelativeLayout LessonStart1;
+    RelativeLayout LessonStart2;
+    RelativeLayout LessonStart3;
+    RelativeLayout LessonStart4;
+    RelativeLayout LessonStart5;
+    RelativeLayout LessonStart6;
     public static ArrayList<String> idShare;
     public static ArrayList<String> namesShare;
     CountDownTimer mcountdown;
@@ -48,20 +56,27 @@ public class tree extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_tree_new);
+        setContentView(R.layout.tree_py_improved);
         //mAuth = FirebaseAuth.getInstance();
         mainScreen.lessonWr = 0;
-        skill1 = (RelativeLayout) findViewById(R.id.skill15);
-        skill2 = (RelativeLayout) findViewById(R.id.skill16);
-        skill3 = (RelativeLayout) findViewById(R.id.skill17);
-        skill4 = (RelativeLayout) findViewById(R.id.skill18);
-        skill5 = (RelativeLayout) findViewById(R.id.skill19);
-
-        LessonStart1 = findViewById(R.id.lessonStart);
-        LessonStart2 = findViewById(R.id.lessonStart1);
-        LessonStart3 = findViewById(R.id.lessonStart2);
-        LessonStart4 = findViewById(R.id.lessonStart3);
-        LessonStart5 = findViewById(R.id.lessonStart4);
+        skill1 = (RelativeLayout) findViewById(R.id.skill_1);
+        skill2 = (RelativeLayout) findViewById(R.id.skill_2);
+        skill3 = (RelativeLayout) findViewById(R.id.skill_3);
+        skill4 = (RelativeLayout) findViewById(R.id.skill_4);
+        skill5 = (RelativeLayout) findViewById(R.id.skill_5);
+        skill6 = (RelativeLayout) findViewById(R.id.skill_6);
+        f1 = (TextView) findViewById(R.id.f1);
+        f2 = (TextView) findViewById(R.id.f2);
+        f3 = (TextView) findViewById(R.id.f3);
+        f4 = (TextView) findViewById(R.id.f4);
+        f5 = (TextView) findViewById(R.id.f5);
+        f6 = (TextView) findViewById(R.id.f6);
+        LessonStart1 = findViewById(R.id.skill1picture);
+        LessonStart2 = findViewById(R.id.skill2picture);
+        LessonStart3 = findViewById(R.id.skill3picture);
+        LessonStart4 = findViewById(R.id.skill4picture);
+        LessonStart5 = findViewById(R.id.skill5picture);
+        LessonStart6 = findViewById(R.id.skill6picture);
 
         File dirName = new File(Environment.getExternalStorageDirectory() + "/" + "id" + "/");
         try {
@@ -73,40 +88,52 @@ public class tree extends AppCompatActivity {
         LessonActivity.j = 1;
         mainScreen.w = "py";
         date = DownloadReadlessons.get_last_lesson(ReadWrite.read(this.getFilesDir()+File.separator+ "user"));
+        f1.setText(s(Arrays.asList("1-1-1", "1-1-2")));
+        f2.setText(s(Arrays.asList("1-2-1", "1-2-2", "1-2-3")));
+        f3.setText(s(Arrays.asList("1-3-1", "1-3-2")));
+        f4.setText(s(Arrays.asList("1-5-1", "1-4-2", "1-5-2", "1-5-3")));
+        f5.setText(s(Arrays.asList("1-4-3", "1-5-4")));
+        f6.setText(s(Arrays.asList("1-4-1")));
         if (ifLfinished(Arrays.asList("1-1-1", "1-1-2"))){
-            LessonStart1.setImageResource(R.drawable.lesson_circle_lvl2);
+            LessonStart1.setBackgroundResource(R.drawable.skill2);
         }
         if (ifHfinished(Arrays.asList("1-1-1", "1-1-2"), Arrays.asList(""))){
-            LessonStart1.setImageResource(R.drawable.lesson_circle_lvl0);
+            LessonStart1.setBackgroundResource(R.drawable.skill);
         }
         if (ifLfinished(Arrays.asList("1-2-1", "1-2-2", "1-2-3"))){
-            LessonStart2.setImageResource(R.drawable.lesson_circle_lvl2);
+            LessonStart2.setBackgroundResource(R.drawable.skill2);
         }
         if (ifHfinished(Arrays.asList("1-2-1", "1-2-2", "1-2-3"), Arrays.asList("1-1-2"))){
-            LessonStart2.setImageResource(R.drawable.lesson_circle_lvl0);
+            LessonStart2.setBackgroundResource(R.drawable.skill);
         }
         if (ifLfinished(Arrays.asList("1-3-1", "1-3-2"))){
-            LessonStart3.setImageResource(R.drawable.lesson_circle_lvl2);
+            LessonStart3.setBackgroundResource(R.drawable.skill2);
         }
         if (ifHfinished(Arrays.asList("1-3-1", "1-3-2"), Arrays.asList("1-2-3"))){
-            LessonStart3.setImageResource(R.drawable.lesson_circle_lvl0);
+            LessonStart3.setBackgroundResource(R.drawable.skill);
         }
-        if (ifLfinished(Arrays.asList("1-5-1", "1-5-2"))){
-            LessonStart4.setImageResource(R.drawable.lesson_circle_lvl2);
+        if (ifLfinished(Arrays.asList("1-5-1", "1-4-2", "1-5-2", "1-5-3"))){
+            LessonStart4.setBackgroundResource(R.drawable.skill2);
         }
-        if (ifHfinished(Arrays.asList("1-5-1", "1-5-2"), Arrays.asList("1-3-2"))){
-            LessonStart4.setImageResource(R.drawable.lesson_circle_lvl0);
+        if (ifHfinished(Arrays.asList("1-5-1", "1-4-2", "1-5-2", "1-5-3"), Arrays.asList("1-3-2"))){
+            LessonStart4.setBackgroundResource(R.drawable.skill);
+        }
+        if (ifLfinished(Arrays.asList("1-4-3", "1-5-4"))){
+            LessonStart5.setBackgroundResource(R.drawable.skill2);
+        }
+        if (ifHfinished(Arrays.asList("1-4-3", "1-5-4"), Arrays.asList("1-5-3"))){
+            LessonStart5.setBackgroundResource(R.drawable.skill);
         }
         if (ifLfinished(Arrays.asList("1-4-1"))){
-            LessonStart5.setImageResource(R.drawable.lesson_circle_lvl2);
+            LessonStart6.setBackgroundResource(R.drawable.skill2);
         }
-        if (ifHfinished(Arrays.asList("1-4-1"), Arrays.asList("1-3-2"))){
-            LessonStart5.setImageResource(R.drawable.lesson_circle_lvl0);
+        if (ifHfinished(Arrays.asList("1-4-1"), Arrays.asList("1-5-4"))){
+            LessonStart6.setBackgroundResource(R.drawable.skill);
         }
         skill1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startLesson(Arrays.asList("1-1-2~הקוד הראשון שלי", "1-1-1~מבוא לפייתון"), Arrays.asList(""));
+                startLesson(Arrays.asList("1-5-2~לולאות for", "1-5-4~יצירת צ'אט בוט"), Arrays.asList(""));
             } //savta
         });
         skill2.setOnClickListener(new View.OnClickListener() {
@@ -124,16 +151,23 @@ public class tree extends AppCompatActivity {
         skill4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startLesson(Arrays.asList("1-4-2~רשימות", "1-5-1~לולאת while"), Arrays.asList("1-3-2"));
+                startLesson(Arrays.asList("1-5-4~הפקודה range" ,"1-5-3~לולאות for" ,"1-4-2~רשימות", "1-5-1~לולאת while"), Arrays.asList("1-3-2"));
             } //savta
         });
         skill5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startLesson(Arrays.asList("1-4-1~שגיאות וחריגים"), Arrays.asList("1-3-2"));
+                startLesson(Arrays.asList("1-5-4~יצירת צ'אט בוט" ,"1-4-3~מילונים"), Arrays.asList("1-3-2"));
             } //savta
         });
-    }
+        skill6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startLesson(Arrays.asList("1-4-1~שגיאות וחריגים"), Arrays.asList("1-5-4"));
+            } //savta
+        });
+
+}
 
     void startLesson(List<String> id, List<String> id_alt) {
         if (ifLfinished(id_alt)) {
@@ -182,6 +216,15 @@ public class tree extends AppCompatActivity {
             ret = false;
         }
         return ret;
+    }
+    String s(List<String> id){
+        int e = 0;
+        for (String i : id){
+            if (mainScreen.progress.contains(i)) {
+                e = e + 1;
+            }
+        }
+        return String.valueOf(e) + "/" + id.size();
     }
     void startPractice(String[] id) {
         mainScreen.LessonType = "practice";

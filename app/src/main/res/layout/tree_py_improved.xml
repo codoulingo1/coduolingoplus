@@ -40,7 +40,7 @@
                         android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:layout_centerInParent="true"
-                        android:src="@drawable/ic_coding" />
+                        android:src="@drawable/l1" />
 
                 </RelativeLayout>
 
@@ -51,7 +51,7 @@
                     android:layout_marginRight="10dp"
                     android:layout_toLeftOf="@id/skill1picture"
                     android:fontFamily="@font/rubik_light"
-                    android:text="מבוא"
+                    android:text="מבוא לפייתון"
                     android:textColor="#555555"
                     android:textSize="20dp" />
 
@@ -93,7 +93,7 @@
                         android:layout_height="50dp"
                         android:layout_centerInParent="true"
                         android:src="@drawable/ic_coding"
-                        app:srcCompat="@drawable/ic_web_page" />
+                        app:srcCompat="@drawable/l3" />
 
                 </RelativeLayout>
 
@@ -104,7 +104,7 @@
                     android:layout_marginRight="10dp"
                     android:layout_toLeftOf="@id/skill2picture"
                     android:fontFamily="@font/rubik_light"
-                    android:text="מבנה של אתר"
+                    android:text="משתנים"
                     android:textColor="#555555"
                     android:textSize="20dp" />
 
@@ -146,7 +146,7 @@
                         android:layout_height="50dp"
                         android:layout_centerInParent="true"
                         android:src="@drawable/ic_coding"
-                        app:srcCompat="@drawable/ic_website_design" />
+                        app:srcCompat="@drawable/l2" />
 
                 </RelativeLayout>
 
@@ -157,7 +157,7 @@
                     android:layout_marginRight="10dp"
                     android:layout_toLeftOf="@id/skill3picture"
                     android:fontFamily="@font/rubik_light"
-                    android:text="יצירת אתר ראשון"
+                    android:text="תנאים"
                     android:textColor="#555555"
                     android:textSize="20dp" />
 
@@ -199,7 +199,7 @@
                         android:layout_height="50dp"
                         android:layout_centerInParent="true"
                         android:src="@drawable/ic_coding"
-                        app:srcCompat="@drawable/ic_logo" />
+                        app:srcCompat="@drawable/l5" />
 
                 </RelativeLayout>
 
@@ -210,7 +210,7 @@
                     android:layout_marginRight="10dp"
                     android:layout_toLeftOf="@id/skill4picture"
                     android:fontFamily="@font/rubik_light"
-                    android:text="תגיות מתקדמות"
+                    android:text="לולאות"
                     android:textColor="#555555"
                     android:textSize="20dp" />
 
@@ -251,8 +251,8 @@
                         android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:layout_centerInParent="true"
-                        android:src="@drawable/ic_coding"
-                        app:srcCompat="@drawable/ic_computer" />
+                        android:src="@drawable/ic_key_1"
+                        app:srcCompat="@drawable/ic_key_1" />
 
                 </RelativeLayout>
 
@@ -263,7 +263,7 @@
                     android:layout_marginRight="10dp"
                     android:layout_toLeftOf="@id/skill5picture"
                     android:fontFamily="@font/rubik_light"
-                    android:text="קלט"
+                    android:text="מילונים"
                     android:textColor="#555555"
                     android:textSize="20dp" />
 
@@ -304,8 +304,8 @@
                         android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:layout_centerInParent="true"
-                        android:src="@drawable/ic_coding"
-                        app:srcCompat="@drawable/ic_css" />
+                        android:src="@drawable/l4"
+                        app:srcCompat="@drawable/l4" />
 
                 </RelativeLayout>
 
@@ -316,7 +316,7 @@
                     android:layout_marginRight="10dp"
                     android:layout_toLeftOf="@id/skill6picture"
                     android:fontFamily="@font/rubik_light"
-                    android:text="CSS"
+                    android:text="חריגים"
                     android:textColor="#555555"
                     android:textSize="20dp" />
 
@@ -402,14 +402,14 @@
         android:background="#38AF68">
 
         <TextView
+            android:id="@+id/titleText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="פיתוח אתרים"
-            android:id="@+id/titleText"
-            android:textColor="@color/white"
+            android:layout_centerInParent="true"
             android:fontFamily="@font/rubik_medium"
-            android:textSize="24dp"
-            android:layout_centerInParent="true"/>
+            android:text="פייתון למתחילים"
+            android:textColor="@color/white"
+            android:textSize="24dp" />
 
         <ImageView
             android:layout_width="18dp"

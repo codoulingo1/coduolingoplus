@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -33,6 +34,12 @@ public class tree_html_improved extends AppCompatActivity {
     RelativeLayout LessonStart5;
     RelativeLayout LessonStart6;
 
+    TextView f1;
+    TextView f2;
+    TextView f3;
+    TextView f4;
+    TextView f5;
+    TextView f6;
     RelativeLayout switchCourseBtn;
     View pageCover;
     RelativeLayout topSheet;
@@ -75,11 +82,22 @@ public class tree_html_improved extends AppCompatActivity {
         LessonStart5 = findViewById(R.id.skill5picture);
         LessonStart6 = findViewById(R.id.skill6picture);
 
-
+        f1 = (TextView) findViewById(R.id.f1);
+        f2 = (TextView) findViewById(R.id.f2);
+        f3 = (TextView) findViewById(R.id.f3);
+        f4 = (TextView) findViewById(R.id.f4);
+        f5 = (TextView) findViewById(R.id.f5);
+        f6 = (TextView) findViewById(R.id.f6);
 
         checkIfGreen();
-
         isTopSheetVisible = false;
+
+        f1.setText(s(Arrays.asList("2-1-1", "2-1-2")));
+        f2.setText(s(Arrays.asList("2-2-1")));
+        f3.setText(s(Arrays.asList("2-3-1", "2-3-2")));
+        f4.setText(s(Arrays.asList("2-4-1", "2-4-2")));
+        f5.setText(s(Arrays.asList("2-5-1")));
+        f6.setText(s(Arrays.asList("2-6-1")));
 
         switchCourseBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -230,6 +248,15 @@ public class tree_html_improved extends AppCompatActivity {
             ret = false;
         }
         return ret;
+    }
+    String s(List<String> id){
+        int e = 0;
+        for (String i : id){
+            if (mainScreen.progress.contains(i)) {
+                e = e + 1;
+            }
+        }
+        return String.valueOf(e) + "/" + id.size();
     }
     public void onBackPressed() {
         startActivity(new Intent(tree_html_improved.this, mainScreen.class));

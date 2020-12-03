@@ -48,11 +48,16 @@ public class codeFrament extends Fragment  { //was extends Fragment, might need 
     public static MultiAutoCompleteTextView htmlInp;
     Button help1;
     Button help2;
+    String htmlText;
+    List<String> c;
     Button help3;
+    String[] cc;
+    String[] bb;
     ViewPager mViewPager;
     TabLayout tabsHost;
     String blankTemplate = "<!doctype html>\n<html>\n    <head>\n        \n    </head>\n    \n    <body>\n        \n    </body>\n</html>";
-    String[] language ={"<body>", "html", "<html>", "<head>", "</body>", "</head>", "</html>"};
+    String[] language ={"body>", "html>", "head>", "/body>", "/head>", "/html>", "h1>", "h2>", "h3>", "h4>", "h5>", "h6>", "/h1>", "/h2>", "/h3>", "/h4>", "/h5>", "/h6>", "p>", "/p>", "br>", "hr>", "a href=", "/a>",
+            "dl>", "dd>", "dt>", "/dl>", "src=", "b>", "/b>", "i>", "/i>", "tr>", "td>", "/tr>", "/td>", "font size=", "/font>", "table>", "/table>"};
     private AnimatedVectorDrawable animation;
 
     public codeFrament() {
@@ -63,6 +68,22 @@ public class codeFrament extends Fragment  { //was extends Fragment, might need 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_code_frament, container, false);
+        c = new ArrayList<String>();
+        cc = new String[]{"body", "html", "head", "h1", "h2", "h3", "h4", "h5", "h6", "br", "hr",
+                "dl", "dd", "dt", "tr", "td", "table"};
+        bb = new String[]{"src", "font size", "href", "type href", "class", "id", "id", "name", "rel"};
+        Arrays.sort(cc, (str1, str2) -> str1.length() - str2.length());
+        c.add(".");
+        c.add(" ");
+        c.add("=");
+        c.add(">");
+        c.add("<");
+        c.add("\n");
+        c.add("+");
+        c.add("-");
+        c.add("*");
+        c.add("(");
+        c.add(")");
         submitBtn = (ImageButton) v.findViewById(R.id.submitHTML);
         htmlInp = (MultiAutoCompleteTextView) v.findViewById(R.id.inputHTML);
         htmlInp.setFocusableInTouchMode(true);
@@ -81,7 +102,39 @@ public class codeFrament extends Fragment  { //was extends Fragment, might need 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 int loc = htmlInp.getSelectionStart();
+                htmlText = s.toString();
                 Log.d(String.valueOf(loc), String.valueOf(loc));
+                try {
+                    Log.d("hihi", String.valueOf(htmlText.charAt(loc - 1)));
+                    if (c.contains(String.valueOf(htmlText.charAt(loc - 1)))){
+                        SpannableStringBuilder builder = new SpannableStringBuilder();
+                        SpannableString str1 = new SpannableString(htmlText);
+                        for (String codeWord : cc) {
+                            int startt = 0;
+                            while (htmlText.indexOf(codeWord, startt) > -1) {
+                                Log.d("hi", String.valueOf(htmlText.indexOf(codeWord, 3)));
+                                str1.setSpan(new ForegroundColorSpan(Color.rgb(170, 109, 173)), htmlText.indexOf(codeWord, startt), htmlText.indexOf(codeWord, startt) + codeWord.length(), 0);
+                                startt = htmlText.indexOf(codeWord, startt) + codeWord.length();
+                            }
+                        }
+                        for (String codeWord2 : bb) {
+                            int startt = 0;
+                            while (htmlText.indexOf(codeWord2, startt) > -1) {
+                                Log.d("hi", String.valueOf(htmlText.indexOf(codeWord2, 3)));
+                                str1.setSpan(new ForegroundColorSpan(Color.rgb(53, 133, 228)), htmlText.indexOf(codeWord2, startt), htmlText.indexOf(codeWord2, startt) + codeWord2.length(), 0);
+                                startt = htmlText.indexOf(codeWord2, startt) + codeWord2.length();
+                            }
+                        }
+                        htmlInp.setText(str1);
+                        try {
+                                htmlInp.setSelection(loc);
+                        } catch (Exception e) {
+                            htmlInp.setSelection(builder.length());
+                        }
+                    }
+                }catch (Exception e){
+                    Log.d("err", e.getLocalizedMessage());
+                }
                 htmlInp.setThreshold(1);//will start working from first character
                 htmlInp.setAdapter(adapter);//setting the adapter data into the AutoCompleteTextView
                 htmlInp.setTokenizer(new KcsMultiAutoCompleteTextView(' '));
@@ -154,8 +207,38 @@ public class codeFrament extends Fragment  { //was extends Fragment, might need 
                 int loc = htmlInp.getSelectionStart();
                 x = x.substring(0, htmlInp.getSelectionStart()) + ">" + x.substring(htmlInp.getSelectionStart(), x.length());
                 Log.d("hi", String.valueOf(htmlInp.getSelectionStart()+1));
-                htmlInp.setText(x);
-                htmlInp.setSelection(loc + 1);
+                htmlText = x;
+                Log.d(String.valueOf(loc), String.valueOf(loc));
+                try {
+                    Log.d("hihi", String.valueOf(htmlText.charAt(loc - 1)));
+                    String text = x;
+                    SpannableStringBuilder builder = new SpannableStringBuilder();
+                    SpannableString str1 = new SpannableString(text);
+                    for (String codeWord : cc) {
+                        int startt = 0;
+                        while (htmlText.indexOf(codeWord, startt) > -1) {
+                            Log.d("hi", String.valueOf(htmlText.indexOf(codeWord, 3)));
+                            str1.setSpan(new ForegroundColorSpan(Color.rgb(170, 109, 173)), htmlText.indexOf(codeWord, startt), htmlText.indexOf(codeWord, startt) + codeWord.length(), 0);
+                            startt = htmlText.indexOf(codeWord, startt) + codeWord.length();
+                        }
+                    }
+                    for (String codeWord2 : bb) {
+                        int startt = 0;
+                        while (htmlText.indexOf(codeWord2, startt) > -1) {
+                            Log.d("hi", String.valueOf(htmlText.indexOf(codeWord2, 3)));
+                            str1.setSpan(new ForegroundColorSpan(Color.rgb(53, 133, 228)), htmlText.indexOf(codeWord2, startt), htmlText.indexOf(codeWord2, startt) + codeWord2.length(), 0);
+                            startt = htmlText.indexOf(codeWord2, startt) + codeWord2.length();
+                        }
+                    }
+                    htmlInp.setText(str1);
+                    try {
+                        htmlInp.setSelection(loc + 1);
+                    } catch (Exception e) {
+                        htmlInp.setSelection(builder.length());
+                    }
+                }catch (Exception e) {
+                    Log.d("e.getLocalizedMessage()", e.getLocalizedMessage());
+                }
             }
         });
         help2.setOnClickListener(new View.OnClickListener() {
@@ -165,8 +248,38 @@ public class codeFrament extends Fragment  { //was extends Fragment, might need 
                 int loc = htmlInp.getSelectionStart();
                 x = x.substring(0, htmlInp.getSelectionStart()) + "<" + x.substring(htmlInp.getSelectionStart(), x.length());
                 Log.d("hi", String.valueOf(htmlInp.getSelectionStart()+1));
-                htmlInp.setText(x);
-                htmlInp.setSelection(loc + 1);
+                htmlText = x;
+                Log.d(String.valueOf(loc), String.valueOf(loc));
+                try {
+                    Log.d("hihi", String.valueOf(htmlText.charAt(loc - 1)));
+                    String text = x;
+                    SpannableStringBuilder builder = new SpannableStringBuilder();
+                    SpannableString str1 = new SpannableString(text);
+                    for (String codeWord : cc) {
+                        int startt = 0;
+                        while (htmlText.indexOf(codeWord, startt) > -1) {
+                            Log.d("hi", String.valueOf(htmlText.indexOf(codeWord, 3)));
+                            str1.setSpan(new ForegroundColorSpan(Color.rgb(170, 109, 173)), htmlText.indexOf(codeWord, startt), htmlText.indexOf(codeWord, startt) + codeWord.length(), 0);
+                            startt = htmlText.indexOf(codeWord, startt) + codeWord.length();
+                        }
+                    }
+                    for (String codeWord2 : bb) {
+                        int startt = 0;
+                        while (htmlText.indexOf(codeWord2, startt) > -1) {
+                            Log.d("hi", String.valueOf(htmlText.indexOf(codeWord2, 3)));
+                            str1.setSpan(new ForegroundColorSpan(Color.rgb(53, 133, 228)), htmlText.indexOf(codeWord2, startt), htmlText.indexOf(codeWord2, startt) + codeWord2.length(), 0);
+                            startt = htmlText.indexOf(codeWord2, startt) + codeWord2.length();
+                        }
+                    }
+                    htmlInp.setText(str1);
+                    try {
+                        htmlInp.setSelection(loc + 1);
+                    } catch (Exception e) {
+                        htmlInp.setSelection(builder.length());
+                    }
+                }catch (Exception e) {
+                    Log.d("e.getLocalizedMessage()", e.getLocalizedMessage());
+                }
             }
         });
         help3.setOnClickListener(new View.OnClickListener() {
@@ -176,8 +289,38 @@ public class codeFrament extends Fragment  { //was extends Fragment, might need 
                 int loc = htmlInp.getSelectionStart();
                 x = x.substring(0, htmlInp.getSelectionStart()) + "/" + x.substring(htmlInp.getSelectionStart(), x.length());
                 Log.d("hi", String.valueOf(htmlInp.getSelectionStart()+1));
-                htmlInp.setText(x);
-                htmlInp.setSelection(loc + 1);
+                htmlText = x;
+                Log.d(String.valueOf(loc), String.valueOf(loc));
+                try {
+                    Log.d("hihi", String.valueOf(htmlText.charAt(loc - 1)));
+                    String text = x;
+                    SpannableStringBuilder builder = new SpannableStringBuilder();
+                    SpannableString str1 = new SpannableString(text);
+                    for (String codeWord : cc) {
+                        int startt = 0;
+                        while (htmlText.indexOf(codeWord, startt) > -1) {
+                            Log.d("hi", String.valueOf(htmlText.indexOf(codeWord, 3)));
+                            str1.setSpan(new ForegroundColorSpan(Color.rgb(170, 109, 173)), htmlText.indexOf(codeWord, startt), htmlText.indexOf(codeWord, startt) + codeWord.length(), 0);
+                            startt = htmlText.indexOf(codeWord, startt) + codeWord.length();
+                        }
+                    }
+                    for (String codeWord2 : bb) {
+                        int startt = 0;
+                        while (htmlText.indexOf(codeWord2, startt) > -1) {
+                            Log.d("hi", String.valueOf(htmlText.indexOf(codeWord2, 3)));
+                            str1.setSpan(new ForegroundColorSpan(Color.rgb(53, 133, 228)), htmlText.indexOf(codeWord2, startt), htmlText.indexOf(codeWord2, startt) + codeWord2.length(), 0);
+                            startt = htmlText.indexOf(codeWord2, startt) + codeWord2.length();
+                        }
+                    }
+                    htmlInp.setText(str1);
+                    try {
+                        htmlInp.setSelection(loc + 1);
+                    } catch (Exception e) {
+                        htmlInp.setSelection(builder.length());
+                    }
+                }catch (Exception e) {
+                    Log.d("e.getLocalizedMessage()", e.getLocalizedMessage());
+                }
             }
         });
         final Handler handler = new Handler();

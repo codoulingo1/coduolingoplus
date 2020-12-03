@@ -26,8 +26,9 @@ public class KcsMultiAutoCompleteTextView implements MultiAutoCompleteTextView.T
         c.add("\n");
         c.add("+");
         c.add("-");
-        c.add("/");
         c.add("*");
+        c.add("(");
+        c.add(")");
         TOKEN_TERMINATING_CHAR = tokenTerminatingChar;
         if (TOKEN_TERMINATING_CHAR == WHITE_SPACE) {
             TOKEN_TERMINATING_STRING = "";
