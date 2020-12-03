@@ -133,7 +133,7 @@ public class tree extends AppCompatActivity {
         skill1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startLesson(Arrays.asList("1-5-2~לולאות for", "1-5-4~יצירת צ'אט בוט"), Arrays.asList(""));
+                startLesson(Arrays.asList("1-1-2~הקוד הראשון שלי", "1-1-1~מבוא לפייתון"), Arrays.asList(""));
             } //savta
         });
         skill2.setOnClickListener(new View.OnClickListener() {

@@ -113,7 +113,7 @@ public class codeFrament extends Fragment  { //was extends Fragment, might need 
                             int startt = 0;
                             while (htmlText.indexOf(codeWord, startt) > -1) {
                                 Log.d("hi", String.valueOf(htmlText.indexOf(codeWord, 3)));
-                                str1.setSpan(new ForegroundColorSpan(Color.rgb(170, 109, 173)), htmlText.indexOf(codeWord, startt), htmlText.indexOf(codeWord, startt) + codeWord.length(), 0);
+                                str1.setSpan(new ForegroundColorSpan(Color.rgb(53, 133, 228)), htmlText.indexOf(codeWord, startt), htmlText.indexOf(codeWord, startt) + codeWord.length(), 0);
                                 startt = htmlText.indexOf(codeWord, startt) + codeWord.length();
                             }
                         }
@@ -121,7 +121,7 @@ public class codeFrament extends Fragment  { //was extends Fragment, might need 
                             int startt = 0;
                             while (htmlText.indexOf(codeWord2, startt) > -1) {
                                 Log.d("hi", String.valueOf(htmlText.indexOf(codeWord2, 3)));
-                                str1.setSpan(new ForegroundColorSpan(Color.rgb(53, 133, 228)), htmlText.indexOf(codeWord2, startt), htmlText.indexOf(codeWord2, startt) + codeWord2.length(), 0);
+                                str1.setSpan(new ForegroundColorSpan(Color.rgb(170, 109, 173)), htmlText.indexOf(codeWord2, startt), htmlText.indexOf(codeWord2, startt) + codeWord2.length(), 0);
                                 startt = htmlText.indexOf(codeWord2, startt) + codeWord2.length();
                             }
                         }
@@ -218,7 +218,7 @@ public class codeFrament extends Fragment  { //was extends Fragment, might need 
                         int startt = 0;
                         while (htmlText.indexOf(codeWord, startt) > -1) {
                             Log.d("hi", String.valueOf(htmlText.indexOf(codeWord, 3)));
-                            str1.setSpan(new ForegroundColorSpan(Color.rgb(170, 109, 173)), htmlText.indexOf(codeWord, startt), htmlText.indexOf(codeWord, startt) + codeWord.length(), 0);
+                            str1.setSpan(new ForegroundColorSpan(Color.rgb(53, 133, 228)), htmlText.indexOf(codeWord, startt), htmlText.indexOf(codeWord, startt) + codeWord.length(), 0);
                             startt = htmlText.indexOf(codeWord, startt) + codeWord.length();
                         }
                     }
@@ -226,7 +226,7 @@ public class codeFrament extends Fragment  { //was extends Fragment, might need 
                         int startt = 0;
                         while (htmlText.indexOf(codeWord2, startt) > -1) {
                             Log.d("hi", String.valueOf(htmlText.indexOf(codeWord2, 3)));
-                            str1.setSpan(new ForegroundColorSpan(Color.rgb(53, 133, 228)), htmlText.indexOf(codeWord2, startt), htmlText.indexOf(codeWord2, startt) + codeWord2.length(), 0);
+                            str1.setSpan(new ForegroundColorSpan(Color.rgb(170, 109, 173)), htmlText.indexOf(codeWord2, startt), htmlText.indexOf(codeWord2, startt) + codeWord2.length(), 0);
                             startt = htmlText.indexOf(codeWord2, startt) + codeWord2.length();
                         }
                     }
@@ -259,7 +259,7 @@ public class codeFrament extends Fragment  { //was extends Fragment, might need 
                         int startt = 0;
                         while (htmlText.indexOf(codeWord, startt) > -1) {
                             Log.d("hi", String.valueOf(htmlText.indexOf(codeWord, 3)));
-                            str1.setSpan(new ForegroundColorSpan(Color.rgb(170, 109, 173)), htmlText.indexOf(codeWord, startt), htmlText.indexOf(codeWord, startt) + codeWord.length(), 0);
+                            str1.setSpan(new ForegroundColorSpan(Color.rgb(53, 133, 228)), htmlText.indexOf(codeWord, startt), htmlText.indexOf(codeWord, startt) + codeWord.length(), 0);
                             startt = htmlText.indexOf(codeWord, startt) + codeWord.length();
                         }
                     }
@@ -267,7 +267,7 @@ public class codeFrament extends Fragment  { //was extends Fragment, might need 
                         int startt = 0;
                         while (htmlText.indexOf(codeWord2, startt) > -1) {
                             Log.d("hi", String.valueOf(htmlText.indexOf(codeWord2, 3)));
-                            str1.setSpan(new ForegroundColorSpan(Color.rgb(53, 133, 228)), htmlText.indexOf(codeWord2, startt), htmlText.indexOf(codeWord2, startt) + codeWord2.length(), 0);
+                            str1.setSpan(new ForegroundColorSpan(Color.rgb(170, 109, 173)), htmlText.indexOf(codeWord2, startt), htmlText.indexOf(codeWord2, startt) + codeWord2.length(), 0);
                             startt = htmlText.indexOf(codeWord2, startt) + codeWord2.length();
                         }
                     }
@@ -300,7 +300,7 @@ public class codeFrament extends Fragment  { //was extends Fragment, might need 
                         int startt = 0;
                         while (htmlText.indexOf(codeWord, startt) > -1) {
                             Log.d("hi", String.valueOf(htmlText.indexOf(codeWord, 3)));
-                            str1.setSpan(new ForegroundColorSpan(Color.rgb(170, 109, 173)), htmlText.indexOf(codeWord, startt), htmlText.indexOf(codeWord, startt) + codeWord.length(), 0);
+                            str1.setSpan(new ForegroundColorSpan(Color.rgb(53, 133, 228)), htmlText.indexOf(codeWord, startt), htmlText.indexOf(codeWord, startt) + codeWord.length(), 0);
                             startt = htmlText.indexOf(codeWord, startt) + codeWord.length();
                         }
                     }
@@ -308,7 +308,7 @@ public class codeFrament extends Fragment  { //was extends Fragment, might need 
                         int startt = 0;
                         while (htmlText.indexOf(codeWord2, startt) > -1) {
                             Log.d("hi", String.valueOf(htmlText.indexOf(codeWord2, 3)));
-                            str1.setSpan(new ForegroundColorSpan(Color.rgb(53, 133, 228)), htmlText.indexOf(codeWord2, startt), htmlText.indexOf(codeWord2, startt) + codeWord2.length(), 0);
+                            str1.setSpan(new ForegroundColorSpan(Color.rgb(170, 109, 173)), htmlText.indexOf(codeWord2, startt), htmlText.indexOf(codeWord2, startt) + codeWord2.length(), 0);
                             startt = htmlText.indexOf(codeWord2, startt) + codeWord2.length();
                         }
                     }
