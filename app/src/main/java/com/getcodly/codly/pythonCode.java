@@ -119,6 +119,15 @@ public class pythonCode extends Fragment {
                                 startt = htmlText.indexOf(codeWord2, startt) + codeWord2.length();
                             }
                         }
+                        int adNunc = 1;
+                        int altumAdNunc = 0;
+                        for (String tText: htmlText.split("\"")){
+                            if (adNunc % 2 == 0){
+                                str1.setSpan(new ForegroundColorSpan(Color.rgb(125, 250, 111)), altumAdNunc, altumAdNunc + tText.length(), 0);
+                            }
+                            altumAdNunc = altumAdNunc + tText.length() + 1;
+                            adNunc = adNunc + 1;
+                        }
                         htmlInp.setText(str1);
                         try {
                             if (ifn){
@@ -217,6 +226,15 @@ public class pythonCode extends Fragment {
                             startt = htmlText.indexOf(codeWord2, startt) + codeWord2.length();
                         }
                     }
+                    int adNunc = 1;
+                    int altumAdNunc = 0;
+                    for (String tText: htmlText.split("\"")){
+                        if (adNunc % 2 == 0){
+                            str1.setSpan(new ForegroundColorSpan(Color.rgb(125, 250, 111)), altumAdNunc, altumAdNunc + tText.length(), 0);
+                        }
+                        altumAdNunc = altumAdNunc + tText.length() + 1;
+                        adNunc = adNunc + 1;
+                    }
                         htmlInp.setText(str1);
                         try {
                             htmlInp.setSelection(loc + 1);
@@ -258,6 +276,15 @@ public class pythonCode extends Fragment {
                             startt = htmlText.indexOf(codeWord2, startt) + codeWord2.length();
                         }
                     }
+                    int adNunc = 1;
+                    int altumAdNunc = 0;
+                    for (String tText: htmlText.split("\"")){
+                        if (adNunc % 2 == 0){
+                            str1.setSpan(new ForegroundColorSpan(Color.rgb(125, 250, 111)), altumAdNunc, altumAdNunc + tText.length(), 0);
+                        }
+                        altumAdNunc = altumAdNunc + tText.length() + 1;
+                        adNunc = adNunc + 1;
+                    }
                         htmlInp.setText(str1);
                         try {
                             htmlInp.setSelection(loc + 1);
@@ -298,6 +325,15 @@ public class pythonCode extends Fragment {
                             str1.setSpan(new ForegroundColorSpan(Color.rgb(255,140,0)), htmlText.indexOf(codeWord2, startt), htmlText.indexOf(codeWord2, startt) + codeWord2.length(), 0);
                             startt = htmlText.indexOf(codeWord2, startt) + codeWord2.length();
                         }
+                    }
+                    int adNunc = 1;
+                    int altumAdNunc = 0;
+                    for (String tText: htmlText.split("\"")){
+                        if (adNunc % 2 == 0){
+                            str1.setSpan(new ForegroundColorSpan(Color.rgb(125, 250, 111)), altumAdNunc, altumAdNunc + tText.length(), 0);
+                        }
+                        altumAdNunc = altumAdNunc + tText.length() + 1;
+                        adNunc = adNunc + 1;
                     }
                         htmlInp.setText(str1);
                         try {

@@ -140,6 +140,10 @@ public class LessonActivity extends AppCompatActivity {
             startActivity(new Intent(LessonActivity.this, FreeText.class));
             overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
         }
+        else if(hashMap.get("type").equals("nextQS")) {
+            LessonActivity.j = LessonActivity.j + 1;
+            startActivity(new Intent(LessonActivity.this, LessonActivity.class));
+        }
         else if(hashMap.get("type").equals("runpy") || hashMap.get("type").equals("showpy")){
             Log.d("finished", "finished7");
             if (mainScreen.LessonType.equals("comp")){
