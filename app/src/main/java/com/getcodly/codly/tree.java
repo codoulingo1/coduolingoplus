@@ -151,7 +151,7 @@ public class tree extends AppCompatActivity {
         skill4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startLesson(Arrays.asList("1-5-4~הפקודה range" ,"1-5-3~לולאות for" ,"1-4-2~רשימות", "1-5-1~לולאת while"), Arrays.asList("1-3-2"));
+                startLesson(Arrays.asList("1-5-3~הפקודה range" ,"1-5-2~לולאות for" ,"1-4-2~רשימות", "1-5-1~לולאת while"), Arrays.asList("1-3-2"));
             } //savta
         });
         skill5.setOnClickListener(new View.OnClickListener() {
