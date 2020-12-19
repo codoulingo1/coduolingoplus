@@ -161,7 +161,7 @@ public class tree_html_improved extends AppCompatActivity {
         skill6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startLesson(Arrays.asList("2-6-1~כפתורים"), Arrays.asList("2-5-1"));
+                startLesson(Arrays.asList("2-6-1~מבוא לקוד css"), Arrays.asList("2-5-1"));
             }
         });
 
