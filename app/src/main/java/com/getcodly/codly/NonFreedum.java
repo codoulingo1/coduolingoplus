@@ -1,5 +1,11 @@
 package com.getcodly.codly;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.viewpager.widget.ViewPager;
 
 import android.animation.ObjectAnimator;
 import android.content.Intent;
@@ -21,11 +27,16 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 
+import com.google.android.material.tabs.TabLayout;
+
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.getcodly.codly.codeFramentQS.setText;
+
 public class NonFreedum extends AppCompatActivity {
-    TextView ans;
+    //TextView ans;
+    public static String input;
     String org;
     List<String> back_ch = new ArrayList<String>();
     String unuateksto;
@@ -40,9 +51,13 @@ public class NonFreedum extends AppCompatActivity {
     Button opt1;
     ProgressBar pb;
     private ObjectAnimator progressAnimator;
-    WebView htmlView;
+    //WebView htmlView;
     TextView qs;
     Button showAnswer;
+
+    private codeFramentQS codeFramentQS1;
+    private browserFragmentQS browserFragmentQS1;
+    private TabLayout tabs;
 
     private AnimatedVectorDrawable animation;
 
@@ -67,15 +82,29 @@ public class NonFreedum extends AppCompatActivity {
         qs = (TextView) findViewById(R.id.textView2);
         pb = (ProgressBar) findViewById(R.id.progressBar);
         popupFalse = (RelativeLayout) findViewById(R.id.popupFalse);
-        ans = findViewById(R.id.textView3);
-        htmlView = findViewById(R.id.htmlView3);
+        //ans = findViewById(R.id.textView3);
+        //htmlView = findViewById(R.id.htmlView3);
         popupTrue = (RelativeLayout) findViewById(R.id.PopupTrue);
         pb.setProgress(LessonActivity.pr);
+
+        codeFramentQS1 = new codeFramentQS();
+        browserFragmentQS1 = new browserFragmentQS();
+
+        ViewPager viewPager = findViewById(R.id.viewPagerQS);
+        tabs = (TabLayout) findViewById(R.id.tabs1);
+
+        ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager(), 0);
+
+        viewPagerAdapter.addFragment(codeFramentQS1, "תכנות");
+        viewPagerAdapter.addFragment(browserFragmentQS1, "תצוגה");
+
+        viewPager.setAdapter(viewPagerAdapter);
+
         showAnswer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 popupFalse.setVisibility(View.GONE);
-                ans.setText(LessonActivity.shared_hashmap.get("Answer"));
+                //ans.setText(LessonActivity.shared_hashmap.get("Answer"));
             }
         });
         SpannableStringBuilder builder=new SpannableStringBuilder();
@@ -120,8 +149,8 @@ public class NonFreedum extends AppCompatActivity {
             ch_new_text[d] = ' ';
         }
         f=String.valueOf(ch_new_text);
-        ans.setText(f);
-        org = ans.getText().toString();
+        codeFramentQS.setText(f);
+        org = codeFramentQS.getText();
         opt1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -199,7 +228,7 @@ public class NonFreedum extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //when play is clicked show stop button and hide play button
-                if (LessonActivity.shared_hashmap.get("Answer").equals(ans.getText().toString())){
+                if (LessonActivity.shared_hashmap.get("Answer").equals(codeFramentQS.getText().toString())){
                     /*buttonl.setVisibility(View.VISIBLE);
                     buttonl.setText("המשך");
                     buttonl.setOnClickListener(new View.OnClickListener() {
@@ -267,7 +296,7 @@ public class NonFreedum extends AppCompatActivity {
         for (int d : del){
             ch_new_text[d] = ' ';
         }
-        ans.setText(String.valueOf(ch_new_text));//add the input
+        codeFramentQS.setText(String.valueOf(ch_new_text));//add the input
         back_ch.add(new_text);//add the input
     }
     public void back_choice() {
@@ -279,7 +308,7 @@ public class NonFreedum extends AppCompatActivity {
             for (int d : del){
                 ch_new_text[d] = ' ';
             }
-            ans.setText(String.valueOf(ch_new_text));
+            codeFramentQS.setText(String.valueOf(ch_new_text));
             back_ch.remove(back_ch.size() - 1);
         }
 
@@ -292,7 +321,7 @@ public class NonFreedum extends AppCompatActivity {
         }
     }
     public void rese() {
-        ans.setText(f);
+        codeFramentQS.setText(f);
         back_ch.clear();
         back_ch.add(unuateksto);
     }
@@ -306,7 +335,7 @@ public class NonFreedum extends AppCompatActivity {
     void showCorrect(){
         check.setImageResource(R.drawable.avd_anim);
         animate();
-        htmlView.loadData(ans.getText().toString(), "text/html", "UTF-8");
+        //htmlView.loadData(ans.getText().toString(), "text/html", "UTF-8");
         check.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -349,4 +378,39 @@ public class NonFreedum extends AppCompatActivity {
             animation.start();
         }
     }
+
+    private class ViewPagerAdapter extends FragmentPagerAdapter
+    {
+
+        private List<Fragment> fragments = new ArrayList<>();
+        private List<String> fragmentTitle = new ArrayList<>();
+
+        public ViewPagerAdapter(@NonNull FragmentManager fm, int behavior) {
+            super(fm, behavior);
+        }
+
+        public void addFragment(Fragment fragment, String title){
+            fragments.add(fragment);
+            fragmentTitle.add(title);
+        }
+
+        @NonNull
+        @Override
+        public Fragment getItem(int position) {
+            return fragments.get(position);
+        }
+
+        @Override
+        public int getCount() {
+            return fragments.size();
+        }
+
+        @Nullable
+        @Override
+        public CharSequence getPageTitle(int position) {
+            return fragmentTitle.get(position);
+        }
+    }
 }
+
+

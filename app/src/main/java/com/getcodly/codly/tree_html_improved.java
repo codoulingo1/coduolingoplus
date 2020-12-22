@@ -46,6 +46,8 @@ public class tree_html_improved extends AppCompatActivity {
 
     RelativeLayout pythonCourse;
 
+    RelativeLayout switchToPy;
+
     boolean isTopSheetVisible;
 
     public static ArrayList<String> idShare;
@@ -61,6 +63,7 @@ public class tree_html_improved extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.tree_improved);
         mainScreen.lessonWr = 0;
+        switchToPy = findViewById(R.id.coursePython);
         skill1 = findViewById(R.id.skill_1);
         skill2 = findViewById(R.id.skill_2);
         skill3 = findViewById(R.id.skill_3);
@@ -98,6 +101,13 @@ public class tree_html_improved extends AppCompatActivity {
         f4.setText(s(Arrays.asList("2-4-1", "2-4-2")));
         f5.setText(s(Arrays.asList("2-5-1")));
         f6.setText(s(Arrays.asList("2-6-1")));
+
+        switchToPy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(tree_html_improved.this, tree.class));
+            }
+        });
 
         switchCourseBtn.setOnClickListener(new View.OnClickListener() {
             @Override

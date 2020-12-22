@@ -1,6 +1,7 @@
 package com.getcodly.codly;
 
 import android.content.Context;
+import android.os.CountDownTimer;
 import android.util.Log;
 
 import com.google.android.gms.tasks.Task;
@@ -198,7 +199,22 @@ public class DownloadReadlessons {
         try {
             hashMap.put("type", arr[1].replace("\\n", System.getProperty("line.separator")));
         } catch (Exception e) {
-            hashMap.put("type", arr[1]);
+            try{
+                hashMap.put("type", arr[1]);
+            }catch (Exception exception){
+                CountDownTimer mCountdownTimer;
+                mCountdownTimer = new CountDownTimer(1000, 1000) {
+                    @Override
+                    public void onTick(long millisUntilFinished) {
+
+                }
+
+                    @Override
+                    public void onFinish() {
+                        hashMap.put("type", arr[1].replace("\\n", System.getProperty("line.separator")));
+                    }
+                };
+            }
         }
         try {
             hashMap.put("qs", arr[3].replace("\\n", System.getProperty("line.separator")).replaceAll("aaa", "[").replaceAll("bbb", "]"));

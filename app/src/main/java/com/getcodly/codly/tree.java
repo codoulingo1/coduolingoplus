@@ -47,6 +47,17 @@ public class tree extends AppCompatActivity {
     RelativeLayout LessonStart4;
     RelativeLayout LessonStart5;
     RelativeLayout LessonStart6;
+
+    RelativeLayout switchToHTML;
+
+    RelativeLayout topSheet;
+
+    boolean isTopSheetVisible;
+
+    RelativeLayout switchCourseBtn;
+
+    View pageCover;
+
     public static ArrayList<String> idShare;
     public static ArrayList<String> namesShare;
     CountDownTimer mcountdown;
@@ -59,6 +70,7 @@ public class tree extends AppCompatActivity {
         setContentView(R.layout.tree_py_improved);
         //mAuth = FirebaseAuth.getInstance();
         mainScreen.lessonWr = 0;
+        switchToHTML = findViewById(R.id.courseHTML);
         skill1 = (RelativeLayout) findViewById(R.id.skill_1);
         skill2 = (RelativeLayout) findViewById(R.id.skill_2);
         skill3 = (RelativeLayout) findViewById(R.id.skill_3);
@@ -77,6 +89,37 @@ public class tree extends AppCompatActivity {
         LessonStart4 = findViewById(R.id.skill4picture);
         LessonStart5 = findViewById(R.id.skill5picture);
         LessonStart6 = findViewById(R.id.skill6picture);
+
+        topSheet = findViewById(R.id.topSheet);
+        switchCourseBtn = findViewById(R.id.button8);
+        pageCover = findViewById(R.id.pageCover);
+
+        switchCourseBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(!isTopSheetVisible){
+                    pageCover.setVisibility(View.VISIBLE);
+                    topSheet.setVisibility(View.VISIBLE);
+                    topSheet.setTranslationY(-600);
+                    topSheet.animate().translationY(0).setDuration(300);
+                    isTopSheetVisible = true;
+                } else{
+                    topSheet.animate().translationY(-600).setDuration(300);
+                    pageCover.setVisibility(View.GONE);
+                    topSheet.setVisibility(View.GONE);
+                    isTopSheetVisible = false;
+                }
+            }
+        });
+
+        pageCover.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                pageCover.setVisibility(View.GONE);
+                topSheet.setVisibility(View.GONE);
+                isTopSheetVisible = false;
+            }
+        });
 
         File dirName = new File(Environment.getExternalStorageDirectory() + "/" + "id" + "/");
         try {
@@ -130,6 +173,12 @@ public class tree extends AppCompatActivity {
         if (ifHfinished(Arrays.asList("1-4-1"), Arrays.asList("1-5-4"))){
             LessonStart6.setBackgroundResource(R.drawable.skill);
         }
+        switchToHTML.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(tree.this, tree_html_improved.class));
+            }
+        });
         skill1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -92,7 +92,6 @@
                         android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:layout_centerInParent="true"
-                        android:src="@drawable/ic_coding"
                         app:srcCompat="@drawable/ic_web_page" />
 
                 </RelativeLayout>
@@ -145,7 +144,6 @@
                         android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:layout_centerInParent="true"
-                        android:src="@drawable/ic_coding"
                         app:srcCompat="@drawable/ic_website_design" />
 
                 </RelativeLayout>
@@ -198,7 +196,6 @@
                         android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:layout_centerInParent="true"
-                        android:src="@drawable/ic_coding"
                         app:srcCompat="@drawable/ic_logo" />
 
                 </RelativeLayout>
@@ -251,7 +248,6 @@
                         android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:layout_centerInParent="true"
-                        android:src="@drawable/ic_coding"
                         app:srcCompat="@drawable/ic_computer" />
 
                 </RelativeLayout>
@@ -304,7 +300,6 @@
                         android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:layout_centerInParent="true"
-                        android:src="@drawable/ic_coding"
                         app:srcCompat="@drawable/ic_css" />
 
                 </RelativeLayout>
@@ -367,25 +362,67 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="קורס פייתון"
-                android:fontFamily="@font/rubik_medium"
+                android:text="פייתון למתחילים"
+                android:fontFamily="@font/rubik_light"
                 android:textColor="#3e416e"
-                android:textSize="22dp"
+                android:textSize="26dp"
                 android:layout_centerHorizontal="true"
                 android:layout_alignParentTop="true"
-                android:layout_marginTop="5dp"/>
+                android:layout_marginTop="20dp"
+                android:layout_above="@id/bottomHalfPy"/>
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="80dp"
                 android:background="@drawable/course_preview_top"
                 android:padding="10dp"
-                android:layout_alignParentBottom="true">
+                android:layout_alignParentBottom="true"
+                android:id="@+id/bottomHalfPy">
 
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     app:srcCompat="@drawable/ic_python" />
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_centerVertical="true"
+            android:layout_width="180dp"
+            android:layout_height="160dp"
+            android:layout_margin="10dp"
+            android:background="@drawable/course_preview_highlight"
+            android:id="@+id/courseHTML"
+            android:layout_toRightOf="@+id/coursePython"
+            android:elevation="1dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="פיתוח אתרים"
+                android:fontFamily="@font/rubik_light"
+                android:textColor="#3e416e"
+                android:textSize="26dp"
+                android:layout_centerHorizontal="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="20dp"
+                android:layout_above="@id/bottomHalfHtml"/>
+
+            <RelativeLayout
+                android:layout_width="174dp"
+                android:layout_height="80dp"
+                android:layout_marginBottom="3dp"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/course_preview_top_html"
+                android:padding="10dp"
+                android:id="@+id/bottomHalfHtml"
+                android:layout_alignParentBottom="true">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:srcCompat="@drawable/ic_html_5" />
             </RelativeLayout>
 
         </RelativeLayout>

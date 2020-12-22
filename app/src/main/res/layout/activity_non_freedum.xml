@@ -84,16 +84,34 @@
         </LinearLayout>
     </HorizontalScrollView>
 
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="match_parent"
-        android:layout_height="313dp"
-        android:layout_below="@+id/textView2"
-        android:layout_marginTop="5dp"
-        android:background="@color/codeBackground"
-        android:fontFamily="@font/veramono"
-        android:textColor="#FFFFFF"
-        android:textSize="16dp" />
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_marginTop="40dp"
+        android:layout_marginBottom="50dp"
+        android:layout_below="@id/textView2"
+        android:layout_above="@id/check">
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/viewPagerQS"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:layout_alignParentBottom="true"
+            android:layout_below="@id/tabs1">
+
+        </androidx.viewpager.widget.ViewPager>
+
+        <com.google.android.material.tabs.TabLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/tabs1">
+
+        </com.google.android.material.tabs.TabLayout>
+
+    </RelativeLayout>
+
+
 
     <Button
         android:id="@+id/dlt"
@@ -116,16 +134,6 @@
         android:layout_marginRight="10dp"
         android:layout_marginBottom="10dp"
         android:text="מחק הכל" />
-
-
-
-    <WebView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textView3"
-        android:layout_above="@id/check"
-        android:layout_marginBottom="5dp"
-        android:id="@+id/htmlView3"/>
 
     <ImageButton
         android:id="@+id/check"
