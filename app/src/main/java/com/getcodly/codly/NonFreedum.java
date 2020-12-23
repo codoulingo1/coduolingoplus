@@ -3,6 +3,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
@@ -13,6 +14,7 @@ import android.graphics.Typeface;
 import android.graphics.drawable.AnimatedVectorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
@@ -24,19 +26,18 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
+import android.widget.TableLayout;
 import android.widget.TextView;
 
 
 import com.google.android.material.tabs.TabLayout;
+import com.google.rpc.Code;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.getcodly.codly.codeFramentQS.setText;
-
 public class NonFreedum extends AppCompatActivity {
     //TextView ans;
-    public static String input;
     String org;
     List<String> back_ch = new ArrayList<String>();
     String unuateksto;
@@ -51,17 +52,19 @@ public class NonFreedum extends AppCompatActivity {
     Button opt1;
     ProgressBar pb;
     private ObjectAnimator progressAnimator;
-    //WebView htmlView;
+    WebView htmlView;
     TextView qs;
     Button showAnswer;
 
-    private codeFramentQS codeFramentQS1;
-    private browserFragmentQS browserFragmentQS1;
+    private codeFramentQS CodeFramentQS1;
+    private browserFragmentQS BrowserFragmentQS1;
     private TabLayout tabs;
+    public static String htmlCodeParent;
 
     private AnimatedVectorDrawable animation;
 
     ImageButton check;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,20 +86,21 @@ public class NonFreedum extends AppCompatActivity {
         pb = (ProgressBar) findViewById(R.id.progressBar);
         popupFalse = (RelativeLayout) findViewById(R.id.popupFalse);
         //ans = findViewById(R.id.textView3);
-        //htmlView = findViewById(R.id.htmlView3);
+        htmlView = findViewById(R.id.htmlView3);
         popupTrue = (RelativeLayout) findViewById(R.id.PopupTrue);
         pb.setProgress(LessonActivity.pr);
 
-        codeFramentQS1 = new codeFramentQS();
-        browserFragmentQS1 = new browserFragmentQS();
+        ViewPager viewPager = findViewById(R.id.view_pager2);
+        tabs = (TabLayout) findViewById(R.id.tabs2);
+        tabs.setupWithViewPager(viewPager);
 
-        ViewPager viewPager = findViewById(R.id.viewPagerQS);
-        tabs = (TabLayout) findViewById(R.id.tabs1);
+        CodeFramentQS1 = new codeFramentQS();
+        BrowserFragmentQS1 = new browserFragmentQS();
 
         ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager(), 0);
 
-        viewPagerAdapter.addFragment(codeFramentQS1, "תכנות");
-        viewPagerAdapter.addFragment(browserFragmentQS1, "תצוגה");
+        viewPagerAdapter.addFragment(CodeFramentQS1, "תכנות");
+        viewPagerAdapter.addFragment(BrowserFragmentQS1, "תצוגה");
 
         viewPager.setAdapter(viewPagerAdapter);
 
@@ -104,7 +108,7 @@ public class NonFreedum extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 popupFalse.setVisibility(View.GONE);
-                //ans.setText(LessonActivity.shared_hashmap.get("Answer"));
+                CodeFramentQS1.setText(LessonActivity.shared_hashmap.get("Answer"));
             }
         });
         SpannableStringBuilder builder=new SpannableStringBuilder();
@@ -149,8 +153,33 @@ public class NonFreedum extends AppCompatActivity {
             ch_new_text[d] = ' ';
         }
         f=String.valueOf(ch_new_text);
-        codeFramentQS.setText(f);
-        org = codeFramentQS.getText();
+
+
+
+        new CountDownTimer(50, 8) {
+            public void onFinish() {
+                try {
+                    CodeFramentQS1.setText(f);
+                    org = CodeFramentQS1.getText();
+                } catch (Exception e){
+                    new CountDownTimer(500, 10) {
+                        public void onFinish() {
+                            CodeFramentQS1.setText(f);
+                            org = CodeFramentQS1.getText();
+                        }
+
+                        public void onTick(long millisUntilFinished) {
+
+                        }
+                    }.start();
+                }
+            }
+
+            public void onTick(long millisUntilFinished) {
+
+            }
+        }.start();
+
         opt1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -183,12 +212,12 @@ public class NonFreedum extends AppCompatActivity {
         });
         opt5.setOnClickListener(new View.OnClickListener() {
             @Override
-        public void onClick(View v) {
-            //when play is clicked show stop button and hide play button
-            choice(opt5);
+            public void onClick(View v) {
+                //when play is clicked show stop button and hide play button
+                choice(opt5);
 
-        }
-    });
+            }
+        });
         opt6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -228,26 +257,13 @@ public class NonFreedum extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //when play is clicked show stop button and hide play button
-                if (LessonActivity.shared_hashmap.get("Answer").equals(codeFramentQS.getText().toString())){
-                    /*buttonl.setVisibility(View.VISIBLE);
-                    buttonl.setText("המשך");
-                    buttonl.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            LessonActivity.j++;
-                            startActivity(new Intent(NonFreedum.this, LessonActivity.class));
-                        }});*/
+                if (LessonActivity.shared_hashmap.get("Answer").equals(CodeFramentQS1.getText())){
+                    codeFramentQS.getCode((FragmentActivity) NonFreedum.this);
+                    tabs.getTabAt(1).select();
                     showCorrect();
 
                 } else{
-                    /*buttonl.setVisibility(View.VISIBLE);
-                    buttonl.setText("נסה שוב");
-                    buttonl.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            startActivity(new Intent(NonFreedum.this, NonFreedum.class));
-                        }
-                    });*/
+
                     NonFreedum.w++;
                     if (NonFreedum.w > 1){
 
@@ -263,7 +279,7 @@ public class NonFreedum extends AppCompatActivity {
         int opt4txt = opt4.getText().toString().length();
         int opt5txt = opt5.getText().toString().length();
         int opt6txt = opt6.getText().toString().length();
-        
+
 
         opt1.getLayoutParams().width = opt1txt * 25 + 100;
         opt2.getLayoutParams().width = opt2txt * 25 + 100;
@@ -276,7 +292,7 @@ public class NonFreedum extends AppCompatActivity {
     public void choice(Button opt){
         String text;
 
-            try {
+        try {
             if (!back_ch.get(back_ch.size() - 1).equals(unuateksto))
             {
                 text = back_ch.get(back_ch.size() - 1);
@@ -296,32 +312,32 @@ public class NonFreedum extends AppCompatActivity {
         for (int d : del){
             ch_new_text[d] = ' ';
         }
-        codeFramentQS.setText(String.valueOf(ch_new_text));//add the input
+        CodeFramentQS1.setText(String.valueOf(ch_new_text));//add the input
         back_ch.add(new_text);//add the input
     }
     public void back_choice() {
         try{
-        if (back_ch.get(back_ch.size() - 2).length() < back_ch.get(back_ch.size() - 1).length() || Text.findstring("£", back_ch.get(back_ch.size() - 2))) {
-            String new_text = back_ch.get(back_ch.size() - 2);
-            List<Integer> del =  Text.betweenIndex(new_text, '£', 's');
-            char[] ch_new_text = new_text.toCharArray();
-            for (int d : del){
-                ch_new_text[d] = ' ';
+            if (back_ch.get(back_ch.size() - 2).length() < back_ch.get(back_ch.size() - 1).length() || Text.findstring("£", back_ch.get(back_ch.size() - 2))) {
+                String new_text = back_ch.get(back_ch.size() - 2);
+                List<Integer> del =  Text.betweenIndex(new_text, '£', 's');
+                char[] ch_new_text = new_text.toCharArray();
+                for (int d : del){
+                    ch_new_text[d] = ' ';
+                }
+                CodeFramentQS1.setText(String.valueOf(ch_new_text));
+                back_ch.remove(back_ch.size() - 1);
             }
-            codeFramentQS.setText(String.valueOf(ch_new_text));
-            back_ch.remove(back_ch.size() - 1);
-        }
 
 
-        else {
-            rese();
-        }
+            else {
+                rese();
+            }
         }catch (Exception e){
             rese();
         }
     }
     public void rese() {
-        codeFramentQS.setText(f);
+        CodeFramentQS1.setText(f);
         back_ch.clear();
         back_ch.add(unuateksto);
     }
@@ -335,7 +351,7 @@ public class NonFreedum extends AppCompatActivity {
     void showCorrect(){
         check.setImageResource(R.drawable.avd_anim);
         animate();
-        //htmlView.loadData(ans.getText().toString(), "text/html", "UTF-8");
+        htmlView.loadData(CodeFramentQS1.getText().toString(), "text/html", "UTF-8");
         check.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -411,6 +427,5 @@ public class NonFreedum extends AppCompatActivity {
             return fragmentTitle.get(position);
         }
     }
+
 }
-
-

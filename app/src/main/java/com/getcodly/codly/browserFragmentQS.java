@@ -23,7 +23,7 @@ public class browserFragmentQS extends Fragment {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_browser, container, false);
 
-        code = codeFrament.htmlCode;
+        code = codeFramentQS.htmlCode;
         htmlView = (WebView) v.findViewById(R.id.HtmlView);
         htmlView.loadData(code, "text/html", "UTF-8");
 

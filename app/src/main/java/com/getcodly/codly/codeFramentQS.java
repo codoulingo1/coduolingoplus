@@ -22,6 +22,7 @@ import android.widget.MultiAutoCompleteTextView;
 import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager.widget.ViewPager;
@@ -37,14 +38,13 @@ import java.util.Locale;
 public class codeFramentQS extends Fragment  { //was extends Fragment, might need to change that
 
     public static String htmlCode;
-    ImageButton submitBtn;
     public static TextView htmlInp;
     String htmlText;
     List<String> c;
     String[] cc;
     String[] bb;
     ViewPager mViewPager;
-    TabLayout tabsHost;
+    //public static TabLayout tabsHost;
     String blankTemplate = "<!doctype html>\n<html>\n    <head>\n        \n    </head>\n    \n    <body>\n        \n    </body>\n</html>";
     private AnimatedVectorDrawable animation;
 
@@ -56,6 +56,7 @@ public class codeFramentQS extends Fragment  { //was extends Fragment, might nee
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_code_frament_qs, container, false);
+
         c = new ArrayList<String>();
         cc = new String[]{"body", "html", "head", "h1", "h2", "h3", "h4", "h5", "h6", "br", "hr",
                 "dl", "dd", "dt", "tr", "td", "table"};
@@ -72,7 +73,6 @@ public class codeFramentQS extends Fragment  { //was extends Fragment, might nee
         c.add("*");
         c.add("(");
         c.add(")");
-        submitBtn = (ImageButton) v.findViewById(R.id.submitHTML);
         htmlInp = v.findViewById(R.id.inputNonFreedum);
 
         htmlInp.setFocusableInTouchMode(true);
@@ -137,7 +137,7 @@ public class codeFramentQS extends Fragment  { //was extends Fragment, might nee
             }
         });
         mViewPager = (ViewPager) v.findViewById(R.id.view_pager6000);
-        tabsHost = getActivity().findViewById(R.id.tabs6000);
+        //tabsHost = getActivity().findViewById(R.id.tabs6000);
         detectLanguage();
         if (selectProject.codeToLoad != null){
             String codeToLoad2 = selectProject.codeToLoad;
@@ -146,16 +146,6 @@ public class codeFramentQS extends Fragment  { //was extends Fragment, might nee
         } else {
             htmlInp.setText(blankTemplate);
         }
-
-        submitBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                submitBtn.setImageResource(R.drawable.avd_anim);
-                animate();
-                htmlCode = htmlInp.getText().toString();
-                openFragment();
-            }
-        });
 
         htmlInp.setOnKeyListener(new View.OnKeyListener() {
             @Override
@@ -179,7 +169,6 @@ public class codeFramentQS extends Fragment  { //was extends Fragment, might nee
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                submitBtn.setImageResource(R.drawable.next3);
                 htmlCode = htmlInp.getText().toString();
             }
 
@@ -220,27 +209,23 @@ public class codeFramentQS extends Fragment  { //was extends Fragment, might nee
         return v;
     }
 
-    private void openFragment() {
-        browserFragment BrowserFragment = new browserFragment();
+    public static void getCode(FragmentActivity fa){
+        htmlCode = htmlInp.getText().toString();
+        openFragment(fa);
+    }
 
-        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+    public static void openFragment(FragmentActivity fa) {
+        browserFragmentQS BrowserFragmentQS1 = new browserFragmentQS();
+
+        FragmentManager fragmentManager = fa.getSupportFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
         transaction.addToBackStack(null);
-        transaction.add(R.id.fragment_container, BrowserFragment, "FRAGMENT").commit();
-        tabsHost.getTabAt(1).select();
+        transaction.add(R.id.fragment_container, BrowserFragmentQS1, "FRAGMENT").commit();
+        //tabsHost.getTabAt(1).select();
         //((iframe2) getActivity()).changeTab(2);
 
     }
 
-    public void animate(){
-        Drawable d = submitBtn.getDrawable();
-        if (d instanceof AnimatedVectorDrawable) {
-
-            Log.d("testanim", "onCreate: instancefound" + d.toString());
-            animation = (AnimatedVectorDrawable) d;
-            animation.start();
-        }
-    }
     void detectLanguage(){
         String a = Locale.getDefault().getDisplayLanguage();
         Log.d("lan", a);
