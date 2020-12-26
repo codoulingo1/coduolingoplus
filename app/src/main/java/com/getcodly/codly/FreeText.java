@@ -198,8 +198,8 @@ public class FreeText extends AppCompatActivity {
         tabs.getTabAt(1).select();
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                submit.setClickable(false);
+                public void onClick(View v) {
+                    submit.setClickable(false);
                 LessonActivity.j++;
                 mainScreen.lessonWr++;
                 LessonActivity.shared_xp = LessonActivity.shared_xp + 2;
