@@ -33,7 +33,7 @@ public class DialogBack extends AppCompatDialogFragment {
                     if (mainScreen.w.equals("py")) {
                         startActivity(new Intent(getContext(), tree.class));
                     } else if (mainScreen.w.equals("html")) {
-                        startActivity(new Intent(getContext(), tree_html.class));
+                        startActivity(new Intent(getContext(), tree_html_improved.class));
                     }else{
                         startActivity(new Intent(getContext(), mainScreen.class));
                     }

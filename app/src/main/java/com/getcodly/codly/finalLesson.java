@@ -108,7 +108,7 @@ public class finalLesson extends AppCompatActivity {
                 }
                 else if (mainScreen.w.equals("html")){
                     Log.d("else", "hihi");
-                    startActivity(new Intent(finalLesson.this, tree_html.class));
+                    startActivity(new Intent(finalLesson.this, tree_html_improved.class));
                 }else{
                     Log.d("else", "hihi");
                     startActivity(new Intent(finalLesson.this, mainScreen.class));

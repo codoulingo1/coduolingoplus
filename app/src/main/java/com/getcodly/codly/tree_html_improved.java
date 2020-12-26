@@ -100,7 +100,7 @@ public class tree_html_improved extends AppCompatActivity {
         f3.setText(s(Arrays.asList("2-3-1", "2-3-2")));
         f4.setText(s(Arrays.asList("2-4-1", "2-4-2")));
         f5.setText(s(Arrays.asList("2-5-1")));
-        f6.setText(s(Arrays.asList("2-6-1")));
+        f6.setText(s(Arrays.asList("2-6-1", "2-6-2")));
 
         switchToPy.setOnClickListener(new View.OnClickListener() {
             @Override
