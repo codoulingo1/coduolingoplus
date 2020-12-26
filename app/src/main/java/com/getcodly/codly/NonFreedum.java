@@ -351,7 +351,7 @@ public class NonFreedum extends AppCompatActivity {
     void showCorrect(){
         check.setImageResource(R.drawable.avd_anim);
         animate();
-        htmlView.loadData(CodeFramentQS1.getText().toString(), "text/html", "UTF-8");
+        //htmlView.loadData(CodeFramentQS1.getText().toString(), "text/html", "UTF-8");
         check.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

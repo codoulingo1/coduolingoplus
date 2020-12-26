@@ -12,26 +12,6 @@
     android:background="#F3F4F9">
     <!--android:scrollbarStyle="insideInset" - this is something bad-->
 
-    <EditText
-        android:id="@+id/inp"
-        android:layout_width="match_parent"
-        android:layout_height="248dp"
-        android:layout_below="@+id/textView"
-        android:layout_marginTop="20dp"
-        android:fontFamily="@font/veramono"
-        android:gravity="top"
-        android:inputType="textMultiLine|textNoSuggestions"
-        android:lines="20"
-        android:minLines="20"
-        android:overScrollMode="always"
-        android:scrollbarStyle="insideInset"
-        android:scrollbars="vertical"
-        android:textColor="@color/white"
-        android:background="@color/codeBackground"/>
-
-
-
-
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -189,14 +169,32 @@
             android:textSize="46sp" />
     </RelativeLayout>
 
-    <WebView
-        android:id="@+id/HtmlView2"
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/view_pager2"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/inp"
-        android:layout_above="@id/bottomBar"
-        />
+        android:layout_height="300dp"
+        android:layout_below="@id/barlayout"
+        android:layout_marginTop="0dp"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay"
+        android:layout_below="@id/textView"
+        android:id="@+id/barlayout"
+        android:layout_marginTop="20dp">
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabs2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/codeBackground"
+            app:tabTextAppearance="@style/tab_text">
+        </com.google.android.material.tabs.TabLayout>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
 
 
 
