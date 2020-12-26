@@ -10,6 +10,7 @@ import androidx.viewpager.widget.ViewPager;
 
 import android.animation.ObjectAnimator;
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.AnimatedVectorDrawable;
 import android.graphics.drawable.Drawable;
@@ -18,6 +19,7 @@ import android.os.CountDownTimer;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
+import android.text.style.ForegroundColorSpan;
 import android.text.style.StyleSpan;
 import android.util.Log;
 import android.view.View;
@@ -48,6 +50,7 @@ public class NonFreedum extends AppCompatActivity {
     RelativeLayout popupFalse;
     ImageButton continueBtnTrue;
     public static int w;
+    public static boolean ifQsPython;
     ImageButton continueBtnFalse;
     Button opt1;
     ProgressBar pb;
@@ -75,6 +78,7 @@ public class NonFreedum extends AppCompatActivity {
         final Button opt3 = (Button) findViewById(R.id.button3);
         final Button opt4 = (Button) findViewById(R.id.button4);
         final Button opt5 = (Button) findViewById(R.id.button5);
+        ifQsPython = LessonActivity.shared_hashmap.get("type").equals("pynonfreetext");
         showAnswer = findViewById(R.id.showAns);
         final TextView wt = (TextView) findViewById(R.id.textView6);
         final Button opt6 = (Button) findViewById(R.id.button6);
@@ -109,6 +113,11 @@ public class NonFreedum extends AppCompatActivity {
             public void onClick(View v) {
                 popupFalse.setVisibility(View.GONE);
                 CodeFramentQS1.setText(LessonActivity.shared_hashmap.get("Answer"));
+                if (ifQsPython) {
+                    textCPy();
+                } else {
+                    textCHTML();
+                }
             }
         });
         SpannableStringBuilder builder=new SpannableStringBuilder();
@@ -161,11 +170,21 @@ public class NonFreedum extends AppCompatActivity {
                 try {
                     CodeFramentQS1.setText(f);
                     org = CodeFramentQS1.getText();
+                    if (ifQsPython) {
+                        textCPy();
+                    } else {
+                        textCHTML();
+                    }
                 } catch (Exception e){
                     new CountDownTimer(500, 10) {
                         public void onFinish() {
                             CodeFramentQS1.setText(f);
                             org = CodeFramentQS1.getText();
+                            if (ifQsPython) {
+                                textCPy();
+                            } else {
+                                textCHTML();
+                            }
                         }
 
                         public void onTick(long millisUntilFinished) {
@@ -258,6 +277,7 @@ public class NonFreedum extends AppCompatActivity {
             public void onClick(View v) {
                 //when play is clicked show stop button and hide play button
                 if (LessonActivity.shared_hashmap.get("Answer").equals(CodeFramentQS1.getText())){
+                    pythonCode.run = true;
                     codeFramentQS.getCode((FragmentActivity) NonFreedum.this);
                     tabs.getTabAt(1).select();
                     showCorrect();
@@ -314,6 +334,11 @@ public class NonFreedum extends AppCompatActivity {
         }
         CodeFramentQS1.setText(String.valueOf(ch_new_text));//add the input
         back_ch.add(new_text);//add the input
+        if (ifQsPython) {
+            textCPy();
+        } else {
+            textCHTML();
+        }
     }
     public void back_choice() {
         try{
@@ -325,6 +350,13 @@ public class NonFreedum extends AppCompatActivity {
                     ch_new_text[d] = ' ';
                 }
                 CodeFramentQS1.setText(String.valueOf(ch_new_text));
+                if (ifQsPython) {
+                    textCPy();
+                } else {
+                    textCHTML();
+                }
+
+
                 back_ch.remove(back_ch.size() - 1);
             }
 
@@ -340,6 +372,11 @@ public class NonFreedum extends AppCompatActivity {
         CodeFramentQS1.setText(f);
         back_ch.clear();
         back_ch.add(unuateksto);
+        if (ifQsPython) {
+            textCPy();
+        } else {
+            textCHTML();
+        }
     }
     void getLength(){
         //String btnText;
@@ -392,6 +429,81 @@ public class NonFreedum extends AppCompatActivity {
             Log.d("testanim", "onCreate: instancefound" + d.toString());
             animation = (AnimatedVectorDrawable) d;
             animation.start();
+        }
+    }
+    public static void textCHTML(){
+        String[] cc = new String[]{"i", "p", "body", "html", "head", "h1", "h2", "h3", "h4", "h5", "h6", "br", "hr",
+                "dl", "dd", "dt", "tr", "td", "table"};
+        String[] bb = new String[]{"src", "font size", "href", "type href", "class", "id", "id", "name", "rel", "doctype"};
+        try {
+            String htmlText = codeFramentQS.getText();
+            SpannableStringBuilder builder = new SpannableStringBuilder();
+            SpannableString str1 = new SpannableString(htmlText);
+            for (String codeWord : cc) {
+                int startt = 0;
+                while (htmlText.indexOf(codeWord, startt) > -1) {
+                    Log.d("hi", String.valueOf(htmlText.indexOf(codeWord, 3)));
+                    str1.setSpan(new ForegroundColorSpan(Color.rgb(53, 133, 228)), htmlText.indexOf(codeWord, startt), htmlText.indexOf(codeWord, startt) + codeWord.length(), 0);
+                    startt = htmlText.indexOf(codeWord, startt) + codeWord.length();
+                }
+            }
+            for (String codeWord2 : bb) {
+                int startt = 0;
+                while (htmlText.indexOf(codeWord2, startt) > -1) {
+                    Log.d("hi", String.valueOf(htmlText.indexOf(codeWord2, 3)));
+                    str1.setSpan(new ForegroundColorSpan(Color.rgb(170, 109, 173)), htmlText.indexOf(codeWord2, startt), htmlText.indexOf(codeWord2, startt) + codeWord2.length(), 0);
+                    startt = htmlText.indexOf(codeWord2, startt) + codeWord2.length();
+                }
+            }
+            int adNunc = 1;
+            int altumAdNunc = 0;
+            for (String tText : htmlText.split("\"")) {
+                if (adNunc % 2 == 0) {
+                    str1.setSpan(new ForegroundColorSpan(Color.rgb(125, 250, 111)), altumAdNunc, altumAdNunc + tText.length(), 0);
+                }
+                altumAdNunc = altumAdNunc + tText.length() + 1;
+                adNunc = adNunc + 1;
+            }
+            codeFramentQS.setTextB(str1);
+        }catch (Exception e){
+
+        }
+    }
+    public static void textCPy() {
+        String[] cc = new String[]{"type", "range", "dict", "int", "str", "float", "input"};
+        String[] applesin = new String[]{"print", "for", "if", "while", "try", "except"};
+        String htmlText = codeFramentQS.getText();
+        try {
+                SpannableStringBuilder builder = new SpannableStringBuilder();
+                SpannableString str1 = new SpannableString(htmlText);
+                for (String codeWord : cc) {
+                    int startt = 0;
+                    while (htmlText.indexOf(codeWord, startt) > -1) {
+                        Log.d("hi", String.valueOf(htmlText.indexOf(codeWord, 3)));
+                        str1.setSpan(new ForegroundColorSpan(Color.rgb(170, 109, 173)), htmlText.indexOf(codeWord, startt), htmlText.indexOf(codeWord, startt) + codeWord.length(), 0);
+                        startt = htmlText.indexOf(codeWord, startt) + codeWord.length();
+                    }
+                }
+                for (String codeWord2 : applesin) {
+                    int startt = 0;
+                    while (htmlText.indexOf(codeWord2, startt) > -1) {
+                        Log.d("hi", String.valueOf(htmlText.indexOf(codeWord2, 3)));
+                        str1.setSpan(new ForegroundColorSpan(Color.rgb(255, 140, 0)), htmlText.indexOf(codeWord2, startt), htmlText.indexOf(codeWord2, startt) + codeWord2.length(), 0);
+                        startt = htmlText.indexOf(codeWord2, startt) + codeWord2.length();
+                    }
+                }
+                int adNunc = 1;
+                int altumAdNunc = 0;
+                for (String tText : htmlText.split("\"")) {
+                    if (adNunc % 2 == 0) {
+                        str1.setSpan(new ForegroundColorSpan(Color.rgb(125, 250, 111)), altumAdNunc, altumAdNunc + tText.length(), 0);
+                    }
+                    altumAdNunc = altumAdNunc + tText.length() + 1;
+                    adNunc = adNunc + 1;
+                }
+                codeFramentQS.setTextB(str1);
+        } catch (Exception e) {
+
         }
     }
 

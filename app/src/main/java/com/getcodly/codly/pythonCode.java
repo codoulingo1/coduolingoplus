@@ -45,9 +45,9 @@ public class pythonCode extends Fragment {
     Button help3;
     ViewPager mViewPager;
     TabLayout tabsHost;
-    String[] cc = new String[]{"type", "range", "dict", "int", "str", "float"};
-    String[] applesin = new String[]{"print", "for", "if", "while", "in", "try", "except"};
-    String[] language ={"print(", "range(", "for", "if", "while", "in", "type(", "try", "except", "dict(", "str(", "float("};
+    String[] cc = new String[]{"type", "range", "dict", "int", "str", "float", "input"};
+    String[] applesin = new String[]{"print", "for", "if", "while", "try", "except"};
+    String[] language ={"print(", "range(", "for", "if", "while", "input(", "type(", "try", "except", "dict(", "str(", "float("};
     public static boolean run;
 
     private AnimatedVectorDrawable animation;

@@ -132,7 +132,7 @@ public class tree extends AppCompatActivity {
         mainScreen.w = "py";
         date = DownloadReadlessons.get_last_lesson(ReadWrite.read(this.getFilesDir()+File.separator+ "user"));
         f1.setText(s(Arrays.asList("1-1-1", "1-1-2")));
-        f2.setText(s(Arrays.asList("1-2-1", "1-2-2", "1-2-3")));
+        f2.setText(s(Arrays.asList("1-2-1", "1-2-2", "1-2-4", "1-2-3")));
         f3.setText(s(Arrays.asList("1-3-1", "1-3-2")));
         f4.setText(s(Arrays.asList("1-5-1", "1-4-2", "1-5-2", "1-5-3")));
         f5.setText(s(Arrays.asList("1-4-3", "1-5-4")));
@@ -188,7 +188,7 @@ public class tree extends AppCompatActivity {
         skill2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startLesson(Arrays.asList("1-2-3~תכנות אינטראקטיבי", "1-2-2~טקסטים ומספרים", "1-2-1~מבוא למשתנים"), Arrays.asList("1-1-2"));
+                startLesson(Arrays.asList("1-2-3~תכנות אינטראקטיבי" ,"1-2-4~משתנה float" ,"1-2-2~טקסטים ומספרים", "1-2-1~מבוא למשתנים"), Arrays.asList("1-1-2"));
             } //savta
         });
         skill3.setOnClickListener(new View.OnClickListener() {

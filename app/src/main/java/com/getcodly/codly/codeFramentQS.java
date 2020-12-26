@@ -1,5 +1,6 @@
 package com.getcodly.codly;
 
+import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.AnimatedVectorDrawable;
 import android.graphics.drawable.Drawable;
@@ -27,6 +28,8 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager.widget.ViewPager;
 
+import com.chaquo.python.PyObject;
+import com.chaquo.python.Python;
 import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
@@ -90,44 +93,7 @@ public class codeFramentQS extends Fragment  { //was extends Fragment, might nee
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                int loc = htmlInp.getSelectionStart();
-                htmlText = s.toString();
-                Log.d(String.valueOf(loc), String.valueOf(loc));
-                try {
-                    Log.d("hihi", String.valueOf(htmlText.charAt(loc - 1)));
-                    if (c.contains(String.valueOf(htmlText.charAt(loc - 1)))){
-                        SpannableStringBuilder builder = new SpannableStringBuilder();
-                        SpannableString str1 = new SpannableString(htmlText);
-                        for (String codeWord : cc) {
-                            int startt = 0;
-                            while (htmlText.indexOf(codeWord, startt) > -1) {
-                                Log.d("hi", String.valueOf(htmlText.indexOf(codeWord, 3)));
-                                str1.setSpan(new ForegroundColorSpan(Color.rgb(53, 133, 228)), htmlText.indexOf(codeWord, startt), htmlText.indexOf(codeWord, startt) + codeWord.length(), 0);
-                                startt = htmlText.indexOf(codeWord, startt) + codeWord.length();
-                            }
-                        }
-                        for (String codeWord2 : bb) {
-                            int startt = 0;
-                            while (htmlText.indexOf(codeWord2, startt) > -1) {
-                                Log.d("hi", String.valueOf(htmlText.indexOf(codeWord2, 3)));
-                                str1.setSpan(new ForegroundColorSpan(Color.rgb(170, 109, 173)), htmlText.indexOf(codeWord2, startt), htmlText.indexOf(codeWord2, startt) + codeWord2.length(), 0);
-                                startt = htmlText.indexOf(codeWord2, startt) + codeWord2.length();
-                            }
-                        }
-                        int adNunc = 1;
-                        int altumAdNunc = 0;
-                        for (String tText: htmlText.split("\"")){
-                            if (adNunc % 2 == 0){
-                                str1.setSpan(new ForegroundColorSpan(Color.rgb(125, 250, 111)), altumAdNunc, altumAdNunc + tText.length(), 0);
-                            }
-                            altumAdNunc = altumAdNunc + tText.length() + 1;
-                            adNunc = adNunc + 1;
-                        }
-                        htmlInp.setText(str1);
-                    }
-                }catch (Exception e){
-                    Log.d("err", e.getLocalizedMessage());
-                }
+
 
             }
 
@@ -144,7 +110,7 @@ public class codeFramentQS extends Fragment  { //was extends Fragment, might nee
             codeToLoad2 = codeToLoad2.replace("\\n", System.getProperty("line.separator"));
             htmlInp.setText(codeToLoad2);
         } else {
-            htmlInp.setText(blankTemplate);
+            //htmlInp.setText(blankTemplate);
         }
 
         htmlInp.setOnKeyListener(new View.OnKeyListener() {
@@ -209,6 +175,10 @@ public class codeFramentQS extends Fragment  { //was extends Fragment, might nee
         return v;
     }
 
+    public static void getCodePy(FragmentActivity fa){
+        pythonCode.pythonCode = htmlInp.getText().toString();
+        openFragmentPy(fa);
+    }
     public static void getCode(FragmentActivity fa){
         htmlCode = htmlInp.getText().toString();
         openFragment(fa);
@@ -216,6 +186,17 @@ public class codeFramentQS extends Fragment  { //was extends Fragment, might nee
 
     public static void openFragment(FragmentActivity fa) {
         browserFragmentQS BrowserFragmentQS1 = new browserFragmentQS();
+
+        FragmentManager fragmentManager = fa.getSupportFragmentManager();
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        transaction.addToBackStack(null);
+        transaction.add(R.id.fragment_container, BrowserFragmentQS1, "FRAGMENT").commit();
+        //tabsHost.getTabAt(1).select();
+        //((iframe2) getActivity()).changeTab(2);
+
+    }
+    public static void openFragmentPy(FragmentActivity fa) {
+        pythonRun BrowserFragmentQS1 = new pythonRun();
 
         FragmentManager fragmentManager = fa.getSupportFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
@@ -237,8 +218,15 @@ public class codeFramentQS extends Fragment  { //was extends Fragment, might nee
     public static void setText(String text){
         htmlInp.setText(text);
     }
+    public static void setTextB(SpannableString text){
+        htmlInp.setText(text);
+    }
+
     public static String getText(){
         return htmlInp.getText().toString();
+    }
+    public static int getLoc(){
+        return htmlInp.getSelectionStart();
     }
 
 }

@@ -120,7 +120,7 @@ public class LessonActivity extends AppCompatActivity {
             }
             overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
         }
-        else if(hashMap.get("type").equals("nonfreetext")){
+        else if(hashMap.get("type").equals("nonfreetext") || hashMap.get("type").equals("pynonfreetext")){
             Log.d("finished", "finished3");
             startActivity(new Intent(LessonActivity.this, NonFreedum.class));
             overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
@@ -158,11 +158,6 @@ public class LessonActivity extends AppCompatActivity {
         else if(hashMap.get("type").equals("testpy")){
             Log.d("finished", "finished8");
             startActivity(new Intent(LessonActivity.this, TestPy.class));
-            overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
-        }
-        else if(hashMap.get("type").equals("pynonfreetext")){
-            Log.d("finished", "finished9");
-            startActivity(new Intent(LessonActivity.this, pyNonFreedum.class));
             overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
         }
         else{
