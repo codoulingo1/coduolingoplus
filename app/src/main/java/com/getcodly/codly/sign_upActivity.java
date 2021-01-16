@@ -112,6 +112,7 @@ public class sign_upActivity extends AppCompatActivity {
             fireBase.child("name").setValue(personName);
             fireBase.child("pas").setValue(Text.getRandomString(10));
             fireBase.child("phoneNum").setValue(0);
+            fireBase.child("7streak").setValue(0);
             fireBase.child("lastLessonD").child("year").setValue(0);
             fireBase.child("lastLessonD").child("date").setValue(0);
             fireBase.child("streak").setValue(0);

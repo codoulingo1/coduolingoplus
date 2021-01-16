@@ -204,6 +204,7 @@ public class Login extends AppCompatActivity {
                 user.child("lastLessonD").child("date").setValue(0);
                 user.child("streak").setValue(0);
                 user.child("streak freeze").setValue("false");
+                user.child("7streak").setValue(0);
                 user.child("xp").setValue(0);
                 user.child("pyXp").setValue(0);
                 user.child("htmlXp").setValue(0);

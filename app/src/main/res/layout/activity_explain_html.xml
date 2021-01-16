@@ -15,13 +15,15 @@
         android:id="@+id/qsText"
         android:layout_below="@id/topBar"
         android:layout_marginTop="5dp"/>
+
     <WebView
+        android:id="@+id/web"
         android:layout_width="match_parent"
         android:layout_height="300dp"
         android:layout_below="@id/qsText"
-        android:layout_marginTop="20dp"
+        android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:layout_marginLeft="10dp"/>
+        android:layout_marginTop="20dp" />
 
     <ImageButton
         android:id="@+id/continueBtn42"

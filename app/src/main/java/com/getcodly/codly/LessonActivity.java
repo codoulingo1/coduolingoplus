@@ -155,6 +155,11 @@ public class LessonActivity extends AppCompatActivity {
                 overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
             }
         }
+        else if(hashMap.get("type").equals("explainhtml")){
+            Log.d("finished", "finished8");
+            startActivity(new Intent(LessonActivity.this, ExplainHtml.class));
+            overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
+        }
         else if(hashMap.get("type").equals("testpy")){
             Log.d("finished", "finished8");
             startActivity(new Intent(LessonActivity.this, TestPy.class));
