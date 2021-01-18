@@ -41,6 +41,7 @@ public class mainScreen extends AppCompatActivity {
 
     HashMap<String, String> date;
     public static String streak;
+    public static String streak7;
     public static String w = "c";
     public static String invName;
     public static int lessonWr = 0;
@@ -145,6 +146,7 @@ public class mainScreen extends AppCompatActivity {
                 Log.d("v", "v");
                 int year = Integer.parseInt(value.get("year"));
                 streak = value.get("streak");
+                streak7 = value.get("7streak");
                 setStreak.setText(streak);
                 progress = String.valueOf(value.get("cProgress"));
                 isDownload = true;

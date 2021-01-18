@@ -178,7 +178,7 @@ public class finalLesson extends AppCompatActivity {
                     if (!Boolean.parseBoolean(value.get("hasDoneLesson"))) {
                         Random random = new Random();
                         int GeldToGive = random.nextInt(2) + 1;
-                        correctAns.setText("כסף שהושג: " + String.valueOf(GeldToGive));
+                        correctAns.setText("מטבעות שהושגו: " + String.valueOf(GeldToGive));
                         mainScreen.Geld += GeldToGive;
 
                         int currentGeld = Integer.parseInt(value.get("geld"));
@@ -223,6 +223,16 @@ public class finalLesson extends AppCompatActivity {
                     FirebaseDatabase database = FirebaseDatabase.getInstance();//
                     DatabaseReference myRef = database.getReference("Users");
                     DatabaseReference user = myRef.child(ReadWrite.read(finalLesson.this.getFilesDir() + File.separator + "user"));
+                    if (Integer.parseInt(mainScreen.streak7)>=8){
+                        user.child("7streak").setValue(0);
+                        int currentGeld = Integer.parseInt(value.get("geld"));
+                        int newGeld = currentGeld + 10;
+                        user.child("geld").setValue(newGeld);
+                        mainScreen.Geld = newGeld;
+                        mainScreen.streak7 = String.valueOf(0);
+                        DoubleDialog dialogBack = new DoubleDialog();
+                        dialogBack.show(getSupportFragmentManager(), "Example Dialog");
+                    }
                     Log.d("lessonType", mainScreen.LessonType);
                     if (mainScreen.LessonType.equals("comp")) {
                         DatabaseReference user_2 = myRef.child(mainScreen.userId);
@@ -239,6 +249,10 @@ public class finalLesson extends AppCompatActivity {
                         user.child("hasDoneLesson").setValue(true);
                         user.child("streak").setValue(String.valueOf(Integer.parseInt(mainScreen.streak) + 1));
                         mainScreen.streak = String.valueOf(Integer.parseInt(mainScreen.streak) + 1);
+                        if (Integer.parseInt(mainScreen.streak7) > 0) {
+                            user.child("7streak").setValue(String.valueOf(Integer.parseInt(mainScreen.streak7) + 1));
+                            mainScreen.streak7 = String.valueOf(Integer.parseInt(mainScreen.streak7) + 1);
+                        }
                     }
                     user.child("xp").setValue(xp + LessonActivity.shared_xp2);
                     if (mainScreen.w.equals("py")){

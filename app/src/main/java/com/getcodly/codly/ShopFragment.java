@@ -24,6 +24,7 @@ public class ShopFragment extends Fragment {
     RelativeLayout relativeClick1;
     TextView priceItem1;
     TextView priceItem2;
+    TextView priceItem3;
 
     @Nullable
     @Override
@@ -32,8 +33,10 @@ public class ShopFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_shop, container, false);
         RelativeLayout relativeClick1 = (RelativeLayout) v.findViewById(R.id.c);
         RelativeLayout relativeClick2 = (RelativeLayout) v.findViewById(R.id.c1);
+        RelativeLayout relativeClick3 = (RelativeLayout) v.findViewById(R.id.c2);
         priceItem1 = v.findViewById(R.id.priceItem1);
         priceItem2 = v.findViewById(R.id.priceItem2);
+        priceItem3 = v.findViewById(R.id.priceItem3);
 
         FirebaseDatabase database1 = FirebaseDatabase.getInstance();
 
@@ -106,11 +109,40 @@ public class ShopFragment extends Fragment {
                                 mainScreen.geldView.setText(String.valueOf(mainScreen.Geld));
                             } else {
                                 //Not enough geld
-                                Toast.makeText(getActivity(), "אין מספיק מטבעות כדי לקנות", Toast.LENGTH_SHORT);
+                                Toast.makeText(getActivity(), "אין מספיק מטבעות כדי לקנות", Toast.LENGTH_SHORT).show();
                             }
                         } else{
                             //Already has a streak freeze equipped
                             priceItem2.setText("נרכש");
+                        }
+                    }
+                });
+            }
+        });
+        relativeClick3.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                FirebaseDatabase database = FirebaseDatabase.getInstance();
+
+                DatabaseReference myRef = database.getReference("Users");
+                DatabaseReference fireBase = myRef.child(ReadWrite.read(getActivity().getFilesDir()+ File.separator+ "user"));
+                HashMap<String, String> a = DownloadReadlessons.get_last_lesson2(ReadWrite.read(getActivity().getFilesDir() + File.separator + "user"), new DownloadReadlessons.HashCallback() {
+                    @Override
+                    public void onCallback(HashMap<String, String> value) {
+                        if(Integer.parseInt(value.get("7streak")) == 0){
+                            if (mainScreen.Geld >= 5) {
+                                fireBase.child("7streak").setValue(1);
+                                fireBase.child("geld").setValue(Integer.parseInt(value.get("geld")) - 5);
+                                mainScreen.Geld -= 5;
+                                priceItem3.setText("נרכש");
+                                mainScreen.geldView.setText(String.valueOf(mainScreen.Geld));
+                            } else {
+                                //Not enough geld
+                                Toast.makeText(getActivity(), "אין מספיק מטבעות כדי לקנות", Toast.LENGTH_SHORT).show();
+                            }
+                        } else{
+                            //Already has a streak freeze equipped
+                            priceItem3.setText("נרכש");
                         }
                     }
                 });

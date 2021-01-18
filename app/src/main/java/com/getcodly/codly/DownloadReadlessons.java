@@ -309,6 +309,7 @@ public class DownloadReadlessons {
                     ret.put("email", dataSnapshot.child("email").getValue().toString());
                     ret.put("hasDoneLesson", dataSnapshot.child("hasDoneLesson").getValue().toString());
                     ret.put("streak freeze", dataSnapshot.child("streak freeze").getValue().toString());
+                    ret.put("7streak", dataSnapshot.child("7streak").getValue().toString());
                     ret.put("friends", dataSnapshot.child("friends").getValue().toString());
                 } catch (Exception e){
                     ret.put("streak", "0");
@@ -323,6 +324,7 @@ public class DownloadReadlessons {
                     ret.put("img", "0");
                     ret.put("email", "0");
                     ret.put("streak freeze", "0");
+                    ret.put("7streak", "0");
                     ret.put("friends", "0");
                 }
                 m.onCallback(ret);

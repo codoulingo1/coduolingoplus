@@ -1,4 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F3F4F9"
+    android:fillViewport="true">
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -153,7 +160,76 @@
             android:clickable="false" />
 
     </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/c2"
+        android:layout_width="370dp"
+        android:layout_height="180dp"
+        android:layout_alignParentTop="true"
+        android:layout_below="@id/c1"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="500dp"
+        android:background="@drawable/course_bg"
+        android:clickable="true"
+        android:elevation="1dp">
+
+        <ImageView
+            android:layout_width="150dp"
+            android:layout_height="120dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:clickable="false"
+            android:src="@drawable/ic_casino" />
+
+        <TextView
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="55dp"
+            android:clickable="false"
+            android:fontFamily="@font/rubik_light"
+            android:text="אם תשמרו על הסטריק שלכם במשך שבוע - תרוויחו 10 מטבעות!"
+            android:textColor="#6B6767"
+            android:textSize="16dp"
+            android:id="@+id/item1explain2"/>
+
+        <TextView
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="15dp"
+            android:clickable="false"
+            android:layout_below="@+id/item1explain2"
+            android:fontFamily="@font/rubik_bold"
+            android:text="מחיר: 5 מטבעות"
+            android:id="@+id/priceItem3"
+            android:textColor="#7F819C"
+            android:textSize="22dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:layout_margin="15dp"
+            android:fontFamily="@font/rubik_medium"
+            android:text="כפול או כלום"
+            android:textColor="#42445F"
+            android:clickable="false"
+            android:textSize="26dp" />
+
+        <View
+            android:id="@+id/clickView3"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/ripple_anim2"
+            android:clickable="false" />
+
+    </RelativeLayout>
 
 
 
 </RelativeLayout>
+</ScrollView>
