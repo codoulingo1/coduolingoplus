@@ -16,23 +16,19 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_marginBottom="15dp"
-            android:layout_marginEnd="15dp"
-            android:layout_marginRight="2dp"
-            android:layout_marginStart="15dp"
+            android:layout_marginRight="15dp"
             android:layout_marginTop="15dp"
-            android:fontFamily="@font/rubik_bold"
+            android:fontFamily="@font/rubik_light"
             android:text="השיעורים שלי"
-            android:textColor="#5A5A6E"
-            android:textSize="24sp" />
+            android:textSize="28dp" />
             <Button
                 android:id="@+id/practice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentLeft="true"
-                android:fontFamily="@font/rubik_bold"
+                android:fontFamily="@font/rubik_light"
                 android:text="תרגל"
-                android:textColor="#5A5A6E"
                 android:textSize="24sp" />
 
         <Button
@@ -41,9 +37,8 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
-            android:fontFamily="@font/rubik_bold"
+            android:fontFamily="@font/rubik_light"
             android:text="המשך לשיעור הבא"
-            android:textColor="#5A5A6E"
             android:textSize="24sp" />
 
         <ListView
@@ -51,6 +46,7 @@
             android:layout_width="match_parent"
             android:layout_height="387dp"
             android:layout_below="@+id/addFriendBtn"
-            android:layout_marginTop="11dp" />
+            android:layout_marginTop="11dp"
+            />
     </RelativeLayout>
 </RelativeLayout>

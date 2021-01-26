@@ -74,6 +74,8 @@ public class profileFragment extends Fragment {
     ProgressBar courseProgressbarPy;
     TextView percentageProgress1;
     TextView percentageProgress2;
+    Button fullListBtn;
+    FriendsFragmentDialog friendsFragmentDialog = new FriendsFragmentDialog();
 
     @Nullable
     @Override
@@ -85,10 +87,10 @@ public class profileFragment extends Fragment {
         levelProgress = v.findViewById(R.id.levelProgress);
         tabLayout = (TabLayout) v.findViewById(R.id.tabs);
         //listView = (ListView) v.findViewById(R.id.viewPager);
+        fullListBtn = v.findViewById(R.id.toFullList);
         profImg = (ImageView) v.findViewById(R.id.imageView2);
         setStreak = (TextView) v.findViewById(R.id.streakView);
         setName = (TextView) v.findViewById(R.id.set_name);
-        viewPager = v.findViewById(R.id.viewPager);
         viewPager = v.findViewById(R.id.viewPager);
         levelView = v.findViewById(R.id.level);
         xpView = v.findViewById(R.id.xpCount);
@@ -179,6 +181,13 @@ public class profileFragment extends Fragment {
                 startActivity(intent);
             }
         });*/
+
+        fullListBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                friendsFragmentDialog.show(getParentFragmentManager(), "Example Dialog");
+            }
+        });
 
 
         return v;

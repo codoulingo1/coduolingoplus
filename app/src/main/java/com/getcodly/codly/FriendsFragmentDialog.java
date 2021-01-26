@@ -2,34 +2,30 @@ package com.getcodly.codly;
 
 import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
-import android.os.CountDownTimer;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
+
+import androidx.appcompat.app.AppCompatDialogFragment;
+import androidx.fragment.app.Fragment;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
 
-
 /**
  * A simple {@link Fragment} subclass.
  */
-public class FriendsFragment extends Fragment {
-
-    public FriendsFragment() {
-        // Required empty public constructor
-    }
+public class FriendsFragmentDialog extends AppCompatDialogFragment {
 
     ListView listView;
     ArrayList list;
@@ -38,9 +34,12 @@ public class FriendsFragment extends Fragment {
     TextView addFriend;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public Dialog onCreateDialog(Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View v = inflater.inflate(R.layout.fragment_friendlist, container, false);
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        LayoutInflater inflater = getActivity().getLayoutInflater();
+        View v = inflater.inflate(R.layout.fragment_friendlist, null);
+
         listView = (ListView) v.findViewById(R.id.friendList2);
         addFriend = (TextView) v.findViewById(R.id.addFriendBtn);
         addFriend.setOnClickListener(new View.OnClickListener() {
@@ -50,6 +49,14 @@ public class FriendsFragment extends Fragment {
                 startActivity(intent);
             }
         });
+
+        builder.setView(v).setNegativeButton("סגור", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+        });
+
         try {
             list = profileFragment.list;
             String stringArray[] = (String[]) list.toArray(new String[list.size()]);
@@ -74,7 +81,7 @@ public class FriendsFragment extends Fragment {
             }
         });
 
-        return v;
+        return builder.create();
     }
 
     public void justifyListViewHeightBasedOnChildren (ListView listView) {
