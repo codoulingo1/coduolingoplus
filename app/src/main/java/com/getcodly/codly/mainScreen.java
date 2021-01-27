@@ -138,7 +138,6 @@ public class mainScreen extends AppCompatActivity {
                 return true;
             }
         });
-
         date = DownloadReadlessons.get_last_lesson2(ReadWrite.read(this.getFilesDir() + File.separator + "user"), new DownloadReadlessons.HashCallback() {
             @Override
             public void onCallback(HashMap<String, String> value) {

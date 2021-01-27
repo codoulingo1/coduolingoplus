@@ -52,6 +52,8 @@ public class profileFragment extends Fragment {
     TextView setName;
     public static ArrayList<String> list;
     String url_old;
+    public static ArrayList<String> names;
+    public static ArrayList<String> vals;
     boolean b = false;
     String streak;
     public static String name;
@@ -155,6 +157,20 @@ public class profileFragment extends Fragment {
         catch (Exception e){
 
         }
+        HashMap d = DownloadReadlessons.get_docs(ReadWrite.read(getActivity().getFilesDir() + File.separator + "user"), new DownloadReadlessons.HashCallback2() {
+            @Override
+            public void onCallback(HashMap<String, ArrayList<String>> value) {
+                try {
+                    Log.d("hihihi", value.get("vals").get(0));
+                    String[] stringArray = value.get("names").toArray(new String[value.get("names").size()]);
+                    names = value.get("names");
+                    vals = value.get("vals");
+                    int iInt = 0;
+                }catch (Exception e){
+
+                }
+            }
+        });
 
         /*listView.setOnItemClickListener(new AdapterView.OnItemClickListener()
         {
@@ -222,7 +238,7 @@ public class profileFragment extends Fragment {
         SectionPageAdapter adapter = new SectionPageAdapter(getChildFragmentManager());
 
         adapter.addFragment(new FriendsFragment(), "חברים");
-        adapter.addFragment(new ProjectsFragment(), "פרוייקטים");
+        adapter.addFragment(new ProjectsPrFragments(), "פרוייקטים");
 
         viewPager.setAdapter(adapter);
     }
@@ -267,11 +283,11 @@ public class profileFragment extends Fragment {
     }
 
     void courseProgress(){
-        courseProgressbarWeb.setProgress(mainScreen.courseProgressWeb * 100 / 9);
+        courseProgressbarWeb.setProgress(mainScreen.courseProgressWeb * 100 / 10);
         courseXp1.setText(String.valueOf(mainScreen.htmlXp) + " XP");
         percentageProgress1.setText(String.valueOf(mainScreen.courseProgressWeb * 100 / 8) + "%");
 
-        courseProgressbarPy.setProgress(mainScreen.courseProgressPython * 100 / 10);
+        courseProgressbarPy.setProgress(mainScreen.courseProgressPython * 100 / 17);
         courseXp2.setText(String.valueOf(mainScreen.pyXp) + " XP");
         percentageProgress2.setText(String.valueOf(mainScreen.courseProgressPython * 100 / 10) + "%");
 

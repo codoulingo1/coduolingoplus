@@ -28,13 +28,15 @@ public class PythonActivity2 extends AppCompatActivity {
 
     private pythonCode CodeFrament;
     private pythonRun BrowserFragment;
-    String pyCodeParent;
+    public static boolean p = false;
+    public static String pyCodeParent;
     private TabLayout tabs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_python2);
+        p = false;
         ViewPager viewPager = findViewById(R.id.view_pager6000);
         tabs = (TabLayout) findViewById(R.id.tabs6000);
         tabs.setupWithViewPager(viewPager);
@@ -101,12 +103,16 @@ public class PythonActivity2 extends AppCompatActivity {
             case R.id.saveProject:
                 Toast.makeText(PythonActivity2.this, "Hello", Toast.LENGTH_SHORT);
                 Log.d("worked", pythonCode.htmlInp.getText().toString()); //codeFragment.htmlInp.getText().toString is the file which is supposed to be saved/shared
-                iframe2.htmlCodeParent = pythonCode.htmlInp.getText().toString();
+                pyCodeParent = pythonCode.htmlInp.getText().toString();
                 openDialog();
 
                 return true;
             case R.id.shareProject:
-                Toast.makeText(PythonActivity2.this, "Shared", Toast.LENGTH_SHORT);
+                //Toast.makeText(PythonActivity2.this, "Shared", Toast.LENGTH_SHORT).show();
+                pyCodeParent = pythonCode.htmlInp.getText().toString();
+                p = true;
+                openDialog();
+                Toast.makeText(PythonActivity2.this, "Shared", Toast.LENGTH_SHORT).show();
                 return true;
         }
         return super.onOptionsItemSelected(item);

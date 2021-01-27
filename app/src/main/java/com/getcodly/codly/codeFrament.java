@@ -167,6 +167,11 @@ public class codeFrament extends Fragment  { //was extends Fragment, might need 
         } else {
             htmlInp.setText(blankTemplate);
         }
+        try {
+            htmlCode = htmlInp.getText().toString();
+        } catch (Exception e){
+
+        }
 
         submitBtn.setOnClickListener(new View.OnClickListener() {
             @Override

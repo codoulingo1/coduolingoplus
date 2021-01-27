@@ -16,6 +16,9 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -81,15 +84,29 @@ public class SaveDialog extends AppCompatDialogFragment {
             public void onClick(View v) {
                 if (isButtonEnabled == true){
                     String fileName = mFileName.getText().toString();
+                    iframe2.fileName = fileName;
                     mFileName.setText("");
                     String htmlCodeToSave = codeFrament.htmlCode;
-                    htmlCodeToSave = htmlCodeToSave.replace(System.getProperty("line.separator"), "\\n");
+                    try {
+                        htmlCodeToSave = htmlCodeToSave.replace(System.getProperty("line.separator"), "\\n");
+                    }catch (Exception e){
+                        htmlCodeToSave = "";
+                    }
                     saveBtn.setImageResource(R.drawable.save_btn_gray);
                     String fileNameBetter = getContext().getFilesDir() + "/" + "codes/" + fileName + "htmll";
                     File f = new File(fileNameBetter);
                     f.getParentFile().mkdirs();
                     isButtonEnabled = false;
                     ReadWrite.write(fileNameBetter, htmlCodeToSave);
+                    if (iframe2.p) {
+                        FirebaseDatabase database = FirebaseDatabase.getInstance();
+                        DatabaseReference myRef = database.getReference("Users");
+                        DatabaseReference fireBase = myRef.child(String.valueOf(ReadWrite.read(getContext().getFilesDir() + File.separator + "user"))).child("docs").child(fileName);
+                        fireBase.child("name").setValue(fileName);
+                        fireBase.child("code").setValue(htmlCodeToSave);
+                        fireBase.child("type").setValue("html");
+                    }
+                    iframe2.saved = true;
                     Log.d("testyTest", ReadWrite.read(fileNameBetter));
                     //dismiss();
                 }

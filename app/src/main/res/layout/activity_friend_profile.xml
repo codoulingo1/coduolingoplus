@@ -34,6 +34,14 @@
             android:layout_alignParentTop="true"
             android:src="@drawable/ic_profile"/>
 
+        <ListView
+            android:id="@+id/l"
+            android:layout_width="300dp"
+            android:layout_height="300dp"
+            android:layout_below="@id/set_name"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="100dp" />
+
         <TextView
             android:id="@+id/set_name"
             android:layout_width="285dp"

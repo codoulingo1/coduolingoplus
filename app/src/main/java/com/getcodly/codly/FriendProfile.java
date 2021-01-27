@@ -9,8 +9,11 @@ import android.os.CountDownTimer;
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,6 +30,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class FriendProfile extends AppCompatActivity {
@@ -34,6 +38,11 @@ public class FriendProfile extends AppCompatActivity {
     Button inv;
     ImageView profImg;
     TextView setName;
+    ArrayAdapter<String> itemsAdapter;
+    ArrayList<String> names;
+    public static ArrayList<String> vals;
+    public static String oUserCodeToLoad;
+    public static boolean isOUser;
     HashMap old_streak;
     HashMap old_friends;
     public static String friendUsername;
@@ -57,6 +66,7 @@ public class FriendProfile extends AppCompatActivity {
         setName = (TextView) findViewById(R.id.set_name);
         backToTree =  (Button) findViewById(R.id.back_to_tree);
         follow =  (Button) findViewById(R.id.follow);
+        ListView l = (ListView) findViewById(R.id.l);
         inv =  (Button) findViewById(R.id.inv);
         setStreak = (TextView) findViewById(R.id.streak);
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -85,6 +95,26 @@ public class FriendProfile extends AppCompatActivity {
                 }
                 else{
                     follow.setText("הוסף לרשימת החברים");
+                }
+            }
+        });
+        HashMap d = DownloadReadlessons.get_docs(Search.selected, new DownloadReadlessons.HashCallback2() {
+            @Override
+            public void onCallback(HashMap<String, ArrayList<String>> value) {
+                try {
+                    Log.d("hihihi", value.get("vals").get(0));
+                    String[] stringArray = value.get("names").toArray(new String[value.get("names").size()]);
+                    names = value.get("names");
+                    vals = value.get("vals");
+                    itemsAdapter = new ArrayAdapter<String>(FriendProfile.this, android.R.layout.simple_list_item_1, android.R.id.text1, stringArray);
+                    l.setAdapter(itemsAdapter);
+                    int iInt = 0;
+                    for (String i : value.get("vals")){
+                        Log.d(String.valueOf(iInt), i);
+                        iInt = iInt + 1;
+                    }
+                }catch (Exception e){
+
                 }
             }
         });
@@ -155,6 +185,28 @@ public class FriendProfile extends AppCompatActivity {
                 else {
                     Toast.makeText(FriendProfile.this, "לך ולמשתמש/ת השני שהוזמן לתחרות אין מספיק מטבעות קודלי בשביל להשתתף בה",
                             Toast.LENGTH_LONG).show();
+                }
+            }
+        });
+        l.setOnItemClickListener(new AdapterView.OnItemClickListener()
+        {
+            public void onItemClick(AdapterView<?> arg0, View arg1, int position, long arg3)
+            {
+                Log.i("HelloListView", "You clicked Item: " + "id" + " at position:" + position);
+                Log.d("deus",names.get(position));
+                isOUser = true;
+                oUserCodeToLoad = (String) Search.selected + "," + String.valueOf(position);
+                String prType = vals.get(((position+1)*3)-1);
+                if (prType.equals("html")) {
+                    selectProject.codeToLoad = vals.get(((position+1)*3)-3);
+                    Intent in = new Intent(FriendProfile.this, iframe2.class);
+                    startActivity(in);
+                }
+                if (prType.equals("py")) {
+                    selectPyProject.pyCodeToLoad = vals.get(((position+1)*3)-3);
+                    selectProject.codeToLoad = vals.get(((position+1)*3)-3);
+                    Intent in = new Intent(FriendProfile.this, PythonActivity2.class);
+                    startActivity(in);
                 }
             }
         });

@@ -5,7 +5,11 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.tabs.TabLayout;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -23,13 +27,19 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import java.io.File;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class iframe2 extends AppCompatActivity {
 
     private codeFrament CodeFrament;
     private browserFragment BrowserFragment;
+    public static boolean saved = false;
+    public static String fileName;
+    public static boolean p = false;
     private TabLayout tabs;
     public static String htmlCodeParent;
 
@@ -37,6 +47,8 @@ public class iframe2 extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_iframe2);
+        saved = false;
+        p = false;
         ViewPager viewPager = findViewById(R.id.view_pager6000);
         tabs = (TabLayout) findViewById(R.id.tabs6000);
         tabs.setupWithViewPager(viewPager);
@@ -99,16 +111,21 @@ public class iframe2 extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        String TAG = "iframe2";
         switch (item.getItemId()) {
             case R.id.saveProject:
                 Toast.makeText(iframe2.this, "Hello", Toast.LENGTH_SHORT);
                 Log.d("worked", codeFrament.htmlInp.getText().toString()); //codeFragment.htmlInp.getText().toString is the file which is supposed to be saved/shared
                 htmlCodeParent = codeFrament.htmlInp.getText().toString();
+                p = true;
                 openDialog();
 
                 return true;
             case R.id.shareProject:
-                Toast.makeText(iframe2.this, "Shared", Toast.LENGTH_SHORT);
+                htmlCodeParent = codeFrament.htmlInp.getText().toString();
+                p = true;
+                openDialog();
+                Toast.makeText(iframe2.this, "Shared", Toast.LENGTH_SHORT).show();
                 return true;
         }
         return super.onOptionsItemSelected(item);
@@ -119,9 +136,4 @@ public class iframe2 extends AppCompatActivity {
         saveDialog.show(getSupportFragmentManager(), "save dialog");
     }
 
-    @Override
-    public void onBackPressed() {
-        backDialogIframe backDialogIframe2 = new backDialogIframe();
-        backDialogIframe2.show(getSupportFragmentManager(), "Example Dialog");
-    }
 }

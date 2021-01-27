@@ -17,6 +17,7 @@ import com.google.firebase.firestore.auth.User;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -36,6 +37,9 @@ public class DownloadReadlessons {
 
     public static interface HashCallback {
         void onCallback(HashMap <String, String> value);
+    }
+    public static interface HashCallback2 {
+        void onCallback(HashMap<String, ArrayList<String>> value);
     }
     public static interface ListCallback {
         void onCallback(List<String> value);
@@ -326,6 +330,44 @@ public class DownloadReadlessons {
                     ret.put("streak freeze", "0");
                     ret.put("7streak", "0");
                     ret.put("friends", "0");
+                }
+                m.onCallback(ret);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+                Log.w("Failed to read value.", error.toException());
+            }
+        });
+        return ret;
+    }
+    public static HashMap<String, ArrayList<String>> get_docs(String email, HashCallback2 m) {
+        final HashMap<String, ArrayList<String>> ret = new HashMap<>();
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("Users").child(email).child("docs");
+        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // This method is called once with the initial value and again
+                // whenever data at this location is uploaded
+                try {
+                    ArrayList<String> docsNames = new ArrayList<String>();
+                    ArrayList<String> docsVals = new ArrayList<String>();
+                    for (DataSnapshot i : dataSnapshot.getChildren()){
+                        docsNames.add(i.getKey());
+                        for (DataSnapshot j : dataSnapshot.child(i.getKey()).getChildren()){
+                            docsVals.add(j.getValue().toString());
+                        }
+                    }
+                    ret.put("names", docsNames);
+                    ret.put("vals", docsVals);
+
+                } catch (Exception e){
+                    ArrayList<String> docsNames = new ArrayList<String>();
+                    ArrayList<String> docsVals = new ArrayList<String>();
+                    ret.put("names",docsNames);
+                    ret.put("vals",docsVals);
                 }
                 m.onCallback(ret);
             }

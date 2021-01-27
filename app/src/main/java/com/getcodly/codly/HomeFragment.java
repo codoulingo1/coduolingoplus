@@ -150,9 +150,9 @@ public class HomeFragment extends Fragment {
             }
         }
 
-        courseProgressWebHome.setProgress(courseProgressWeb1 * 100 / 9);
+        courseProgressWebHome.setProgress(courseProgressWeb1 * 100 / 10);
 
-        int courseProgressWeb1Finale = courseProgressWeb1 * 100 / 9;
+        int courseProgressWeb1Finale = courseProgressWeb1 * 100 / 10;
 
         if(courseProgressWeb1Finale == 0){
             courseProgressPercentageWebHome.setTextColor(Color.parseColor("#F5F5F5"));
@@ -168,9 +168,9 @@ public class HomeFragment extends Fragment {
             }
         }
 
-        courseProgressPyHome.setProgress(courseProgressPy1 * 100 / 14);
+        courseProgressPyHome.setProgress(courseProgressPy1 * 100 / 17);
 
-        int courseProgressPy1Finale = courseProgressPy1 * 100 / 14;
+        int courseProgressPy1Finale = courseProgressPy1 * 100 / 17;
 
         if(courseProgressPy1Finale == 0){
             courseProgressPercentagePyHome.setTextColor(Color.parseColor("#F5F5F5"));

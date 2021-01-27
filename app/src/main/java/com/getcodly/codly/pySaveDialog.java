@@ -17,6 +17,9 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -50,7 +53,7 @@ public class pySaveDialog extends AppCompatDialogFragment {
 
         mFileName = (EditText) view.findViewById(R.id.fileName);
         saveBtn = view.findViewById(R.id.saveBtn);
-        CodeToSave = iframe2.htmlCodeParent;
+        CodeToSave = PythonActivity2.pyCodeParent;
         saveBtn.setClickable(false);
 
 
@@ -83,7 +86,7 @@ public class pySaveDialog extends AppCompatDialogFragment {
                 if (isButtonEnabled == true){
                     String fileName = mFileName.getText().toString();
                     mFileName.setText("");
-                    String htmlCodeToSave = pythonCode.pythonCode;
+                    String htmlCodeToSave = CodeToSave;
                     htmlCodeToSave = htmlCodeToSave.replace(System.getProperty("line.separator"), "\\n");
                     saveBtn.setImageResource(R.drawable.save_btn_gray);
                     String fileNameBetter = getContext().getFilesDir() + "/" + "codes/" + fileName + "pyy";
@@ -91,6 +94,14 @@ public class pySaveDialog extends AppCompatDialogFragment {
                     f.getParentFile().mkdirs();
                     isButtonEnabled = false;
                     ReadWrite.write(fileNameBetter, htmlCodeToSave);
+                    if (PythonActivity2.p) {
+                        FirebaseDatabase database = FirebaseDatabase.getInstance();
+                        DatabaseReference myRef = database.getReference("Users");
+                        DatabaseReference fireBase = myRef.child(String.valueOf(ReadWrite.read(getContext().getFilesDir() + File.separator + "user"))).child("docs").child(fileName);
+                        fireBase.child("name").setValue(fileName);
+                        fireBase.child("code").setValue(htmlCodeToSave);
+                        fireBase.child("type").setValue("py");
+                    }
                     Log.d("testyTest", ReadWrite.read(fileNameBetter));
                     //dismiss();
                 }
