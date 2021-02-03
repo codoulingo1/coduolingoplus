@@ -143,16 +143,16 @@ public class tree extends AppCompatActivity {
         if (ifHfinished(Arrays.asList("1-1-1", "1-1-2"), Arrays.asList(""))){
             LessonStart1.setBackgroundResource(R.drawable.skill);
         }
-        if (ifLfinished(Arrays.asList("1-2-1", "1-2-2", "1-2-3"))){
+        if (ifLfinished(Arrays.asList("1-2-1", "1-2-2", "1-2-6", "1-2-3"))){
             LessonStart2.setBackgroundResource(R.drawable.skill2);
         }
-        if (ifHfinished(Arrays.asList("1-2-1", "1-2-2", "1-2-4", "1-2-5", "1-2-3"), Arrays.asList("1-1-2"))){
+        if (ifHfinished(Arrays.asList("1-2-1", "1-2-2", "1-2-4", "1-2-5", "1-2-6", "1-2-3"), Arrays.asList("1-1-2"))){
             LessonStart2.setBackgroundResource(R.drawable.skill);
         }
-        if (ifLfinished(Arrays.asList("1-3-1", "1-3-2"))){
+        if (ifLfinished(Arrays.asList("1-3-3", "1-3-1", "1-3-2"))){
             LessonStart3.setBackgroundResource(R.drawable.skill2);
         }
-        if (ifHfinished(Arrays.asList("1-3-1", "1-3-2"), Arrays.asList("1-2-3"))){
+        if (ifHfinished(Arrays.asList("1-3-3", "1-3-1", "1-3-2"), Arrays.asList("1-2-3"))){
             LessonStart3.setBackgroundResource(R.drawable.skill);
         }
         if (ifLfinished(Arrays.asList("1-5-1", "1-4-2", "1-5-2", "1-5-3"))){
@@ -188,13 +188,13 @@ public class tree extends AppCompatActivity {
         skill2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startLesson(Arrays.asList("1-2-3~תכנות אינטראקטיבי", "1-2-5~הפקודה type","1-2-4~תרגול משתנים" ,"1-2-2~טקסטים ומספרים", "1-2-1~מבוא למשתנים"), Arrays.asList("1-1-2"));
+                startLesson(Arrays.asList("1-2-3~תכנות אינטראקטיבי", "1-2-6~שינוי סוג המשתנה", "1-2-5~הפקודה type","1-2-4~תרגול משתנים" ,"1-2-2~טקסטים ומספרים", "1-2-1~מבוא למשתנים"), Arrays.asList("1-1-2"));
             } //savta
         });
         skill3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startLesson(Arrays.asList("1-3-2~הפקודות else וelif", "1-3-1~תנאים"), Arrays.asList("1-2-3"));
+                startLesson(Arrays.asList("1-3-2~הפקודות else וelif", "1-3-1~תנאים", "1-3-3~משתנה בוליאני"), Arrays.asList("1-2-3"));
             } //savta
         });
         skill4.setOnClickListener(new View.OnClickListener() {
