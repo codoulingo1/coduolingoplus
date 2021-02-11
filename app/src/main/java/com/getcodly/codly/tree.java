@@ -188,7 +188,7 @@ public class tree extends AppCompatActivity {
         skill2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startLesson(Arrays.asList("1-2-3~תכנות אינטראקטיבי", "1-2-6~שינוי סוג המשתנה", "1-2-5~הפקודה type","1-2-4~תרגול משתנים" ,"1-2-2~טקסטים ומספרים", "1-2-1~מבוא למשתנים"), Arrays.asList("1-1-2"));
+                startLesson(Arrays.asList("1-2-3~תכנות אינטראקטיבי", "1-2-6~שינוי סוג משתנה", "1-2-5~הפקודה type","1-2-4~תרגול משתנים" ,"1-2-2~טקסטים ומספרים", "1-2-1~מבוא למשתנים"), Arrays.asList("1-1-2"));
             } //savta
         });
         skill3.setOnClickListener(new View.OnClickListener() {

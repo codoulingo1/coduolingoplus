@@ -28,12 +28,10 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
-import android.widget.TableLayout;
 import android.widget.TextView;
 
 
 import com.google.android.material.tabs.TabLayout;
-import com.google.rpc.Code;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,6 +40,9 @@ public class NonFreedum extends AppCompatActivity {
     //TextView ans;
     String org;
     List<String> back_ch = new ArrayList<String>();
+    List<Integer> back_b = new ArrayList<Integer>();
+    public static List<Integer> start_w = new ArrayList<Integer>();
+    public static List<Integer> end_W = new ArrayList<Integer>();
     String unuateksto;
     ImageButton backBtn;
     int wrloc;
@@ -55,6 +56,7 @@ public class NonFreedum extends AppCompatActivity {
     Button opt1;
     ProgressBar pb;
     private ObjectAnimator progressAnimator;
+    int b = 0;
     WebView htmlView;
     TextView qs;
     Button showAnswer;
@@ -93,6 +95,8 @@ public class NonFreedum extends AppCompatActivity {
         htmlView = findViewById(R.id.htmlView3);
         popupTrue = (RelativeLayout) findViewById(R.id.PopupTrue);
         pb.setProgress(LessonActivity.pr);
+        start_w.clear();
+        end_W.clear();
 
         ViewPager viewPager = findViewById(R.id.view_pager2);
         tabs = (TabLayout) findViewById(R.id.tabs2);
@@ -107,6 +111,8 @@ public class NonFreedum extends AppCompatActivity {
         viewPagerAdapter.addFragment(BrowserFragmentQS1, "תצוגה");
 
         viewPager.setAdapter(viewPagerAdapter);
+        b = 0;
+        back_b.add(0);
 
         showAnswer.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -332,8 +338,21 @@ public class NonFreedum extends AppCompatActivity {
         for (int d : del){
             ch_new_text[d] = ' ';
         }
-        CodeFramentQS1.setText(String.valueOf(ch_new_text));//add the input
-        back_ch.add(new_text);//add the input
+        try {
+            List<Integer> first_del = Text.betweenIndex(text, '£', 's');
+            SpannableStringBuilder builder = new SpannableStringBuilder();
+            SpannableString txtSpannable = new SpannableString(String.valueOf(ch_new_text));
+            txtSpannable.setSpan(new ForegroundColorSpan(Color.rgb(0, 0, 120)), first_del.get(0), first_del.get(0) + add.length(), 0);
+            builder.append(txtSpannable);
+            CodeFramentQS1.setTextB(txtSpannable);//add the input
+            end_W.add(first_del.get(0) + add.length() + b);
+            start_w.add(first_del.get(0) + b);
+            back_ch.add(new_text);//add the input
+            //b = b + (add.length() - 1);
+            back_b.add(b);
+        } catch (Exception e){
+
+        }
         if (ifQsPython) {
             textCPy();
         } else {
@@ -344,6 +363,7 @@ public class NonFreedum extends AppCompatActivity {
         try{
             if (back_ch.get(back_ch.size() - 2).length() < back_ch.get(back_ch.size() - 1).length() || Text.findstring("£", back_ch.get(back_ch.size() - 2))) {
                 String new_text = back_ch.get(back_ch.size() - 2);
+                b = back_b.get(back_b.size() - 2);
                 List<Integer> del =  Text.betweenIndex(new_text, '£', 's');
                 char[] ch_new_text = new_text.toCharArray();
                 for (int d : del){
@@ -358,6 +378,9 @@ public class NonFreedum extends AppCompatActivity {
 
 
                 back_ch.remove(back_ch.size() - 1);
+                start_w.remove(start_w.size() - 1);
+                end_W.remove(end_W.size() - 1);
+                back_b.remove(back_b.size() - 1);
             }
 
 
@@ -370,8 +393,12 @@ public class NonFreedum extends AppCompatActivity {
     }
     public void rese() {
         CodeFramentQS1.setText(f);
+        start_w.clear();
+        end_W.clear();
         back_ch.clear();
+        b = 0;
         back_ch.add(unuateksto);
+        back_b.add(0);
         if (ifQsPython) {
             textCPy();
         } else {
@@ -464,6 +491,10 @@ public class NonFreedum extends AppCompatActivity {
                 altumAdNunc = altumAdNunc + tText.length() + 1;
                 adNunc = adNunc + 1;
             }
+            for (int i = 0; i < NonFreedum.start_w.size(); i++){
+                Log.d(String.valueOf(start_w.get(i)), String.valueOf(end_W.get(i)));
+                str1.setSpan(new ForegroundColorSpan(Color.rgb(0, 0, 120)), start_w.get(i), end_W.get(i), 0);
+            }
             codeFramentQS.setTextB(str1);
         }catch (Exception e){
 
@@ -501,6 +532,9 @@ public class NonFreedum extends AppCompatActivity {
                     altumAdNunc = altumAdNunc + tText.length() + 1;
                     adNunc = adNunc + 1;
                 }
+            for (int i = 0; i < NonFreedum.start_w.size(); i++){
+                str1.setSpan(new ForegroundColorSpan(Color.rgb(0, 0, 120)), start_w.get(i), end_W.get(i), 0);
+            }
                 codeFramentQS.setTextB(str1);
         } catch (Exception e) {
 
