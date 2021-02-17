@@ -136,7 +136,7 @@ public class tree extends AppCompatActivity {
         f3.setText(s(Arrays.asList("1-3-1", "1-3-2")));
         f4.setText(s(Arrays.asList("1-5-1", "1-4-2", "1-5-2", "1-5-3")));
         f5.setText(s(Arrays.asList("1-4-3", "1-5-4")));
-        f6.setText(s(Arrays.asList("1-4-1")));
+        f6.setText(s(Arrays.asList("1-7-1", "1-4-1")));
         if (ifLfinished(Arrays.asList("1-1-1", "1-1-2"))){
             LessonStart1.setBackgroundResource(R.drawable.skill2);
         }
@@ -170,7 +170,7 @@ public class tree extends AppCompatActivity {
         if (ifLfinished(Arrays.asList("1-4-1"))){
             LessonStart6.setBackgroundResource(R.drawable.skill2);
         }
-        if (ifHfinished(Arrays.asList("1-4-1"), Arrays.asList("1-5-4"))){
+        if (ifHfinished(Arrays.asList("1-7-1", "1-4-1"), Arrays.asList("1-5-4"))){
             LessonStart6.setBackgroundResource(R.drawable.skill);
         }
         switchToHTML.setOnClickListener(new View.OnClickListener() {
@@ -212,7 +212,7 @@ public class tree extends AppCompatActivity {
         skill6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startLesson(Arrays.asList("1-4-1~שגיאות וחריגים"), Arrays.asList("1-5-4"));
+                startLesson(Arrays.asList("1-4-1~שגיאות וחריגים", "1-7-1~פונקציות"), Arrays.asList("1-5-4"));
             } //savta
         });
 
