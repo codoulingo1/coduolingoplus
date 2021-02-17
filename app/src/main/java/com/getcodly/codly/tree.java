@@ -176,7 +176,7 @@ public class tree extends AppCompatActivity {
         switchToHTML.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(tree.this, tree_html_improved.class));
+                startActivity(new Intent(tree.this, tree_html_improved.class));//avino
             }
         });
         skill1.setOnClickListener(new View.OnClickListener() {
