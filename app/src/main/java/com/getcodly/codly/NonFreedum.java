@@ -525,6 +525,9 @@ public class NonFreedum extends AppCompatActivity {
                 }
                 int adNunc = 1;
                 int altumAdNunc = 0;
+            for (int i = 0; i < NonFreedum.start_w.size(); i++){
+                str1.setSpan(new ForegroundColorSpan(Color.rgb(0, 0, 120)), start_w.get(i), end_W.get(i), 0);
+            }
                 for (String tText : htmlText.split("\"")) {
                     if (adNunc % 2 == 0) {
                         str1.setSpan(new ForegroundColorSpan(Color.rgb(125, 250, 111)), altumAdNunc, altumAdNunc + tText.length(), 0);
@@ -532,9 +535,6 @@ public class NonFreedum extends AppCompatActivity {
                     altumAdNunc = altumAdNunc + tText.length() + 1;
                     adNunc = adNunc + 1;
                 }
-            for (int i = 0; i < NonFreedum.start_w.size(); i++){
-                str1.setSpan(new ForegroundColorSpan(Color.rgb(0, 0, 120)), start_w.get(i), end_W.get(i), 0);
-            }
                 codeFramentQS.setTextB(str1);
         } catch (Exception e) {
 
