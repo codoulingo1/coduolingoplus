@@ -171,7 +171,7 @@ public class tree_html_improved extends AppCompatActivity {
         skill6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startLesson(Arrays.asList("2-6-2~מסגרות", "2-6-1~מבוא לקוד CSS"), Arrays.asList("2-5-1"));
+                startLesson(Arrays.asList("2-6-2~מסגרות", "2-6-1~מבוא לקוד CSS", "2-6-3~פונטים"), Arrays.asList("2-5-1"));
             }
         });
 

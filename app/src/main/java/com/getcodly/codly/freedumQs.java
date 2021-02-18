@@ -139,26 +139,12 @@ public class freedumQs extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (isOpt1Pressed = false){
-                    opt1.setScaleX(1.1f);
-                    opt1.setScaleY(1.1f);
-                    opt2.setScaleX(1f);
-                    opt2.setScaleY(1f);//
-                    opt3.setScaleX(1f);
-                    opt3.setScaleY(1f);
-                    opt4.setScaleX(1f);
-                    opt4.setScaleY(1f);
+                    opt1.setBackgroundColor(Color.parseColor("#CCCCD8"));
                     continueBtn.setVisibility(View.VISIBLE);
                     selectedOpt = opt1.getText().toString();
                     isOpt1Pressed = true;
                 } else {
-                    opt1.setScaleX(1f);
-                    opt1.setScaleY(1f);
-                    opt2.setScaleX(1f);
-                    opt2.setScaleY(1f);
-                    opt3.setScaleX(1f);
-                    opt3.setScaleY(1f);
-                    opt4.setScaleX(1f);
-                    opt4.setScaleY(1f);
+                    opt1.setBackgroundColor(Color.parseColor("#EBEBEB"));
                     continueBtn.setVisibility(View.VISIBLE);
                     selectedOpt = opt1.getText().toString();
                     isOpt1Pressed = false;
@@ -170,26 +156,12 @@ public class freedumQs extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (isOpt2Pressed = false){
-                    opt1.setScaleX(1f);
-                    opt1.setScaleY(1f);
-                    opt2.setScaleX(1.1f);
-                    opt2.setScaleY(1.1f);
-                    opt3.setScaleX(1f);
-                    opt3.setScaleY(1f);
-                    opt4.setScaleX(1f);
-                    opt4.setScaleY(1f);
+                    opt2.setBackgroundColor(Color.parseColor("#CCCCD8"));
                     continueBtn.setVisibility(View.VISIBLE);
                     selectedOpt = opt2.getText().toString();
                     isOpt2Pressed = true;
                 } else {
-                    opt1.setScaleX(1f);
-                    opt1.setScaleY(1f);
-                    opt2.setScaleX(1f);
-                    opt2.setScaleY(1f);
-                    opt3.setScaleX(1f);
-                    opt3.setScaleY(1f);
-                    opt4.setScaleX(1f);
-                    opt4.setScaleY(1f);
+                    opt2.setBackgroundColor(Color.parseColor("#EBEBEB"));
                     continueBtn.setVisibility(View.VISIBLE);
                     selectedOpt = opt2.getText().toString();
                     isOpt2Pressed = false;
@@ -200,26 +172,12 @@ public class freedumQs extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (isOpt2Pressed = false){
-                    opt1.setScaleX(1f);
-                    opt1.setScaleY(1f);
-                    opt2.setScaleX(1f);
-                    opt2.setScaleY(1f);
-                    opt3.setScaleX(1.1f);
-                    opt3.setScaleY(1.1f);
-                    opt4.setScaleX(1f);
-                    opt4.setScaleY(1f);
+                    opt3.setBackgroundColor(Color.parseColor("#CCCCD8"));
                     continueBtn.setVisibility(View.VISIBLE);
                     selectedOpt = opt3.getText().toString();
                     isOpt3Pressed = true;
                 } else {
-                    opt1.setScaleX(1f);
-                    opt1.setScaleY(1f);
-                    opt2.setScaleX(1f);
-                    opt2.setScaleY(1f);
-                    opt3.setScaleX(1f);
-                    opt3.setScaleY(1f);
-                    opt4.setScaleX(1f);
-                    opt4.setScaleY(1f);
+                    opt3.setBackgroundColor(Color.parseColor("#EBEBEB"));
                     continueBtn.setVisibility(View.VISIBLE);
                     selectedOpt = opt3.getText().toString();
                     isOpt3Pressed = false;
@@ -230,26 +188,12 @@ public class freedumQs extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (isOpt2Pressed = false){
-                    opt1.setScaleX(1f);
-                    opt1.setScaleY(1f);
-                    opt2.setScaleX(1f);
-                    opt2.setScaleY(1f);
-                    opt3.setScaleX(1.1f);
-                    opt3.setScaleY(1.1f);
-                    opt4.setScaleX(1.1f);
-                    opt4.setScaleY(1.1f);
+                    opt4.setBackgroundColor(Color.parseColor("#CCCCD8"));
                     continueBtn.setVisibility(View.VISIBLE);
                     selectedOpt = opt4.getText().toString();
                     isOpt4Pressed = true;
                 } else {
-                    opt1.setScaleX(1f);
-                    opt1.setScaleY(1f);
-                    opt2.setScaleX(1f);
-                    opt2.setScaleY(1f);
-                    opt3.setScaleX(1f);
-                    opt3.setScaleY(1f);
-                    opt4.setScaleX(1f);
-                    opt4.setScaleY(1f);
+                    opt4.setBackgroundColor(Color.parseColor("#EBEBEB"));
                     continueBtn.setVisibility(View.VISIBLE);
                     selectedOpt = opt4.getText().toString();
                     isOpt4Pressed = false;
