@@ -79,7 +79,7 @@ public class ExplainHtml extends AppCompatActivity {
                         overridePendingTransition(0, 0);
                     }
                     builder.append(System.getProperty("line.separator"));
-                    for (int i = 0; i < 10; i = i + 1) {
+                    for (int i = 0; i < 10; i = i + 1) {//savta
                         try {
                             if (i % 2 == 0 || i==0) {
                                 builder.append(explanation_hashmap.get("additional").split("~")[add_num].split("\\*")[i]);
