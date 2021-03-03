@@ -31,6 +31,7 @@ import java.util.concurrent.atomic.AtomicReference;
  */
 
 public class DownloadReadlessons {
+    public static final HashMap<String, String> rett = new HashMap<>();
     public static interface MyCallback {
         void onCallback(String value);
     }
@@ -45,7 +46,7 @@ public class DownloadReadlessons {
         void onCallback(List<String> value);
     }
 
-    public static String downloadlesson(String ID, final Context c, MyCallback m) {
+    public static HashMap<String, String> downloadlesson(String ID, final Context c, MyCallback m) {
         //final AtomicBoolean done = new AtomicBoolean(false);
         //String init="Inital Value";
         //shared.set(init);
@@ -78,7 +79,7 @@ public class DownloadReadlessons {
                                 e.printStackTrace();
                             }
                         }
-                        ReadWrite.write(c.getFilesDir() + "/id/" + folder_main + snap.getKey(), snap.getValue(String.class));
+                        rett.put(snap.getKey(), snap.getValue(String.class));
                     }
                 }
                 }catch (Exception e){
@@ -94,7 +95,7 @@ public class DownloadReadlessons {
                 Log.w("error", "Failed to read value.", error.toException());
             }
         });
-        return "a";
+        return rett;
     }
     public static String downloadcomp(String ID, final Context c, MyCallback m) {
         //final AtomicBoolean done = new AtomicBoolean(false);
@@ -177,7 +178,7 @@ public class DownloadReadlessons {
                     }
                     if (wr_num <= maxQS) {
                         Log.d(folder_main + "qs" + wr_num, "Value is: " + "qs" + wr_num + "    " + wr);
-                        ReadWrite.write(c.getFilesDir() + "/id/" + folder_main + "qs" + wr_num, wr);
+                        rett.put("qs" + wr_num, wr);
                     }
 
                     wr_num++;
@@ -196,7 +197,7 @@ public class DownloadReadlessons {
     }
 
     public static HashMap<String, String> readqs(String id, String name, String qs_num, Context c) {
-        String content = ReadWrite.read(c.getFilesDir() + "/" + "id" + "/" + id + name + "qs" + qs_num);
+        String content = rett.get("qs" + qs_num);
         HashMap<String, String> hashMap = new HashMap<>();
         String[] arr = content.split("\\]|\\[");
         Log.d("check", content.toString());
