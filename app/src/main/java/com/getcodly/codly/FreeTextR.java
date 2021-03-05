@@ -26,6 +26,7 @@ public class FreeTextR extends AppCompatActivity {
 
     TextView qs;
     ImageButton submit;
+    public static String loadAgain2 = "";
     RelativeLayout popupTruee;
     ImageButton backBtn;
     ImageButton continueBtn10;
@@ -71,9 +72,9 @@ public class FreeTextR extends AppCompatActivity {
         if (!LessonActivity.shared_hashmap.get("additional").equals("none")) {
             inp.setText(LessonActivity.shared_hashmap.get("additional"));
         }
-        if (!tree.loadAgain.equals("")){
-            inp.setText(tree.loadAgain);
-            tree.loadAgain = "";
+        if (!loadAgain2.equals("")){
+            inp.setText(loadAgain2);
+            loadAgain2 = "";
         }
         submit.setOnClickListener(new View.OnClickListener() {
                                       @Override
@@ -84,7 +85,7 @@ public class FreeTextR extends AppCompatActivity {
                                                   showCorrect();
                                               }
                                               else{
-                                                  tree.loadAgain = ans;
+                                                  loadAgain2 = ans;
                                                   wt.setTextSize(14);
                                                   wt.setText("התשובה:" + LessonActivity.shared_hashmap.get("Answer"));
                                                   showWrong();
@@ -94,7 +95,7 @@ public class FreeTextR extends AppCompatActivity {
                                                   showCorrect();
                                               }
                                               else{
-                                                  tree.loadAgain = ans;
+                                                  loadAgain2 = ans;
                                                   wt.setTextSize(14);
                                                   wt.setText("התשובה:" + LessonActivity.shared_hashmap.get("Answer"));
                                                   showWrong();
@@ -149,7 +150,7 @@ public class FreeTextR extends AppCompatActivity {
                 if(LessonActivity.shared_xp>=11){
                     LessonActivity.shared_xp = LessonActivity.shared_xp - 1;
                 }
-                startActivity(new Intent(FreeTextR.this, FreeText.class));
+                startActivity(new Intent(FreeTextR.this, FreeTextR.class));
                 overridePendingTransition(0, 0);
             }
         });
