@@ -39,11 +39,11 @@ public class ExplainHtmlFrag extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
-        text = findViewById(R.id.qsText);
-        continueBtn = findViewById(R.id.continueBtn42);
-        web = findViewById(R.id.web);
+        text = container.findViewById(R.id.qsText);
+        continueBtn = container.findViewById(R.id.continueBtn42);
+        web = container.findViewById(R.id.web);
         HashMap<String, String> explanation_hashmap = LessonActivity.shared_hashmap;
-        TextView fr = (TextView)findViewById(R.id.Explanation);
+        TextView fr = (TextView) container.findViewById(R.id.Explanation);
         SpannableStringBuilder builder=new SpannableStringBuilder();
         for (int i = 0; i < 10; i = i + 1) {
             try {
@@ -63,8 +63,8 @@ public class ExplainHtmlFrag extends Fragment {
         text.setText(builder);
         WebSettings webSettings = web.getSettings();
         web.loadData(LessonActivity.shared_hashmap.get("additional"), "text/html", "UTF-8");
-        backBtn = (ImageButton) findViewById(R.id.backBtn);
-        ProgressBar pb = (ProgressBar) findViewById(R.id.progressBar);
+        backBtn = (ImageButton) container.findViewById(R.id.backBtn);
+        ProgressBar pb = (ProgressBar) container.findViewById(R.id.progressBar);
         pb.setProgress(LessonActivity.pr);
         continueBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -75,8 +75,8 @@ public class ExplainHtmlFrag extends Fragment {
                     continueBtn.setClickable(false);
                     mainScreen.lessonWr++;
                     LessonActivity.j = LessonActivity.j + 1;
-                    startActivity(new Intent(ExplainHtml.this, LessonActivity.class));
-                    overridePendingTransition(0, 0);
+                    startActivity(new Intent(getActivity(), LessonActivity.class));
+                    getActivity().overridePendingTransition(0, 0);
                 }
                 else{
                     try {
@@ -85,8 +85,8 @@ public class ExplainHtmlFrag extends Fragment {
                         continueBtn.setClickable(false);
                         mainScreen.lessonWr++;
                         LessonActivity.j = LessonActivity.j + 1;
-                        startActivity(new Intent(ExplainHtml.this, LessonActivity.class));
-                        overridePendingTransition(0, 0);
+                        startActivity(new Intent(getActivity(), LessonActivity.class));
+                        getActivity().overridePendingTransition(0, 0);
                     }
                     builder.append(System.getProperty("line.separator"));
                     for (int i = 0; i < 10; i = i + 1) {//savta
@@ -120,8 +120,8 @@ public class ExplainHtmlFrag extends Fragment {
                 if (LessonActivity.j > 1) {
                     LessonActivity.j = LessonActivity.j - 1;
                     LessonActivity.shared_xp = LessonActivity.shared_xp - 1;
-                    startActivity(new Intent(ExplainHtml.this, LessonActivity.class));
-                    overridePendingTransition(0, 0);
+                    startActivity(new Intent(getActivity(), LessonActivity.class));
+                    getActivity().overridePendingTransition(0, 0);
                 }
             }
         });
