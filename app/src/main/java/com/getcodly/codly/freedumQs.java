@@ -55,10 +55,10 @@ public class freedumQs extends AppCompatActivity {
     ImageButton continueBtn6;
 
 
-    boolean isOpt1Pressed = false;
-    boolean isOpt2Pressed = false;
-    boolean isOpt3Pressed = false;
-    boolean isOpt4Pressed = false;
+    Boolean isOpt1Pressed = false;
+    Boolean isOpt2Pressed = false;
+    Boolean isOpt3Pressed = false;
+    Boolean isOpt4Pressed = false;
 
     String selectedOpt = null;
 
@@ -66,12 +66,6 @@ public class freedumQs extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_freedum_qs);
-
-        isOpt1Pressed = false;
-        isOpt2Pressed = false;
-        isOpt3Pressed = false;
-        isOpt4Pressed = false;
-
         continueBtn = (ImageButton) findViewById(R.id.continueBtn3);
         continueBtn.setVisibility(View.INVISIBLE);
         popupWrong = (RelativeLayout) findViewById(R.id.popup2);
@@ -151,7 +145,7 @@ public class freedumQs extends AppCompatActivity {
                     isOpt1Pressed = true;
                 } else {
                     opt1.setBackgroundColor(Color.parseColor("#EBEBEB"));
-                    continueBtn.setVisibility(View.INVISIBLE);
+                    continueBtn.setVisibility(View.VISIBLE);
                     selectedOpt = opt1.getText().toString();
                     isOpt1Pressed = false;
                 }
@@ -168,7 +162,7 @@ public class freedumQs extends AppCompatActivity {
                     isOpt2Pressed = true;
                 } else {
                     opt2.setBackgroundColor(Color.parseColor("#EBEBEB"));
-                    continueBtn.setVisibility(View.INVISIBLE);
+                    continueBtn.setVisibility(View.VISIBLE);
                     selectedOpt = opt2.getText().toString();
                     isOpt2Pressed = false;
                 }
@@ -177,14 +171,14 @@ public class freedumQs extends AppCompatActivity {
         opt3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (isOpt3Pressed = false){
+                if (isOpt2Pressed = false){
                     opt3.setBackgroundColor(Color.parseColor("#CCCCD8"));
                     continueBtn.setVisibility(View.VISIBLE);
                     selectedOpt = opt3.getText().toString();
                     isOpt3Pressed = true;
-                } else{
+                } else {
                     opt3.setBackgroundColor(Color.parseColor("#EBEBEB"));
-                    continueBtn.setVisibility(View.INVISIBLE);
+                    continueBtn.setVisibility(View.VISIBLE);
                     selectedOpt = opt3.getText().toString();
                     isOpt3Pressed = false;
                 }
@@ -193,15 +187,14 @@ public class freedumQs extends AppCompatActivity {
         opt4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (isOpt4Pressed = false){
+                if (isOpt2Pressed = false){
                     opt4.setBackgroundColor(Color.parseColor("#CCCCD8"));
-                    opt4.setVisibility(View.INVISIBLE);
                     continueBtn.setVisibility(View.VISIBLE);
                     selectedOpt = opt4.getText().toString();
                     isOpt4Pressed = true;
                 } else {
                     opt4.setBackgroundColor(Color.parseColor("#EBEBEB"));
-                    continueBtn.setVisibility(View.INVISIBLE);
+                    continueBtn.setVisibility(View.VISIBLE);
                     selectedOpt = opt4.getText().toString();
                     isOpt4Pressed = false;
                 }

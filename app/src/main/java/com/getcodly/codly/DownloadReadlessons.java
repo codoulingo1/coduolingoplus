@@ -197,56 +197,60 @@ public class DownloadReadlessons {
     }
 
     public static HashMap<String, String> readqs(String id, String name, String qs_num, Context c) {
-        String content = rett.get("qs" + qs_num);
         HashMap<String, String> hashMap = new HashMap<>();
-        String[] arr = content.split("\\]|\\[");
-        Log.d("check", content.toString());
         try {
-            hashMap.put("type", arr[1].replace("\\n", System.getProperty("line.separator")));
-        } catch (Exception e) {
-            try{
-                hashMap.put("type", arr[1]);
-            }catch (Exception exception){
-                CountDownTimer mCountdownTimer;
-                mCountdownTimer = new CountDownTimer(1000, 1000) {
-                    @Override
-                    public void onTick(long millisUntilFinished) {
+            String content = rett.get("qs" + qs_num);
+            String[] arr = content.split("\\]|\\[");
+            Log.d("check", content.toString());
+            try {
+                hashMap.put("type", arr[1].replace("\\n", System.getProperty("line.separator")));
+            } catch (Exception e) {
+                try {
+                    hashMap.put("type", arr[1]);
+                } catch (Exception exception) {
+                    CountDownTimer mCountdownTimer;
+                    mCountdownTimer = new CountDownTimer(1000, 1000) {
+                        @Override
+                        public void onTick(long millisUntilFinished) {
 
+                        }
+
+                        @Override
+                        public void onFinish() {
+                            hashMap.put("type", arr[1].replace("\\n", System.getProperty("line.separator")));
+                        }
+                    };
                 }
-
-                    @Override
-                    public void onFinish() {
-                        hashMap.put("type", arr[1].replace("\\n", System.getProperty("line.separator")));
-                    }
-                };
             }
-        }
-        try {
-            hashMap.put("qs", arr[3].replace("\\n", System.getProperty("line.separator")).replaceAll("aaa", "[").replaceAll("bbb", "]"));
-        } catch (Exception e) {
-            hashMap.put("qs", arr[3]);
-        }
-        try {
-            hashMap.put("Content", arr[5].replace("\\n", System.getProperty("line.separator")).replaceAll("aaa", "[").replaceAll("bbb", "]"));
-        } catch (Exception e) {
-            hashMap.put("Content", arr[5]);
-        }
-        try {
-            hashMap.put("Image", arr[7].replace("\\n", System.getProperty("line.separator")));
-        } catch (Exception e) {
-            hashMap.put("Image", arr[7]);
-        }
-        try {
-            hashMap.put("Answer", arr[9].replace("\\n", System.getProperty("line.separator")).replaceAll("aaa", "[").replaceAll("bbb", "]"));
-        } catch (Exception e) {
-            hashMap.put("Answer", arr[9]);
-        }
-        try {
-            hashMap.put("additional", arr[11].replace("\\n", System.getProperty("line.separator")).replaceAll("aaa", "[").replaceAll("bbb", "]"));
-        } catch (Exception e) {
-            hashMap.put("additional", arr[11]);
-        }
+            try {
+                hashMap.put("qs", arr[3].replace("\\n", System.getProperty("line.separator")).replaceAll("aaa", "[").replaceAll("bbb", "]"));
+            } catch (Exception e) {
+                hashMap.put("qs", arr[3]);
+            }
+            try {
+                hashMap.put("Content", arr[5].replace("\\n", System.getProperty("line.separator")).replaceAll("aaa", "[").replaceAll("bbb", "]"));
+            } catch (Exception e) {
+                hashMap.put("Content", arr[5]);
+            }
+            try {
+                hashMap.put("Image", arr[7].replace("\\n", System.getProperty("line.separator")));
+            } catch (Exception e) {
+                hashMap.put("Image", arr[7]);
+            }
+            try {
+                hashMap.put("Answer", arr[9].replace("\\n", System.getProperty("line.separator")).replaceAll("aaa", "[").replaceAll("bbb", "]"));
+            } catch (Exception e) {
+                hashMap.put("Answer", arr[9]);
+            }
+            try {
+                hashMap.put("additional", arr[11].replace("\\n", System.getProperty("line.separator")).replaceAll("aaa", "[").replaceAll("bbb", "]"));
+            } catch (Exception e) {
+                hashMap.put("additional", arr[11]);
+            }
 
+        } catch (Exception e) {
+
+        }
         return hashMap;
     }
 
@@ -342,6 +346,35 @@ public class DownloadReadlessons {
             }
         });
         return ret;
+    }
+    public static List<String> get_liga(String email, ListCallback m) {
+        final List<String>[] ret = new List[]{new ArrayList<String>()};
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("ligot");
+        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // This method is called once with the initial value and again
+                // whenever data at this location is uploaded
+                for (DataSnapshot liga : dataSnapshot.getChildren()){
+                    if (liga.getValue().toString().contains(email)){
+                        int j = 0;
+                        for (String i : liga.getValue().toString().split(",")) {
+                            ret[j] = Collections.singletonList(i);
+                            j = j + 1;
+                        }
+                    }
+                }
+                m.onCallback(ret[0]);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+                Log.w("Failed to read value.", error.toException());
+            }
+        });
+        return ret[0];
     }
     public static HashMap<String, ArrayList<String>> get_docs(String email, HashCallback2 m) {
         final HashMap<String, ArrayList<String>> ret = new HashMap<>();

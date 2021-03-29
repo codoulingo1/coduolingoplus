@@ -12,7 +12,8 @@
         android:supportsRtl="false"
         android:theme="@style/AppTheme"
         tools:replace="android:supportsRtl">
-        <activity android:name=".ProjectsPrFragments"></activity>
+        <activity android:name=".LigaActivity"></activity>
+        <activity android:name=".ProjectsPrFragments" />
         <activity android:name=".DoubleDialog" />
         <activity android:name=".ExplainHtml" />
         <activity
@@ -168,16 +169,16 @@
             </intent-filter>
         </service>
     </application>
-    <uses-permission android:name="android.permission.WRITE_INTERNAL_STORAGE" />
     <uses-permission android:name="android.permission. ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission
         android:name="android.permission.READ_EXTERNAL_STORAGE"
         tools:remove="android:maxSdkVersion" />
-
     <uses-permission
         android:name="android.permission.WRITE_EXTERNAL_STORAGE"
         tools:remove="android:maxSdkVersion" />
+
+    <uses-permission android:name="android.permission.WRITE_INTERNAL_STORAGE" />
 
 </manifest>
