@@ -12,7 +12,6 @@
         android:supportsRtl="false"
         android:theme="@style/AppTheme"
         tools:replace="android:supportsRtl">
-        <activity android:name=".LigaActivity"></activity>
         <activity android:name=".ProjectsPrFragments" />
         <activity android:name=".DoubleDialog" />
         <activity android:name=".ExplainHtml" />
@@ -143,6 +142,10 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".MainActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".LigaActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity

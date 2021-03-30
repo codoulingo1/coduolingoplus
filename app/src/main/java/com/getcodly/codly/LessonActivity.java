@@ -57,11 +57,10 @@ public class LessonActivity extends AppCompatActivity {
         String name = MainActivity.name;
         for (int i = 1; i<20; i++){
             try {
-                loadquestion(id, name, String.valueOf(i));
+                Log.d("hi", loadquestion(id, name, String.valueOf(i)).get("qs"));
             }
             catch (Exception e) {
                 maxJ = i-1;
-                Log.d("hi", String.valueOf(maxJ));
                 break;
             }
         }
@@ -78,6 +77,7 @@ public class LessonActivity extends AppCompatActivity {
             lessonCreator(id, name, 1);
         }
         else {
+            Log.d("via avino", String.valueOf(maxJ));
             startActivity(new Intent(LessonActivity.this, finalLesson.class));
         }
 

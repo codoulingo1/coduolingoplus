@@ -16,6 +16,7 @@ import com.google.firebase.firestore.auth.User;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.UTFDataFormatException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -226,6 +227,7 @@ public class DownloadReadlessons {
                 hashMap.put("qs", arr[3].replace("\\n", System.getProperty("line.separator")).replaceAll("aaa", "[").replaceAll("bbb", "]"));
             } catch (Exception e) {
                 hashMap.put("qs", arr[3]);
+                throw new Exception("Exception message");
             }
             try {
                 hashMap.put("Content", arr[5].replace("\\n", System.getProperty("line.separator")).replaceAll("aaa", "[").replaceAll("bbb", "]"));
@@ -300,6 +302,7 @@ public class DownloadReadlessons {
         myRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+                Log.d("saluton", "saluton");
                 // This method is called once with the initial value and again
                 // whenever data at this location is uploaded
                 try {
@@ -347,25 +350,54 @@ public class DownloadReadlessons {
         });
         return ret;
     }
-    public static List<String> get_liga(String email, ListCallback m) {
-        final List<String>[] ret = new List[]{new ArrayList<String>()};
+    public static HashMap<String, ArrayList<String>> get_liga(String email, HashCallback2 m) {
+        final HashMap<String, ArrayList<String>> ret = new HashMap<>();
+        ArrayList<String> names = new ArrayList<String>();
+        ArrayList<String> xp = new ArrayList<String>();
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("ligot");
-        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+        DatabaseReference myRef = database.getReference("Users");
+        FirebaseDatabase database2 = FirebaseDatabase.getInstance();
+        DatabaseReference myRef2 = database2.getReference("ligot");
+        Log.d("hallo", String.valueOf(myRef2.getParent()));
+
+        myRef2.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+                Log.d("saluton1", "saluton1");
+
                 // This method is called once with the initial value and again
                 // whenever data at this location is uploaded
-                for (DataSnapshot liga : dataSnapshot.getChildren()){
-                    if (liga.getValue().toString().contains(email)){
-                        int j = 0;
-                        for (String i : liga.getValue().toString().split(",")) {
-                            ret[j] = Collections.singletonList(i);
-                            j = j + 1;
+                myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot2) {
+                        Log.d("saluton2", "saluton2");
+                        for (DataSnapshot liga : dataSnapshot.getChildren()){
+                            if (liga.getValue().toString().contains(email)){
+                                Log.d("saluton3", "saluton3");
+                                int j = 0;
+                                for (String i : liga.getValue().toString().split(",")) {
+                                    Log.d("saluton4", i.split("-")[0]);
+                                    names.add(i.split("-")[0]);
+                                    try {
+                                        xp.add(dataSnapshot2.child(i.split("-")[0]).child("xp").getValue().toString());
+                                    } catch (Exception e){
+
+                                    }
+                                    j = j + 1;
+                                }
+                                ret.put("names", names);
+                                ret.put("xp", xp);
+                                m.onCallback(ret);
+                            }
                         }
                     }
-                }
-                m.onCallback(ret[0]);
+                    @Override
+                    public void onCancelled(DatabaseError error) {
+                        // Failed to read value
+                        Log.w("Failed to read value.", error.toException());
+                    }
+                });
+
             }
 
             @Override
@@ -374,7 +406,7 @@ public class DownloadReadlessons {
                 Log.w("Failed to read value.", error.toException());
             }
         });
-        return ret[0];
+        return ret;
     }
     public static HashMap<String, ArrayList<String>> get_docs(String email, HashCallback2 m) {
         final HashMap<String, ArrayList<String>> ret = new HashMap<>();
