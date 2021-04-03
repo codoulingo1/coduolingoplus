@@ -39,6 +39,8 @@ import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.InstanceIdResult;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class Login extends AppCompatActivity {
@@ -192,6 +194,7 @@ public class Login extends AppCompatActivity {
             FirebaseDatabase database = FirebaseDatabase.getInstance();
             if(!emails.contains(account.getId())) {
                 DatabaseReference myRef = database.getReference("Users");
+                DatabaseReference fireBase2 = database.getReference("ligot");
                 myRef.child(String.valueOf(account.getId())).setValue("a");
                 DatabaseReference user = myRef.child(String.valueOf(account.getId()));
                 user.child("id").setValue(personId);
@@ -206,6 +209,7 @@ public class Login extends AppCompatActivity {
                 user.child("streak freeze").setValue("false");
                 user.child("7streak").setValue(0);
                 user.child("xp").setValue(0);
+                user.child("weekXp").setValue(0);
                 user.child("pyXp").setValue(0);
                 user.child("htmlXp").setValue(0);
                 user.child("shabes").setValue("false");
@@ -214,9 +218,31 @@ public class Login extends AppCompatActivity {
                 user.child("hasDoneLesson").setValue(false);
                 user.child("comp_w").setValue("");
                 user.child("comp").setValue("");
+                user.child("ligaType").setValue(1);
                 user.child("comp_time").setValue("1");
                 user.child("friends").setValue("");
                 user.child("email").setValue(personEmail);
+                DownloadReadlessons.get_liga2("1-1", new DownloadReadlessons.HashCallback3() {
+                    @Override
+                    public void onCallback(HashMap<String, ArrayList> value) {
+                        StringBuilder name = new StringBuilder();
+                        String botWord = "";
+                        ArrayList<String> alt_name = value.get("names");
+                        for (String id : alt_name){
+                            name.append(id).append(",");
+                            if (id.contains("bot")){
+                                botWord = id + ",";
+                            }
+                        }
+                        name.append(personId).append("-").append(personName);
+                        String final_name = name.toString();
+                        if (final_name.contains("bot") && alt_name.size() > 28){
+                            final_name = final_name.replaceAll(botWord, "");
+                        }
+                        fireBase2.child("1-1").setValue(final_name);
+
+                    }
+                });
                 method = "Google";
                 Bundle bundle = new Bundle();
                 bundle.putString(FirebaseAnalytics.Param.METHOD, method);

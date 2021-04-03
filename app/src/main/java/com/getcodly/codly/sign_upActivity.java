@@ -25,6 +25,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.regex.Pattern;
 
 public class sign_upActivity extends AppCompatActivity {
@@ -105,6 +107,7 @@ public class sign_upActivity extends AppCompatActivity {
 
             DatabaseReference myRef = database.getReference("Users");
             DatabaseReference fireBase = myRef.child(String.valueOf(user.getUid()));
+            DatabaseReference fireBase2 = database.getReference("ligot");
             fireBase.child("id").setValue("nonGmail");
             fireBase.child("email").setValue(personEmail);
             fireBase.child("imgUrl").setValue(personPhoto);
@@ -123,11 +126,34 @@ public class sign_upActivity extends AppCompatActivity {
             fireBase.child("hasDoneLesson").setValue(false);
             fireBase.child("comp_w").setValue("");
             fireBase.child("comp").setValue("");
+            fireBase.child("ligaType").setValue(1);
             fireBase.child("comp_time").setValue("1");
             fireBase.child("xp").setValue(0);
+            fireBase.child("weekXp").setValue(0);
             fireBase.child("pyXp").setValue(0);
             fireBase.child("htmlXp").setValue(0);
             fireBase.child("friends").setValue("");
+            DownloadReadlessons.get_liga2("1-1", new DownloadReadlessons.HashCallback3() {
+                @Override
+                public void onCallback(HashMap<String, ArrayList> value) {
+                    StringBuilder name = new StringBuilder();
+                    String botWord = "";
+                    ArrayList<String> alt_name = value.get("names");
+                    for (String id : alt_name){
+                            name.append(id).append(",");
+                            if (id.contains("bot")){
+                                botWord = id + ",";
+                            }
+                    }
+                    name.append(user.getUid()).append("-").append(personName);
+                    String final_name = name.toString();
+                    if (final_name.contains("bot") && alt_name.size() > 28){
+                        final_name = final_name.replaceAll(botWord, "");
+                    }
+                    fireBase2.child("1-1").setValue(final_name);
+
+                }
+            });
             Toast.makeText(sign_upActivity.this, "שלום " + personName, Toast.LENGTH_SHORT).show();
             startActivity(new Intent(sign_upActivity.this, mainScreen.class));
             Toast.makeText(sign_upActivity.this, "Success", Toast.LENGTH_LONG).show();

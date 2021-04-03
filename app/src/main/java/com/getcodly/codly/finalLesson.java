@@ -161,6 +161,7 @@ public class finalLesson extends AppCompatActivity {
                     //int month = Integer.parseInt(value.get("month"));
                     int day = Integer.parseInt(value.get("date"));
                     int xp = (int) Double.parseDouble(value.get("xp"));
+                    int weekXp = (int) Double.parseDouble(value.get("weekXp"));
                     int pyXp = (int) Double.parseDouble(value.get("pyXp"));
                     int htmlXp = (int) Double.parseDouble(value.get("htmlXp"));
                     String old_progress = String.valueOf(mainScreen.progress);
@@ -255,6 +256,7 @@ public class finalLesson extends AppCompatActivity {
                         }
                     }
                     user.child("xp").setValue(xp + LessonActivity.shared_xp2);
+                    user.child("weekXp").setValue(weekXp + LessonActivity.shared_xp2);
                     if (mainScreen.w.equals("py")){
                         user.child("pyXp").setValue(pyXp + LessonActivity.shared_xp2);
                         mainScreen.pyXp = pyXp + LessonActivity.shared_xp2;

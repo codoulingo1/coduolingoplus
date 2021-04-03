@@ -298,6 +298,12 @@
             android:layout_marginRight="15dp"
             android:src="@drawable/user_pic" />
 
+        <Button
+            android:id="@+id/to_ligot"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="למסך הליגות" />
+
         <!--<EditText
             android:id="@+id/cgName"
             android:layout_width="255dp"

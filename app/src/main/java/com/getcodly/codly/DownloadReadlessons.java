@@ -43,6 +43,9 @@ public class DownloadReadlessons {
     public static interface HashCallback2 {
         void onCallback(HashMap<String, ArrayList<String>> value);
     }
+    public static interface HashCallback3 {
+        void onCallback(HashMap<String, ArrayList> value);
+    }
     public static interface ListCallback {
         void onCallback(List<String> value);
     }
@@ -316,6 +319,7 @@ public class DownloadReadlessons {
                     ret.put("xp", dataSnapshot.child("xp").getValue().toString());
                     ret.put("pyXp", dataSnapshot.child("pyXp").getValue().toString());
                     ret.put("htmlXp", dataSnapshot.child("htmlXp").getValue().toString());
+                    ret.put("ligaType", dataSnapshot.child("ligaType").getValue().toString());
                     ret.put("name", dataSnapshot.child("name").getValue().toString());
                     ret.put("img", dataSnapshot.child("imgUrl").getValue().toString());
                     ret.put("email", dataSnapshot.child("email").getValue().toString());
@@ -323,21 +327,40 @@ public class DownloadReadlessons {
                     ret.put("streak freeze", dataSnapshot.child("streak freeze").getValue().toString());
                     ret.put("7streak", dataSnapshot.child("7streak").getValue().toString());
                     ret.put("friends", dataSnapshot.child("friends").getValue().toString());
+                    ret.put("weekXp", dataSnapshot.child("weekXp").getValue().toString());
                 } catch (Exception e){
-                    ret.put("streak", "0");
-                    ret.put("year", "0");
-                    //ret.put("month", dataSnapshot.child("lastLessonD").child("month").getValue().toString());
-                    ret.put("date", "0");
-                    ret.put("cProgress", "0");//2
-                    ret.put("xp", "0");
-                    ret.put("pyXp", "0");
-                    ret.put("htmlXp", "0");
-                    ret.put("name", "0");
-                    ret.put("img", "0");
-                    ret.put("email", "0");
-                    ret.put("streak freeze", "0");
-                    ret.put("7streak", "0");
-                    ret.put("friends", "0");
+                    try {
+                        ret.put("name", dataSnapshot.child("name").getValue().toString());
+                        ret.put("streak", dataSnapshot.child("streak").getValue().toString());
+                        ret.put("xp", dataSnapshot.child("xp").getValue().toString());
+                        ret.put("year", "0");
+                        //ret.put("month", dataSnapshot.child("lastLessonD").child("month").getValue().toString());
+                        ret.put("date", "0");
+                        ret.put("cProgress", "0");//2
+                        ret.put("pyXp", "0");
+                        ret.put("htmlXp", "0");
+                        ret.put("img", "0");
+                        ret.put("email", "0");
+                        ret.put("streak freeze", "0");
+                        ret.put("ligaType", "0");
+                        ret.put("7streak", "0");
+                        ret.put("friends", "0");
+                    } catch (Exception ee) {
+                        ret.put("streak", "0");
+                        ret.put("year", "0");
+                        //ret.put("month", dataSnapshot.child("lastLessonD").child("month").getValue().toString());
+                        ret.put("date", "0");
+                        ret.put("cProgress", "0");//2
+                        ret.put("xp", "0");
+                        ret.put("pyXp", "0");
+                        ret.put("htmlXp", "0");
+                        ret.put("name", "0");
+                        ret.put("img", "0");
+                        ret.put("email", "0");
+                        ret.put("streak freeze", "0");
+                        ret.put("7streak", "0");
+                        ret.put("friends", "0");
+                    }
                 }
                 m.onCallback(ret);
             }
@@ -350,10 +373,76 @@ public class DownloadReadlessons {
         });
         return ret;
     }
-    public static HashMap<String, ArrayList<String>> get_liga(String email, HashCallback2 m) {
-        final HashMap<String, ArrayList<String>> ret = new HashMap<>();
-        ArrayList<String> names = new ArrayList<String>();
-        ArrayList<String> xp = new ArrayList<String>();
+    public static HashMap<String, ArrayList> get_liga(String email, HashCallback3 m) {
+        final HashMap<String, ArrayList> ret = new HashMap<>();
+        ArrayList names = new ArrayList();
+        ArrayList xp = new ArrayList();
+        ArrayList type = new ArrayList();
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("Users");
+        FirebaseDatabase database2 = FirebaseDatabase.getInstance();
+        DatabaseReference myRef2 = database2.getReference("ligot");
+        Log.d("hallo", String.valueOf(myRef2.getParent()));
+
+        myRef2.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                Log.d("saluton1", "saluton1");
+
+                // This method is called once with the initial value and again
+                // whenever data at this location is uploaded
+                myRef.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot2) {
+                        Log.d("saluton2", "saluton2");
+                        for (DataSnapshot liga : dataSnapshot.getChildren()){
+                            Log.d("saluton3", liga.getValue().toString());
+                            if (liga.getValue().toString().contains(email)){
+                                Log.d("saluton4", "saluton3");
+                                int j = 0;
+                                for (String i : liga.getValue().toString().split(",")) {
+                                    try {
+                                        names.add(i.split("-")[1]);
+                                    } catch (Exception e){
+
+                                    }
+                                    //Log.d("saluton5" + " " + j, names.get(j));
+                                    try {
+                                        xp.add(Integer.parseInt(dataSnapshot2.child(i.split("-")[0]).child("weekXp").getValue().toString()));
+                                    } catch (Exception e){
+
+                                    }
+                                    j = j + 1;
+                                }
+                                ret.put("names", names);
+                                type.add(liga.getKey().charAt(2));
+                                ret.put("type", type);
+                                ret.put("xp", xp);
+                                m.onCallback(ret);
+                            }
+                        }
+                    }
+                    @Override
+                    public void onCancelled(DatabaseError error) {
+                        // Failed to read value
+                        Log.w("Failed to read value.", error.toException());
+                    }
+                });
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+                Log.w("Failed to read value.", error.toException());
+            }
+        });
+        return ret;
+    }
+    public static HashMap<String, ArrayList> get_liga2(String email, HashCallback3 m) {
+        final HashMap<String, ArrayList> ret = new HashMap<>();
+        ArrayList names = new ArrayList();
+        ArrayList xp = new ArrayList();
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("Users");
         FirebaseDatabase database2 = FirebaseDatabase.getInstance();
@@ -372,14 +461,19 @@ public class DownloadReadlessons {
                     public void onDataChange(DataSnapshot dataSnapshot2) {
                         Log.d("saluton2", "saluton2");
                         for (DataSnapshot liga : dataSnapshot.getChildren()){
-                            if (liga.getValue().toString().contains(email)){
-                                Log.d("saluton3", "saluton3");
+                            Log.d("saluton3", liga.getValue().toString());
+                            if (liga.getKey().contains(email)){
+                                Log.d("saluton4", "saluton3");
                                 int j = 0;
                                 for (String i : liga.getValue().toString().split(",")) {
-                                    Log.d("saluton4", i.split("-")[0]);
-                                    names.add(i.split("-")[0]);
                                     try {
-                                        xp.add(dataSnapshot2.child(i.split("-")[0]).child("xp").getValue().toString());
+                                        names.add(i);
+                                    } catch (Exception e){
+
+                                    }
+                                    //Log.d("saluton5" + " " + j, names.get(j));
+                                    try {
+                                        xp.add(Integer.parseInt(dataSnapshot2.child(i.split("-")[0]).child("xp").getValue().toString()));
                                     } catch (Exception e){
 
                                     }
