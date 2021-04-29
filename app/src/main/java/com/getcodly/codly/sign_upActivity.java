@@ -147,6 +147,7 @@ public class sign_upActivity extends AppCompatActivity {
                     }
                     name.append(user.getUid()).append("-").append(personName);
                     String final_name = name.toString();
+                    Log.d("final_name", final_name);
                     if (final_name.contains("bot") && alt_name.size() > 28){
                         final_name = final_name.replaceAll(botWord, "");
                     }

@@ -321,7 +321,8 @@ public class mainScreen extends AppCompatActivity {
                         startActivity(new Intent(mainScreen.this, mainScreen.class));
                     }
                 } catch (Exception e){
-                    startActivity(new Intent(mainScreen.this, Login.class));
+                    Log.d("err", "toLogin");
+                    //startActivity(new Intent(mainScreen.this, Login.class));
                 }
             }
 
@@ -345,6 +346,7 @@ public class mainScreen extends AppCompatActivity {
     private void updateUI(FirebaseUser user){
         if(user == null){
             //not logged in
+            Log.d("null", "logged in");
             startActivity(new Intent(mainScreen.this, Login.class));
         }
     }
