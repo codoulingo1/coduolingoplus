@@ -126,44 +126,41 @@ public class profileFragment extends Fragment {
             }
         });
 
-        try {
-            if (!b) {
-                b = true;
-                name = mainScreen.name;
-                streak = mainScreen.streak;
-                url_old = mainScreen.img;
-                setName.setText(name);
-                setStreak.setText(streak);
-                ret = new HashMap<>();
-                int i = 0;
-                list = new ArrayList<String>();
-                try {
-                    Picasso.with(getActivity()).load(url_old).resizeDimen(R.dimen.image_size, R.dimen.image_size).placeholder(R.drawable.goj).into(profImg);
-                } catch (Exception e) {
-                    profImg.setImageResource(R.drawable.user_pic);
-                }
-                for (String friend : mainScreen.friends.split("-")) {
-                    try {
-                        list.add(friend.split("/")[1]);
-                        ret.put(String.valueOf(i), friend.split("/")[0]);
-                        Log.d("hi", friend.split("/")[0]);
-                        i++;
-                    } catch (Exception e) {
 
-                    }
-                }
-                String[] stringArray = list.toArray(new String[list.size()]);
-                try {
-                    ArrayAdapter<String> itemsAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, android.R.id.text1, stringArray);
-                }catch (Exception e){
-
-                }
-                //listView.setAdapter(itemsAdapter);
+        if (!b) {
+            b = true;
+            name = mainScreen.name;
+            streak = mainScreen.streak;
+            url_old = mainScreen.img;
+            setName.setText(name);
+            setStreak.setText(streak);
+            ret = new HashMap<>();
+            int i = 0;
+            list = new ArrayList<String>();
+            try {
+                Picasso.with(getActivity()).load(url_old).resizeDimen(R.dimen.image_size, R.dimen.image_size).placeholder(R.drawable.goj).into(profImg);
+            } catch (Exception e) {
+                profImg.setImageResource(R.drawable.user_pic);
             }
-        }
-        catch (Exception e){
+            for (String friend : mainScreen.friends.split("-")) {
+                try {
+                    list.add(friend.split("/")[1]);
+                    ret.put(String.valueOf(i), friend.split("/")[0]);
+                    Log.d("hi", friend.split("/")[0]);
+                    i++;
+                } catch (Exception e) {
 
+                }
+            }
+            String[] stringArray = list.toArray(new String[list.size()]);
+            try {
+                ArrayAdapter<String> itemsAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, android.R.id.text1, stringArray);
+            }catch (Exception e){
+
+            }
+            //listView.setAdapter(itemsAdapter);
         }
+
         HashMap d = DownloadReadlessons.get_docs(ReadWrite.read(getActivity().getFilesDir() + File.separator + "user"), new DownloadReadlessons.HashCallback2() {
             @Override
             public void onCallback(HashMap<String, ArrayList<String>> value) {

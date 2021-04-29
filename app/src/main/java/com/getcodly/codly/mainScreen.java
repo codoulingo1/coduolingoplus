@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.chaquo.python.Python;
@@ -68,10 +69,23 @@ public class mainScreen extends AppCompatActivity {
     public static int courseProgressWeb = 0;
     private DatabaseReference mDatabase;
 
+    private RelativeLayout fireBar;
+    private RelativeLayout coinBar;
+
+    private RelativeLayout fireTopSheet;
+    private View pageCover;
+
+    private TextView streakSheetNumber;
+    private TextView lessonsDone;
+    private TextView bestStreak;
+    private boolean isTopSheetVisible;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_screen);
+
+        isTopSheetVisible = false;
 
         courseProgressWeb = 0;
         courseProgressPython = 0;
@@ -80,6 +94,14 @@ public class mainScreen extends AppCompatActivity {
         myRef1 = database1.getReference("Users").child(ReadWrite.read(mainScreen.this.getFilesDir() + File.separator + "user"));
 
         mDatabase = FirebaseDatabase.getInstance().getReference();
+
+        coinBar = findViewById(R.id.coinBar);
+        fireBar = findViewById(R.id.fireBar);
+        fireTopSheet = findViewById(R.id.fireTopSheet);
+        pageCover = findViewById(R.id.pageCover1);
+        streakSheetNumber = findViewById(R.id.streakSheetNumber);
+        lessonsDone = findViewById(R.id.lessonsDone);
+        bestStreak = findViewById(R.id.bestStreak);
 
         FirebaseInstanceId.getInstance().getInstanceId().addOnSuccessListener(mainScreen.this,  new OnSuccessListener<InstanceIdResult>() {
             @Override
@@ -116,6 +138,9 @@ public class mainScreen extends AppCompatActivity {
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_containerMain, settingsFragment).commit();
             }
         });
+
+
+
         mAuth = FirebaseAuth.getInstance();
         BottomNavigationView bottomNav = findViewById(R.id.bottomNav);
 
@@ -157,6 +182,37 @@ public class mainScreen extends AppCompatActivity {
                 user_xp = Integer.parseInt(value.get("xp"));
                 pyXp =  Integer.parseInt(value.get("pyXp"));
                 htmlXp =  Integer.parseInt(value.get("htmlXp"));
+
+                fireBar.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        if(!isTopSheetVisible){
+                            fireTopSheet.setVisibility(View.VISIBLE);
+                            pageCover.setVisibility(View.VISIBLE);
+                            fireTopSheet.setTranslationY(-600);
+                            fireTopSheet.animate().translationY(0).setDuration(300);
+                            streakSheetNumber.setText(streak);
+
+                            isTopSheetVisible = true;
+                        }
+                        else{
+                            fireTopSheet.animate().translationY(-600).setDuration(300);
+                            pageCover.setVisibility(View.GONE);
+                            fireTopSheet.setVisibility(View.GONE);
+                            isTopSheetVisible = false;
+                        }
+                    }
+                });
+                pageCover.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        fireTopSheet.animate().translationY(-600).setDuration(300);
+                        pageCover.setVisibility(View.GONE);
+                        fireTopSheet.setVisibility(View.GONE);
+                        isTopSheetVisible = false;
+                    }
+                });
+
                 try {
                     Geld = Integer.parseInt(value.get("geld"));
                 } catch (Exception e){

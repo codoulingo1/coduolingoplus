@@ -79,7 +79,7 @@
             android:layout_height="35dp"
             android:layout_marginRight="10dp"
             android:layout_centerVertical="true"
-
+            android:id="@+id/coinBar"
             android:background="@drawable/ic_rectangle_round"
             android:padding="7dp"
             android:layout_toLeftOf="@id/fireBar">
@@ -103,6 +103,128 @@
                 android:gravity="center"
                 android:layout_marginRight="3dp"
                 android:layout_centerVertical="true"/>
+
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#808B8B8B"
+        android:id="@+id/pageCover1"
+        android:clickable="true"
+        android:visibility="gone"
+        android:layout_below="@id/topBarHome"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:layout_below="@id/topBarHome"
+        android:background="@drawable/top_sheet_background"
+        android:id="@+id/fireTopSheet"
+        android:padding="5dp"
+        android:visibility="gone">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+            android:background="@drawable/circle2"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="5dp"
+            android:id="@+id/streakCircle">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="45dp"
+                android:text="32"
+                android:fontFamily="@font/rubik_medium"
+                android:textColor="#ED7829"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp"
+                android:id="@+id/streakSheetNumber"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20dp"
+                android:text="ימים"
+                android:fontFamily="@font/rubik_medium"
+                android:textColor="#36384F"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="-10dp"
+                android:layout_below="@id/streakSheetNumber"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+        android:layout_width="120dp"
+        android:layout_height="90dp"
+        android:id="@+id/lessonsDoneContainer"
+        android:layout_marginTop="45dp"
+        android:layout_toLeftOf="@id/streakCircle"
+        android:layout_marginRight="15dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="45"
+            android:textSize="45dp"
+            android:fontFamily="@font/rubik_medium"
+            android:textColor="#36384F"
+            android:id="@+id/lessonsDone"
+            android:layout_centerHorizontal="true"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="שיעורים שנעשו"
+            android:textSize="18dp"
+            android:fontFamily="@font/rubik_medium"
+            android:textColor="#CFD2D3"
+            android:gravity="center"
+            android:layout_below="@id/lessonsDone"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="-5dp"/>
+
+    </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="120dp"
+            android:layout_height="90dp"
+            android:id="@+id/streakBestContainer"
+            android:layout_marginTop="45dp"
+            android:layout_toLeftOf="@id/lessonsDoneContainer"
+            android:layout_marginRight="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="32"
+                android:textSize="45dp"
+                android:fontFamily="@font/rubik_medium"
+                android:textColor="#36384F"
+                android:id="@+id/bestStreak"
+                android:layout_centerHorizontal="true"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="שיא סטריק"
+                android:textSize="18dp"
+                android:fontFamily="@font/rubik_medium"
+                android:textColor="#CFD2D3"
+                android:gravity="center"
+                android:layout_below="@id/bestStreak"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="-5dp"/>
 
         </RelativeLayout>
 

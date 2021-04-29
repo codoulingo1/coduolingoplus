@@ -10,8 +10,8 @@ android {
         applicationId "com.getcodly.codly"
         minSdkVersion 23
         targetSdkVersion 29
-        versionCode 1
-        versionName "0.81"
+        versionCode 4
+        versionName "0.84"
         sourceSets {
             main {
                 python {
@@ -24,7 +24,7 @@ android {
             buildPython "python3"
         }
         ndk {
-            abiFilters "armeabi-v7a", "x86"
+            abiFilters "armeabi-v7a", "x86", "arm64-v8a", "x86_64"
         }
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }

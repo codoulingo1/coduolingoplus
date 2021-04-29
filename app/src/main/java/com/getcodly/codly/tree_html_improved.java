@@ -48,7 +48,7 @@ public class tree_html_improved extends AppCompatActivity {
 
     RelativeLayout switchToPy;
 
-    boolean isTopSheetVisible;
+    private boolean isTopSheetVisible;
 
     public static ArrayList<String> idShare;
     public static ArrayList<String> namesShare;
