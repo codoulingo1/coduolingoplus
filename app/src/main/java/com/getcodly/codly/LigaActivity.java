@@ -64,8 +64,10 @@ public class LigaActivity extends AppCompatActivity {
                     int loc = alt_xp.indexOf(i);
                     Log.d(alt_xp.toString(), "g");
                     Log.d("loc", String.valueOf(loc));
-                    name.add(alt_name.get(loc) + "    " + i);
-                    alt_xp.set(loc, 1000);
+                    if (i != -1) {
+                        name.add(alt_name.get(loc) + "    " + i);
+                        alt_xp.set(loc, -1);
+                    }
                     ii++;
                 }
                 ArrayAdapter<String> itemsAdapter = new ArrayAdapter<String>(LigaActivity.this, android.R.layout.simple_list_item_1, android.R.id.text1, name);

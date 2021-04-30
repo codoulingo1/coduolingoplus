@@ -42,6 +42,7 @@ public class mainScreen extends AppCompatActivity {
 
     HashMap<String, String> date;
     public static String streak;
+    public static String maxStreak;
     public static String streak7;
     public static String w = "c";
     public static String invName;
@@ -168,8 +169,8 @@ public class mainScreen extends AppCompatActivity {
             public void onCallback(HashMap<String, String> value) {
 
                 Log.d("v", "v");
-                int year = Integer.parseInt(value.get("year"));
                 streak = value.get("streak");
+                maxStreak = value.get("maxStreak");
                 streak7 = value.get("7streak");
                 setStreak.setText(streak);
                 progress = String.valueOf(value.get("cProgress"));
@@ -192,6 +193,8 @@ public class mainScreen extends AppCompatActivity {
                             fireTopSheet.setTranslationY(-600);
                             fireTopSheet.animate().translationY(0).setDuration(300);
                             streakSheetNumber.setText(streak);
+                            bestStreak.setText(maxStreak);
+                            lessonsDone.setText(String.valueOf(progress.split(",").length - 1));
 
                             isTopSheetVisible = true;
                         }

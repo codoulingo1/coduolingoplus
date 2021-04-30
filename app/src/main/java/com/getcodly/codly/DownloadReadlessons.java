@@ -302,7 +302,7 @@ public class DownloadReadlessons {
         final HashMap<String, String> ret = new HashMap<>();
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("Users").child(email);
-        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+        myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 Log.d("saluton", "saluton");
@@ -311,8 +311,8 @@ public class DownloadReadlessons {
                 try {
                     ret.put("geld", dataSnapshot.child("geld").getValue().toString());
                     ret.put("streak", dataSnapshot.child("streak").getValue().toString());
+                    ret.put("maxStreak", dataSnapshot.child("maxStreak").getValue().toString());
                     ret.put("year", dataSnapshot.child("lastLessonD").child("year").getValue().toString());
-                    //ret.put("month", dataSnapshot.child("lastLessonD").child("month").getValue().toString());
                     ret.put("date", dataSnapshot.child("lastLessonD").child("date").getValue().toString());
                     ret.put("cProgress", dataSnapshot.child("progress").getValue().toString());//2
                     ret.put("shabes", dataSnapshot.child("shabes").getValue().toString());
@@ -332,9 +332,9 @@ public class DownloadReadlessons {
                     try {
                         ret.put("name", dataSnapshot.child("name").getValue().toString());
                         ret.put("streak", dataSnapshot.child("streak").getValue().toString());
+                        ret.put("maxStreak", "0");
                         ret.put("xp", dataSnapshot.child("xp").getValue().toString());
                         ret.put("year", "0");
-                        //ret.put("month", dataSnapshot.child("lastLessonD").child("month").getValue().toString());
                         ret.put("date", "0");
                         ret.put("cProgress", "0");//2
                         ret.put("pyXp", "0");
@@ -345,10 +345,11 @@ public class DownloadReadlessons {
                         ret.put("ligaType", "0");
                         ret.put("7streak", "0");
                         ret.put("friends", "0");
+                        Log.d("error", e.getLocalizedMessage());
                     } catch (Exception ee) {
                         ret.put("streak", "0");
+                        ret.put("maxStreak", "0");
                         ret.put("year", "0");
-                        //ret.put("month", dataSnapshot.child("lastLessonD").child("month").getValue().toString());
                         ret.put("date", "0");
                         ret.put("cProgress", "0");//2
                         ret.put("xp", "0");
@@ -360,6 +361,7 @@ public class DownloadReadlessons {
                         ret.put("streak freeze", "0");
                         ret.put("7streak", "0");
                         ret.put("friends", "0");
+                        Log.d("error2", ee.getLocalizedMessage());
                     }
                 }
                 m.onCallback(ret);
@@ -573,7 +575,11 @@ public class DownloadReadlessons {
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
                 for (DataSnapshot fire_email : dataSnapshot.getChildren()) {
-                    Address.add(fire_email.getKey());
+                    try {
+                        Address.add(fire_email.child("id").getValue().toString());
+                    } catch (Exception e){
+
+                    }
                 }
 
             }

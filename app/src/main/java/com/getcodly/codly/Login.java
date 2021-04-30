@@ -190,30 +190,31 @@ public class Login extends AppCompatActivity {
                 newFile.mkdirs();
                 Log.d("Create", "dir");
             }*/
-            ReadWrite.write(this.getFilesDir()+File.separator+ "user", account.getId());
+            ReadWrite.write(this.getFilesDir()+File.separator+ "user", fUser.getUid());
             FirebaseDatabase database = FirebaseDatabase.getInstance();
             if(!emails.contains(account.getId())) {
                 DatabaseReference myRef = database.getReference("Users");
                 DatabaseReference fireBase2 = database.getReference("ligot");
-                myRef.child(String.valueOf(account.getId())).setValue("a");
-                DatabaseReference user = myRef.child(String.valueOf(account.getId()));
-                user.child("id").setValue(personId);
+                //myRef.child(String.valueOf(account.getId())).setValue("a");
+                DatabaseReference user = myRef.child(String.valueOf(fUser.getUid()));
+                user.child("id").setValue(account.getId());
                 user.child("email").setValue(personEmail);
                 user.child("imgUrl").setValue(personPhoto.toString());
                 user.child("name").setValue(personName);
-                user.child("pas").setValue(Text.getRandomString(10));
                 user.child("phoneNum").setValue("");
                 user.child("lastLessonD").child("year").setValue(0);
                 user.child("lastLessonD").child("date").setValue(0);
                 user.child("streak").setValue(0);
+                user.child("maxStreak").setValue(0);
                 user.child("streak freeze").setValue("false");
                 user.child("7streak").setValue(0);
                 user.child("xp").setValue(0);
+                Log.d("Create", "dir");
                 user.child("weekXp").setValue(0);
                 user.child("pyXp").setValue(0);
                 user.child("htmlXp").setValue(0);
                 user.child("shabes").setValue("false");
-                user.child("progress").setValue(Text.getRandomString(5) + ",");
+                user.child("progress").setValue(Text.getRandomString(5));
                 user.child("start_comp").setValue("");
                 user.child("hasDoneLesson").setValue(false);
                 user.child("comp_w").setValue("");
@@ -221,7 +222,6 @@ public class Login extends AppCompatActivity {
                 user.child("ligaType").setValue(1);
                 user.child("comp_time").setValue("1");
                 user.child("friends").setValue("");
-                user.child("email").setValue(personEmail);
                 DownloadReadlessons.get_liga2("1-1", new DownloadReadlessons.HashCallback3() {
                     @Override
                     public void onCallback(HashMap<String, ArrayList> value) {
@@ -234,7 +234,7 @@ public class Login extends AppCompatActivity {
                                 botWord = id + ",";
                             }
                         }
-                        name.append(personId).append("-").append(personName);
+                        name.append(fUser.getUid()).append("-").append(personName);
                         String final_name = name.toString();
                         Log.d("final_name", final_name);
                         if (final_name.contains("bot") && alt_name.size() > 28){

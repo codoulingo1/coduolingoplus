@@ -27,6 +27,8 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
+import com.amulyakhare.textdrawable.TextDrawable;
+import com.amulyakhare.textdrawable.util.ColorGenerator;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
@@ -140,7 +142,21 @@ public class profileFragment extends Fragment {
             try {
                 Picasso.with(getActivity()).load(url_old).resizeDimen(R.dimen.image_size, R.dimen.image_size).placeholder(R.drawable.goj).into(profImg);
             } catch (Exception e) {
-                profImg.setImageResource(R.drawable.user_pic);
+                Log.d("drawable", "gut?");
+                String firstLetter;
+                if (name.split(" ").length == 1){
+                    firstLetter = String.valueOf(name.split(" ")[0].charAt(0));
+                } else{
+                    firstLetter = String.valueOf(name.split(" ")[0].charAt(0)) + String.valueOf(name.split(" ")[1].charAt(0));
+                }
+                ColorGenerator generator = ColorGenerator.MATERIAL;
+                int color1 = generator.getRandomColor();
+                TextDrawable drawable = TextDrawable.builder().beginConfig()
+                        .width(60)  // width in px
+                        .height(60) // height in px
+                        .endConfig()
+                        .buildRect(firstLetter, color1);
+                profImg.setImageDrawable(drawable);
             }
             for (String friend : mainScreen.friends.split("-")) {
                 try {
@@ -165,7 +181,6 @@ public class profileFragment extends Fragment {
             @Override
             public void onCallback(HashMap<String, ArrayList<String>> value) {
                 try {
-                    Log.d("hihihi", value.get("vals").get(0));
                     String[] stringArray = value.get("names").toArray(new String[value.get("names").size()]);
                     names = value.get("names");
                     vals = value.get("vals");

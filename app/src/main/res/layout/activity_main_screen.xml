@@ -172,15 +172,15 @@
         android:layout_toLeftOf="@id/streakCircle"
         android:layout_marginRight="15dp">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="45"
-            android:textSize="45dp"
-            android:fontFamily="@font/rubik_medium"
-            android:textColor="#36384F"
-            android:id="@+id/lessonsDone"
-            android:layout_centerHorizontal="true"/>
+            <TextView
+                android:id="@+id/lessonsDone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:fontFamily="@font/rubik_medium"
+                android:text="0"
+                android:textColor="#36384F"
+                android:textSize="45dp" />
 
         <TextView
             android:layout_width="match_parent"
@@ -205,14 +205,14 @@
             android:layout_marginRight="10dp">
 
             <TextView
+                android:id="@+id/bestStreak"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="32"
-                android:textSize="45dp"
+                android:layout_centerHorizontal="true"
                 android:fontFamily="@font/rubik_medium"
+                android:text="0"
                 android:textColor="#36384F"
-                android:id="@+id/bestStreak"
-                android:layout_centerHorizontal="true"/>
+                android:textSize="45dp" />
 
             <TextView
                 android:layout_width="match_parent"

@@ -161,19 +161,12 @@ public class finalLesson extends AppCompatActivity {
                     //int month = Integer.parseInt(value.get("month"));
                     int day = Integer.parseInt(value.get("date"));
                     int xp = (int) Double.parseDouble(value.get("xp"));
+                    int maxStreak = (int) Double.parseDouble(value.get("maxStreak"));
                     int weekXp = (int) Double.parseDouble(value.get("weekXp"));
                     int pyXp = (int) Double.parseDouble(value.get("pyXp"));
                     int htmlXp = (int) Double.parseDouble(value.get("htmlXp"));
                     String old_progress = String.valueOf(mainScreen.progress);
-                    Calendar calendar = Calendar.getInstance();
 
-                    // Move calendar to yesterday
-                    calendar.add(Calendar.DAY_OF_YEAR, -1);
-
-                    // Get current date of calendar which point to the yesterday now
-                    int yesterday = calendar.get(Calendar.DAY_OF_YEAR);
-                    Calendar calendar2 = Calendar.getInstance();
-                    int today = calendar2.get(Calendar.DAY_OF_YEAR);
 
                     //Geldprobleme
                     if (!Boolean.parseBoolean(value.get("hasDoneLesson"))) {
@@ -264,6 +257,10 @@ public class finalLesson extends AppCompatActivity {
                     else if (mainScreen.w.equals("html")){
                         user.child("htmlXp").setValue(htmlXp + LessonActivity.shared_xp2);
                         mainScreen.htmlXp = htmlXp + LessonActivity.shared_xp2;
+                    }
+                    if (Integer.parseInt(mainScreen.streak) > Integer.parseInt(mainScreen.maxStreak)){
+                        user.child("maxStreak").setValue(mainScreen.streak);
+                        mainScreen.maxStreak = mainScreen.streak;
                     }
                     List<String> str_old_progress = Arrays.asList(old_progress.split(",|\\~"));
                     if (!str_old_progress.contains(MainActivity.id)) {
