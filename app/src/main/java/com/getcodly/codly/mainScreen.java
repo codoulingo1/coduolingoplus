@@ -54,6 +54,7 @@ public class mainScreen extends AppCompatActivity {
     public static int htmlXp;
     public static boolean isDownload = false;
     public static String img;
+    public static int imgC;
     public static String friends;
     public static String progress;
     FirebaseAuth mAuth;
@@ -182,6 +183,7 @@ public class mainScreen extends AppCompatActivity {
                 friends = String.valueOf(value.get("friends"));
                 user_xp = Integer.parseInt(value.get("xp"));
                 pyXp =  Integer.parseInt(value.get("pyXp"));
+                imgC =  Integer.parseInt(value.get("imgC"));
                 htmlXp =  Integer.parseInt(value.get("htmlXp"));
 
                 fireBar.setOnClickListener(new View.OnClickListener() {

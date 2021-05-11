@@ -324,6 +324,7 @@ public class DownloadReadlessons {
                     ret.put("img", dataSnapshot.child("imgUrl").getValue().toString());
                     ret.put("email", dataSnapshot.child("email").getValue().toString());
                     ret.put("hasDoneLesson", dataSnapshot.child("hasDoneLesson").getValue().toString());
+                    ret.put("imgC", dataSnapshot.child("imgC").getValue().toString());
                     ret.put("streak freeze", dataSnapshot.child("streak freeze").getValue().toString());
                     ret.put("7streak", dataSnapshot.child("7streak").getValue().toString());
                     ret.put("friends", dataSnapshot.child("friends").getValue().toString());
@@ -342,26 +343,48 @@ public class DownloadReadlessons {
                         ret.put("img", "0");
                         ret.put("email", "0");
                         ret.put("streak freeze", "0");
+                        ret.put("imgC", dataSnapshot.child("imgC").getValue().toString());
                         ret.put("ligaType", "0");
                         ret.put("7streak", "0");
                         ret.put("friends", "0");
                         Log.d("error", e.getLocalizedMessage());
-                    } catch (Exception ee) {
-                        ret.put("streak", "0");
-                        ret.put("maxStreak", "0");
-                        ret.put("year", "0");
-                        ret.put("date", "0");
-                        ret.put("cProgress", "0");//2
-                        ret.put("xp", "0");
-                        ret.put("pyXp", "0");
-                        ret.put("htmlXp", "0");
-                        ret.put("name", "0");
-                        ret.put("img", "0");
-                        ret.put("email", "0");
-                        ret.put("streak freeze", "0");
-                        ret.put("7streak", "0");
-                        ret.put("friends", "0");
-                        Log.d("error2", ee.getLocalizedMessage());
+                    } catch (Exception ee){
+                        try {
+                            ret.put("name", dataSnapshot.child("name").getValue().toString());
+                            ret.put("streak", dataSnapshot.child("streak").getValue().toString());
+                            ret.put("maxStreak", "0");
+                            ret.put("xp", dataSnapshot.child("xp").getValue().toString());
+                            ret.put("year", "0");
+                            ret.put("date", "0");
+                            ret.put("cProgress", "0");//2
+                            ret.put("pyXp", "0");
+                            ret.put("htmlXp", "0");
+                            ret.put("img", "0");
+                            ret.put("email", "0");
+                            ret.put("streak freeze", "0");
+                            ret.put("imgC", "0");
+                            ret.put("ligaType", "0");
+                            ret.put("7streak", "0");
+                            ret.put("friends", "0");
+                            Log.d("error", e.getLocalizedMessage());
+                        } catch (Exception eee){
+                            ret.put("streak", "0");
+                            ret.put("maxStreak", "0");
+                            ret.put("year", "0");
+                            ret.put("date", "0");
+                            ret.put("cProgress", "0");//2
+                            ret.put("xp", "0");
+                            ret.put("pyXp", "0");
+                            ret.put("htmlXp", "0");
+                            ret.put("name", "0");
+                            ret.put("img", "0");
+                            ret.put("email", "0");
+                            ret.put("streak freeze", "0");
+                            ret.put("imgC", "0");
+                            ret.put("7streak", "0");
+                            ret.put("friends", "0");
+                            Log.d("error2", eee.getLocalizedMessage());
+                        }
                     }
                 }
                 m.onCallback(ret);

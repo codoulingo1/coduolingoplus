@@ -14,6 +14,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.amulyakhare.textdrawable.util.ColorGenerator;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputLayout;
@@ -131,6 +132,9 @@ public class sign_upActivity extends AppCompatActivity {
             fireBase.child("comp_time").setValue("1");
             fireBase.child("xp").setValue(0);
             fireBase.child("weekXp").setValue(0);
+            ColorGenerator generator = ColorGenerator.MATERIAL;
+            int color1 = generator.getRandomColor();
+            fireBase.child("imgC").setValue(color1);
             fireBase.child("pyXp").setValue(0);
             fireBase.child("htmlXp").setValue(0);
             fireBase.child("friends").setValue("");

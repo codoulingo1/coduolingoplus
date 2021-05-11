@@ -302,7 +302,8 @@
             android:id="@+id/to_ligot"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="למסך הליגות" />
+            android:text="למסך הליגות"
+            tools:visibility="gone" />
 
         <!--<EditText
             android:id="@+id/cgName"

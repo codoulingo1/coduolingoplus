@@ -217,6 +217,7 @@ public class Login extends AppCompatActivity {
                 user.child("progress").setValue(Text.getRandomString(5));
                 user.child("start_comp").setValue("");
                 user.child("hasDoneLesson").setValue(false);
+                user.child("imgC").setValue(0);
                 user.child("comp_w").setValue("");
                 user.child("comp").setValue("");
                 user.child("ligaType").setValue(1);

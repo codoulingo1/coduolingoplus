@@ -149,8 +149,9 @@ public class profileFragment extends Fragment {
                 } else{
                     firstLetter = String.valueOf(name.split(" ")[0].charAt(0)) + String.valueOf(name.split(" ")[1].charAt(0));
                 }
-                ColorGenerator generator = ColorGenerator.MATERIAL;
-                int color1 = generator.getRandomColor();
+                //ColorGenerator generator = ColorGenerator.MATERIAL;
+                int color1 = mainScreen.imgC;
+                Log.d(String.valueOf(color1), String.valueOf(color1));
                 TextDrawable drawable = TextDrawable.builder().beginConfig()
                         .width(60)  // width in px
                         .height(60) // height in px

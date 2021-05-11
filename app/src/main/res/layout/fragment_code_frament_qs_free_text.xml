@@ -18,7 +18,7 @@
             android:layout_height="match_parent"
             android:layout_below="@+id/textView2"
             android:background="@color/codeBackground"
-            android:fontFamily="@font/veramono"
+            android:fontFamily="@font/veramono_bold"
             android:textColor="#FFFFFF"
             android:textSize="16dp" />
     </RelativeLayout>

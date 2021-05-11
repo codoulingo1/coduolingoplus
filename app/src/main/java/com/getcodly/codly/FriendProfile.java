@@ -91,7 +91,7 @@ public class FriendProfile extends AppCompatActivity {
                         firstLetter = String.valueOf(value.get("name").split(" ")[0].charAt(0)) + String.valueOf(value.get("name").split(" ")[1].charAt(0));
                     }
                     ColorGenerator generator = ColorGenerator.MATERIAL;
-                    int color1 = generator.getRandomColor();
+                    int color1 = Integer.parseInt(value.get("imgC"));
                     TextDrawable drawable = TextDrawable.builder().beginConfig()
                             .width(60)  // width in px
                             .height(60) // height in px
