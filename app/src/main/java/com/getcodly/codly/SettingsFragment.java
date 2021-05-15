@@ -28,6 +28,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.amulyakhare.textdrawable.TextDrawable;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
@@ -163,25 +164,31 @@ public class SettingsFragment extends Fragment {
 
     void loadProfileSettings(){
         final HashMap<String, String> hashMap = DownloadReadlessons.get_last_lesson(ReadWrite.read(getActivity().getFilesDir()+ File.separator+ "user"));
-        mCountdown = new CountDownTimer(100, 50) {
-            @Override
-            public void onTick(long l) {
 
-            }
-
-            @Override
-            public void onFinish() {
-                name = hashMap.get("name");
-                img = hashMap.get("img");
+                name = mainScreen.name;
+                img = mainScreen.img;
 
                 yourNameEditText.setText(name);
                 try {
-                    Picasso.with(getActivity()).load(img).placeholder(R.drawable.user_pic).into(profileImg);
-                }catch (Exception e){
-
+                    Picasso.with(getActivity()).load(img).resizeDimen(R.dimen.image_size, R.dimen.image_size).placeholder(R.drawable.goj).into(profileImg);
+                } catch (Exception e) {
+                    Log.d("drawable", "gut?");
+                    String firstLetter;
+                    if (name.split(" ").length == 1){
+                        firstLetter = String.valueOf(name.split(" ")[0].charAt(0));
+                    } else{
+                        firstLetter = String.valueOf(name.split(" ")[0].charAt(0)) + String.valueOf(name.split(" ")[1].charAt(0));
+                    }
+                    //ColorGenerator generator = ColorGenerator.MATERIAL;
+                    int color1 = mainScreen.imgC;
+                    Log.d(String.valueOf(color1), String.valueOf(color1));
+                    TextDrawable drawable = TextDrawable.builder().beginConfig()
+                            .width(250)  // width in px
+                            .height(250) // height in px
+                            .endConfig()
+                            .buildRect(firstLetter, color1);
+                    profileImg.setImageDrawable(drawable);
                 }
-            }
-        }.start();
     }
 
     public void openDialog() {
