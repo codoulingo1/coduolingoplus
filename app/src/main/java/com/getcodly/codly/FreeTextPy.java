@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.AnimatedVectorDrawable;
 import android.graphics.drawable.Drawable;
@@ -11,6 +12,7 @@ import android.os.Bundle;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
+import android.text.style.ForegroundColorSpan;
 import android.text.style.StyleSpan;
 import android.util.Log;
 import android.view.View;
@@ -35,7 +37,7 @@ public class FreeTextPy extends AppCompatActivity {
     ImageButton continueBtn11;
     private AnimatedVectorDrawable animation;
     TextView out;
-    EditText inp;
+    public static EditText inp;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,10 +76,12 @@ public class FreeTextPy extends AppCompatActivity {
         EditText inp = (EditText) findViewById(R.id.inp);
         if (!LessonActivity.shared_hashmap.get("additional").equals("none")) {
             inp.setText(LessonActivity.shared_hashmap.get("additional"));
+            textCPy();
         }
         if (!tree.loadAgain.equals("")){
             inp.setText(tree.loadAgain);
             tree.loadAgain = "";
+            textCPy();
         }
         submit.setOnClickListener(new View.OnClickListener() {
                                       @Override
@@ -94,7 +98,7 @@ public class FreeTextPy extends AppCompatActivity {
                                               out.setText(e.getLocalizedMessage());
                                           }
                                           try {
-                                              if (Text.eqnova(ans, LessonActivity.shared_hashmap.get("Answer"), LessonActivity.shared_hashmap.get("additional").length())) {
+                                              if (ans.equals(LessonActivity.shared_hashmap.get("Answer"))) {
                                                   showCorrect();
                                               }
                                               else{
@@ -163,7 +167,7 @@ public class FreeTextPy extends AppCompatActivity {
                 if(LessonActivity.shared_xp>=11){
                     LessonActivity.shared_xp = LessonActivity.shared_xp - 1;
                 }
-                startActivity(new Intent(FreeTextPy.this, FreeText.class));
+                startActivity(new Intent(FreeTextPy.this, FreeTextPy.class));
                 overridePendingTransition(0, 0);
             }
         });
@@ -178,6 +182,34 @@ public class FreeTextPy extends AppCompatActivity {
     public void onBackPressed() {
         DialogBack dialogBack = new DialogBack();
         dialogBack.show(getSupportFragmentManager(), "Example Dialog");
+    }
+    public static void textCPy() {
+        String[] cc = new String[]{"type", "range", "dict", "int", "str", "float", "input"};
+        String[] applesin = new String[]{"print", "for", "if", "while", "try", "except"};
+        String htmlText = inp.getText().toString();
+        try {
+            SpannableStringBuilder builder = new SpannableStringBuilder();
+            SpannableString str1 = new SpannableString(htmlText);
+            for (String codeWord : cc) {
+                int startt = 0;
+                while (htmlText.indexOf(codeWord, startt) > -1) {
+                    Log.d("hi", String.valueOf(htmlText.indexOf(codeWord, 3)));
+                    str1.setSpan(new ForegroundColorSpan(Color.rgb(170, 109, 173)), htmlText.indexOf(codeWord, startt), htmlText.indexOf(codeWord, startt) + codeWord.length(), 0);
+                    startt = htmlText.indexOf(codeWord, startt) + codeWord.length();
+                }
+            }
+            for (String codeWord2 : applesin) {
+                int startt = 0;
+                while (htmlText.indexOf(codeWord2, startt) > -1) {
+                    Log.d("hi", String.valueOf(htmlText.indexOf(codeWord2, 3)));
+                    str1.setSpan(new ForegroundColorSpan(Color.rgb(255, 140, 0)), htmlText.indexOf(codeWord2, startt), htmlText.indexOf(codeWord2, startt) + codeWord2.length(), 0);
+                    startt = htmlText.indexOf(codeWord2, startt) + codeWord2.length();
+                }
+            }
+            inp.setText(str1);
+        } catch (Exception e) {
+
+        }
     }
 
     public void animate(){

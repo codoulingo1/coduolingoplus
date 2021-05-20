@@ -60,7 +60,7 @@ public class FreeText extends AppCompatActivity {
     private AnimatedVectorDrawable animation;
     WebView webView;
 
-    private codeFramentQSfreeText CodeFramentQS1;
+    public static codeFramentQSfreeText CodeFramentQS1;
     private browserFragmentQSfreeText BrowserFragmentQS1;
     private TabLayout tabs;
     public static String htmlCodeParent;
@@ -118,21 +118,25 @@ public class FreeText extends AppCompatActivity {
             public void onFinish() {
                 try {
                     if (!LessonActivity.shared_hashmap.get("additional").equals("none")) {
-                        CodeFramentQS1.setText(LessonActivity.shared_hashmap.get("additional"));
+                        CodeFramentQS1.setText(new SpannableString(LessonActivity.shared_hashmap.get("additional")));
+                        textCHTML();
                     }
                     if (!tree.loadAgain.equals("")){
-                        CodeFramentQS1.setText(tree.loadAgain);
+                        CodeFramentQS1.setText(new SpannableString(tree.loadAgain));
                         tree.loadAgain = "";
+                        textCHTML();
                     }
                 } catch (Exception e){
                     new CountDownTimer(500, 10) {
                         public void onFinish() {
                             if (!LessonActivity.shared_hashmap.get("additional").equals("none")) {
-                                CodeFramentQS1.setText(LessonActivity.shared_hashmap.get("additional"));
+                                CodeFramentQS1.setText(new SpannableString(LessonActivity.shared_hashmap.get("additional")));
+                                textCHTML();
                             }
                             if (!tree.loadAgain.equals("")){
-                                CodeFramentQS1.setText(tree.loadAgain);
+                                CodeFramentQS1.setText(new SpannableString(tree.loadAgain));
                                 tree.loadAgain = "";
+                                textCHTML();
                             }
                         }
 
@@ -153,7 +157,7 @@ public class FreeText extends AppCompatActivity {
                                       public void onClick(View v) {
                                           String ans = CodeFramentQS1.getText().toString();
                                           try {
-                                              if (Text.eqnova(ans, LessonActivity.shared_hashmap.get("Answer"), LessonActivity.shared_hashmap.get("additional").length())) {
+                                              if (ans.equals(LessonActivity.shared_hashmap.get("Answer"))) {
                                                   showCorrect();
                                               }
                                               else{
@@ -275,6 +279,44 @@ public class FreeText extends AppCompatActivity {
         @Override
         public CharSequence getPageTitle(int position) {
             return fragmentTitle.get(position);
+        }
+    }
+    public static void textCHTML(){
+        String[] cc = new String[]{"i", "p", "b", "body", "html", "head", "h1", "h2", "h3", "h4", "h5", "h6", "br", "hr",
+                "dl", "dd", "dt", "tr", "td", "table"};
+        String[] bb = new String[]{"src", "font size", "href", "type href", "class", "id", "id", "name", "rel", "doctype"};
+        try {
+            String htmlText = CodeFramentQS1.getText();
+            SpannableStringBuilder builder = new SpannableStringBuilder();
+            SpannableString str1 = new SpannableString(htmlText);
+            for (String codeWord : cc) {
+                int startt = 0;
+                while (htmlText.indexOf(codeWord, startt) > -1) {
+                    Log.d("hi", String.valueOf(htmlText.indexOf(codeWord, 3)));
+                    str1.setSpan(new ForegroundColorSpan(Color.rgb(53, 133, 228)), htmlText.indexOf(codeWord, startt), htmlText.indexOf(codeWord, startt) + codeWord.length(), 0);
+                    startt = htmlText.indexOf(codeWord, startt) + codeWord.length();
+                }
+            }
+            for (String codeWord2 : bb) {
+                int startt = 0;
+                while (htmlText.indexOf(codeWord2, startt) > -1) {
+                    Log.d("hi", String.valueOf(htmlText.indexOf(codeWord2, 3)));
+                    str1.setSpan(new ForegroundColorSpan(Color.rgb(170, 109, 173)), htmlText.indexOf(codeWord2, startt), htmlText.indexOf(codeWord2, startt) + codeWord2.length(), 0);
+                    startt = htmlText.indexOf(codeWord2, startt) + codeWord2.length();
+                }
+            }
+            int adNunc = 1;
+            int altumAdNunc = 0;
+            for (String tText : htmlText.split("\"")) {
+                if (adNunc % 2 == 0) {
+                    str1.setSpan(new ForegroundColorSpan(Color.rgb(125, 250, 111)), altumAdNunc, altumAdNunc + tText.length(), 0);
+                }
+                altumAdNunc = altumAdNunc + tText.length() + 1;
+                adNunc = adNunc + 1;
+            }
+            CodeFramentQS1.setText(str1);
+        }catch (Exception e){
+
         }
     }
 }

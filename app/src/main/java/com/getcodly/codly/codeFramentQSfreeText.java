@@ -228,7 +228,7 @@ public class codeFramentQSfreeText extends Fragment  { //was extends Fragment, m
         }
     }
 
-    public static void setText(String text){
+    public static void setText(SpannableString text){
         htmlInp.setText(text);
     }
     public static String getText(){
