@@ -15,6 +15,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
+import android.widget.MultiAutoCompleteTextView;
 import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
@@ -32,7 +34,7 @@ import java.util.Locale;
 public class codeFramentQSfreeText extends Fragment  { //was extends Fragment, might need to change that
 
     public static String htmlCode;
-    public static TextView htmlInp;
+    public static MultiAutoCompleteTextView htmlInp;
     String htmlText;
     List<String> c;
     String[] cc;
@@ -40,6 +42,8 @@ public class codeFramentQSfreeText extends Fragment  { //was extends Fragment, m
     ViewPager mViewPager;
     //public static TabLayout tabsHost;
     String blankTemplate = "<!doctype html>\n<html>\n    <head>\n        \n    </head>\n    \n    <body>\n        \n    </body>\n</html>";
+    String[] language ={"body>", "html>", "head>", "/body>", "/head>", "/html>", "h1>", "h2>", "h3>", "h4>", "h5>", "h6>", "/h1>", "/h2>", "/h3>", "/h4>", "/h5>", "/h6>", "p>", "/p>", "br>", "hr>", "a href=", "/a>",
+            "dl>", "dd>", "dt>", "/dl>", "src=", "b>", "/b>", "i>", "/i>", "tr>", "td>", "/tr>", "/td>", "font size=", "/font>", "table>", "/table>"};
     private AnimatedVectorDrawable animation;
 
     public codeFramentQSfreeText() {
@@ -52,9 +56,9 @@ public class codeFramentQSfreeText extends Fragment  { //was extends Fragment, m
         View v = inflater.inflate(R.layout.fragment_code_frament_qs_free_text, container, false);
 
         c = new ArrayList<String>();
-        cc = new String[]{"body", "html", "head", "h1", "h2", "h3", "h4", "h5", "h6", "br", "hr",
+        String[] cc = new String[]{"i", "p", "b", "body", "html", "head", "h1", "h2", "h3", "h4", "h5", "h6", "br", "hr",
                 "dl", "dd", "dt", "tr", "td", "table"};
-        bb = new String[]{"src", "font size", "href", "type href", "class", "id", "id", "name", "rel"};
+        String[] bb = new String[]{"src", "font size", "href", "type href", "class", "id", "name", "rel", "doctype"};
         Arrays.sort(cc, (str1, str2) -> str1.length() - str2.length());
         c.add(".");
         c.add(" ");
@@ -67,12 +71,12 @@ public class codeFramentQSfreeText extends Fragment  { //was extends Fragment, m
         c.add("*");
         c.add("(");
         c.add(")");
-        htmlInp = v.findViewById(R.id.inputNonFreedum);
-
+        htmlInp = (MultiAutoCompleteTextView) v.findViewById(R.id.inputHTML);
         htmlInp.setFocusableInTouchMode(true);
         htmlInp.requestFocus();
+
         ArrayAdapter<String> adapter = new ArrayAdapter<String>
-                (getContext(),android.R.layout.select_dialog_item);
+                (getContext(),android.R.layout.select_dialog_item, language);
         //Getting the instance of AutoCompleteTextView
         //htmlInp.setThreshold(1);//will start working from first character
         //htmlInp.setAdapter(adapter);//setting the adapter data into the AutoCompleteTextView
@@ -96,16 +100,26 @@ public class codeFramentQSfreeText extends Fragment  { //was extends Fragment, m
                             int startt = 0;
                             while (htmlText.indexOf(codeWord, startt) > -1) {
                                 Log.d("hi", String.valueOf(htmlText.indexOf(codeWord, 3)));
-                                str1.setSpan(new ForegroundColorSpan(Color.rgb(53, 133, 228)), htmlText.indexOf(codeWord, startt), htmlText.indexOf(codeWord, startt) + codeWord.length(), 0);
-                                startt = htmlText.indexOf(codeWord, startt) + codeWord.length();
+                                if (htmlText.charAt(htmlText.indexOf(codeWord, startt) - 1) == '<' || htmlText.charAt(htmlText.indexOf(codeWord, startt) - 1) == '/') {
+                                    str1.setSpan(new ForegroundColorSpan(Color.rgb(53, 133, 228)), htmlText.indexOf(codeWord, startt), htmlText.indexOf(codeWord, startt) + codeWord.length(), 0);
+                                    startt = htmlText.indexOf(codeWord, startt) + codeWord.length();
+                                }
+                                else{
+                                    startt++;
+                                }
                             }
                         }
                         for (String codeWord2 : bb) {
                             int startt = 0;
                             while (htmlText.indexOf(codeWord2, startt) > -1) {
                                 Log.d("hi", String.valueOf(htmlText.indexOf(codeWord2, 3)));
-                                str1.setSpan(new ForegroundColorSpan(Color.rgb(170, 109, 173)), htmlText.indexOf(codeWord2, startt), htmlText.indexOf(codeWord2, startt) + codeWord2.length(), 0);
-                                startt = htmlText.indexOf(codeWord2, startt) + codeWord2.length();
+                                if (htmlText.charAt(htmlText.indexOf(codeWord2, startt) + codeWord2.length()) == '=') {
+                                    str1.setSpan(new ForegroundColorSpan(Color.rgb(170, 109, 173)), htmlText.indexOf(codeWord2, startt), htmlText.indexOf(codeWord2, startt) + codeWord2.length(), 0);
+                                    startt = htmlText.indexOf(codeWord2, startt) + codeWord2.length();
+                                }
+                                else {
+                                    startt++;
+                                }
                             }
                         }
                         int adNunc = 1;
@@ -118,11 +132,18 @@ public class codeFramentQSfreeText extends Fragment  { //was extends Fragment, m
                             adNunc = adNunc + 1;
                         }
                         htmlInp.setText(str1);
+                        try {
+                            htmlInp.setSelection(loc);
+                        } catch (Exception e) {
+                            htmlInp.setSelection(builder.length());
+                        }
                     }
                 }catch (Exception e){
                     Log.d("err", e.getLocalizedMessage());
                 }
-
+                htmlInp.setThreshold(1);//will start working from first character
+                htmlInp.setAdapter(adapter);//setting the adapter data into the AutoCompleteTextView
+                htmlInp.setTokenizer(new KcsMultiAutoCompleteTextView(' '));
             }
 
             @Override

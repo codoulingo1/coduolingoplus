@@ -12,15 +12,24 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/inputNonFreedum"
+        <MultiAutoCompleteTextView
+            android:id="@+id/inputHTML"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@+id/textView2"
             android:background="@color/codeBackground"
-            android:fontFamily="@font/veramono_bold"
-            android:textColor="#FFFFFF"
-            android:textSize="16dp" />
+            android:fontFamily="@font/veramono"
+            android:gravity="top"
+            android:inputType="textMultiLine|textNoSuggestions"
+            android:minLines="5"
+            android:overScrollMode="always"
+            android:scrollbarStyle="insideInset"
+            android:scrollbars="vertical"
+            android:textColor="@color/white"
+            android:layout_alignParentTop="true"
+            android:cursorVisible="true"
+            android:textCursorDrawable="@null"
+            android:textDirection="ltr"
+            />
     </RelativeLayout>
 
 </RelativeLayout>

@@ -69,9 +69,9 @@ public class codeFrament extends Fragment  { //was extends Fragment, might need 
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_code_frament, container, false);
         c = new ArrayList<String>();
-        cc = new String[]{"body", "html", "head", "h1", "h2", "h3", "h4", "h5", "h6", "br", "hr",
+        String[] cc = new String[]{"i", "p", "b", "body", "html", "head", "h1", "h2", "h3", "h4", "h5", "h6", "br", "hr",
                 "dl", "dd", "dt", "tr", "td", "table"};
-        bb = new String[]{"src", "font size", "href", "type href", "class", "id", "id", "name", "rel"};
+        String[] bb = new String[]{"src", "font size", "href", "type href", "class", "id", "name", "rel", "doctype"};
         Arrays.sort(cc, (str1, str2) -> str1.length() - str2.length());
         c.add(".");
         c.add(" ");
@@ -113,16 +113,26 @@ public class codeFrament extends Fragment  { //was extends Fragment, might need 
                             int startt = 0;
                             while (htmlText.indexOf(codeWord, startt) > -1) {
                                 Log.d("hi", String.valueOf(htmlText.indexOf(codeWord, 3)));
-                                str1.setSpan(new ForegroundColorSpan(Color.rgb(53, 133, 228)), htmlText.indexOf(codeWord, startt), htmlText.indexOf(codeWord, startt) + codeWord.length(), 0);
-                                startt = htmlText.indexOf(codeWord, startt) + codeWord.length();
+                                if (htmlText.charAt(htmlText.indexOf(codeWord, startt) - 1) == '<' || htmlText.charAt(htmlText.indexOf(codeWord, startt) - 1) == '/') {
+                                    str1.setSpan(new ForegroundColorSpan(Color.rgb(53, 133, 228)), htmlText.indexOf(codeWord, startt), htmlText.indexOf(codeWord, startt) + codeWord.length(), 0);
+                                    startt = htmlText.indexOf(codeWord, startt) + codeWord.length();
+                                }
+                                else{
+                                    startt++;
+                                }
                             }
                         }
                         for (String codeWord2 : bb) {
                             int startt = 0;
                             while (htmlText.indexOf(codeWord2, startt) > -1) {
                                 Log.d("hi", String.valueOf(htmlText.indexOf(codeWord2, 3)));
-                                str1.setSpan(new ForegroundColorSpan(Color.rgb(170, 109, 173)), htmlText.indexOf(codeWord2, startt), htmlText.indexOf(codeWord2, startt) + codeWord2.length(), 0);
-                                startt = htmlText.indexOf(codeWord2, startt) + codeWord2.length();
+                                if (htmlText.charAt(htmlText.indexOf(codeWord2, startt) + codeWord2.length()) == '=') {
+                                    str1.setSpan(new ForegroundColorSpan(Color.rgb(170, 109, 173)), htmlText.indexOf(codeWord2, startt), htmlText.indexOf(codeWord2, startt) + codeWord2.length(), 0);
+                                    startt = htmlText.indexOf(codeWord2, startt) + codeWord2.length();
+                                }
+                                else {
+                                    startt++;
+                                }
                             }
                         }
                         int adNunc = 1;
@@ -136,7 +146,7 @@ public class codeFrament extends Fragment  { //was extends Fragment, might need 
                         }
                         htmlInp.setText(str1);
                         try {
-                                htmlInp.setSelection(loc);
+                            htmlInp.setSelection(loc);
                         } catch (Exception e) {
                             htmlInp.setSelection(builder.length());
                         }

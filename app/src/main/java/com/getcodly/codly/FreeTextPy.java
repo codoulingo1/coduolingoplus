@@ -9,17 +9,21 @@ import android.graphics.Typeface;
 import android.graphics.drawable.AnimatedVectorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.text.Editable;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
+import android.text.TextWatcher;
 import android.text.style.ForegroundColorSpan;
 import android.text.style.StyleSpan;
 import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.webkit.WebView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.MultiAutoCompleteTextView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -27,9 +31,14 @@ import android.widget.TextView;
 import com.chaquo.python.PyObject;
 import com.chaquo.python.Python;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class FreeTextPy extends AppCompatActivity {
     TextView qs;
     ImageButton submit;
+    String[] cc = new String[]{"type", "range", "dict", "int", "str", "float", "input"};
+    String[] applesin = new String[]{"print", "for", "if", "while", "try", "except"};
     RelativeLayout popupTruee;
     ImageButton backBtn;
     ImageButton continueBtn10;
@@ -37,7 +46,10 @@ public class FreeTextPy extends AppCompatActivity {
     ImageButton continueBtn11;
     private AnimatedVectorDrawable animation;
     TextView out;
-    public static EditText inp;
+    boolean ifn;
+    String[] language ={"print(", "range(", "for", "if", "while", "input(", "type(", "try", "except", "dict(", "str(", "float("};
+    List<String> c;
+    public static MultiAutoCompleteTextView inp;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,11 +60,12 @@ public class FreeTextPy extends AppCompatActivity {
         final TextView wt = (TextView) findViewById(R.id.textView11);
         backBtn = (ImageButton) findViewById(R.id.backBtn4);
         popup11 = (RelativeLayout) findViewById(R.id.popup11);
+        ifn = false;
         continueBtn11 = (ImageButton) findViewById(R.id.continueBtn11);
         pb.setProgress(LessonActivity.pr);
         submit = (ImageButton) findViewById(R.id.button);
         qs = (TextView) findViewById(R.id.textView);
-        inp = (EditText) findViewById(R.id.inp);
+        inp = (MultiAutoCompleteTextView) findViewById(R.id.inp);
         out = (TextView) findViewById(R.id.HtmlView2);
         Log.d("finished", "freetext");
         SpannableStringBuilder builder=new SpannableStringBuilder();
@@ -73,7 +86,6 @@ public class FreeTextPy extends AppCompatActivity {
         }
         qs.setText(builder);
         Log.d(String.valueOf(LessonActivity.shared_hashmap.get("additional").length()), String.valueOf(LessonActivity.shared_hashmap.get("additional").length()));
-        EditText inp = (EditText) findViewById(R.id.inp);
         if (!LessonActivity.shared_hashmap.get("additional").equals("none")) {
             inp.setText(LessonActivity.shared_hashmap.get("additional"));
             textCPy();
@@ -83,6 +95,95 @@ public class FreeTextPy extends AppCompatActivity {
             tree.loadAgain = "";
             textCPy();
         }
+        inp.setFocusableInTouchMode(true);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>
+                (FreeTextPy.this,android.R.layout.select_dialog_item, language);
+        c = new ArrayList<String>();
+        c.add(".");
+        c.add(" ");
+        c.add("=");
+        c.add(">");
+        c.add("<");
+        c.add("\n");
+        c.add("+");
+        c.add("-");
+        c.add("/");
+        c.add("*");
+        c.add("(");
+        c.add(")");
+        inp.requestFocus();
+        inp.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                int loc = inp.getSelectionStart();
+                String htmlText = s.toString();
+                Log.d(String.valueOf(loc), String.valueOf(loc));
+                try {
+                    Log.d("hihi", String.valueOf(htmlText.charAt(loc - 1)));
+                    if (htmlText.charAt(loc - 1) == '\n' && htmlText.charAt(loc - 2) == ':'){
+                        htmlText = htmlText + "   ";
+                        ifn = true;
+                    }
+                    if (c.contains(String.valueOf(htmlText.charAt(loc - 1)))){
+                        SpannableStringBuilder builder = new SpannableStringBuilder();
+                        SpannableString str1 = new SpannableString(htmlText);
+                        for (String codeWord : cc) {
+                            int startt = 0;
+                            while (htmlText.indexOf(codeWord, startt) > -1) {
+                                Log.d("hi", String.valueOf(htmlText.indexOf(codeWord, 3)));
+                                str1.setSpan(new ForegroundColorSpan(Color.rgb(170, 109, 173)), htmlText.indexOf(codeWord, startt), htmlText.indexOf(codeWord, startt) + codeWord.length(), 0);
+                                startt = htmlText.indexOf(codeWord, startt) + codeWord.length();
+                            }
+                        }
+                        for (String codeWord2 : applesin) {
+                            int startt = 0;
+                            while (htmlText.indexOf(codeWord2, startt) > -1) {
+                                Log.d("hi", String.valueOf(htmlText.indexOf(codeWord2, 3)));
+                                str1.setSpan(new ForegroundColorSpan(Color.rgb(255,140,0)), htmlText.indexOf(codeWord2, startt), htmlText.indexOf(codeWord2, startt) + codeWord2.length(), 0);
+                                startt = htmlText.indexOf(codeWord2, startt) + codeWord2.length();
+                            }
+                        }
+                        int adNunc = 1;
+                        int altumAdNunc = 0;
+                        for (String tText: htmlText.split("\"")){
+                            if (adNunc % 2 == 0){
+                                str1.setSpan(new ForegroundColorSpan(Color.rgb(125, 250, 111)), altumAdNunc, altumAdNunc + tText.length(), 0);
+                            }
+                            altumAdNunc = altumAdNunc + tText.length() + 1;
+                            adNunc = adNunc + 1;
+                        }
+                        inp.setText(str1);
+                        try {
+                            if (ifn){
+                                inp.setSelection(loc + 3);
+                                ifn = false;
+                            }
+                            else {
+                                inp.setSelection(loc);
+                            }
+                        } catch (Exception e) {
+                            inp.setSelection(builder.length());
+                        }
+                    }
+                }catch (Exception e){
+
+                }
+                inp.setThreshold(1);//will start working from first character
+                inp.setAdapter(adapter);//setting the adapter data into the AutoCompleteTextView
+                inp.setTokenizer(new KcsMultiAutoCompleteTextView(' '));
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
         submit.setOnClickListener(new View.OnClickListener() {
                                       @Override
                                       public void onClick(View v) {

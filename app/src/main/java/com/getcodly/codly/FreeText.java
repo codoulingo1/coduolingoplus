@@ -284,7 +284,7 @@ public class FreeText extends AppCompatActivity {
     public static void textCHTML(){
         String[] cc = new String[]{"i", "p", "b", "body", "html", "head", "h1", "h2", "h3", "h4", "h5", "h6", "br", "hr",
                 "dl", "dd", "dt", "tr", "td", "table"};
-        String[] bb = new String[]{"src", "font size", "href", "type href", "class", "id", "id", "name", "rel", "doctype"};
+        String[] bb = new String[]{"src", "font size", "href", "type href", "class", "id", "name", "rel", "doctype"};
         try {
             String htmlText = CodeFramentQS1.getText();
             SpannableStringBuilder builder = new SpannableStringBuilder();
@@ -293,16 +293,27 @@ public class FreeText extends AppCompatActivity {
                 int startt = 0;
                 while (htmlText.indexOf(codeWord, startt) > -1) {
                     Log.d("hi", String.valueOf(htmlText.indexOf(codeWord, 3)));
-                    str1.setSpan(new ForegroundColorSpan(Color.rgb(53, 133, 228)), htmlText.indexOf(codeWord, startt), htmlText.indexOf(codeWord, startt) + codeWord.length(), 0);
-                    startt = htmlText.indexOf(codeWord, startt) + codeWord.length();
+                    if (htmlText.charAt(htmlText.indexOf(codeWord, startt) - 1) == '<' || htmlText.charAt(htmlText.indexOf(codeWord, startt) - 1) == '/'){
+                        str1.setSpan(new ForegroundColorSpan(Color.rgb(53, 133, 228)), htmlText.indexOf(codeWord, startt), htmlText.indexOf(codeWord, startt) + codeWord.length(), 0);
+                        startt = htmlText.indexOf(codeWord, startt) + codeWord.length();
+                    }
+                    else{
+                        startt++;
+                    }
                 }
             }
             for (String codeWord2 : bb) {
                 int startt = 0;
                 while (htmlText.indexOf(codeWord2, startt) > -1) {
                     Log.d("hi", String.valueOf(htmlText.indexOf(codeWord2, 3)));
-                    str1.setSpan(new ForegroundColorSpan(Color.rgb(170, 109, 173)), htmlText.indexOf(codeWord2, startt), htmlText.indexOf(codeWord2, startt) + codeWord2.length(), 0);
-                    startt = htmlText.indexOf(codeWord2, startt) + codeWord2.length();
+                    Log.d("saluton", String.valueOf(htmlText.charAt(htmlText.indexOf(codeWord2, startt) + codeWord2.length()) + "hallo"));
+                    if (htmlText.charAt(htmlText.indexOf(codeWord2, startt) + codeWord2.length()) == '=') {
+                        str1.setSpan(new ForegroundColorSpan(Color.rgb(170, 109, 173)), htmlText.indexOf(codeWord2, startt), htmlText.indexOf(codeWord2, startt) + codeWord2.length(), 0);
+                        startt = htmlText.indexOf(codeWord2, startt) + codeWord2.length();
+                    }
+                    else{
+                        startt++;
+                    }
                 }
             }
             int adNunc = 1;
