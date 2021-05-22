@@ -4,6 +4,7 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.ClipData;
+import android.graphics.drawable.GradientDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -55,6 +56,7 @@ public class LigaActivity extends AppCompatActivity {
                 }
                 ArrayList<String> name = new ArrayList<String>();
                 ArrayList<Integer> xp = new ArrayList<Integer>(value.get("xp"));
+                ArrayList<Integer> xpp = new ArrayList<Integer>();
                 Log.d("h", xp.toString());
                 Log.d("hh", alt_name.toString());
                 ArrayList<Integer> alt_xp = value.get("xp");
@@ -65,13 +67,15 @@ public class LigaActivity extends AppCompatActivity {
                     Log.d(alt_xp.toString(), "g");
                     Log.d("loc", String.valueOf(loc));
                     if (i != -1) {
-                        name.add(alt_name.get(loc) + "    " + i);
+                        name.add(alt_name.get(loc));
+                        xpp.add(i);
                         alt_xp.set(loc, -1);
                     }
                     ii++;
                 }
-                ArrayAdapter<String> itemsAdapter = new ArrayAdapter<String>(LigaActivity.this, android.R.layout.simple_list_item_1, android.R.id.text1, name);
-                simpleList.setAdapter(itemsAdapter);
+                CustomAdapter customAdapter = new CustomAdapter(getApplicationContext(), name, xpp, mainScreen.name);
+
+                simpleList.setAdapter(customAdapter);
                 Log.d("salvete", String.valueOf(name));
                 ;
             }
