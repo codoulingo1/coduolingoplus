@@ -106,7 +106,7 @@ public class LessonActivity extends AppCompatActivity {
         progress();
         Log.d("j", String.valueOf(j));
         if (hashMap.get("type").equals("freedum")){
-            Log.d("finished", "finished1");
+            Log.d("finished", "finished1");//
             startActivity(new Intent(LessonActivity.this, freedumQs.class));
             overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
         }
