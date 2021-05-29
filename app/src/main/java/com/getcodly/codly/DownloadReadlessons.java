@@ -83,7 +83,7 @@ public class DownloadReadlessons {
                                 e.printStackTrace();
                             }
                         }
-                        rett.put(snap.getKey(), snap.getValue(String.class));
+                        rett.put(dataSnapshot.getKey() + snap.getKey(), snap.getValue(String.class));
                     }
                 }
                 }catch (Exception e){
@@ -203,7 +203,7 @@ public class DownloadReadlessons {
     public static HashMap<String, String> readqs(String id, String name, String qs_num, Context c) {
         HashMap<String, String> hashMap = new HashMap<>();
         try {
-            String content = rett.get("qs" + qs_num);
+            String content = rett.get(id + "qs" + qs_num);
             String[] arr = content.split("\\]|\\[");
             Log.d("check", content.toString());
             try {
