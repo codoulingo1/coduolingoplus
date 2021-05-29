@@ -71,16 +71,20 @@ public class mainScreen extends AppCompatActivity {
     public static int courseProgressWeb = 0;
     private DatabaseReference mDatabase;
 
+    private TextView toShop;
+
     private RelativeLayout fireBar;
     private RelativeLayout coinBar;
 
     private RelativeLayout fireTopSheet;
+    private RelativeLayout geldTopSheet;
     private View pageCover;
 
     private TextView streakSheetNumber;
     private TextView lessonsDone;
     private TextView bestStreak;
     private boolean isTopSheetVisible;
+    private boolean isGeldSheetVisible;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,6 +92,7 @@ public class mainScreen extends AppCompatActivity {
         setContentView(R.layout.activity_main_screen);
 
         isTopSheetVisible = false;
+        isGeldSheetVisible = false;
 
         courseProgressWeb = 0;
         courseProgressPython = 0;
@@ -97,9 +102,11 @@ public class mainScreen extends AppCompatActivity {
 
         mDatabase = FirebaseDatabase.getInstance().getReference();
 
+        toShop = findViewById(R.id.enterShopBtn);
         coinBar = findViewById(R.id.coinBar);
         fireBar = findViewById(R.id.fireBar);
         fireTopSheet = findViewById(R.id.fireTopSheet);
+        geldTopSheet = findViewById(R.id.geldTopSheet);
         pageCover = findViewById(R.id.pageCover1);
         streakSheetNumber = findViewById(R.id.streakSheetNumber);
         lessonsDone = findViewById(R.id.lessonsDone);
@@ -138,6 +145,21 @@ public class mainScreen extends AppCompatActivity {
             public void onClick(View v) {
                 SettingsFragment settingsFragment = new SettingsFragment();
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_containerMain, settingsFragment).commit();
+            }
+        });
+
+        toShop.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ShopFragment shopFragment = new ShopFragment();
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_containerMain, shopFragment).commit();
+                fireTopSheet.animate().translationY(-600).setDuration(300);
+                geldTopSheet.animate().translationY(-600).setDuration(300);
+                pageCover.setVisibility(View.GONE);
+                geldTopSheet.setVisibility(View.GONE);
+                fireTopSheet.setVisibility(View.GONE);
+                isTopSheetVisible = false;
+                isGeldSheetVisible = false;
             }
         });
 
@@ -191,6 +213,7 @@ public class mainScreen extends AppCompatActivity {
                     public void onClick(View view) {
                         if(!isTopSheetVisible){
                             fireTopSheet.setVisibility(View.VISIBLE);
+                            geldTopSheet.setVisibility(View.GONE);
                             pageCover.setVisibility(View.VISIBLE);
                             fireTopSheet.setTranslationY(-600);
                             fireTopSheet.animate().translationY(0).setDuration(300);
@@ -208,13 +231,39 @@ public class mainScreen extends AppCompatActivity {
                         }
                     }
                 });
+
+                coinBar.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        if(!isGeldSheetVisible){
+                            geldTopSheet.setVisibility(View.VISIBLE);
+                            fireTopSheet.setVisibility(View.GONE);
+                            pageCover.setVisibility(View.VISIBLE);
+                            geldTopSheet.setTranslationY(-600);
+                            geldTopSheet.animate().translationY(0).setDuration(300);
+
+                            isGeldSheetVisible = true;
+                        }
+                        else{
+                            geldTopSheet.animate().translationY(-600).setDuration(300);
+                            pageCover.setVisibility(View.GONE);
+                            geldTopSheet.setVisibility(View.GONE);
+                            isGeldSheetVisible = false;
+                        }
+
+                    }
+                });
+
                 pageCover.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         fireTopSheet.animate().translationY(-600).setDuration(300);
+                        geldTopSheet.animate().translationY(-600).setDuration(300);
                         pageCover.setVisibility(View.GONE);
+                        geldTopSheet.setVisibility(View.GONE);
                         fireTopSheet.setVisibility(View.GONE);
                         isTopSheetVisible = false;
+                        isGeldSheetVisible = false;
                     }
                 });
 
