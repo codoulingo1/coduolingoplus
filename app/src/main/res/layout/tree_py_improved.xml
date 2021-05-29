@@ -346,7 +346,7 @@
         android:id="@+id/topSheet"
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:visibility="gone"
+        android:visibility="visible"
         app:layout_constraintTop_toBottomOf="@+id/button8"
         android:background="@drawable/top_sheet_background">
 

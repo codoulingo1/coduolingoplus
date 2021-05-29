@@ -153,10 +153,11 @@ public class profileFragment extends Fragment {
                 int color1 = mainScreen.imgC;
                 Log.d(String.valueOf(color1), String.valueOf(color1));
                 TextDrawable drawable = TextDrawable.builder().beginConfig()
-                        .width(60)  // width in px
-                        .height(60) // height in px
+                        .width(250)  // width in px
+                        .height(250) // height in px
+                        .fontSize(120) /* size in px */
                         .endConfig()
-                        .buildRect(firstLetter, color1);
+                        .buildRound(firstLetter, color1);
                 profImg.setImageDrawable(drawable);
             }
             for (String friend : mainScreen.friends.split("-")) {

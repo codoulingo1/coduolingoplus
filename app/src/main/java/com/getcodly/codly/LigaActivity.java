@@ -4,11 +4,14 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.ClipData;
+import android.content.Context;
+import android.graphics.Typeface;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -30,13 +33,15 @@ public class LigaActivity extends AppCompatActivity {
     HashMap<String, ArrayList> data;
     TextView ligaText;
     ListView simpleList;
+    ImageView leagueImg;
+    //Context context = getApplicationContext();
+    //final public static Typeface font = Typeface.createFromAsset(context.getAssets(), "rubik_bold.xml");
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
         setContentView(R.layout.activity_liga);
         simpleList = (ListView)findViewById(R.id.friendList2);
+        leagueImg = (ImageView)findViewById(R.id.leagueImg);
         data = DownloadReadlessons.get_liga(ReadWrite.read(LigaActivity.this.getFilesDir() + File.separator + "user"), new DownloadReadlessons.HashCallback3() {
             @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
@@ -47,12 +52,15 @@ public class LigaActivity extends AppCompatActivity {
                 String type = value.get("type").get(0).toString();
                 if (type.contains("1")){
                     ligaText.setText("ליגת כסף");
+                    leagueImg.setImageResource(R.drawable.ic_league2);
                 }
                 else if (type.contains("2")){
                     ligaText.setText("ליגת זהב");
+                    leagueImg.setImageResource(R.drawable.ic_league3);
                 }
                 else if (type.contains("3")){
                     ligaText.setText("ליגת יהלום");
+                    leagueImg.setImageResource(R.drawable.ic_league5);
                 }
                 ArrayList<String> name = new ArrayList<String>();
                 ArrayList<Integer> xp = new ArrayList<Integer>(value.get("xp"));

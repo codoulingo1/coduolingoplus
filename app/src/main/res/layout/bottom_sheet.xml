@@ -7,7 +7,7 @@
     android:background="@drawable/bottom_sheet_background"
     android:id="@+id/bottomSheetContainer">
 
-    <TextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="בחר סוג פרוייקט"
@@ -28,7 +28,7 @@
         android:padding="10dp"
         android:id="@+id/websiteSelect">
 
-        <TextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="אתר אינטרנט"
@@ -39,7 +39,7 @@
             android:layout_alignParentRight="true"
             android:id="@+id/textView100"/>
 
-        <TextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/textView100"
@@ -63,7 +63,7 @@
         android:id="@+id/pythonSelect"
         android:clickable="true">
 
-        <TextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="תוכנת פייתון"
@@ -74,7 +74,7 @@
             android:layout_alignParentRight="true"
             android:id="@+id/textView101"/>
 
-        <TextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/textView101"

@@ -17,6 +17,8 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import androidx.constraintlayout.widget.ConstraintLayout;
+
 import com.amulyakhare.textdrawable.TextDrawable;
 import com.amulyakhare.textdrawable.util.ColorGenerator;
 
@@ -74,16 +76,20 @@ public class CustomAdapter extends BaseAdapter {
         }
         Log.d("num", String.valueOf(i));
         num.setText(String.valueOf(i + 1));
+        l.setBackgroundColor(Color.parseColor("#F5F5F5"));
         if (i <= 9){
-            l.setBackgroundColor(Color.parseColor("#98FB98"));
+            //l.setBackgroundColor(Color.parseColor("#98FB98")); //goes up a league
+            num.setTextColor(Color.parseColor("#5DAF71"));
         }
         else if (i >= 20){
-            l.setBackgroundColor(Color.parseColor("#ffc6c4"));
+            //l.setBackgroundColor(Color.parseColor("#ffc6c4")); //goes down a league
+            num.setTextColor(Color.parseColor("#DE302B"));
         }
         else{
-            l.setBackgroundColor(Color.parseColor("#F5F5F5"));
+            l.setBackgroundColor(Color.parseColor("#F5F5F5")); //stays the same league
         }
-        xpp.setText("xp: " + String.valueOf(xp.get(i)));
+        xpp.setTextColor(Color.parseColor("#B4B4B4"));
+        xpp.setText(String.valueOf(xp.get(i)) + "XP");
         String firstLetter;
         if (names.get(i).split(" ").length == 1){
             firstLetter = String.valueOf(names.get(i).split(" ")[0].charAt(0));
@@ -97,7 +103,7 @@ public class CustomAdapter extends BaseAdapter {
                 .width(60)  // width in px
                 .height(60) // height in px
                 .endConfig()
-                .buildRect(firstLetter, color1);
+                .buildRound(firstLetter, color1);
         icon.setImageDrawable(drawable);
         return view;
     }
