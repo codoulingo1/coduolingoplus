@@ -231,4 +231,80 @@
 
     </RelativeLayout>
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:layout_below="@id/topBarHome"
+        android:background="@drawable/top_sheet_background"
+        android:id="@+id/geldTopSheet"
+        android:padding="10dp"
+        android:visibility="gone">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+        </RelativeLayout>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="מטבעות"
+            android:id="@+id/par1"
+            android:layout_alignParentRight="true"
+            android:fontFamily="@font/rubik_light"
+            android:textColor="#6B6767"
+            android:textSize="20dp"
+            android:layout_marginTop="3dp"/>
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="27dp"
+            android:layout_height="27dp"
+            android:layout_marginTop="2dp"
+            app:srcCompat="@drawable/ic_codly_coin"
+            android:layout_toLeftOf="@id/par1"
+            android:layout_marginRight="10dp"
+
+            android:id="@+id/coin"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@id/coin"
+            android:text="משמשים כדי לקנות"
+            android:fontFamily="@font/rubik_light"
+            android:textColor="#6B6767"
+            android:textSize="20dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="3dp"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_below="@id/par1"
+            android:text="דברים בחנות, ניתן להשיג אותם מלהשלים שיעורים, תחרויות או ליגות."
+            android:fontFamily="@font/rubik_light"
+            android:textColor="#6B6767"
+            android:textSize="20dp"
+            android:layout_marginTop="4dp"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:text="כניסה לחנות >"
+            android:textColor="#CFD2D3"
+            android:fontFamily="@font/rubik_medium"
+            android:textSize="21dp"
+            android:id="@+id/enterShopBtn"
+            android:layout_margin="7dp"/>
+
+
+
+
+
+    </RelativeLayout>
+
 </RelativeLayout>
