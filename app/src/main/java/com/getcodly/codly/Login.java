@@ -18,6 +18,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.amulyakhare.textdrawable.util.ColorGenerator;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -56,6 +57,7 @@ public class Login extends AppCompatActivity {
     ImageButton imgBtnGoogle;
     TextView loginWithExisting;
     private FirebaseAnalytics mFirebaseAnalytics;
+    public static GoogleSignInAccount account;
     private String method;
 
 
@@ -64,7 +66,12 @@ public class Login extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
-        emails=DownloadReadlessons.get_emails();
+        DownloadReadlessons.get_emails(new DownloadReadlessons.ListCallback() {
+            @Override
+            public void onCallback(List<String> value) {
+                emails = value;
+            }
+        });
         sign_up_email = (ImageButton) findViewById(R.id.imageButtonMail);
         imgBtnGoogle = (ImageButton) findViewById(R.id.imageButtonGoogle);
         mAuth = FirebaseAuth.getInstance();
@@ -176,7 +183,7 @@ public class Login extends AppCompatActivity {
     }
 
     private void updateUI(FirebaseUser fUser){
-        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(getApplicationContext());
+        account = GoogleSignIn.getLastSignedInAccount(getApplicationContext());
         if(account !=  null){
 
             String personName = account.getDisplayName();
@@ -217,7 +224,9 @@ public class Login extends AppCompatActivity {
                 user.child("progress").setValue(Text.getRandomString(5));
                 user.child("start_comp").setValue("");
                 user.child("hasDoneLesson").setValue(false);
-                user.child("imgC").setValue(0);
+                ColorGenerator generator = ColorGenerator.MATERIAL;
+                int color1 = generator.getRandomColor();
+                user.child("imgC").setValue(color1);
                 user.child("comp_w").setValue("");
                 user.child("comp").setValue("");
                 user.child("ligaType").setValue(1);

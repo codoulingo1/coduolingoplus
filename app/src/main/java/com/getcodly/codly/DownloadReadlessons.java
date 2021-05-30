@@ -402,6 +402,7 @@ public class DownloadReadlessons {
         final HashMap<String, ArrayList> ret = new HashMap<>();
         ArrayList names = new ArrayList();
         ArrayList xp = new ArrayList();
+        ArrayList imgC = new ArrayList();
         ArrayList type = new ArrayList();
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("Users");
@@ -434,6 +435,7 @@ public class DownloadReadlessons {
                                     //Log.d("saluton5" + " " + j, names.get(j));
                                     try {
                                         xp.add(Integer.parseInt(dataSnapshot2.child(i.split("-")[0]).child("weekXp").getValue().toString()));
+                                        imgC.add(Integer.parseInt(dataSnapshot2.child(i.split("-")[0]).child("imgC").getValue().toString()));
                                     } catch (Exception e){
 
                                     }
@@ -442,6 +444,7 @@ public class DownloadReadlessons {
                                 ret.put("names", names);
                                 type.add(liga.getKey().charAt(2));
                                 ret.put("type", type);
+                                ret.put("imgC", imgC);
                                 ret.put("xp", xp);
                                 m.onCallback(ret);
                             }
@@ -587,7 +590,7 @@ public class DownloadReadlessons {
         return ret;
     }
 
-    public static List<String> get_emails() {
+    public static List<String> get_emails(ListCallback m) {
         final List<String> Address;
         Address = new ArrayList<>();
         FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -604,6 +607,7 @@ public class DownloadReadlessons {
 
                     }
                 }
+                m.onCallback(Address);
 
             }
 

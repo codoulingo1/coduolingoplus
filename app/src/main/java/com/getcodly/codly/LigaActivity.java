@@ -64,7 +64,9 @@ public class LigaActivity extends AppCompatActivity {
                 }
                 ArrayList<String> name = new ArrayList<String>();
                 ArrayList<Integer> xp = new ArrayList<Integer>(value.get("xp"));
+                ArrayList<Integer> alt_img = new ArrayList<Integer>(value.get("imgC"));
                 ArrayList<Integer> xpp = new ArrayList<Integer>();
+                ArrayList<Integer> imgC = new ArrayList<Integer>();
                 Log.d("h", xp.toString());
                 Log.d("hh", alt_name.toString());
                 ArrayList<Integer> alt_xp = value.get("xp");
@@ -76,12 +78,17 @@ public class LigaActivity extends AppCompatActivity {
                     Log.d("loc", String.valueOf(loc));
                     if (i != -1) {
                         name.add(alt_name.get(loc));
+                        try {
+                            imgC.add(alt_img.get(loc));
+                        } catch (Exception e){
+
+                        }
                         xpp.add(i);
                         alt_xp.set(loc, -1);
                     }
                     ii++;
                 }
-                CustomAdapter customAdapter = new CustomAdapter(getApplicationContext(), name, xpp, mainScreen.name);
+                CustomAdapter customAdapter = new CustomAdapter(getApplicationContext(), name, xpp, mainScreen.name, imgC);
 
                 simpleList.setAdapter(customAdapter);
                 Log.d("salvete", String.valueOf(name));

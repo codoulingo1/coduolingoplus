@@ -29,13 +29,15 @@ public class CustomAdapter extends BaseAdapter {
     Context context;
     ArrayList<String> names;
     ArrayList<Integer> xp;
+    ArrayList<Integer> imgC;
     String n;
     LayoutInflater inflter;
 
-    public CustomAdapter(Context applicationContext, ArrayList<String> names, ArrayList<Integer> xp, String n) {
+    public CustomAdapter(Context applicationContext, ArrayList<String> names, ArrayList<Integer> xp, String n, ArrayList<Integer> imgC) {
         this.context = context;
         this.names = names;
         this.xp = xp;
+        this.imgC = imgC;
         this.n = n;
         inflter = (LayoutInflater.from(applicationContext));
     }
@@ -98,6 +100,11 @@ public class CustomAdapter extends BaseAdapter {
         }
         ColorGenerator generator = ColorGenerator.MATERIAL;
         int color1 = generator.getRandomColor();
+        try {
+            color1 = imgC.get(i);
+        } catch (Exception e){
+
+        }
         Log.d(String.valueOf(color1), String.valueOf(color1));
         TextDrawable drawable = TextDrawable.builder().beginConfig()
                 .width(60)  // width in px

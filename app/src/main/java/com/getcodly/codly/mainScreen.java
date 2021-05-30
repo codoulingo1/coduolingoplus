@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -14,6 +15,7 @@ import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.amulyakhare.textdrawable.util.ColorGenerator;
 import com.chaquo.python.Python;
 import com.chaquo.python.android.AndroidPlatform;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -65,7 +67,7 @@ public class mainScreen extends AppCompatActivity {
     TextView setStreak;
     public static int Geld = 0;
     FirebaseDatabase database1;
-    DatabaseReference myRef1;
+    DatabaseReference user;
     public static int user_xp;
     public static int courseProgressPython = 0;
     public static int courseProgressWeb = 0;
@@ -93,7 +95,7 @@ public class mainScreen extends AppCompatActivity {
         courseProgressPython = 0;
 
         database1 = FirebaseDatabase.getInstance();
-        myRef1 = database1.getReference("Users").child(ReadWrite.read(mainScreen.this.getFilesDir() + File.separator + "user"));
+        user = database1.getReference("Users").child(ReadWrite.read(mainScreen.this.getFilesDir() + File.separator + "user"));
 
         mDatabase = FirebaseDatabase.getInstance().getReference();
 
@@ -108,9 +110,59 @@ public class mainScreen extends AppCompatActivity {
         FirebaseInstanceId.getInstance().getInstanceId().addOnSuccessListener(mainScreen.this,  new OnSuccessListener<InstanceIdResult>() {
             @Override
             public void onSuccess(InstanceIdResult instanceIdResult) {
-                String newToken = instanceIdResult.getToken();
-                Log.e("newToken", newToken);
-                myRef1.child("token").setValue(newToken); //hi
+                try {
+                    DownloadReadlessons.get_emails(new DownloadReadlessons.ListCallback() {
+                        @Override
+                        public void onCallback(List<String> value) {
+                            try {
+                            Login.emails = value;
+                            String personName = Login.account.getDisplayName();
+                            String personGivenName = Login.account.getGivenName();
+                            String personFamilyName = Login.account.getFamilyName();
+                            String personEmail = Login.account.getEmail();
+                            String personId = Login.account.getId();
+                            Uri personPhoto = Login.account.getPhotoUrl();
+                            if (!Login.emails.contains(Login.account.getId())) {
+                                user.child("id").setValue(Login.account.getId());
+                                user.child("email").setValue(personEmail);
+                                user.child("imgUrl").setValue(personPhoto.toString());
+                                user.child("name").setValue(personName);
+                                user.child("phoneNum").setValue("");
+                                user.child("lastLessonD").child("year").setValue(0);
+                                user.child("lastLessonD").child("date").setValue(0);
+                                user.child("streak").setValue(0);
+                                user.child("maxStreak").setValue(0);//
+                                user.child("streak freeze").setValue("false");
+                                user.child("7streak").setValue(0);
+                                user.child("xp").setValue(0);
+                                Log.d("Create", "dir");
+                                user.child("weekXp").setValue(0);
+                                user.child("pyXp").setValue(0);
+                                user.child("htmlXp").setValue(0);
+                                user.child("shabes").setValue("false");
+                                user.child("progress").setValue(Text.getRandomString(5));
+                                user.child("start_comp").setValue("");
+                                user.child("hasDoneLesson").setValue(false);
+                                ColorGenerator generator = ColorGenerator.MATERIAL;
+                                int color1 = generator.getRandomColor();
+                                user.child("imgC").setValue(color1);
+                                user.child("comp_w").setValue("");
+                                user.child("comp").setValue("");
+                                user.child("ligaType").setValue(1);
+                                user.child("comp_time").setValue("1");
+                                user.child("friends").setValue("");
+                            }
+                            }catch (Exception e){
+
+                            }
+                            String newToken = instanceIdResult.getToken();
+                            Log.e("newToken", newToken);
+                            user.child("token").setValue(newToken); //hi
+                        }
+                    });
+                }catch (Exception e){
+                    Log.e("!newToken", "a");
+                }
 
             }
         });
@@ -221,19 +273,19 @@ public class mainScreen extends AppCompatActivity {
                 try {
                     Geld = Integer.parseInt(value.get("geld"));
                 } catch (Exception e){
-                    myRef1.child("geld").setValue(0);
+                    user.child("geld").setValue(0);
                 }
                 geldView.setText(String.valueOf(Geld));
 
-                myRef1.addValueEventListener(new ValueEventListener() {
+                user.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         // This method is called once with the initial value and again
                         // whenever data at this location is uploaded
                         try {
                             if (!dataSnapshot.child("comp").getValue().toString().equals("")) {
-                                    myRef1.child("comp").setValue("");
-                                    myRef1.child("comp_time").setValue("1");
+                                    user.child("comp").setValue("");
+                                    user.child("comp_time").setValue("1");
                                     userId = dataSnapshot.child("comp").getValue().toString();
                                     DownloadReadlessons.get_last_lesson2(userId, new DownloadReadlessons.HashCallback() {
                                         @Override
