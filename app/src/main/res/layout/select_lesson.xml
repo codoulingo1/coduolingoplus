@@ -4,49 +4,82 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".FriendsFragment"
-    android:padding="5dp">
+    android:background="#F1F5F8">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="120dp"
+        android:id="@+id/topSheetSelector"
+        android:elevation="3dp"
+        android:background="@color/white"
+        android:clickable="true">
+
+
 
         <TextView
-            android:id="@+id/addFriendBtn"
+            android:id="@+id/lessonTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_marginBottom="15dp"
             android:layout_marginRight="15dp"
             android:layout_marginTop="15dp"
-            android:fontFamily="@font/rubik_light"
-            android:text="השיעורים שלי"
-            android:textSize="28dp" />
-            <Button
-                android:id="@+id/practice"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentLeft="true"
-                android:fontFamily="@font/rubik_light"
-                android:text="תרגל"
-                android:textSize="24sp" />
+            android:fontFamily="@font/rubik_medium"
+            android:text="מבוא לHTML"
+            android:textSize="32dp" />
 
-        <Button
-            android:id="@+id/nextLesson"
+        <TextView
+            android:id="@+id/progressFill"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
+            android:layout_marginRight="15dp"
+            android:layout_below="@id/lessonTitle"
             android:fontFamily="@font/rubik_light"
-            android:text="המשך לשיעור הבא"
-            android:textSize="24sp" />
+            android:textColor="#CCCCCC"
+            android:text="הושלמו 3/3"
+            android:textSize="20dp" />
 
-        <ListView
-            android:id="@+id/friendList2"
-            android:layout_width="match_parent"
-            android:layout_height="387dp"
-            android:layout_below="@+id/addFriendBtn"
-            android:layout_marginTop="11dp"
-            />
     </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/practice"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:layout_marginBottom="15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:fontFamily="@font/rubik_light"
+        android:background="@drawable/practice_button"
+        android:elevation="1dp">
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/ic_dumbbell__2_"
+            android:layout_centerInParent="true"/>
+
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/nextLesson"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:fontFamily="@font/rubik_light"
+        android:text="המשך לשיעור הבא"
+        android:textSize="24sp"
+        android:visibility="gone"/>
+
+    <ListView
+        android:id="@+id/friendList2"
+        android:layout_width="match_parent"
+        android:layout_height="387dp"
+        android:layout_below="@+id/topSheetSelector"
+        android:layout_marginTop="25dp"
+        />
+
 </RelativeLayout>

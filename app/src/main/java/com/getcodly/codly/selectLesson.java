@@ -9,6 +9,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -22,17 +23,20 @@ public class selectLesson extends AppCompatActivity {
     Button l;
     ArrayList new_names;
     ListView l_list;
-    Button prac;
+    RelativeLayout prac;
     ArrayList fin;
+    TextView lessonTitle;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.select_lesson);
         //Log.d(MainActivity.id, MainActivity.name);
-        prac = (Button) findViewById(R.id.practice);
+        prac = findViewById(R.id.practice);
         l_list = (ListView) findViewById(R.id.friendList2);
         Collections.reverse(tree.namesShare);
         Collections.reverse(tree.idShare);
+        lessonTitle = findViewById(R.id.lessonTitle);
         new_names = new ArrayList();
         for (String n : tree.namesShare){
             if (mainScreen.progress.contains(n)){

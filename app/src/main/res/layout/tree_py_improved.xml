@@ -346,7 +346,7 @@
         android:id="@+id/topSheet"
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:visibility="visible"
+        android:visibility="gone"
         app:layout_constraintTop_toBottomOf="@+id/button8"
         android:background="@drawable/top_sheet_background">
 
@@ -384,7 +384,7 @@
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    app:srcCompat="@drawable/ic_python" />
+                    app:srcCompat="@drawable/ic_python_language_logotype__2_" />
             </RelativeLayout>
 
         </RelativeLayout>
@@ -423,7 +423,7 @@
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    app:srcCompat="@drawable/ic_html_5" />
+                    app:srcCompat="@drawable/ic_html_5__2_" />
             </RelativeLayout>
 
         </RelativeLayout>

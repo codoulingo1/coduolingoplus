@@ -1,6 +1,7 @@
 package com.getcodly.codly;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,6 +25,7 @@ public class browserFragmentQSfreeText extends Fragment {
         View v = inflater.inflate(R.layout.fragment_browser, container, false);
 
         code = codeFramentQSfreeText.htmlCode;
+        Log.d("blankBrowser", code);
         htmlView = (WebView) v.findViewById(R.id.HtmlView);
         htmlView.loadData(code, "text/html", "UTF-8");
 

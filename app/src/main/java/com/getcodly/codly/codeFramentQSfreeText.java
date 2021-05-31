@@ -234,6 +234,7 @@ public class codeFramentQSfreeText extends Fragment  { //was extends Fragment, m
 
         FragmentManager fragmentManager = fa.getSupportFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
+
         transaction.addToBackStack(null);
         transaction.add(R.id.fragment_container, BrowserFragmentQS1, "FRAGMENT").commit();
         //tabsHost.getTabAt(1).select();
