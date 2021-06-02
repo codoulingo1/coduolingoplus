@@ -26,6 +26,7 @@ public class selectLesson extends AppCompatActivity {
     RelativeLayout prac;
     ArrayList fin;
     TextView lessonTitle;
+    TextView progress;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,16 +38,21 @@ public class selectLesson extends AppCompatActivity {
         Collections.reverse(tree.namesShare);
         Collections.reverse(tree.idShare);
         lessonTitle = findViewById(R.id.lessonTitle);
+        progress = findViewById(R.id.progressFill);
+        lessonTitle.setText(mainScreen.inLessonName);
         new_names = new ArrayList();
+        int c = 0;
         for (String n : tree.namesShare){
             if (mainScreen.progress.contains(n)){
-                new_names.add(n + " - חזור על השיעור");
+                new_names.add(n);
+                c++;
             }else {
                 new_names.add(n);
             }
         }
-        ArrayAdapter<String> itemsAdapter = new ArrayAdapter<String>(selectLesson.this, android.R.layout.simple_list_item_1, android.R.id.text1, new_names);
+        selectItemList itemsAdapter = new selectItemList(selectLesson.this, new_names);
         l_list.setAdapter(itemsAdapter);
+        progress.setText("הושלמו" + String.valueOf(c) + "/" + String.valueOf(new_names.size()));
         l = (Button) findViewById(R.id.nextLesson);
         prac.setOnClickListener(new View.OnClickListener() {
             @Override

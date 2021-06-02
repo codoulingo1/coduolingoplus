@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/view"
     android:layout_width="match_parent"
-    android:layout_height="100dp"
+    android:layout_height="78dp"
     android:padding="8dp"
     android:textDirection="rtl">
 
@@ -19,21 +19,31 @@
        android:textSize="20dp"/>
 
     <ImageView
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+        android:id="@+id/eyalGoj1"
+        android:layout_width="45dp"
+        android:layout_height="32dp"
+        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/lessonTitle1"
+        android:layout_marginBottom="4dp"
+        android:layout_marginTop="13dp"
         android:src="@drawable/ic_check"
-        android:layout_alignParentBottom="true"/>
+        tools:visibility="invisible" />
 
     <TextView
+        android:id="@+id/eyalGoj2"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="חזור על השיעור"
+        android:layout_height="32dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
-        android:textColor="#CCCCCC"
+        android:layout_below="@+id/lessonTitle1"
+        android:layout_marginBottom="4dp"
+        android:layout_marginRight="-2dp"
+        android:layout_marginTop="14dp"
         android:fontFamily="@font/rubik_bold"
-        android:textSize="16dp"/>
-
+        android:text="חזור על השיעור"
+        android:textColor="#CCCCCC"
+        android:textSize="16dp"
+        android:visibility="invisible" />
 
 
 </RelativeLayout>

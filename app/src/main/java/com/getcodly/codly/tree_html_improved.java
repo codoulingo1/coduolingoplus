@@ -141,36 +141,42 @@ public class tree_html_improved extends AppCompatActivity {
         skill1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                mainScreen.inLessonName = "מבוא";
                 startLesson(Arrays.asList("2-1-2~יצירת פסקאות", "2-1-1~מבוא לפיתוח אתרים"), Arrays.asList(""));
             } //savta
         });
         skill2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                mainScreen.inLessonName = "מבנה של אתר";
                 startLesson(Arrays.asList("2-2-1~מבנה של אתר"), Arrays.asList("2-1-2"));
             } //savta
         });
         skill3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                mainScreen.inLessonName = "יצירת אתר ראשון";
                 startLesson(Arrays.asList("2-3-2~עיצוב טקסט", "2-3-1~יצירת האתר הראשון"), Arrays.asList("2-2-1"));
             } //savta
         });
         skill4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                mainScreen.inLessonName = "תגיות מתקדמות";
                 startLesson(Arrays.asList("2-4-2~תמונות", "2-4-1~תגיות מתקדמות"), Arrays.asList("2-3-2"));
             }
         });
         skill5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                mainScreen.inLessonName = "קלט";
                 startLesson(Arrays.asList("2-5-1~כפתורים"), Arrays.asList("2-4-2"));
             }
         });
         skill6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                mainScreen.inLessonName = "עיצובים מתקדמים";
                 startLesson(Arrays.asList("2-6-2~מסגרות", "2-6-1~מבוא לקוד CSS", "2-6-3~פונטים"), Arrays.asList("2-5-1"));
             }
         });

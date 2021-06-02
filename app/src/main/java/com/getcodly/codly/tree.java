@@ -182,36 +182,42 @@ public class tree extends AppCompatActivity {
         skill1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                mainScreen.inLessonName = "מבוא לפייתון";
                 startLesson(Arrays.asList("10-10-10~נדבגוי", "1-1-1~מבוא לפייתון"), Arrays.asList(""));
             } //savta
         });
         skill2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                mainScreen.inLessonName = "משתנים";
                 startLesson(Arrays.asList("1-2-3~תכנות אינטראקטיבי", "1-2-6~שינוי סוג משתנה", "1-2-5~הפקודה type","1-2-4~תרגול משתנים" ,"1-2-2~טקסטים ומספרים", "1-2-1~מבוא למשתנים"), Arrays.asList("1-1-2"));
             } //savta
         });
         skill3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                mainScreen.inLessonName = "תנאים";
                 startLesson(Arrays.asList("1-3-2~הפקודות else וelif", "1-3-1~תנאים", "1-3-3~משתנה בוליאני"), Arrays.asList("1-2-3"));
             } //savta
         });
         skill4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                mainScreen.inLessonName = "לולאות";
                 startLesson(Arrays.asList("1-5-3~הפקודה range" ,"1-5-2~לולאות for" ,"1-4-2~רשימות", "1-5-1~לולאת while"), Arrays.asList("1-3-2"));
             } //savta
         });
         skill5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                mainScreen.inLessonName = "מילונים";
                 startLesson(Arrays.asList("1-5-4~יצירת צ'אט בוט" ,"1-4-3~מילונים"), Arrays.asList("1-3-2"));
             } //savta
         });
         skill6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                mainScreen.inLessonName = "חריגים";
                 startLesson(Arrays.asList("1-4-1~שגיאות וחריגים", "1-7-1~פונקציות"), Arrays.asList("1-5-4"));
             } //savta
         });

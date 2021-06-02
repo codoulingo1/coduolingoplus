@@ -64,6 +64,7 @@ public class mainScreen extends AppCompatActivity {
     public static TextView geldView;
     public static Fragment selectedFragment = null;
     ImageButton settingsButton;
+    public static String inLessonName;
     TextView setStreak;
     public static int Geld = 0;
     FirebaseDatabase database1;

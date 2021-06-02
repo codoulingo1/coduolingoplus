@@ -76,10 +76,9 @@
 
     <ListView
         android:id="@+id/friendList2"
-        android:layout_width="match_parent"
-        android:layout_height="387dp"
+        android:layout_width="389dp"
+        android:layout_height="515dp"
         android:layout_below="@+id/topSheetSelector"
-        android:layout_marginTop="25dp"
-        />
+        android:layout_marginTop="7dp" />
 
 </RelativeLayout>
