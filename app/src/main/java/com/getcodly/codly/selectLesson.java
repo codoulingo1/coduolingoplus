@@ -86,8 +86,8 @@ public class selectLesson extends AppCompatActivity {
         {
             public void onItemClick(AdapterView<?> arg0, View arg1, int position, long arg3)
             {
-                List<String> str_old_progress = Arrays.asList(mainScreen.progress.split(" "));
-                if (str_old_progress.toString().contains(tree.idShare.get(position))){
+                List<String> str_alt_progress = Arrays.asList(mainScreen.progress.split(" "));
+                if (str_alt_progress.toString().contains(tree.idShare.get(position))){
                     MainActivity.id = tree.idShare.get(position);
                     MainActivity.name = tree.namesShare.get(position);
 

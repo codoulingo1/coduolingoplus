@@ -65,12 +65,15 @@ public class selectItemList extends BaseAdapter {
         ImageView imgF = (ImageView) view.findViewById(R.id.eyalGoj1);
         RelativeLayout l = (RelativeLayout) view.findViewById(R.id.view);
         TextView againF = (TextView) view.findViewById(R.id.eyalGoj2);
-        againF.setVisibility(View.INVISIBLE);
-        imgF.setImageResource(R.drawable.ic_group_121);
+        //againF.setVisibility(View.INVISIBLE);
+        imgF.setImageResource(R.drawable.ic_a);
         name.setText(names.get(i));
         if (mainScreen.progress.contains(names.get(i))){
             againF.setVisibility(View.VISIBLE);
             imgF.setImageResource(R.drawable.ic_check);
+        }
+        else if (names.get(i).equals(MainActivity.name)){
+            imgF.setImageResource(R.drawable.ic_group_121);
         }
         return view;
     }
