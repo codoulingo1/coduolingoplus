@@ -66,12 +66,6 @@ public class Login extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
-        DownloadReadlessons.get_emails(new DownloadReadlessons.ListCallback() {
-            @Override
-            public void onCallback(List<String> value) {
-                emails = value;
-            }
-        });
         sign_up_email = (ImageButton) findViewById(R.id.imageButtonMail);
         imgBtnGoogle = (ImageButton) findViewById(R.id.imageButtonGoogle);
         mAuth = FirebaseAuth.getInstance();
@@ -183,6 +177,10 @@ public class Login extends AppCompatActivity {
     }
 
     private void updateUI(FirebaseUser fUser){
+        DownloadReadlessons.get_emails(new DownloadReadlessons.ListCallback() {
+            @Override
+            public void onCallback(List<String> value) {
+                emails = value;
         account = GoogleSignIn.getLastSignedInAccount(getApplicationContext());
         if(account !=  null){
 
@@ -197,7 +195,7 @@ public class Login extends AppCompatActivity {
                 newFile.mkdirs();
                 Log.d("Create", "dir");
             }*/
-            ReadWrite.write(this.getFilesDir()+File.separator+ "user", fUser.getUid());
+            ReadWrite.write(Login.this.getFilesDir()+File.separator+ "user", fUser.getUid());
             FirebaseDatabase database = FirebaseDatabase.getInstance();
             if(!emails.contains(account.getId())) {
                 DatabaseReference myRef = database.getReference("Users");
@@ -263,6 +261,8 @@ public class Login extends AppCompatActivity {
                 startActivity(new Intent(Login.this, mainScreen.class));
         }
         }
+            }
+        });
 
     }
 }
