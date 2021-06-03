@@ -39,6 +39,7 @@ public class LessonActivity extends AppCompatActivity {
     public static Double shared_xp = 0.0;
     public static int j;
     public static int is_back;
+    String id;
     float maxJ;
     //ProgressBar pb;
     public static int pr;
@@ -53,7 +54,7 @@ public class LessonActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.content_lesson);
         //pb = (ProgressBar) findViewById(R.id.progressBar2);
-        String id = MainActivity.id;
+        id = MainActivity.id;
         String name = MainActivity.name;
         for (int i = 1; i<20; i++){
             try {
@@ -92,6 +93,7 @@ public class LessonActivity extends AppCompatActivity {
     }
 
     public HashMap<String, String> loadquestion(String id, String name, String qs_num) {
+        Log.d("id: ", id + "id");
         HashMap<String, String> hashMap = DownloadReadlessons.readqs(id, name, qs_num, LessonActivity.this); // read qs by ID + name + question number
         return hashMap;
     }

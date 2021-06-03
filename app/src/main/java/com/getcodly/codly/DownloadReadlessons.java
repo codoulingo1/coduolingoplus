@@ -182,7 +182,7 @@ public class DownloadReadlessons {
                     }
                     if (wr_num <= maxQS) {
                         Log.d(folder_main + "qs" + wr_num, "Value is: " + "qs" + wr_num + "    " + wr);
-                        rett.put("qs" + wr_num, wr);
+                        rett.put("prac" + "qs" + wr_num, wr);
                     }
 
                     wr_num++;
