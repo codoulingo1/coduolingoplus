@@ -15,25 +15,40 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import java.time.LocalDate;
+import static java.time.DayOfWeek.SUNDAY;
+import static java.time.temporal.TemporalAdjusters.next;
+import static java.time.temporal.TemporalAdjusters.previous;
+
 import com.google.common.collect.LinkedListMultimap;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Multimap;
 import com.google.common.collect.Ordering;
 
 import java.io.File;
+import java.text.DateFormat;
+import java.time.LocalDate;
+import java.time.ZonedDateTime;
+import java.time.temporal.TemporalAdjuster;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 
 public class LigaActivity extends AppCompatActivity {
     HashMap<String, ArrayList> data;
     TextView ligaText;
     ListView simpleList;
     ImageView leagueImg;
+
+    Calendar currentDate;
+    Calendar endingDate;
+
     //Context context = getApplicationContext();
     //final public static Typeface font = Typeface.createFromAsset(context.getAssets(), "rubik_bold.xml");
     @Override
@@ -42,6 +57,13 @@ public class LigaActivity extends AppCompatActivity {
         setContentView(R.layout.activity_liga);
         simpleList = (ListView)findViewById(R.id.friendList2);
         leagueImg = (ImageView)findViewById(R.id.leagueImg);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            final LocalDate today = LocalDate.of(ZonedDateTime.now().getYear(), ZonedDateTime.now().getMonth(), ZonedDateTime.now().getDayOfMonth());
+            final LocalDate nextSunday = today.with(next(SUNDAY));
+
+        }
+
         data = DownloadReadlessons.get_liga(ReadWrite.read(LigaActivity.this.getFilesDir() + File.separator + "user"), new DownloadReadlessons.HashCallback3() {
             @RequiresApi(api = Build.VERSION_CODES.N)
             @Override

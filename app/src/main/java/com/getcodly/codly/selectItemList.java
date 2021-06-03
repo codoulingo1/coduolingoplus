@@ -1,6 +1,7 @@
 package com.getcodly.codly;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.media.Image;
@@ -23,6 +24,8 @@ import com.amulyakhare.textdrawable.TextDrawable;
 import com.amulyakhare.textdrawable.util.ColorGenerator;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.zip.Inflater;
 
 public class selectItemList extends BaseAdapter {
@@ -63,11 +66,11 @@ public class selectItemList extends BaseAdapter {
         RelativeLayout l = (RelativeLayout) view.findViewById(R.id.view);
         TextView againF = (TextView) view.findViewById(R.id.eyalGoj2);
         againF.setVisibility(View.INVISIBLE);
-        imgF.setVisibility(View.INVISIBLE);
+        imgF.setImageResource(R.drawable.ic_group_121);
         name.setText(names.get(i));
         if (mainScreen.progress.contains(names.get(i))){
             againF.setVisibility(View.VISIBLE);
-            imgF.setVisibility(View.VISIBLE);
+            imgF.setImageResource(R.drawable.ic_check);
         }
         return view;
     }

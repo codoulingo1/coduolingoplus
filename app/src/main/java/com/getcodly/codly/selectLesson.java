@@ -52,7 +52,7 @@ public class selectLesson extends AppCompatActivity {
         }
         selectItemList itemsAdapter = new selectItemList(selectLesson.this, new_names);
         l_list.setAdapter(itemsAdapter);
-        progress.setText("הושלמו" + String.valueOf(c) + "/" + String.valueOf(new_names.size()));
+        progress.setText("הושלמו " + String.valueOf(c) + "/" + String.valueOf(new_names.size()));
         l = (Button) findViewById(R.id.nextLesson);
         prac.setOnClickListener(new View.OnClickListener() {
             @Override
