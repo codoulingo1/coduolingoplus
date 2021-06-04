@@ -60,16 +60,21 @@ public class selectLesson extends AppCompatActivity {
                 fin = new ArrayList();
                 List<String> str_old_progress = Arrays.asList(mainScreen.progress.split(","));
                 for (String f : tree.idShare){
-                    if (str_old_progress.toString().contains(f)){
+                    if (str_old_progress.toString().contains(f) && !f.equals("1-1-1")){
                         fin.add(f);
                     }
                 }
                 try {
-                    mainScreen.LessonType = "practice";
-                    MainActivity.id = "prac";
-                    MainActivity.name = "";
-                    tree.practiceID = (String[]) fin.toArray(new String[0]);
-                    startActivity(new Intent(selectLesson.this, MainActivity.class));
+                    if (fin.size() > 0) {
+                        mainScreen.LessonType = "practice";
+                        MainActivity.id = "prac";
+                        MainActivity.name = "";
+                        tree.practiceID = (String[]) fin.toArray(new String[0]);
+                        startActivity(new Intent(selectLesson.this, MainActivity.class));
+                    }
+                    else{
+                        Toast.makeText(selectLesson.this, "עדיין לא למדת מספיק שיעורים בשביל לתרגל", Toast.LENGTH_LONG).show();
+                    }
                 }catch (Exception e) {
                     Toast.makeText(selectLesson.this, "עדיין לא למדת מספיק שיעורים בשביל לתרגל", Toast.LENGTH_LONG).show();
                 }
