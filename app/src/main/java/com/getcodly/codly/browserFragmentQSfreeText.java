@@ -25,7 +25,7 @@ public class browserFragmentQSfreeText extends Fragment {
         View v = inflater.inflate(R.layout.fragment_browser, container, false);
 
         code = codeFramentQSfreeText.htmlCode;
-        Log.d("blankBrowser", code);
+        //Log.d("blankBrowser", code);
         htmlView = (WebView) v.findViewById(R.id.HtmlView);
         htmlView.loadData(code, "text/html", "UTF-8");
 

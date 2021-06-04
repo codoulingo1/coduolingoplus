@@ -63,6 +63,7 @@ public class FreeText extends AppCompatActivity {
     public static codeFramentQSfreeText CodeFramentQS1;
     private browserFragmentQSfreeText BrowserFragmentQS1;
     private TabLayout tabs;
+    String ans;
     public static String htmlCodeParent;
 
     @Override
@@ -155,7 +156,7 @@ public class FreeText extends AppCompatActivity {
         submit.setOnClickListener(new View.OnClickListener() {
                                       @Override
                                       public void onClick(View v) {
-                                          String ans = CodeFramentQS1.getText().toString();
+                                          ans = CodeFramentQS1.getText().toString();
                                           try {
                                               if (ans.equals(LessonActivity.shared_hashmap.get("Answer"))) {
                                                   showCorrect();
@@ -199,6 +200,7 @@ public class FreeText extends AppCompatActivity {
         animate();
         //webView.loadData(CodeFramentQS1.getText().toString(), "text/html", "UTF-8");
         codeFramentQSfreeText.getCode((FragmentActivity) FreeText.this);
+        codeFramentQSfreeText.htmlCode =  ans;
         tabs.getTabAt(1).select();
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
