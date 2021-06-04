@@ -36,9 +36,12 @@ import java.util.Calendar;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+
+import cn.iwgang.countdownview.CountdownView;
 
 public class LigaActivity extends AppCompatActivity {
     HashMap<String, ArrayList> data;
@@ -46,8 +49,8 @@ public class LigaActivity extends AppCompatActivity {
     ListView simpleList;
     ImageView leagueImg;
 
-    Calendar currentDate;
-    Calendar endingDate;
+    CountdownView mCountdownView;
+
 
     //Context context = getApplicationContext();
     //final public static Typeface font = Typeface.createFromAsset(context.getAssets(), "rubik_bold.xml");
@@ -57,12 +60,28 @@ public class LigaActivity extends AppCompatActivity {
         setContentView(R.layout.activity_liga);
         simpleList = (ListView)findViewById(R.id.friendList2);
         leagueImg = (ImageView)findViewById(R.id.leagueImg);
+        mCountdownView = findViewById(R.id.countDown);
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            final LocalDate today = LocalDate.of(ZonedDateTime.now().getYear(), ZonedDateTime.now().getMonth(), ZonedDateTime.now().getDayOfMonth());
-            final LocalDate nextSunday = today.with(next(SUNDAY));
-
+        Calendar calendar = Calendar.getInstance();
+        int weekday = calendar.get(Calendar.DAY_OF_WEEK);
+        int days = Calendar.SUNDAY - weekday;
+        if (days < 0)
+        {
+            days += 7;
         }
+        calendar.add(Calendar.DAY_OF_YEAR, days);
+        calendar.set(Calendar.HOUR_OF_DAY, 0);
+        calendar.set(Calendar.MINUTE, 1);
+        calendar.set(Calendar.SECOND, 0);
+        calendar.set(Calendar.MILLISECOND, 0);
+
+
+        Date now = new Date();
+        long currentDate = now.getTime();
+        long targetDate = calendar.getTimeInMillis();
+        long countDownToPickerDate = targetDate - currentDate;
+
+        mCountdownView.start(countDownToPickerDate);
 
         data = DownloadReadlessons.get_liga(ReadWrite.read(LigaActivity.this.getFilesDir() + File.separator + "user"), new DownloadReadlessons.HashCallback3() {
             @RequiresApi(api = Build.VERSION_CODES.N)
