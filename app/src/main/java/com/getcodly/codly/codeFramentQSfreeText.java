@@ -154,13 +154,13 @@ public class codeFramentQSfreeText extends Fragment  { //was extends Fragment, m
         mViewPager = (ViewPager) v.findViewById(R.id.view_pager6000);
         //tabsHost = getActivity().findViewById(R.id.tabs6000);
         detectLanguage();
-        if (selectProject.codeToLoad != null){
+        /*if (selectProject.codeToLoad != null){
             String codeToLoad2 = selectProject.codeToLoad;
             codeToLoad2 = codeToLoad2.replace("\\n", System.getProperty("line.separator"));
             htmlInp.setText(codeToLoad2);
         } else {
             htmlInp.setText(blankTemplate);
-        }
+        }*/
 
         htmlInp.setOnKeyListener(new View.OnKeyListener() {
             @Override

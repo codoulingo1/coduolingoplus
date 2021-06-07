@@ -68,6 +68,7 @@ public class CustomAdapter extends BaseAdapter {
         if (names.get(i).equals(n)){
             SpannableStringBuilder builder = new SpannableStringBuilder();
             SpannableString txtSpannable = new SpannableString(names.get(i));
+            l.setBackgroundColor(Color.parseColor("#98FB98"));
             StyleSpan boldSpan = new StyleSpan(Typeface.BOLD);
             txtSpannable.setSpan(boldSpan, 0, names.get(i).length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
             builder.append(txtSpannable);
@@ -78,7 +79,6 @@ public class CustomAdapter extends BaseAdapter {
         }
         Log.d("num", String.valueOf(i));
         num.setText(String.valueOf(i + 1));
-        l.setBackgroundColor(Color.parseColor("#F5F5F5"));
         if (i <= 9){
             //l.setBackgroundColor(Color.parseColor("#98FB98")); //goes up a league
             num.setTextColor(Color.parseColor("#5DAF71"));

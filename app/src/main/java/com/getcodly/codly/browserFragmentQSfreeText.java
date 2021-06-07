@@ -31,4 +31,10 @@ public class browserFragmentQSfreeText extends Fragment {
 
         return v;
     }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        htmlView.loadData(code, "text/html", "UTF-8");
+    }
 }

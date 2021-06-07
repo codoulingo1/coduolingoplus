@@ -133,7 +133,6 @@ public class LigaActivity extends AppCompatActivity {
 
                 simpleList.setAdapter(customAdapter);
                 Log.d("salvete", String.valueOf(name));
-                ;
             }
         });
     }
