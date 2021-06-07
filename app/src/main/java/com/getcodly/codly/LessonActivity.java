@@ -15,6 +15,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.apache.commons.io.FileUtils;
 
@@ -107,11 +108,12 @@ public class LessonActivity extends AppCompatActivity {
         shared_hashmap = hashMap;
         progress();
         Log.d("j", String.valueOf(j));
-        if (hashMap.get("type").equals("freedum")){
-            Log.d("finished", "finished1");//
-            startActivity(new Intent(LessonActivity.this, freedumQs.class));
-            overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
-        }
+        try {
+            if (hashMap.get("type").equals("freedum")) {
+                Log.d("finished", "finished1");//
+                startActivity(new Intent(LessonActivity.this, freedumQs.class));
+                overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
+            }
         else if(hashMap.get("type").equals("explain")){
             Log.d("finished", "finished2");
             if (mainScreen.LessonType.equals("comp")){
@@ -169,7 +171,12 @@ public class LessonActivity extends AppCompatActivity {
         }
         else{
             Log.d("finished", "finished10");
-        }}
+        }
+        } catch (Exception e){
+            Toast.makeText(LessonActivity.this, "האינטרנט שלך לא יציב. מנסה שוב...", Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(LessonActivity.this, MainActivity.class));
+        }
+        }
     public void progress(){
         int b = 100 * (j-1);
         pr = Math.round(b/maxJ);

@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.amulyakhare.textdrawable.util.ColorGenerator;
 import com.chaquo.python.Python;
@@ -260,6 +261,12 @@ public class mainScreen extends AppCompatActivity {
                 pyXp =  Integer.parseInt(value.get("pyXp"));
                 imgC =  Integer.parseInt(value.get("imgC"));
                 htmlXp =  Integer.parseInt(value.get("htmlXp"));
+                try {
+                    boolean b = progress.equals("a");
+                } catch (Exception e){
+                    Toast.makeText(mainScreen.this, "האינטרנט שלך לא יציב. מנסה שוב...", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(mainScreen.this, Login.class));
+                }
 
                 fireBar.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -394,79 +401,6 @@ public class mainScreen extends AppCompatActivity {
                 //int month = Integer.parseInt(date.get("month"));
 
                 int day = Integer.parseInt(value.get("date"));
-                /*
-                Calendar calendar = Calendar.getInstance();
-
-                // Move calendar to yesterday
-                calendar.add(Calendar.DAY_OF_YEAR, -1);
-
-                // Get current date of calendar which point to the yesterday now
-                int yesterday = calendar.get(Calendar.DAY_OF_YEAR);
-                Calendar calendar_3 = Calendar.getInstance();
-
-                // Move calendar to yesterday
-                calendar_3.add(Calendar.DAY_OF_YEAR, -2);
-
-                // Get current date of calendar which point to the yesterday now
-                int bf = calendar_3.get(Calendar.DAY_OF_YEAR);
-                Calendar calendar2 = Calendar.getInstance();
-                int today = calendar2.get(Calendar.DAY_OF_YEAR);
-                Log.d("hello", String.valueOf(today));
-                if(year==calendar2.get(Calendar.YEAR)){
-                    Log.d("1", "1");
-                    Log.d("2", "2");
-                    if(day==yesterday){
-                        Log.d("3", "3");
-                        streak = String.valueOf(Integer.parseInt(value.get("streak")));
-                        setStreak.setText(streak);
-                    }
-                    else if(day==today) {
-                        Log.d("3", "3");
-                        streak = String.valueOf(value.get("streak"));
-                        setStreak.setText(streak);
-                    }
-                    else if(day==bf && value.get("streak freeze").equals("true")){
-                        streak = String.valueOf(value.get("streak"));
-                        setStreak.setText(streak);
-                        FirebaseDatabase database = FirebaseDatabase.getInstance();
-                        DatabaseReference myRef = database.getReference("Users").child(ReadWrite.read(mainScreen.this.getFilesDir()+File.separator + "user"));
-                        myRef.child("lastLessonD").child("year").setValue(calendar.get(Calendar.YEAR));
-                        myRef.child("lastLessonD").child("date").setValue(calendar.get(Calendar.DAY_OF_YEAR));
-                        myRef.child("streak freeze").setValue("false");
-                    }
-                    else{
-                        Log.d("3", "3");
-                        streak = "1";
-                        setStreak.setText(streak);
-                        FirebaseDatabase database = FirebaseDatabase.getInstance();
-                        DatabaseReference myRef = database.getReference("Users").child(ReadWrite.read(mainScreen.this.getFilesDir()+File.separator + "user"));
-                        myRef.child("streak freeze").setValue("false");
-                        myRef.child("streak").setValue(1);
-                    }
-                }
-                else if (year == calendar2.get(Calendar.YEAR) - 1 && today == 1 && (day == 365 || day == 366)){
-                    Log.d("3", "3");
-                    streak = String.valueOf(Integer.parseInt(value.get("streak")));
-                    setStreak.setText(streak);
-                }
-                else if (year == calendar2.get(Calendar.YEAR) - 1 && today == 2 && (day == 365 || day == 366) && value.get("streak freeze").equals("true")){
-                    streak = String.valueOf(value.get("streak"));
-                    setStreak.setText(streak);
-                    FirebaseDatabase database = FirebaseDatabase.getInstance();
-                    DatabaseReference myRef = database.getReference("Users").child(ReadWrite.read(mainScreen.this.getFilesDir()+File.separator + "user"));
-                    myRef.child("lastLessonD").child("year").setValue(calendar.get(Calendar.YEAR));
-                    myRef.child("lastLessonD").child("date").setValue(calendar.get(Calendar.DAY_OF_YEAR));
-                    myRef.child("streak freeze").setValue("false");
-                }
-                else{
-                    Log.d("3", "3");
-                    streak = "1";
-                    setStreak.setText(streak);
-                    FirebaseDatabase database = FirebaseDatabase.getInstance();
-                    DatabaseReference myRef = database.getReference("Users").child(ReadWrite.read(mainScreen.this.getFilesDir()+File.separator + "user"));
-                    myRef.child("streak freeze").setValue("false");
-                    myRef.child("streak").setValue(1);
-                }*/
             }
         });
 
