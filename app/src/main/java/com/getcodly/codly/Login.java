@@ -43,6 +43,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Random;
 
 public class Login extends AppCompatActivity {
     private SignInButton signInButton;
@@ -55,6 +56,12 @@ public class Login extends AppCompatActivity {
     public static List<String> emails;
     ImageButton sign_up_email;
     ImageButton imgBtnGoogle;
+    boolean n = false;
+    boolean one = false;
+    boolean two = false;
+    boolean ligaR = false;
+    String[] botNames;
+    String idL;
     TextView loginWithExisting;
     private FirebaseAnalytics mFirebaseAnalytics;
     public static GoogleSignInAccount account;
@@ -65,6 +72,15 @@ public class Login extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        botNames = new String[]{"Norm", "Tommex", "Mory #", "Ido Levi", "DavidGer411", "Lugi craft", "Clickshite", "מעין ללי", "cohen", "בן סגל", "sculps", "רועי בן ששון", "עדי פ.", "Amir GAO", "y_shtivi",
+                "Naorr", "Banditax", "Snek", "אסף צור", "OV3RPOWERED", "BlueZer Ka", "M.A.O.R", "Xtazza", "Asi Glanz", "Talya", "Dolev Harbi", "lia bar yossef", "Amit Beatbox", "Eyal TV", "Timer Barel",
+                "pajaMAX", " ASEFA 313", "OMER", "daniel hyman", "topKid", "Bio Gic", "קלפון", "not Shalev", "סברינה", "BEsquadYT", "Eli Yosels82", "Boruto", "rambo gaming", "itay M", "Eyal",
+                "Nadav", "merav Lavy", "Merav Levy", "טליה ריינשטיין", "אסף המלך", "ofir", "pugzur", "Daddy Reagen", "copper storm", "gaming", "Infinite games", "עמיחי בר", "Maor hilu gaming", "אילון לוי",
+                "אורון נסים", "maor", "ITamaRs", "יואב דורון", "אוריה אלבז", "MERAV KOGAn", "Or Sadot", "יהונתן המלך", "dr nofing", "NeverPlayer", "גיא חיזקיהו", "THE BITON", "Phoantom", "SloKeR", "kfir mazuz",
+                "נדב ר", "T-Pro", "Adir Elad", "ronenplay", "Tetchy", "ליאון וליקנסקי", "שילה פרץ", "Ofer Ratzbi", "Leono", "HaMaGNiV", "Yarin Zino", "NamerHacesef", "Erez Solomon", "yair :D",
+                "yoav Yehonatan gaming", "alker 1995", "Pounds", "Pounds", "omrist gaming", "shibeshi!", "ofek oved", "Mr pro", "Hadar ben", "שמואל גיימינג", "גיא עניאל", "Henam", "Niv Hamagniv",
+                "הלל דה פרו", "itsOhad", "world", "בועז שרעבי", "ofir gaming", "banana man", "ארציאל ישראל", "אני בסדר", "Apple", "Erez Maliri", "J. Posadas"};
+        idL = String.valueOf(Math.round(Math.floor(Math.random() * 100000)));
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
         sign_up_email = (ImageButton) findViewById(R.id.imageButtonMail);
         imgBtnGoogle = (ImageButton) findViewById(R.id.imageButtonGoogle);
@@ -198,69 +214,113 @@ public class Login extends AppCompatActivity {
             ReadWrite.write(Login.this.getFilesDir()+File.separator+ "user", fUser.getUid());
             FirebaseDatabase database = FirebaseDatabase.getInstance();
             if(!emails.contains(account.getId())) {
-                DatabaseReference myRef = database.getReference("Users");
-                DatabaseReference fireBase2 = database.getReference("ligot");
-                //myRef.child(String.valueOf(account.getId())).setValue("a");
-                DatabaseReference user = myRef.child(String.valueOf(fUser.getUid()));
-                user.child("id").setValue(account.getId());
-                user.child("email").setValue(personEmail);
-                user.child("imgUrl").setValue(personPhoto.toString());
-                user.child("name").setValue(personName);
-                user.child("phoneNum").setValue("");
-                user.child("lastLessonD").child("year").setValue(0);
-                user.child("lastLessonD").child("date").setValue(0);
-                user.child("streak").setValue(0);
-                user.child("maxStreak").setValue(0);//
-                user.child("streak freeze").setValue("false");
-                user.child("7streak").setValue(0);
-                user.child("xp").setValue(0);
-                Log.d("Create", "dir");
-                user.child("weekXp").setValue(0);
-                user.child("pyXp").setValue(0);
-                user.child("htmlXp").setValue(0);
-                user.child("shabes").setValue("false");
-                user.child("progress").setValue(Text.getRandomString(5));
-                user.child("start_comp").setValue("");
-                user.child("hasDoneLesson").setValue(false);
-                ColorGenerator generator = ColorGenerator.MATERIAL;
-                int color1 = generator.getRandomColor();
-                user.child("imgC").setValue(color1);
-                user.child("comp_w").setValue("");
-                user.child("comp").setValue("");
-                user.child("ligaType").setValue(1);
-                user.child("comp_time").setValue("1");
-                user.child("friends").setValue("");
-                DownloadReadlessons.get_liga2("1-1", new DownloadReadlessons.HashCallback3() {
-                    @Override
-                    public void onCallback(HashMap<String, ArrayList> value) {
-                        StringBuilder name = new StringBuilder();
-                        String botWord = "";
-                        ArrayList<String> alt_name = value.get("names");
-                        for (String id : alt_name){
-                            name.append(id).append(",");
-                            if (id.contains("bot")){
-                                botWord = id + ",";
+                n = true;
+                //if (!one) {
+                    one = true;
+                    DatabaseReference myRef = database.getReference("Users");
+                    DatabaseReference fireBase2 = database.getReference("ligot");
+                    //myRef.child(String.valueOf(account.getId())).setValue("a");
+                    DatabaseReference user = myRef.child(String.valueOf(fUser.getUid()));
+                    user.child("id").setValue(account.getId());
+                    user.child("email").setValue(personEmail);
+                    user.child("imgUrl").setValue(personPhoto.toString());
+                    user.child("name").setValue(personName);
+                    user.child("phoneNum").setValue("");
+                    user.child("lastLessonD").child("year").setValue(0);
+                    user.child("lastLessonD").child("date").setValue(0);
+                    user.child("streak").setValue(0);
+                    user.child("maxStreak").setValue(0);//
+                    user.child("streak freeze").setValue("false");
+                    user.child("7streak").setValue(0);
+                    user.child("xp").setValue(0);
+                    Log.d("Create", "dir");
+                    user.child("weekXp").setValue(0);
+                    user.child("pyXp").setValue(0);
+                    user.child("htmlXp").setValue(0);
+                    user.child("shabes").setValue("false");
+                    user.child("progress").setValue(Text.getRandomString(5));
+                    user.child("start_comp").setValue("");
+                    user.child("hasDoneLesson").setValue(false);
+                    ColorGenerator generator = ColorGenerator.MATERIAL;
+                    int color1 = generator.getRandomColor();
+                    user.child("imgC").setValue(color1);
+                    user.child("comp_w").setValue("");
+                    user.child("comp").setValue("");
+                    user.child("ligaType").setValue(1);
+                    user.child("comp_time").setValue("1");
+                    user.child("friends").setValue("");
+                    DownloadReadlessons.get_liga3(new DownloadReadlessons.HashCallback3() {
+                        @Override
+                        public void onCallback(HashMap<String, ArrayList> value) {
+                            StringBuilder name = new StringBuilder();
+                            Log.d("final_name", "final_name3");
+                            String botWord = "";
+                            ArrayList<String> alt_name = value.get("names");
+                            for (String id : alt_name) {
+                                name.append(id).append(",");
+                                if (id.contains("bot")) {
+                                    botWord = id + ",";
+                                }
+                            }
+                            if (botWord.length() < 3) {
+                                if (!ligaR) {
+                                    ligaR = true;
+                                    StringBuilder namesNewLiga = new StringBuilder();
+                                    for (int i = 0; i < 150; i++) {
+                                        if (i % 30 == 0) {
+                                            namesNewLiga = new StringBuilder();
+                                        }
+                                        String idN = String.valueOf(Math.round(Math.floor(Math.random() * 10000)));
+                                        String id = "bot_" + idN;
+                                        DatabaseReference botUser = myRef.child(id);
+                                        ColorGenerator generator = ColorGenerator.MATERIAL;
+                                        int color1 = generator.getRandomColor();
+                                        botUser.child("imgC").setValue(color1);
+                                        botUser.child("xp").setValue(0);
+                                        botUser.child("weekXp").setValue(0);
+                                        botUser.child("ligaType").setValue((i / 30) + 1);
+                                        botUser.child("streak").setValue(0);
+                                        Random rand = new Random();
+                                        String newName = botNames[rand.nextInt(botNames.length)];
+                                        Log.d("final_name", "final_name2");
+                                        botUser.child("name").setValue(newName);
+                                        if (i == 2) {
+                                            namesNewLiga.append(fUser.getUid()).append("-").append(personName).append(",");
+                                            fireBase2.child(Math.round(i / 30) + 1 + "-" + idL).setValue(namesNewLiga.toString());
+                                        } else {
+                                            namesNewLiga.append(id).append("-").append(newName).append(",");
+                                            fireBase2.child(Math.round(i / 30) + 1 + "-" + idL).setValue(namesNewLiga.toString());
+                                        }
+                                        method = "Google";
+                                        Bundle bundle = new Bundle();
+                                        bundle.putString(FirebaseAnalytics.Param.METHOD, method);
+                                        mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SIGN_UP, bundle);
+                                        startActivity(new Intent(Login.this, mainScreen.class));
+                                    }
+                                }
+
+                            } else {
+                                name.append(fUser.getUid()).append("-").append(personName);
+                                String final_name = name.toString();
+                                Log.d("final_name", "final_name");
+                                if (final_name.contains("bot") && alt_name.size() > 28) {
+                                    final_name = final_name.replaceAll(botWord, "");
+                                }
+                                fireBase2.child(String.valueOf( value.get("key").get(0))).setValue(final_name);
+                                method = "Google";
+                                Bundle bundle = new Bundle();
+                                bundle.putString(FirebaseAnalytics.Param.METHOD, method);
+                                mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SIGN_UP, bundle);
+                                startActivity(new Intent(Login.this, mainScreen.class));
                             }
                         }
-                        name.append(fUser.getUid()).append("-").append(personName);
-                        String final_name = name.toString();
-                        Log.d("final_name", final_name);
-                        if (final_name.contains("bot") && alt_name.size() > 28){
-                            final_name = final_name.replaceAll(botWord, "");
-                        }
-                        fireBase2.child("1-1").setValue(final_name);
-
-                    }
-                });
-                method = "Google";
-                Bundle bundle = new Bundle();
-                bundle.putString(FirebaseAnalytics.Param.METHOD, method);
-                mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SIGN_UP, bundle);
-                startActivity(new Intent(Login.this, mainScreen.class));
+                    });
+                //}
         }else{
                 startActivity(new Intent(Login.this, mainScreen.class));
         }
-        }
+            }
+        //}
             }
         });
 

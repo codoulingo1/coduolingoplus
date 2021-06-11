@@ -91,15 +91,24 @@ public class LigaActivity extends AppCompatActivity {
                 ArrayList<String> alt_name = value.get("names");
                 ligaText = findViewById(R.id.ligaText);
                 String type = value.get("type").get(0).toString();
+                Log.d("type", type);
                 if (type.contains("1")){
+                    ligaText.setText("ליגת נחושת");
+                    leagueImg.setImageResource(R.drawable.ic_league1);
+                }
+                else if (type.contains("2")){
                     ligaText.setText("ליגת כסף");
                     leagueImg.setImageResource(R.drawable.ic_league2);
                 }
-                else if (type.contains("2")){
+                else if (type.contains("3")){
                     ligaText.setText("ליגת זהב");
                     leagueImg.setImageResource(R.drawable.ic_league3);
                 }
-                else if (type.contains("3")){
+                else if (type.contains("4")){
+                    ligaText.setText("ליגת אמרלד");
+                    leagueImg.setImageResource(R.drawable.ic_league4);
+                }
+                else if (type.contains("5")){
                     ligaText.setText("ליגת יהלום");
                     leagueImg.setImageResource(R.drawable.ic_league5);
                 }

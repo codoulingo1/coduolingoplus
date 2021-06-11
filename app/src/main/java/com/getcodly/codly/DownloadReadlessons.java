@@ -420,11 +420,8 @@ public class DownloadReadlessons {
                 myRef.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot2) {
-                        Log.d("saluton2", "saluton2");
                         for (DataSnapshot liga : dataSnapshot.getChildren()){
-                            Log.d("saluton3", liga.getValue().toString());
                             if (liga.getValue().toString().contains(email)){
-                                Log.d("saluton4", "saluton3");
                                 int j = 0;
                                 for (String i : liga.getValue().toString().split(",")) {
                                     try {
@@ -442,7 +439,7 @@ public class DownloadReadlessons {
                                     j = j + 1;
                                 }
                                 ret.put("names", names);
-                                type.add(liga.getKey().charAt(2));
+                                type.add(liga.getKey().charAt(0));
                                 ret.put("type", type);
                                 ret.put("imgC", imgC);
                                 ret.put("xp", xp);
@@ -530,6 +527,78 @@ public class DownloadReadlessons {
         });
         return ret;
     }
+    public static HashMap<String, ArrayList> get_liga3(HashCallback3 m) {
+        final HashMap<String, ArrayList> ret = new HashMap<>();
+        ArrayList names = new ArrayList();
+        ArrayList xp = new ArrayList();
+        ArrayList key = new ArrayList();
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("Users");
+        FirebaseDatabase database2 = FirebaseDatabase.getInstance();
+        DatabaseReference myRef2 = database2.getReference("ligot");
+        Log.d("hallo", String.valueOf(myRef2.getParent()));
+
+        myRef2.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                Log.d("saluton1", "saluton1");
+
+                // This method is called once with the initial value and again
+                // whenever data at this location is uploaded
+                myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot2) {
+                        Log.d("saluton2", "saluton2");
+                        for (DataSnapshot liga : dataSnapshot.getChildren()){
+                            Log.d("saluton3", liga.getValue().toString());
+                            if ( liga.getValue().toString().contains("bot") && liga.getKey().toString().startsWith("1")){
+                                Log.d("saluton4", "saluton3");
+                                int j = 0;
+                                for (String i : liga.getValue().toString().split(",")) {
+                                    try {
+                                        names.add(i);
+                                        key.add(liga.getKey().toString());
+                                    } catch (Exception e){
+
+                                    }
+                                    //Log.d("saluton5" + " " + j, names.get(j));
+                                    try {
+                                        xp.add(Integer.parseInt(dataSnapshot2.child(i.split("-")[0]).child("xp").getValue().toString()));
+                                    } catch (Exception e){
+
+                                    }
+                                    j = j + 1;
+                                }
+                                ret.put("names", names);
+                                ret.put("xp", xp);
+                                ret.put("key", key);
+                                m.onCallback(ret);
+                            }
+                            else {
+                                ret.put("names", names);
+                                ret.put("xp", xp);
+                                m.onCallback(ret);
+                            }
+                        }
+                    }
+                    @Override
+                    public void onCancelled(DatabaseError error) {
+                        // Failed to read value
+                        Log.w("Failed to read value.", error.toException());
+                    }
+                });
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+                Log.w("Failed to read value.", error.toException());
+            }
+        });
+        return ret;
+    }
+
     public static HashMap<String, ArrayList<String>> get_docs(String email, HashCallback2 m) {
         final HashMap<String, ArrayList<String>> ret = new HashMap<>();
         FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -595,7 +664,7 @@ public class DownloadReadlessons {
         Address = new ArrayList<>();
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("Users");
-        myRef.addValueEventListener(new ValueEventListener() {
+        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // This method is called once with the initial value and again

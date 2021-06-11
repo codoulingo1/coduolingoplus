@@ -96,7 +96,12 @@ public class CustomAdapter extends BaseAdapter {
         if (names.get(i).split(" ").length == 1){
             firstLetter = String.valueOf(names.get(i).split(" ")[0].charAt(0));
         } else{
-            firstLetter = String.valueOf(names.get(i).split(" ")[0].charAt(0)) + String.valueOf(names.get(i).split(" ")[1].charAt(0));
+            try {
+                firstLetter = String.valueOf(names.get(i).split(" ")[0].charAt(0)) + String.valueOf(names.get(i).split(" ")[1].charAt(0));
+            } catch (Exception e){
+                Log.d("malbona nomo", names.get(i));
+                firstLetter = "A";
+            }
         }
         ColorGenerator generator = ColorGenerator.MATERIAL;
         int color1 = generator.getRandomColor();
