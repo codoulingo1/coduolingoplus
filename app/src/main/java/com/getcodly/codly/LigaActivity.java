@@ -127,8 +127,8 @@ public class LigaActivity extends AppCompatActivity {
                     Log.d(alt_xp.toString(), "g");
                     Log.d("loc", String.valueOf(loc));
                     if (i != -1) {
-                        name.add(alt_name.get(loc));
                         try {
+                            name.add(alt_name.get(loc));
                             imgC.add(alt_img.get(loc));
                         } catch (Exception e){
 

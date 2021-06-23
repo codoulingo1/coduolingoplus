@@ -287,6 +287,8 @@ public class NonFreedum extends AppCompatActivity {
                 if (LessonActivity.shared_hashmap.get("Answer").equals(CodeFramentQS1.getText())){
                     pythonCode.run = true;
                     codeFramentQS.getCode((FragmentActivity) NonFreedum.this);
+                    viewPagerAdapter.addFragment(BrowserFragmentQS1, "תצוגה");
+                    viewPager.setAdapter(viewPagerAdapter);
                     tabs.getTabAt(1).select();
                     showCorrect();
 
@@ -418,8 +420,6 @@ public class NonFreedum extends AppCompatActivity {
         check.setImageResource(R.drawable.avd_anim);
         animate();
         //htmlView.loadData(CodeFramentQS1.getText().toString(), "text/html", "UTF-8");
-        viewPagerAdapter.addFragment(BrowserFragmentQS1, "תצוגה");
-        viewPager.setAdapter(viewPagerAdapter);
         check.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
