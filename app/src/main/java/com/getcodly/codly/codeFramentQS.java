@@ -181,7 +181,7 @@ public class codeFramentQS extends Fragment  { //was extends Fragment, might nee
     }
     public static void getCode(FragmentActivity fa){
         htmlCode = htmlInp.getText().toString();
-        openFragment(fa);
+        //openFragment(fa);
     }
 
     public static void openFragment(FragmentActivity fa) {

@@ -58,6 +58,8 @@ public class FreeText extends AppCompatActivity {
     RelativeLayout popup11;
     ImageButton continueBtn11;
     private AnimatedVectorDrawable animation;
+    ViewPager viewPager;
+    ViewPagerAdapter viewPagerAdapter;
     WebView webView;
 
     public static codeFramentQSfreeText CodeFramentQS1;
@@ -81,17 +83,18 @@ public class FreeText extends AppCompatActivity {
         submit = (ImageButton) findViewById(R.id.button);
         qs = (TextView) findViewById(R.id.textView);
 
-        ViewPager viewPager = findViewById(R.id.view_pager2);
+        viewPager = findViewById(R.id.view_pager2);
         tabs = (TabLayout) findViewById(R.id.tabs2);
         tabs.setupWithViewPager(viewPager);
 
         CodeFramentQS1 = new codeFramentQSfreeText();
+        //codeFramentQSfreeText.htmlCode =  CodeFramentQS1.getText().toString();
         BrowserFragmentQS1 = new browserFragmentQSfreeText();
 
-        ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager(), 0);
+        viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager(), 0);
 
         viewPagerAdapter.addFragment(CodeFramentQS1, "תכנות");
-        viewPagerAdapter.addFragment(BrowserFragmentQS1, "תצוגה");
+        //viewPagerAdapter.addFragment(BrowserFragmentQS1, "תצוגה");
 
         viewPager.setAdapter(viewPagerAdapter);
 
@@ -196,11 +199,18 @@ public class FreeText extends AppCompatActivity {
 
     }
     void showCorrect() {
+        try {
+            viewPagerAdapter.addFragment(BrowserFragmentQS1, "תצוגה");
+            viewPager.setAdapter(viewPagerAdapter);
+        } catch (Exception e){
+
+        }
         submit.setImageResource(R.drawable.avd_anim);
         animate();
         //webView.loadData(CodeFramentQS1.getText().toString(), "text/html", "UTF-8");
         codeFramentQSfreeText.getCode((FragmentActivity) FreeText.this);
-        codeFramentQSfreeText.htmlCode =  ans;
+        codeFramentQSfreeText.htmlCode =  CodeFramentQS1.getText().toString();
+        mainScreen.run = true;
         tabs.getTabAt(1).select();
         submit.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -59,6 +59,8 @@ public class NonFreedum extends AppCompatActivity {
     int b = 0;
     WebView htmlView;
     TextView qs;
+    ViewPagerAdapter viewPagerAdapter;
+    ViewPager viewPager;
     Button showAnswer;
 
     private codeFramentQS CodeFramentQS1;
@@ -98,17 +100,17 @@ public class NonFreedum extends AppCompatActivity {
         start_w.clear();
         end_W.clear();
 
-        ViewPager viewPager = findViewById(R.id.view_pager2);
+        viewPager = findViewById(R.id.view_pager2);
         tabs = (TabLayout) findViewById(R.id.tabs2);
         tabs.setupWithViewPager(viewPager);
 
         CodeFramentQS1 = new codeFramentQS();
         BrowserFragmentQS1 = new browserFragmentQS();
 
-        ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager(), 0);
+        viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager(), 0);
 
         viewPagerAdapter.addFragment(CodeFramentQS1, "תכנות");
-        viewPagerAdapter.addFragment(BrowserFragmentQS1, "תצוגה");
+        //viewPagerAdapter.addFragment(BrowserFragmentQS1, "תצוגה");
 
         viewPager.setAdapter(viewPagerAdapter);
         b = 0;
@@ -416,6 +418,8 @@ public class NonFreedum extends AppCompatActivity {
         check.setImageResource(R.drawable.avd_anim);
         animate();
         //htmlView.loadData(CodeFramentQS1.getText().toString(), "text/html", "UTF-8");
+        viewPagerAdapter.addFragment(BrowserFragmentQS1, "תצוגה");
+        viewPager.setAdapter(viewPagerAdapter);
         check.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -73,6 +73,7 @@ public class mainScreen extends AppCompatActivity {
     public static int user_xp;
     public static int courseProgressPython = 0;
     public static int courseProgressWeb = 0;
+    public static boolean run;
     private DatabaseReference mDatabase;
 
     private TextView toShop;

@@ -226,7 +226,7 @@ public class codeFramentQSfreeText extends Fragment  { //was extends Fragment, m
 
     public static void getCode(FragmentActivity fa){
         htmlCode = htmlInp.getText().toString();
-        openFragment(fa);
+        //openFragment(fa);
     }
 
     public static void openFragment(FragmentActivity fa) {
