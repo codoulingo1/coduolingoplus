@@ -230,11 +230,15 @@ public class mainScreen extends AppCompatActivity {
                     case R.id.navigation_home:
                         selectedFragment = new HomeFragment();
                         break;
+                    case R.id.navigation_profile:
+                        selectedFragment = new profileFragment();
+                        break;
+                    case R.id.navigation_leagues:
+                        selectedFragment = new ligaFragment();
+                        break;
                     case R.id.navigation_shop:
                         selectedFragment = new ShopFragment();
                         break;
-                    case R.id.navigation_profile:
-                        selectedFragment = new profileFragment();
                 }
 
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_containerMain, selectedFragment).commit();

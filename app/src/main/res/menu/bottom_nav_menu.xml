@@ -12,9 +12,18 @@
         android:title="פרופיל" />
 
     <item
+        android:id="@+id/navigation_leagues"
+        android:icon="@drawable/ic_trophy"
+        android:title="ליגות"
+        />
+
+    <item
         android:id="@+id/navigation_shop"
         android:icon="@drawable/ic_cash"
-        android:title="חנות" />
+        android:title="חנות"
+        />
+
+
 
 
 
