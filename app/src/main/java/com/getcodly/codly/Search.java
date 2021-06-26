@@ -22,6 +22,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
@@ -66,6 +67,7 @@ public class Search extends AppCompatActivity {
 
             @Override
             public boolean onQueryTextChange(String newText) {
+                Log.d("log", String.valueOf(newText.length()));
                 // Do whatever you need when text changes.
                 // This will be fired every time you input any character.
                         if (b) {
@@ -107,6 +109,10 @@ public class Search extends AppCompatActivity {
                             ArrayAdapter<String> itemsAdapter =
                                     new ArrayAdapter<String>(Search.this, android.R.layout.simple_list_item_1, android.R.id.text1, stringArray);
                             listView.setAdapter(itemsAdapter);
+                            if (newText.length() < 1){
+                                listView.setAdapter(null);
+                                hashMap.clear();
+                            }
                             //handler.postDelayed(this, delay);
                         }
                 return false;
