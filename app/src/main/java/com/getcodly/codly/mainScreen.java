@@ -52,6 +52,7 @@ public class mainScreen extends AppCompatActivity {
     public static int lessonWr = 0;
     public static String name;
     public static String userId = "";
+    public static String uId;
     public static String sel;
     public static int pyXp;
     public static int htmlXp;
@@ -103,6 +104,7 @@ public class mainScreen extends AppCompatActivity {
         courseProgressPython = 0;
 
         database1 = FirebaseDatabase.getInstance();
+        uId = ReadWrite.read(mainScreen.this.getFilesDir() + File.separator + "user");
         user = database1.getReference("Users").child(ReadWrite.read(mainScreen.this.getFilesDir() + File.separator + "user"));
 
         mDatabase = FirebaseDatabase.getInstance().getReference();

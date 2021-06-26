@@ -81,7 +81,25 @@ public class FriendProfile extends AppCompatActivity {
             @Override
             public void onCallback(HashMap<String, String> value) {
                 try {
-                    Picasso.with(FriendProfile.this).load(value.get("img")).resizeDimen(R.dimen.image_size, R.dimen.image_size).placeholder(R.drawable.goj).into(profImg);
+                    if (!value.get("img").equals("0")) {
+                        Picasso.with(FriendProfile.this).load(value.get("img")).resizeDimen(R.dimen.image_size, R.dimen.image_size).placeholder(R.drawable.goj).into(profImg);
+                    } else{
+                        Log.d("drawable", "gut?");
+                        String firstLetter;
+                        if (value.get("name").split(" ").length == 1){
+                            firstLetter = String.valueOf(value.get("name").split(" ")[0].charAt(0));
+                        } else{
+                            firstLetter = String.valueOf(value.get("name").split(" ")[0].charAt(0)) + String.valueOf(value.get("name").split(" ")[1].charAt(0));
+                        }
+                        ColorGenerator generator = ColorGenerator.MATERIAL;
+                        int color1 = Integer.parseInt(value.get("imgC"));
+                        TextDrawable drawable = TextDrawable.builder().beginConfig()
+                                .width(60)  // width in px
+                                .height(60) // height in px
+                                .endConfig()
+                                .buildRect(firstLetter, color1);
+                        profImg.setImageDrawable(drawable);
+                    }
                 }catch(Exception e){
                     Log.d("drawable", "gut?");
                     String firstLetter;

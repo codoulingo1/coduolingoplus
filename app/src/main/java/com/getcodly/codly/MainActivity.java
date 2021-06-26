@@ -97,14 +97,19 @@ public class MainActivity extends AppCompatActivity {
             });
         }
         else {
-            DownloadReadlessons.downloadlesson(id, MainActivity.this, new DownloadReadlessons.MyCallback() {
-                @Override
-                public void onCallback(String value) {
-                    Log.d("MainActivity", value);
+            //Log.d("MainActivity", id);
+            try {
+                DownloadReadlessons.downloadlesson(id, MainActivity.this, new DownloadReadlessons.MyCallback() {
+                    @Override
+                    public void onCallback(String value) {
+                        Log.d("MainActivity", value);
 
-                    startActivity(new Intent(MainActivity.this, LessonActivity.class));
-                }
-            });
+                        startActivity(new Intent(MainActivity.this, LessonActivity.class));
+                    }
+                });
+            } catch (Exception e){
+
+            }
         }
     } //savta
 

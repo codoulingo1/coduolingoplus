@@ -35,6 +35,7 @@ public class selectLesson extends AppCompatActivity {
         //Log.d(MainActivity.id, MainActivity.name);
         prac = findViewById(R.id.practice);
         l_list = (ListView) findViewById(R.id.friendList2);
+        Log.d("tName", tree.namesShare.get(1));
         Collections.reverse(tree.namesShare);
         Collections.reverse(tree.idShare);
         lessonTitle = findViewById(R.id.lessonTitle);

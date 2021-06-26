@@ -66,7 +66,7 @@ public class ligaFragment extends Fragment {
 
         mCountdownView.start(countDownToPickerDate);
 
-        data = DownloadReadlessons.get_liga(ReadWrite.read(getActivity().getFilesDir() + File.separator + "user"), new DownloadReadlessons.HashCallback3() {
+        data = DownloadReadlessons.get_liga(mainScreen.uId, new DownloadReadlessons.HashCallback3() {
             @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
             public void onCallback(HashMap<String, ArrayList> value) {
@@ -124,7 +124,6 @@ public class ligaFragment extends Fragment {
                 CustomAdapter customAdapter = new CustomAdapter(getActivity().getApplicationContext(), name, xpp, mainScreen.name, imgC);
 
                 simpleList.setAdapter(customAdapter);
-                Log.d("salvete", String.valueOf(name));
             }
         });
         return v;
