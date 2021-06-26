@@ -95,11 +95,13 @@ public class selectLesson extends AppCompatActivity {
                 if (str_alt_progress.toString().contains(tree.idShare.get(position))){
                     MainActivity.id = tree.idShare.get(position);
                     MainActivity.name = tree.namesShare.get(position);
+                    //mainScreen.LessonType = "lesson";
 
                     startActivity(new Intent(selectLesson.this, MainActivity.class));
                     overridePendingTransition(0,0);
                 }
                 else if (tree.idShare.get(position).equals(MainActivity.id)){
+                    //mainScreen.LessonType = "comp";
                     startActivity(new Intent(selectLesson.this, MainActivity.class));
                     overridePendingTransition(0,0);
                 }

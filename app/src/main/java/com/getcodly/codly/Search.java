@@ -42,6 +42,7 @@ public class Search extends AppCompatActivity {
         setContentView(R.layout.activity_search);
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
         ed = (SearchView) findViewById(R.id.editText);
+
         listView = (ListView) findViewById(R.id.list);
         handler = new Handler();
         final int delay = 500; //milliseconds
@@ -56,14 +57,26 @@ public class Search extends AppCompatActivity {
         );
 
 
-                handler.postDelayed(new Runnable() {
-                    public void run() {
+        ed.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                // Do whatever you need. This will be fired only when submitting.
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                // Do whatever you need when text changes.
+                // This will be fired every time you input any character.
                         if (b) {
                             i = 0;
                             hashMap = new HashMap<>();
                             final ArrayList names;
                             names = new ArrayList<>();
-
+                            if (newText.equals("ani_yonzi")){
+                                yonziDialog yonziDialog = new yonziDialog();
+                                yonziDialog.show(getSupportFragmentManager(), "name dialog");
+                            }
                             // This method is called once with the initial value and again
                             // whenever data at this location is updated.
                             for (String fire_email : f.keySet()) {
@@ -94,10 +107,12 @@ public class Search extends AppCompatActivity {
                             ArrayAdapter<String> itemsAdapter =
                                     new ArrayAdapter<String>(Search.this, android.R.layout.simple_list_item_1, android.R.id.text1, stringArray);
                             listView.setAdapter(itemsAdapter);
-                            handler.postDelayed(this, delay);
+                            //handler.postDelayed(this, delay);
                         }
-                    }
-                }, delay);
+                return false;
+            }
+        });
+
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener()
         {
             public void onItemClick(AdapterView<?> arg0, View arg1, int position, long arg3)

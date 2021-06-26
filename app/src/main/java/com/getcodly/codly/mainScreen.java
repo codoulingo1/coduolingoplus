@@ -61,7 +61,7 @@ public class mainScreen extends AppCompatActivity {
     public static String friends;
     public static String progress;
     FirebaseAuth mAuth;
-    public static String LessonType;
+    public static String LessonType = "";
     public static TextView geldView;
     public static Fragment selectedFragment = null;
     ImageButton settingsButton;

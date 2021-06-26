@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:padding="15dp">
+
+    <TextView
+        android:id="@+id/label1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:fontFamily="@font/rubik_light"
+        android:text="מי אני?"
+        android:textSize="24dp" />
+
+    <EditText
+        android:id="@+id/fileName"
+        android:layout_width="fill_parent"
+        android:layout_height="40dp"
+        android:inputType="textPersonName"
+        android:hint="שם הקובץ"
+        android:layout_below="@id/label1"
+        android:fontFamily="@font/rubik_light"
+        android:layout_marginTop="20dp"
+        android:background="#F1F1F1"
+        android:padding="10dp"
+        android:layout_alignParentRight="true" />
+
+    <TextView
+        android:id="@+id/explainText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/fileName"
+        android:layout_marginTop="5dp"
+        android:fontFamily="@font/rubik_light" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:scaleType="fitCenter"
+        android:adjustViewBounds="true"
+        android:text="המשך"
+        android:layout_below="@id/explainText"
+        android:layout_marginTop="20dp"
+        android:id="@+id/saveBtn" />
+
+
+
+</RelativeLayout>
