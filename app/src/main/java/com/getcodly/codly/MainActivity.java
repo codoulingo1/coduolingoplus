@@ -68,6 +68,7 @@ public class MainActivity extends AppCompatActivity {
                 break;
             }
         }
+
         if(mainScreen.LessonType.equals("practice")){
             DownloadReadlessons.downloadPractice(tree.practiceID, 8, MainActivity.this, new DownloadReadlessons.MyCallback() {
                 @Override
