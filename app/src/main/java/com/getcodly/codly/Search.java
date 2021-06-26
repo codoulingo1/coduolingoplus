@@ -73,7 +73,7 @@ public class Search extends AppCompatActivity {
                             hashMap = new HashMap<>();
                             final ArrayList names;
                             names = new ArrayList<>();
-                            if (newText.equals("ani_yonzi")){
+                            if (newText.equals("אני יונצי אני יונצי")){
                                 yonziDialog yonziDialog = new yonziDialog();
                                 yonziDialog.show(getSupportFragmentManager(), "name dialog");
                             }

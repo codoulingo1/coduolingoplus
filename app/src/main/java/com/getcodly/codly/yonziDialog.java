@@ -56,7 +56,7 @@ public class yonziDialog extends AppCompatDialogFragment {
         saveBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (mFileName.getText().toString().equals("yonzi")){
+                if (mFileName.getText().toString().equals("יונצי")){
                     startActivity(new Intent(getActivity(), GojActivity.class));
                 }
             }
