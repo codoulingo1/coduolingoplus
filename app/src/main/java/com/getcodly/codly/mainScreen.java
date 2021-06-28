@@ -63,6 +63,8 @@ public class mainScreen extends AppCompatActivity {
     public static String progress;
     FirebaseAuth mAuth;
     public static String LessonType = "";
+    public static int weekXp;
+    public static boolean hasDone;
     public static TextView geldView;
     public static Fragment selectedFragment = null;
     ImageButton settingsButton;
@@ -248,26 +250,11 @@ public class mainScreen extends AppCompatActivity {
                 return true;
             }
         });
-        date = DownloadReadlessons.get_last_lesson2(ReadWrite.read(this.getFilesDir() + File.separator + "user"), new DownloadReadlessons.HashCallback() {
-            @Override
-            public void onCallback(HashMap<String, String> value) {
 
                 Log.d("v", "v");
-                streak = value.get("streak");
-                maxStreak = value.get("maxStreak");
-                streak7 = value.get("7streak");
-                setStreak.setText(streak);
-                progress = String.valueOf(value.get("cProgress"));
                 isDownload = true;
                 setCourseProgressWeb();
                 setProgressPython();
-                name = String.valueOf(value.get("name"));
-                img = String.valueOf(value.get("img"));
-                friends = String.valueOf(value.get("friends"));
-                user_xp = Integer.parseInt(value.get("xp"));
-                pyXp =  Integer.parseInt(value.get("pyXp"));
-                imgC =  Integer.parseInt(value.get("imgC"));
-                htmlXp =  Integer.parseInt(value.get("htmlXp"));
                 try {
                     boolean b = progress.equals("a");
                 } catch (Exception e){
@@ -334,13 +321,9 @@ public class mainScreen extends AppCompatActivity {
                     }
                 });
 
-                try {
-                    Geld = Integer.parseInt(value.get("geld"));
-                } catch (Exception e){
-                    user.child("geld").setValue(0);
-                }
                 geldView.setText(String.valueOf(Geld));
-
+                setStreak.setText(streak);
+/*
                 user.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
@@ -403,13 +386,12 @@ public class mainScreen extends AppCompatActivity {
 
                     }
                 });
+                /*
+ */
 
 
                 //int month = Integer.parseInt(date.get("month"));
 
-                int day = Integer.parseInt(value.get("date"));
-            }
-        });
 
 
         FirebaseDatabase database_start = FirebaseDatabase.getInstance();

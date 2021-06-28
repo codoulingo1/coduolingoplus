@@ -20,6 +20,8 @@ import java.util.Calendar;
 import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Objects;
+import java.util.concurrent.ExecutorCompletionService;
 
 import cn.iwgang.countdownview.CountdownView;
 
@@ -121,9 +123,13 @@ public class ligaFragment extends Fragment {
                     }
                     ii++;
                 }
-                CustomAdapter customAdapter = new CustomAdapter(getActivity().getApplicationContext(), name, xpp, mainScreen.name, imgC);
+                try {
+                    CustomAdapter customAdapter = new CustomAdapter(requireActivity().getApplicationContext(), name, xpp, mainScreen.name, imgC);
+                    simpleList.setAdapter(customAdapter);
+                } catch (Exception e){
 
-                simpleList.setAdapter(customAdapter);
+                }
+
             }
         });
         return v;

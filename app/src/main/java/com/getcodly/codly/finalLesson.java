@@ -135,9 +135,6 @@ public class finalLesson extends AppCompatActivity {
 
     void something() {
         Context context = finalLesson.this;
-        date = DownloadReadlessons.get_last_lesson2(ReadWrite.read(this.getFilesDir() + File.separator + "user"), new DownloadReadlessons.HashCallback() {
-            @Override
-            public void onCallback(HashMap<String, String> value) {
                 if (!b) {
                     b = true;
                     File dirName = new File(context.getFilesDir() + "/" + "id" + "/");
@@ -157,25 +154,22 @@ public class finalLesson extends AppCompatActivity {
                     //pb.setProgress(pr);
                     //qs.setText("כל הכבוד!");
 
-                    int year = Integer.parseInt(value.get("year"));
-                    //int month = Integer.parseInt(value.get("month"));
-                    int day = Integer.parseInt(value.get("date"));
-                    int xp = (int) Double.parseDouble(value.get("xp"));
-                    int maxStreak = (int) Double.parseDouble(value.get("maxStreak"));
-                    int weekXp = (int) Double.parseDouble(value.get("weekXp"));
-                    int pyXp = (int) Double.parseDouble(value.get("pyXp"));
-                    int htmlXp = (int) Double.parseDouble(value.get("htmlXp"));
+                    int xp = mainScreen.user_xp;
+                    int maxStreak = Integer.parseInt(mainScreen.maxStreak);
+                    int weekXp = mainScreen.weekXp;
+                    int pyXp = mainScreen.pyXp;
+                    int htmlXp = mainScreen.htmlXp;
                     String old_progress = String.valueOf(mainScreen.progress);
 
 
                     //Geldprobleme
-                    if (!Boolean.parseBoolean(value.get("hasDoneLesson"))) {
+                    if (!mainScreen.hasDone) {
                         Random random = new Random();
                         int GeldToGive = random.nextInt(2) + 1;
                         correctAns.setText("מטבעות שהושגו: " + String.valueOf(GeldToGive));
                         mainScreen.Geld += GeldToGive;
 
-                        int currentGeld = Integer.parseInt(value.get("geld"));
+                        int currentGeld = mainScreen.Geld;
                         int newGeld = currentGeld + GeldToGive;
                         myRef.child("geld").setValue(newGeld);
 
@@ -219,7 +213,7 @@ public class finalLesson extends AppCompatActivity {
                     DatabaseReference user = myRef.child(ReadWrite.read(finalLesson.this.getFilesDir() + File.separator + "user"));
                     if (Integer.parseInt(mainScreen.streak7)>=8){
                         user.child("7streak").setValue(0);
-                        int currentGeld = Integer.parseInt(value.get("geld"));
+                        int currentGeld = mainScreen.Geld;
                         int newGeld = currentGeld + 10;
                         user.child("geld").setValue(newGeld);
                         mainScreen.Geld = newGeld;
@@ -234,13 +228,14 @@ public class finalLesson extends AppCompatActivity {
                         user_2.child("comp_w").setValue("l");
                         int GeldToGive = 4;
                         mainScreen.Geld += GeldToGive * 2;
-                        int currentGeld = Integer.parseInt(value.get("geld"));
+                        int currentGeld = mainScreen.Geld;
                         int newGeld = currentGeld +( GeldToGive * 2);
                         user.child("geld").setValue(newGeld);
                         LessonActivity.shared_xp2 = LessonActivity.shared_xp2 * 2;
                     }
-                    if (!Boolean.parseBoolean(value.get("hasDoneLesson"))){
+                    if (!mainScreen.hasDone){
                         user.child("hasDoneLesson").setValue(true);
+                        mainScreen.hasDone = true;
                         user.child("streak").setValue(String.valueOf(Integer.parseInt(mainScreen.streak) + 1));
                         mainScreen.streak = String.valueOf(Integer.parseInt(mainScreen.streak) + 1);
                         if (Integer.parseInt(mainScreen.streak7) > 0) {
@@ -270,9 +265,8 @@ public class finalLesson extends AppCompatActivity {
 
                     finishLsnBtn.setVisibility(View.VISIBLE);
                     user.child("hasDoneLesson").setValue(true);
+                    mainScreen.hasDone = true;
                 }
-            }
-        });
     }
 
 }

@@ -302,7 +302,107 @@ public class DownloadReadlessons {
         final HashMap<String, String> ret = new HashMap<>();
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("Users").child(email);
-        myRef.addValueEventListener(new ValueEventListener() {
+        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                Log.d("saluton", "saluton");
+                // This method is called once with the initial value and again
+                // whenever data at this location is uploaded
+                try {
+                    ret.put("geld", dataSnapshot.child("geld").getValue().toString());
+                    ret.put("streak", dataSnapshot.child("streak").getValue().toString());
+                    ret.put("maxStreak", dataSnapshot.child("maxStreak").getValue().toString());
+                    ret.put("year", dataSnapshot.child("lastLessonD").child("year").getValue().toString());
+                    ret.put("date", dataSnapshot.child("lastLessonD").child("date").getValue().toString());
+                    ret.put("cProgress", dataSnapshot.child("progress").getValue().toString());//2
+                    ret.put("shabes", dataSnapshot.child("shabes").getValue().toString());
+                    ret.put("xp", dataSnapshot.child("xp").getValue().toString());
+                    ret.put("pyXp", dataSnapshot.child("pyXp").getValue().toString());
+                    ret.put("htmlXp", dataSnapshot.child("htmlXp").getValue().toString());
+                    ret.put("ligaType", dataSnapshot.child("ligaType").getValue().toString());
+                    ret.put("name", dataSnapshot.child("name").getValue().toString());
+                    ret.put("img", dataSnapshot.child("imgUrl").getValue().toString());
+                    ret.put("email", dataSnapshot.child("email").getValue().toString());
+                    ret.put("hasDoneLesson", dataSnapshot.child("hasDoneLesson").getValue().toString());
+                    ret.put("imgC", dataSnapshot.child("imgC").getValue().toString());
+                    ret.put("streak freeze", dataSnapshot.child("streak freeze").getValue().toString());
+                    ret.put("7streak", dataSnapshot.child("7streak").getValue().toString());
+                    ret.put("friends", dataSnapshot.child("friends").getValue().toString());
+                    ret.put("weekXp", dataSnapshot.child("weekXp").getValue().toString());
+                } catch (Exception e){
+                    try {
+                        ret.put("name", dataSnapshot.child("name").getValue().toString());
+                        ret.put("streak", dataSnapshot.child("streak").getValue().toString());
+                        ret.put("maxStreak", "0");
+                        ret.put("xp", dataSnapshot.child("xp").getValue().toString());
+                        ret.put("year", "0");
+                        ret.put("date", "0");
+                        ret.put("cProgress", "0");//2
+                        ret.put("pyXp", "0");
+                        ret.put("htmlXp", "0");
+                        ret.put("img", "0");
+                        ret.put("email", "0");
+                        ret.put("streak freeze", "0");
+                        ret.put("imgC", dataSnapshot.child("imgC").getValue().toString());
+                        ret.put("ligaType", "0");
+                        ret.put("7streak", "0");
+                        ret.put("friends", "0");
+                        Log.d("error", e.getLocalizedMessage());
+                    } catch (Exception ee){
+                        try {
+                            ret.put("name", dataSnapshot.child("name").getValue().toString());
+                            ret.put("streak", dataSnapshot.child("streak").getValue().toString());
+                            ret.put("maxStreak", "0");
+                            ret.put("xp", dataSnapshot.child("xp").getValue().toString());
+                            ret.put("year", "0");
+                            ret.put("date", "0");
+                            ret.put("cProgress", "0");//2
+                            ret.put("pyXp", "0");
+                            ret.put("htmlXp", "0");
+                            ret.put("img", "0");
+                            ret.put("email", "0");
+                            ret.put("streak freeze", "0");
+                            ret.put("imgC", "0");
+                            ret.put("ligaType", "0");
+                            ret.put("7streak", "0");
+                            ret.put("friends", "0");
+                            Log.d("error", e.getLocalizedMessage());
+                        } catch (Exception eee){
+                            ret.put("streak", "0");
+                            ret.put("maxStreak", "0");
+                            ret.put("year", "0");
+                            ret.put("date", "0");
+                            ret.put("cProgress", "0");//2
+                            ret.put("xp", "0");
+                            ret.put("pyXp", "0");
+                            ret.put("htmlXp", "0");
+                            ret.put("name", "0");
+                            ret.put("img", "0");
+                            ret.put("email", "0");
+                            ret.put("streak freeze", "0");
+                            ret.put("imgC", "0");
+                            ret.put("7streak", "0");
+                            ret.put("friends", "0");
+                            Log.d("error2", eee.getLocalizedMessage());
+                        }
+                    }
+                }
+                m.onCallback(ret);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+                Log.w("Failed to read value.", error.toException());
+            }
+        });
+        return ret;
+    }
+    public static HashMap<String, String> get_sLast_lesson2(String email, HashCallback m) {
+        final HashMap<String, String> ret = new HashMap<>();
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("Users").child(email);
+        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 Log.d("saluton", "saluton");
