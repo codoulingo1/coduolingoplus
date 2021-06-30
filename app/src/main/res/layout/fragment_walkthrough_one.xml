@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:padding="10dp">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_undraw_coding_re_iv62"
+        android:id="@+id/pic1" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="גישה מלאה לכל האפליקציה"
+        android:layout_below="@id/pic1"
+        android:gravity="right"
+        android:fontFamily="@font/rubik_medium"
+        android:textColor="#42445F"
+        android:layout_marginRight="20dp"
+        android:textSize="26dp"
+        android:layout_marginTop="40dp"
+        android:layout_alignParentRight="true"
+        android:id="@+id/label4"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="תוכלו ללמוד ארבע משפות התכנות
+הפופולאריות בעולם, וליצור פרוייקטים עם
+המיומנויות שלמדתם.
+"
+        android:layout_below="@id/label4"
+        android:gravity="right"
+        android:layout_marginRight="20dp"
+        android:layout_alignParentRight="true"
+        android:fontFamily="@font/rubik_light"
+        android:textColor="#42445F"
+        android:textSize="20dp"
+        android:layout_marginTop="15dp"
+        android:layout_centerHorizontal="true"/>
+
+</RelativeLayout>

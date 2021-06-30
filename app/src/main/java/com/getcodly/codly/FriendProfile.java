@@ -67,10 +67,10 @@ public class FriendProfile extends AppCompatActivity {
         profImg = (ImageView) findViewById(R.id.imageView2);
         setName = (TextView) findViewById(R.id.set_name);
         backToTree =  (Button) findViewById(R.id.back_to_tree);
-        follow =  (Button) findViewById(R.id.follow);
+        //follow =  (Button) findViewById(R.id.follow);
         ListView l = (ListView) findViewById(R.id.l);
         inv =  (Button) findViewById(R.id.inv);
-        setStreak = (TextView) findViewById(R.id.streak);
+        setStreak = (TextView) findViewById(R.id.setStreak);
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
                 .requestEmail()
@@ -82,7 +82,7 @@ public class FriendProfile extends AppCompatActivity {
             public void onCallback(HashMap<String, String> value) {
                 try {
                     if (!value.get("img").equals("0")) {
-                        Picasso.with(FriendProfile.this).load(value.get("img")).resizeDimen(R.dimen.image_size, R.dimen.image_size).placeholder(R.drawable.goj).into(profImg);
+                        Picasso.get().load(value.get("img")).resizeDimen(R.dimen.image_size, R.dimen.image_size).placeholder(R.drawable.goj).into(profImg);
                     } else{
                         Log.d("drawable", "gut?");
                         String firstLetter;

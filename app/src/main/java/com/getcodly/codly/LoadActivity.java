@@ -7,8 +7,13 @@ import android.content.Intent;
 import android.graphics.drawable.AnimatedVectorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.widget.ImageView;
+import android.widget.TextView;
+
+import com.anjlab.android.iab.v3.BillingProcessor;
+import com.google.api.Billing;
 
 import java.io.File;
 import java.util.HashMap;
@@ -33,6 +38,7 @@ public class LoadActivity extends AppCompatActivity {
             avd2 = (AnimatedVectorDrawable) drawable;
             avd2.start();
         }
+
         date = DownloadReadlessons.get_sLast_lesson2(ReadWrite.read(this.getFilesDir() + File.separator + "user"), new DownloadReadlessons.HashCallback() {
             @Override
             public void onCallback(HashMap<String, String> value) {
@@ -53,7 +59,13 @@ public class LoadActivity extends AppCompatActivity {
                 mainScreen.Geld = Integer.parseInt(value.get("geld"));
                 mainScreen.weekXp = Integer.parseInt(value.get("weekXp"));
                 mainScreen.hasDone = Boolean.parseBoolean(value.get("hasDoneLesson"));
-                startActivity(new Intent(LoadActivity.this, mainScreen.class));
+                Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    public void run() {
+                        startActivity(new Intent(LoadActivity.this, mainScreen.class));
+                    }
+                }, 1050);   //5 seconds
+
 
             }
         });

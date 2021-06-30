@@ -1,0 +1,371 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F3F4F9"
+    android:fillViewport="true">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_below="@+id/toplayour"
+            android:layout_marginTop="10dp"
+            android:background="@color/white"
+            android:padding="5dp"
+            android:id="@+id/progressLayout">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/level"
+                android:text="רמה 1"
+                android:layout_alignParentRight="true"
+                android:textSize="20dp"
+                android:layout_centerVertical="true"
+                android:fontFamily="@font/rubik_light" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1000"
+                android:textColor="#47C5A0"
+                android:layout_toLeftOf="@+id/level"
+                android:textSize="20dp"
+                android:layout_marginRight="10dp"
+                android:layout_centerVertical="true"
+                android:fontFamily="@font/rubik_light"
+                android:id="@+id/xpCount"/>
+
+            <ProgressBar
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="200dp"
+                android:layout_height="15dp"
+                android:progress="50"
+                android:id="@+id/levelProgress"
+                android:layout_toLeftOf="@+id/xpCount"
+                android:layout_toRightOf="@+id/goalText"
+                android:layout_margin="10dp"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="10dp"
+                android:progressDrawable="@drawable/progress_xp"
+                android:scaleX="-1"/>
+
+            <TextView
+                android:id="@+id/goalText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:fontFamily="@font/rubik_light"
+                android:text="1000"
+                android:textColor="#D4D4D4"
+                android:textSize="20dp"
+                android:layout_alignParentLeft="true"/>
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="110dp"
+            android:layout_below="@id/progressLayout"
+            android:layout_marginTop="10dp"
+            android:background="@color/white"
+            android:padding="10dp"
+            android:id="@+id/course1Profile">
+
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_centerVertical="true"
+                android:src="@drawable/ic_web_dev_logo"
+                android:layout_alignParentRight="true"
+                android:id="@+id/courseImageProfile1"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="פיתוח אתרים"
+                android:fontFamily="@font/rubik_medium"
+                android:textColor="#5A5A6E"
+                android:textSize="20dp"
+                android:layout_toLeftOf="@id/courseImageProfile1"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="10dp"
+                android:id="@+id/courseNameProfile1"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1000 XP"
+                android:fontFamily="@font/rubik_light"
+                android:textColor="#9B9B9B"
+                android:textSize="18dp"
+                android:layout_toLeftOf="@id/courseImageProfile1"
+                android:layout_below="@id/courseNameProfile1"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="5dp"
+                android:id="@+id/courseXpCountProfile1"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toLeftOf="@+id/courseImageProfile1"
+                android:text="32%"
+                android:fontFamily="@font/rubik_medium"
+                android:textColor="#5A5A6E"
+                android:textSize="15dp"
+                android:layout_below="@+id/courseXpCountProfile1"
+                android:id="@+id/percentageProgress1"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="15dp"/>
+            <ProgressBar
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="200dp"
+                android:layout_height="10dp"
+                android:layout_below="@+id/courseXpCountProfile1"
+                android:layout_toLeftOf="@id/percentageProgress1"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="10dp"
+                android:progressDrawable="@drawable/progress_xp"
+                android:progress="50"
+                android:scaleX="-1"
+                android:id="@+id/courseProgressWeb"/>
+
+
+
+        </RelativeLayout>
+
+
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_below="@+id/course2Profile">
+
+            <androidx.viewpager.widget.ViewPager
+                android:id="@+id/viewPager"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:layout_below="@id/tabs"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="-1dp"
+                android:layout_marginEnd="0dp">
+
+            </androidx.viewpager.widget.ViewPager>
+
+            <com.google.android.material.tabs.TabLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/tabs">
+
+            </com.google.android.material.tabs.TabLayout>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:text="לרשימה המלאה"
+                android:id="@+id/toFullList"
+                android:layout_alignParentBottom="true"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="110dp"
+            android:layout_below="@id/course1Profile"
+            android:layout_marginTop="10dp"
+            android:background="@color/white"
+            android:padding="10dp"
+            android:id="@+id/course2Profile">
+
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_centerVertical="true"
+                android:src="@drawable/ic_python"
+                android:layout_alignParentRight="true"
+                android:id="@+id/courseImageProfile2"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="פייתון למתחילים"
+                android:fontFamily="@font/rubik_medium"
+                android:textColor="#5A5A6E"
+                android:textSize="20dp"
+                android:layout_toLeftOf="@id/courseImageProfile2"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="10dp"
+                android:id="@+id/courseNameProfile2"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1000 XP"
+                android:fontFamily="@font/rubik_light"
+                android:textColor="#9B9B9B"
+                android:textSize="18dp"
+                android:layout_toLeftOf="@id/courseImageProfile2"
+                android:layout_below="@id/courseNameProfile2"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="5dp"
+                android:id="@+id/courseXpCountProfile2"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toLeftOf="@+id/courseImageProfile2"
+                android:text="32%"
+                android:fontFamily="@font/rubik_medium"
+                android:textColor="#5A5A6E"
+                android:textSize="15dp"
+                android:layout_below="@+id/courseXpCountProfile2"
+                android:id="@+id/percentageProgress2"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="15dp"/>
+
+            <ProgressBar
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="200dp"
+                android:layout_height="10dp"
+                android:layout_below="@+id/courseXpCountProfile2"
+                android:layout_toLeftOf="@id/percentageProgress2"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="10dp"
+                android:progressDrawable="@drawable/progress_xp"
+                android:progress="50"
+                android:scaleX="-1"
+                android:id="@+id/courseProgressPy1"/>
+
+
+
+        </RelativeLayout>
+
+
+        <!--<ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="350dp"
+            android:layout_height="200dp"
+            android:layout_marginTop="16dp"
+            android:adjustViewBounds="true"
+            android:scaleType="fitCenter"
+            android:layout_centerHorizontal="true"/> -->
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="115dp"
+            android:background="@color/white"
+            android:id="@+id/toplayour">
+
+            <TextView
+                android:id="@+id/set_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toLeftOf="@id/imageView2"
+                android:layout_marginRight="15dp"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="25dp"
+                android:fontFamily="@font/rubik_bold"
+                android:textAlignment="center"
+                android:textColor="#5A5A6E"
+                android:textSize="28dp"
+                android:text="שם משתמש" />
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/imageView2"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginTop="20dp"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginRight="15dp"
+                android:src="@drawable/user_pic" />
+
+            <RelativeLayout
+            android:layout_width="75dp"
+            android:layout_height="35dp"
+            android:layout_marginRight="15dp"
+            android:layout_toLeftOf="@+id/imageView2"
+            android:layout_below="@id/set_name"
+            android:background="@drawable/ic_rectangle_round_gray"
+            android:padding="7dp"
+            android:id="@+id/fireBar2"
+            >
+
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/ic_streak_fire"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="0"
+                    android:textColor="#5A5A6E"
+                    android:fontFamily="@font/rubik_bold"
+                    android:layout_alignParentRight="true"
+                    android:textSize="16dp"
+                    android:gravity="center"
+                    android:layout_marginRight="3dp"
+                    android:layout_centerVertical="true"
+                    android:id="@+id/setStreak"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="80dp"
+                android:layout_height="35dp"
+                android:layout_marginRight="15dp"
+                android:layout_toLeftOf="@+id/fireBar2"
+                android:layout_below="@id/set_name"
+                android:background="@drawable/ic_rectangle_round_gray"
+                android:padding="7dp"
+                android:id="@+id/levelBar"
+                >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="רמה 1"
+                    android:textColor="#5A5A6E"
+                    android:fontFamily="@font/rubik_bold"
+                    android:layout_alignParentRight="true"
+                    android:textSize="16dp"
+                    android:gravity="center"
+                    android:layout_marginRight="3dp"
+                    android:layout_centerVertical="true"
+                    android:id="@+id/levelText"/>
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+
+        <Button
+            android:id="@+id/to_ligot"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="למסך הליגות"
+            tools:visibility="gone" />
+
+        <!--<EditText
+            android:id="@+id/cgName"
+            android:layout_width="255dp"
+            android:layout_height="58dp"
+            android:layout_marginTop="157dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="הקלד את שם המשתמש החדש"
+            android:visibility="gone" />-->
+
+    </RelativeLayout>
+</ScrollView>

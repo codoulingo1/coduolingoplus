@@ -64,7 +64,7 @@ public class profileFragment extends Fragment {
     Button toSearch;
     Button toLigot;
     HashMap<String, String> old_streak;
-    TextView setStreak;
+    //TextView setStreak;
     public static HashMap<String, String> ret;
     private FriendsFragment friendsFragment;
     ProgressBar levelProgress;
@@ -94,7 +94,7 @@ public class profileFragment extends Fragment {
         //listView = (ListView) v.findViewById(R.id.viewPager);
         fullListBtn = v.findViewById(R.id.toFullList);
         profImg = (ImageView) v.findViewById(R.id.imageView2);
-        setStreak = (TextView) v.findViewById(R.id.streakView);
+        //setStreak = (TextView) v.findViewById(R.id.streakView);
         setName = (TextView) v.findViewById(R.id.set_name);
         viewPager = v.findViewById(R.id.viewPager);
         levelView = v.findViewById(R.id.level);
@@ -124,7 +124,7 @@ public class profileFragment extends Fragment {
         toLigot.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getActivity(), LigaActivity.class));
+                startActivity(new Intent(getActivity(), codlyPlusActivity.class));
             }
         });
 
@@ -135,12 +135,12 @@ public class profileFragment extends Fragment {
             streak = mainScreen.streak;
             url_old = mainScreen.img;
             setName.setText(name);
-            setStreak.setText(streak);
+            //setStreak.setText(streak);
             ret = new HashMap<>();
             int i = 0;
             list = new ArrayList<String>();
             try {
-                Picasso.with(getActivity()).load(url_old).resizeDimen(R.dimen.image_size, R.dimen.image_size).placeholder(R.drawable.goj).into(profImg);
+                Picasso.get().load(url_old).resizeDimen(R.dimen.image_size, R.dimen.image_size).placeholder(R.drawable.goj).into(profImg);
             } catch (Exception e) {
                 Log.d("drawable", "gut?");
                 String firstLetter;
