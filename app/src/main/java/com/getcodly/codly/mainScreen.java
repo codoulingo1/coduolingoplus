@@ -257,7 +257,7 @@ public class mainScreen extends AppCompatActivity {
 
                     Log.d("v", "v");
                     streak = value.get("streak");
-                    maxStreak = value.get("maxStreak");
+                    maxStreak = value.get("maxStreak");//
                     streak7 = value.get("7streak");
                     setStreak.setText(streak);//
                     Geld = Integer.parseInt(value.get("geld"));
