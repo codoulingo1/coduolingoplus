@@ -48,4 +48,7 @@ html</string>
     values-round/strings.xml for round devices.
     -->
     <string name="hello_world">Hello Square World!</string>
+    <string name="title_activity_codly_plus">codlyPlusActivity</string>
+    <string name="month">מנוי חודשי</string>
+    <string name="license_key">MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAlFQqnvzR0RHvKbl1P+d0KD8hfjR+6AZtQMGfezcl/zPG8JbwA39ahqvJdtR92rmc2IwtaHNYoj+7hze2iE3AdOvXCYh7bKpjAJPFN3c73ELF3QPyF87qzcewXBTScf5D7zH8Ojvox2538GWjzKXemh8yZ9Gzb1wMNHNwj72ie3HheD+aRvkb4YNk01wqjPKddbRUCSBa49BUvpDfU2ANoyxp3uWqRJsIAZp+wG1c9uzcJsSdul0lQNaQyTqAtTXTlV+qvITnQ9iS0f7Qhqt68W2vcydrKjPeSvMxdCReiNq7qODtVKgVkepnPu1JlumKmZV3G7z9ovO4u15FXDwGjwIDAQAB</string>
 </resources>

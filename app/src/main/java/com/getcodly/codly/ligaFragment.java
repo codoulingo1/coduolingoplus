@@ -50,7 +50,7 @@ public class ligaFragment extends Fragment {
         Calendar calendar = Calendar.getInstance();
         int weekday = calendar.get(Calendar.DAY_OF_WEEK);
         int days = Calendar.SUNDAY - weekday;
-        if (days < 0)
+        if (days <= 0)
         {
             days += 7;
         }

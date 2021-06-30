@@ -170,7 +170,7 @@ public class SettingsFragment extends Fragment {
 
                 yourNameEditText.setText(name);
                 try {
-                    Picasso.with(getActivity()).load(img).resizeDimen(R.dimen.image_size, R.dimen.image_size).placeholder(R.drawable.goj).into(profileImg);
+                    Picasso.get().load(img).resizeDimen(R.dimen.image_size, R.dimen.image_size).placeholder(R.drawable.goj).into(profileImg);
                 } catch (Exception e) {
                     Log.d("drawable", "gut?");
                     String firstLetter;

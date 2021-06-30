@@ -40,7 +40,7 @@ public class ExplainationQS extends AppCompatActivity {
         ExpImage = (ImageView) findViewById(R.id.imageView);
         String url = LessonActivity.shared_hashmap.get("Image"); //paste here google drive picture shareable link but change "open?" to "uc?"
         if(!url.equals("none")){
-            Picasso.with(this).load(url).resizeDimen(R.dimen.image_size, R.dimen.image_size).placeholder(R.drawable.goj).into(ExpImage);
+            Picasso.get().load(url).resizeDimen(R.dimen.image_size, R.dimen.image_size).placeholder(R.drawable.goj).into(ExpImage);
         }
         Log.d("url", url);
         explanationQs();

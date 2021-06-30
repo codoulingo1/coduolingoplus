@@ -121,7 +121,7 @@ public class changeImageDialog extends AppCompatDialogFragment {
             mImageUri = data.getData();
             mImageView.setVisibility(View.VISIBLE);
             mUploadImage.setVisibility(View.VISIBLE);
-            Picasso.with(getActivity()).load(mImageUri).into(mImageView);
+            Picasso.get().load(mImageUri).into(mImageView);
         }
     }
 
