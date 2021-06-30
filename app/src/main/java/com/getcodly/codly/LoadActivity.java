@@ -49,7 +49,7 @@ public class LoadActivity extends AppCompatActivity {
                         mainScreen.friends = String.valueOf(value.get("friends"));
                         mainScreen.user_xp = Integer.parseInt(value.get("xp"));
                         mainScreen.pyXp = Integer.parseInt(value.get("pyXp"));
-                        mainScreen.imgC = Integer.parseInt(value.get("imgC"));
+                        mainScreen.imgC = Integer.parseInt(value.get("imgC"));//
                         mainScreen.htmlXp = Integer.parseInt(value.get("htmlXp"));
                         mainScreen.Geld = Integer.parseInt(value.get("geld"));
                         mainScreen.weekXp = Integer.parseInt(value.get("weekXp"));
