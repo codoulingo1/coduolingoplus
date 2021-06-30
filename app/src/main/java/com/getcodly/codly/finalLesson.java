@@ -170,8 +170,8 @@ public class finalLesson extends AppCompatActivity {
                         mainScreen.Geld += GeldToGive;
 
                         int currentGeld = mainScreen.Geld;
-                        int newGeld = currentGeld + GeldToGive;
-                        myRef.child("geld").setValue(newGeld);
+                        //int newGeld = currentGeld + GeldToGive;
+                        myRef.child("geld").setValue(currentGeld);
 
                     } else{
                         correctAns.setText("מטבעות שהושגו: ניתן להשיג מטבעות רק פעם ביום.");

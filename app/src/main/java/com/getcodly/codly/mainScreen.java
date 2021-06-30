@@ -250,79 +250,96 @@ public class mainScreen extends AppCompatActivity {
                 return true;
             }
         });
+        if (streak == null) {
+            date = DownloadReadlessons.get_last_lesson2(ReadWrite.read(this.getFilesDir() + File.separator + "user"), new DownloadReadlessons.HashCallback() {
+                @Override
+                public void onCallback(HashMap<String, String> value) {
 
-                Log.d("v", "v");
-                isDownload = true;
-                setCourseProgressWeb();
-                setProgressPython();
-                try {
-                    boolean b = progress.equals("a");
-                } catch (Exception e){
-                    Toast.makeText(mainScreen.this, "האינטרנט שלך לא יציב. מנסה שוב...", Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(mainScreen.this, Login.class));
-                }
-
-                fireBar.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        if(!isTopSheetVisible){
-                            fireTopSheet.setVisibility(View.VISIBLE);
-                            geldTopSheet.setVisibility(View.GONE);
-                            pageCover.setVisibility(View.VISIBLE);
-                            fireTopSheet.setTranslationY(-600);
-                            fireTopSheet.animate().translationY(0).setDuration(300);
-                            streakSheetNumber.setText(streak);
-                            bestStreak.setText(maxStreak);
-                            lessonsDone.setText(String.valueOf(progress.split(",").length - 1));
-
-                            isTopSheetVisible = true;
-                        }
-                        else{
-                            fireTopSheet.animate().translationY(-600).setDuration(300);
-                            pageCover.setVisibility(View.GONE);
-                            fireTopSheet.setVisibility(View.GONE);
-                            isTopSheetVisible = false;
-                        }
+                    Log.d("v", "v");
+                    streak = value.get("streak");
+                    maxStreak = value.get("maxStreak");
+                    streak7 = value.get("7streak");
+                    setStreak.setText(streak);
+                    progress = String.valueOf(value.get("cProgress"));
+                    setCourseProgressWeb();
+                    setProgressPython();
+                    name = String.valueOf(value.get("name"));
+                    img = String.valueOf(value.get("img"));
+                    friends = String.valueOf(value.get("friends"));
+                    user_xp = Integer.parseInt(value.get("xp"));
+                    pyXp = Integer.parseInt(value.get("pyXp"));
+                    imgC = Integer.parseInt(value.get("imgC"));
+                    htmlXp = Integer.parseInt(value.get("htmlXp"));
+                    Log.d("v", "v");
+                    isDownload = true;
+                    setCourseProgressWeb();
+                    setProgressPython();
+                    try {
+                        boolean b = progress.equals("a");
+                    } catch (Exception e) {
+                        Toast.makeText(mainScreen.this, "האינטרנט שלך לא יציב. מנסה שוב...", Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(mainScreen.this, Login.class));
                     }
-                });
 
-                coinBar.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        if(!isGeldSheetVisible){
-                            geldTopSheet.setVisibility(View.VISIBLE);
-                            fireTopSheet.setVisibility(View.GONE);
-                            pageCover.setVisibility(View.VISIBLE);
-                            geldTopSheet.setTranslationY(-600);
-                            geldTopSheet.animate().translationY(0).setDuration(300);
+                    fireBar.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            if (!isTopSheetVisible) {
+                                fireTopSheet.setVisibility(View.VISIBLE);
+                                geldTopSheet.setVisibility(View.GONE);
+                                pageCover.setVisibility(View.VISIBLE);
+                                fireTopSheet.setTranslationY(-600);
+                                fireTopSheet.animate().translationY(0).setDuration(300);
+                                streakSheetNumber.setText(streak);
+                                bestStreak.setText(maxStreak);
+                                lessonsDone.setText(String.valueOf(progress.split(",").length - 1));
 
-                            isGeldSheetVisible = true;
+                                isTopSheetVisible = true;
+                            } else {
+                                fireTopSheet.animate().translationY(-600).setDuration(300);
+                                pageCover.setVisibility(View.GONE);
+                                fireTopSheet.setVisibility(View.GONE);
+                                isTopSheetVisible = false;
+                            }
                         }
-                        else{
+                    });
+
+                    coinBar.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            if (!isGeldSheetVisible) {
+                                geldTopSheet.setVisibility(View.VISIBLE);
+                                fireTopSheet.setVisibility(View.GONE);
+                                pageCover.setVisibility(View.VISIBLE);
+                                geldTopSheet.setTranslationY(-600);
+                                geldTopSheet.animate().translationY(0).setDuration(300);
+
+                                isGeldSheetVisible = true;
+                            } else {
+                                geldTopSheet.animate().translationY(-600).setDuration(300);
+                                pageCover.setVisibility(View.GONE);
+                                geldTopSheet.setVisibility(View.GONE);
+                                isGeldSheetVisible = false;
+                            }
+
+                        }
+                    });
+
+                    pageCover.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            fireTopSheet.animate().translationY(-600).setDuration(300);
                             geldTopSheet.animate().translationY(-600).setDuration(300);
                             pageCover.setVisibility(View.GONE);
                             geldTopSheet.setVisibility(View.GONE);
+                            fireTopSheet.setVisibility(View.GONE);
+                            isTopSheetVisible = false;
                             isGeldSheetVisible = false;
                         }
+                    });
 
-                    }
-                });
-
-                pageCover.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        fireTopSheet.animate().translationY(-600).setDuration(300);
-                        geldTopSheet.animate().translationY(-600).setDuration(300);
-                        pageCover.setVisibility(View.GONE);
-                        geldTopSheet.setVisibility(View.GONE);
-                        fireTopSheet.setVisibility(View.GONE);
-                        isTopSheetVisible = false;
-                        isGeldSheetVisible = false;
-                    }
-                });
-
-                geldView.setText(String.valueOf(Geld));
-                setStreak.setText(streak);
+                    geldView.setText(String.valueOf(Geld));
+                    setStreak.setText(streak);
 /*
                 user.addValueEventListener(new ValueEventListener() {
                     @Override
@@ -390,8 +407,80 @@ public class mainScreen extends AppCompatActivity {
  */
 
 
-                //int month = Integer.parseInt(date.get("month"));
+                    //int month = Integer.parseInt(date.get("month"));
+                }
+            });
+        } else{
+            isDownload = true;
+            setCourseProgressWeb();
+            setProgressPython();
+            try {
+                boolean b = progress.equals("a");
+            } catch (Exception e) {
+                Toast.makeText(mainScreen.this, "האינטרנט שלך לא יציב. מנסה שוב...", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(mainScreen.this, Login.class));
+            }
 
+            fireBar.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (!isTopSheetVisible) {
+                        fireTopSheet.setVisibility(View.VISIBLE);
+                        geldTopSheet.setVisibility(View.GONE);
+                        pageCover.setVisibility(View.VISIBLE);
+                        fireTopSheet.setTranslationY(-600);
+                        fireTopSheet.animate().translationY(0).setDuration(300);
+                        streakSheetNumber.setText(streak);
+                        bestStreak.setText(maxStreak);
+                        lessonsDone.setText(String.valueOf(progress.split(",").length - 1));
+
+                        isTopSheetVisible = true;
+                    } else {
+                        fireTopSheet.animate().translationY(-600).setDuration(300);
+                        pageCover.setVisibility(View.GONE);
+                        fireTopSheet.setVisibility(View.GONE);
+                        isTopSheetVisible = false;
+                    }
+                }
+            });
+
+            coinBar.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (!isGeldSheetVisible) {
+                        geldTopSheet.setVisibility(View.VISIBLE);
+                        fireTopSheet.setVisibility(View.GONE);
+                        pageCover.setVisibility(View.VISIBLE);
+                        geldTopSheet.setTranslationY(-600);
+                        geldTopSheet.animate().translationY(0).setDuration(300);
+
+                        isGeldSheetVisible = true;
+                    } else {
+                        geldTopSheet.animate().translationY(-600).setDuration(300);
+                        pageCover.setVisibility(View.GONE);
+                        geldTopSheet.setVisibility(View.GONE);
+                        isGeldSheetVisible = false;
+                    }
+
+                }
+            });
+
+            pageCover.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    fireTopSheet.animate().translationY(-600).setDuration(300);
+                    geldTopSheet.animate().translationY(-600).setDuration(300);
+                    pageCover.setVisibility(View.GONE);
+                    geldTopSheet.setVisibility(View.GONE);
+                    fireTopSheet.setVisibility(View.GONE);
+                    isTopSheetVisible = false;
+                    isGeldSheetVisible = false;
+                }
+            });
+
+            geldView.setText(String.valueOf(Geld));
+            setStreak.setText(streak);
+        }
 
 
         FirebaseDatabase database_start = FirebaseDatabase.getInstance();

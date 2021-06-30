@@ -494,6 +494,8 @@ public class DownloadReadlessons {
             public void onCancelled(DatabaseError error) {
                 // Failed to read value
                 Log.w("Failed to read value.", error.toException());
+                ret.put("cProgress", "0");//2
+                m.onCallback(ret);
             }
         });
         return ret;
