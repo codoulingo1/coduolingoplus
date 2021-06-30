@@ -260,6 +260,7 @@ public class mainScreen extends AppCompatActivity {
                     maxStreak = value.get("maxStreak");
                     streak7 = value.get("7streak");
                     setStreak.setText(streak);
+                    Geld = Integer.parseInt(value.get("geld"));
                     progress = String.valueOf(value.get("cProgress"));
                     setCourseProgressWeb();
                     setProgressPython();
