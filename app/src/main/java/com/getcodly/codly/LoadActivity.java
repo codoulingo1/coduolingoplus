@@ -33,29 +33,34 @@ public class LoadActivity extends AppCompatActivity {
             avd2 = (AnimatedVectorDrawable) drawable;
             avd2.start();
         }
-        date = DownloadReadlessons.get_sLast_lesson2(ReadWrite.read(this.getFilesDir() + File.separator + "user"), new DownloadReadlessons.HashCallback() {
-            @Override
-            public void onCallback(HashMap<String, String> value) {
+        try {
+            date = DownloadReadlessons.get_sLast_lesson2(ReadWrite.read(this.getFilesDir() + File.separator + "user"), new DownloadReadlessons.HashCallback() {
+                @Override
+                public void onCallback(HashMap<String, String> value) {
 
-                Log.d("v", "v");
-                mainScreen.streak = value.get("streak");
-                mainScreen.maxStreak = value.get("maxStreak");
-                mainScreen.streak7 = value.get("7streak");
-                mainScreen.progress = String.valueOf(value.get("cProgress"));
-                mainScreen.isDownload = true;
-                mainScreen.name = String.valueOf(value.get("name"));
-                mainScreen.img = String.valueOf(value.get("img"));
-                mainScreen.friends = String.valueOf(value.get("friends"));
-                mainScreen.user_xp = Integer.parseInt(value.get("xp"));
-                mainScreen.pyXp = Integer.parseInt(value.get("pyXp"));
-                mainScreen.imgC = Integer.parseInt(value.get("imgC"));
-                mainScreen.htmlXp = Integer.parseInt(value.get("htmlXp"));
-                mainScreen.Geld = Integer.parseInt(value.get("geld"));
-                mainScreen.weekXp = Integer.parseInt(value.get("weekXp"));
-                mainScreen.hasDone = Boolean.parseBoolean(value.get("hasDoneLesson"));
-                startActivity(new Intent(LoadActivity.this, mainScreen.class));
+                    Log.d("v", "v");
+                    mainScreen.streak = value.get("streak");
+                    mainScreen.maxStreak = value.get("maxStreak");
+                    mainScreen.streak7 = value.get("7streak");
+                    mainScreen.progress = String.valueOf(value.get("cProgress"));
+                    mainScreen.isDownload = true;
+                    mainScreen.name = String.valueOf(value.get("name"));
+                    mainScreen.img = String.valueOf(value.get("img"));
+                    mainScreen.friends = String.valueOf(value.get("friends"));
+                    mainScreen.user_xp = Integer.parseInt(value.get("xp"));
+                    mainScreen.pyXp = Integer.parseInt(value.get("pyXp"));
+                    mainScreen.imgC = Integer.parseInt(value.get("imgC"));
+                    mainScreen.htmlXp = Integer.parseInt(value.get("htmlXp"));
+                    mainScreen.Geld = Integer.parseInt(value.get("geld"));
+                    mainScreen.weekXp = Integer.parseInt(value.get("weekXp"));
+                    mainScreen.hasDone = Boolean.parseBoolean(value.get("hasDoneLesson"));
+                    startActivity(new Intent(LoadActivity.this, mainScreen.class));
 
-            }
-        });
+                }
+            });
+        } catch (Exception e){
+            startActivity(new Intent(LoadActivity.this, Login.class));
+
+        }
     }
 }
