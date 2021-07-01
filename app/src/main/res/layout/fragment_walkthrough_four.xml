@@ -5,7 +5,39 @@
     android:layout_gravity="center">
 
     <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:src="@drawable/ic_undraw_appreciation_re_p6rl"/>
+        android:layout_width="335dp"
+        android:layout_height="200dp"
+        android:src="@drawable/ic_undraw_appreciation_re_p6rl"
+        android:id="@+id/pic1"
+        android:layout_centerHorizontal="true"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="תמכו בפיתוח"
+        android:layout_below="@id/pic1"
+        android:gravity="right"
+        android:fontFamily="@font/rubik_medium"
+        android:textColor="#42445F"
+        android:layout_marginRight="20dp"
+        android:textSize="26dp"
+        android:layout_marginTop="40dp"
+        android:layout_alignParentRight="true"
+        android:id="@+id/label4"/>
+
+    <TextView
+        android:layout_width="340dp"
+        android:layout_height="wrap_content"
+        android:text="תמכו בפיתוח של קודלי ועזרו להפוך את
+עולם התכנות לנגיש לכולם.
+"
+        android:layout_below="@id/label4"
+        android:gravity="right"
+        android:layout_marginRight="20dp"
+        android:layout_alignParentRight="true"
+        android:fontFamily="@font/rubik_light"
+        android:textColor="#42445F"
+        android:textSize="20dp"
+        android:layout_marginTop="15dp"
+        android:layout_centerHorizontal="true"/>
 </RelativeLayout>
