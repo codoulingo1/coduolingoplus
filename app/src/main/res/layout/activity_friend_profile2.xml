@@ -150,8 +150,8 @@
             android:layout_alignParentBottom="true"
             android:layout_below="@+id/course2Profile">
 
-            <androidx.viewpager.widget.ViewPager
-                android:id="@+id/viewPager"
+            <ListView
+                android:id="@+id/l"
                 android:layout_width="match_parent"
                 android:layout_height="250dp"
                 android:layout_below="@id/tabs"
@@ -159,7 +159,7 @@
                 android:layout_marginTop="-1dp"
                 android:layout_marginEnd="0dp">
 
-            </androidx.viewpager.widget.ViewPager>
+            </ListView>
 
             <com.google.android.material.tabs.TabLayout
                 android:layout_width="match_parent"
@@ -346,16 +346,22 @@
                     android:layout_centerVertical="true"
                     android:id="@+id/levelText"/>
             </RelativeLayout>
+            <Button
+                android:layout_width="80dp"
+                android:layout_height="35dp"
+                android:layout_marginRight="15dp"
+                android:layout_toLeftOf="@+id/levelBar"
+                android:layout_below="@id/set_name"
+                android:background="@drawable/ic_rectangle_round_gray"
+                android:padding="7dp"
+                android:id="@+id/follow"
+                android:text="עקוב"
+                >
+
+            </Button>
 
         </RelativeLayout>
 
-
-        <Button
-            android:id="@+id/to_ligot"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="למסך הליגות"
-            tools:visibility="gone" />
 
         <!--<EditText
             android:id="@+id/cgName"

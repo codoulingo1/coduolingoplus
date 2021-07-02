@@ -102,7 +102,6 @@ public class profileFragment extends Fragment {
         courseXp1= v.findViewById(R.id.courseXpCountProfile1);
         courseXp2 = v.findViewById(R.id.courseXpCountProfile2);
         goalText = v.findViewById(R.id.goalText);
-        toLigot = v.findViewById(R.id.to_ligot);
         courseProgressbarWeb = v.findViewById(R.id.courseProgressWeb);
         percentageProgress1 = v.findViewById(R.id.percentageProgress1);
         courseProgressbarPy = v.findViewById(R.id.courseProgressPy1);
@@ -121,12 +120,6 @@ public class profileFragment extends Fragment {
                 .requestEmail()
                 .build();
         mGoogleSignInClient = GoogleSignIn.getClient(getActivity(), gso);
-        toLigot.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getActivity(), codlyPlusActivity.class));
-            }
-        });
 
 
         if (!b) {

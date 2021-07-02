@@ -57,7 +57,7 @@ public class FriendProfile extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_friend_profile);
+        setContentView(R.layout.activity_friend_profile2);
         if (nonShared){
             Toast.makeText(FriendProfile.this, "לך ולמשתמש/ת שהזמנת לתחרות אין מספיק שיעורים משותפים",
                     Toast.LENGTH_LONG).show();
@@ -67,9 +67,9 @@ public class FriendProfile extends AppCompatActivity {
         profImg = (ImageView) findViewById(R.id.imageView2);
         setName = (TextView) findViewById(R.id.set_name);
         backToTree =  (Button) findViewById(R.id.back_to_tree);
-        //follow =  (Button) findViewById(R.id.follow);
+        follow =  (Button) findViewById(R.id.follow);
         ListView l = (ListView) findViewById(R.id.l);
-        inv =  (Button) findViewById(R.id.inv);
+        //inv =  (Button) findViewById(R.id.inv);
         setStreak = (TextView) findViewById(R.id.setStreak);
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
@@ -152,12 +152,12 @@ public class FriendProfile extends AppCompatActivity {
                 }
             }
         });
-        backToTree.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(FriendProfile.this, mainScreen.class));
-            }
-        });
+//        backToTree.setOnClickListener(new View.OnClickListener() {
+       //     @Override
+         //   public void onClick(View v) {
+          //      startActivity(new Intent(FriendProfile.this, mainScreen.class));
+          //  }
+    //    });
         follow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -181,45 +181,6 @@ public class FriendProfile extends AppCompatActivity {
                     follow.setText("הסר מרשימת החברים");
                 }
                 Log.d("mainScreen.friends", mainScreen.friends);
-            }
-        });
-        inv.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.d("c", String.valueOf(mainScreen.Geld));
-                Log.d("c", String.valueOf(oGeld));
-                if (mainScreen.Geld>=4 && Integer.parseInt(oGeld)>=4) {
-                    FirebaseDatabase database = FirebaseDatabase.getInstance();
-
-                    DatabaseReference myRef = database.getReference("Users");
-                    DatabaseReference fireBase = myRef.child(Search.selected);
-                    mainScreen.userId = Search.selected;
-                    fireBase.child("comp").setValue(ReadWrite.read(FriendProfile.this.getFilesDir() + File.separator + "user"));
-                    fireBase.child("comp_time").setValue(String.valueOf(System.currentTimeMillis()));
-                    inv.setText("ממתין לאישור");
-                    try {
-                        Thread.sleep(500);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-
-                    CompWait dialogBack = new CompWait();
-                    FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-                    ft.add(dialogBack, "snooze_dialog");
-                    ft.commitAllowingStateLoss();
-                }
-                else if (mainScreen.Geld>=4){
-                    Toast.makeText(FriendProfile.this, "למשתמש/ת שהוזמן לתחרות אין מספיק מטבעות קודלי בשביל להשתתף בה",
-                            Toast.LENGTH_LONG).show();
-                }
-                else if (Integer.parseInt(oGeld)>=4){
-                    Toast.makeText(FriendProfile.this, "אין לך מספיק מטבעות קודלי בשביל להתחיל תחרות",
-                            Toast.LENGTH_LONG).show();
-                }
-                else {
-                    Toast.makeText(FriendProfile.this, "לך ולמשתמש/ת השני שהוזמן לתחרות אין מספיק מטבעות קודלי בשביל להשתתף בה",
-                            Toast.LENGTH_LONG).show();
-                }
             }
         });
         l.setOnItemClickListener(new AdapterView.OnItemClickListener()
