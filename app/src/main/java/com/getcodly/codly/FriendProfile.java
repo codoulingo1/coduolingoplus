@@ -312,13 +312,13 @@ public class FriendProfile extends AppCompatActivity {
     }
 
     void courseProgress(int xp, int pyXp){
-        courseProgressbarWeb.setProgress(courseProgressWeb * 100 / 10);
+        courseProgressbarWeb.setProgress(courseProgressWeb * 100 / 16);
         courseXp1.setText(String.valueOf(xp) + " XP");
-        percentageProgress1.setText(String.valueOf(courseProgressWeb * 100 / 8) + "%");
+        percentageProgress1.setText(String.valueOf(courseProgressWeb * 100 / 16) + "%");
 
-        courseProgressbarPy.setProgress(courseProgressPython * 100 / 17);
+        courseProgressbarPy.setProgress(courseProgressPython * 100 / 27);
         courseXp2.setText(String.valueOf(pyXp) + " XP");
-        percentageProgress2.setText(String.valueOf(courseProgressPython * 100 / 10) + "%");
+        percentageProgress2.setText(String.valueOf(courseProgressPython * 100 / 27) + "%");
 
     }
     void setCourseProgressWeb(String progress){

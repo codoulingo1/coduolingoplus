@@ -413,7 +413,7 @@
                     android:layout_marginRight="10dp"
                     android:layout_toLeftOf="@id/skill6picture"
                     android:fontFamily="@font/rubik_light"
-                    android:text="חריגים"
+                    android:text="פונקציות וחריגים"
                     android:textColor="#555555"
                     android:textSize="20dp" />
 

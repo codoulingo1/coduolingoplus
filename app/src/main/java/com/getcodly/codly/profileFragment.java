@@ -297,13 +297,13 @@ public class profileFragment extends Fragment {
     }
 
     void courseProgress(){
-        courseProgressbarWeb.setProgress(mainScreen.courseProgressWeb * 100 / 10);
+        courseProgressbarWeb.setProgress(mainScreen.courseProgressWeb * 100 / 16);
         courseXp1.setText(String.valueOf(mainScreen.htmlXp) + " XP");
-        percentageProgress1.setText(String.valueOf(mainScreen.courseProgressWeb * 100 / 8) + "%");
+        percentageProgress1.setText(String.valueOf(mainScreen.courseProgressWeb * 100 / 16) + "%");
 
-        courseProgressbarPy.setProgress(mainScreen.courseProgressPython * 100 / 17);
+        courseProgressbarPy.setProgress(mainScreen.courseProgressPython * 100 / 27);
         courseXp2.setText(String.valueOf(mainScreen.pyXp) + " XP");
-        percentageProgress2.setText(String.valueOf(mainScreen.courseProgressPython * 100 / 10) + "%");
+        percentageProgress2.setText(String.valueOf(mainScreen.courseProgressPython * 100 / 27) + "%");
 
     }
 }

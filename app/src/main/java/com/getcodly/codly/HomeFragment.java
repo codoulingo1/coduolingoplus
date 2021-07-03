@@ -93,8 +93,17 @@ public class HomeFragment extends Fragment {
                 progress = value.get("cProgress");
                 setCourseProgressWeb();
                 setProgressPython();
+                if (ifLfinished(Arrays.asList("1-7-3"))){
+                    t1.setText("אובייקטים ומחלקות");
+                }
+                if (ifLfinished(Arrays.asList("1-7-1"))){
+                    t1.setText("פונקציות");
+                }
                 if (ifLfinished(Arrays.asList("1-4-2"))){
-                    t1.setText("שגיאות");
+                    t1.setText("פונקציות וחריגים");
+                }
+                else if (ifLfinished(Arrays.asList("1-5-3"))){
+                    t1.setText("מילונים");
                 }
                 else if (ifLfinished(Arrays.asList("1-3-2"))){
                     t1.setText("לולאות");
@@ -150,9 +159,9 @@ public class HomeFragment extends Fragment {
             }
         }
 
-        courseProgressWebHome.setProgress(courseProgressWeb1 * 100 / 11);
+        courseProgressWebHome.setProgress(courseProgressWeb1 * 100 / 16);
 
-        int courseProgressWeb1Finale = courseProgressWeb1 * 100 / 11;
+        int courseProgressWeb1Finale = courseProgressWeb1 * 100 / 16;
 
         if(courseProgressWeb1Finale == 0){
             courseProgressPercentageWebHome.setTextColor(Color.parseColor("#F5F5F5"));
@@ -168,9 +177,9 @@ public class HomeFragment extends Fragment {
             }
         }
 
-        courseProgressPyHome.setProgress(courseProgressPy1 * 100 / 18);
+        courseProgressPyHome.setProgress(courseProgressPy1 * 100 / 27);
 
-        int courseProgressPy1Finale = courseProgressPy1 * 100 / 18;
+        int courseProgressPy1Finale = courseProgressPy1 * 100 / 27;
 
         if(courseProgressPy1Finale == 0){
             courseProgressPercentagePyHome.setTextColor(Color.parseColor("#F5F5F5"));
