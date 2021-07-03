@@ -154,7 +154,7 @@
                     android:layout_marginRight="10dp"
                     android:layout_toLeftOf="@id/skill8picture"
                     android:fontFamily="@font/rubik_light"
-                    android:text="משתנים - פרויקט"
+                    android:text="מחשבון בסיסי"
                     android:textColor="#555555"
                     android:textSize="20dp" />
 
@@ -257,7 +257,7 @@
                     android:layout_marginRight="10dp"
                     android:layout_toLeftOf="@id/skill9picture"
                     android:fontFamily="@font/rubik_light"
-                    android:text="תנאים - פרויקט"
+                    android:text="מחשבון מתקדם"
                     android:textColor="#555555"
                     android:textSize="20dp" />
 

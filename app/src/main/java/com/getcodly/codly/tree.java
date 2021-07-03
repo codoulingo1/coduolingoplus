@@ -161,6 +161,10 @@ public class tree extends AppCompatActivity {
         f4.setText(s(Arrays.asList("1-5-1", "1-4-2", "1-5-2", "1-5-3")));
         f5.setText(s(Arrays.asList("1-4-3", "1-5-4")));
         f6.setText(s(Arrays.asList("1-7-1", "1-4-1")));
+        f7.setText(s(Arrays.asList("1-7-2", "1-7-3")));
+        f8.setText(s(Arrays.asList("1-9-1", "1-9-2")));
+        f9.setText(s(Arrays.asList("1-9-3", "1-9-4")));
+        f10.setText(s(Arrays.asList("1-8-1", "1-8-2")));
         if (ifLfinished(Arrays.asList("1-1-1", "1-1-2"))){
             LessonStart1.setBackgroundResource(R.drawable.skill2);
         }
