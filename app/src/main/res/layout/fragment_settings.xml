@@ -37,7 +37,7 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_alignParentRight="true"
-    android:text="שם משתמש"
+    android:text="שינוי שם משתמש"
     android:layout_below="@id/changeImageBtn"
     android:layout_marginTop="15dp"
     android:fontFamily="@font/rubik_medium"
@@ -65,45 +65,54 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
-        android:text="שינוי סיסמה (עדיין בפיתוח - לא עובד)"
+        android:text="הגדרות"
         android:layout_below="@id/yourNameEdit"
         android:layout_marginTop="15dp"
-        android:textColor="#5B9A9C"
         android:fontFamily="@font/rubik_medium"
         android:textSize="18sp"
-        android:id="@+id/yourPassword"/>
-    <EditText
-        android:layout_width="320dp"
-        android:layout_height="55dp"
-        app:backgroundTint="#e5e5e5"
-        android:layout_below="@id/yourPassword"
-        android:layout_marginTop="10dp"
-        android:layout_alignParentLeft="true"
-        android:gravity="right"
-        android:hint="סיסמה חדשה"
+        android:id="@+id/sub"
+        android:textColor="#5B9A9C"/>
+
+
+    <RelativeLayout
+        android:layout_width="260dp"
+        android:layout_height="28dp"
+        android:layout_below="@id/sub"
         android:layout_alignParentRight="true"
-        android:inputType="textPassword"
-        android:textSize="22sp"
-        android:textColorHint="#42445F"
-        android:textColor="#42445F"
-        android:fontFamily="@font/rubik_light"
-        android:id="@+id/yourPasswordEdit" />
-    <EditText
-        android:layout_width="320dp"
-        android:layout_height="55dp"
-        app:backgroundTint="#e5e5e5"
-        android:layout_below="@id/yourPasswordEdit"
-        android:layout_marginTop="10dp"
-        android:layout_alignParentLeft="true"
-        android:gravity="right"
-        android:hint="חזור על הסיסמה"
+        android:layout_marginTop="15dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:id="@+id/toPlus">
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:src="@drawable/ic_noun_star_4030483"
+            android:id="@+id/star"
+            android:layout_alignParentRight="true"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="הרשמה לקודלי פלוס"
+            android:layout_centerVertical="true"
+            android:textColor="#FCBA60"
+            android:fontFamily="@font/rubik_medium"
+            android:textSize="20dp"
+            android:layout_toLeftOf="@id/star"
+            android:layout_marginRight="8dp"/>
+    </RelativeLayout>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
-        android:inputType="textPassword"
-        android:textSize="22sp"
-        android:textColorHint="#42445F"
-        android:textColor="#42445F"
+        android:text="התראת תזכורת יומית"
+        android:layout_below="@id/toPlus"
+        android:layout_marginTop="15dp"
         android:fontFamily="@font/rubik_light"
-        android:id="@+id/yourPasswordEdit2" />
+        android:textSize="21dp"
+        android:id="@+id/dailyReminder"
+        android:textColor="#42445F" />
 
 
     <!--<ImageButton
@@ -145,7 +154,14 @@
         android:id="@+id/sign_outBtnProfile"
         android:clickable="true"/>
 
-
+    <androidx.appcompat.widget.SwitchCompat
+        android:id="@+id/switch1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toLeftOf="@id/dailyReminder"
+        android:layout_below="@id/toPlus"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="13dp"/>
 
 
 </RelativeLayout>

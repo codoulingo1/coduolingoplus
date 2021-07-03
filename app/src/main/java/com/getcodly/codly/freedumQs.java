@@ -54,13 +54,13 @@ public class freedumQs extends AppCompatActivity {
     ImageButton continueBtn4;
     ImageButton continueBtn6;
 
+    Boolean isOpt1Pressed;
+    Boolean isOpt2Pressed;
+    Boolean isOpt3Pressed;
+    Boolean isOpt4Pressed;
 
-    Boolean isOpt1Pressed = false;
-    Boolean isOpt2Pressed = false;
-    Boolean isOpt3Pressed = false;
-    Boolean isOpt4Pressed = false;
+    String selectedOpt;
 
-    String selectedOpt = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,6 +81,14 @@ public class freedumQs extends AppCompatActivity {
         continueBtn6 = (ImageButton) findViewById(R.id.continueBtn6);
         pb = (ProgressBar) findViewById(R.id.progressBar);
 
+        isOpt1Pressed = false;
+        isOpt2Pressed = false;
+        isOpt3Pressed = false;
+        isOpt4Pressed = false;
+
+        selectedOpt = null;
+
+
         //l = (TextView) findViewById(R.id.l2);
         //buttonl = (Button) findViewById(R.id.buttonl);
         continueBtn.setOnClickListener(new View.OnClickListener() {
@@ -96,6 +104,7 @@ public class freedumQs extends AppCompatActivity {
                 }
             }
         });
+
         freedumQss();
     }
 
@@ -124,6 +133,7 @@ public class freedumQs extends AppCompatActivity {
         final String freedum_id = LessonActivity.shared_id;
         final String freedum_name = LessonActivity.shared_name;
         opt1.setText(optAns[0]);
+
         opt2.setText(optAns[1]);
         try {
             opt3.setText(optAns[2]);
@@ -138,13 +148,19 @@ public class freedumQs extends AppCompatActivity {
         opt1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (isOpt1Pressed = false){
-                    opt1.setBackgroundColor(Color.parseColor("#CCCCD8"));
+                if (!isOpt1Pressed){
+                    opt1.setBackgroundResource(R.drawable.freedum_button_pressed);
+                    opt2.setBackgroundResource(R.drawable.freedum_button);
+                    opt3.setBackgroundResource(R.drawable.freedum_button);
+                    opt4.setBackgroundResource(R.drawable.freedum_button);
                     continueBtn.setVisibility(View.VISIBLE);
                     selectedOpt = opt1.getText().toString();
                     isOpt1Pressed = true;
+                    isOpt3Pressed = false;
+                    isOpt2Pressed = false;
+                    isOpt4Pressed = false;
                 } else {
-                    opt1.setBackgroundColor(Color.parseColor("#EBEBEB"));
+                    opt1.setBackgroundResource(R.drawable.freedum_button);
                     continueBtn.setVisibility(View.VISIBLE);
                     selectedOpt = opt1.getText().toString();
                     isOpt1Pressed = false;
@@ -155,13 +171,19 @@ public class freedumQs extends AppCompatActivity {
         opt2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (isOpt2Pressed = false){
-                    opt2.setBackgroundColor(Color.parseColor("#CCCCD8"));
+                if (!isOpt2Pressed){
+                    opt2.setBackgroundResource(R.drawable.freedum_button_pressed);
+                    opt1.setBackgroundResource(R.drawable.freedum_button);
+                    opt3.setBackgroundResource(R.drawable.freedum_button);
+                    opt4.setBackgroundResource(R.drawable.freedum_button);
                     continueBtn.setVisibility(View.VISIBLE);
                     selectedOpt = opt2.getText().toString();
                     isOpt2Pressed = true;
+                    isOpt1Pressed = false;
+                    isOpt3Pressed = false;
+                    isOpt4Pressed = false;
                 } else {
-                    opt2.setBackgroundColor(Color.parseColor("#EBEBEB"));
+                    opt2.setBackgroundResource(R.drawable.freedum_button);
                     continueBtn.setVisibility(View.VISIBLE);
                     selectedOpt = opt2.getText().toString();
                     isOpt2Pressed = false;
@@ -171,13 +193,19 @@ public class freedumQs extends AppCompatActivity {
         opt3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (isOpt2Pressed = false){
-                    opt3.setBackgroundColor(Color.parseColor("#CCCCD8"));
+                if (!isOpt2Pressed){
+                    opt3.setBackgroundResource(R.drawable.freedum_button_pressed);
+                    opt1.setBackgroundResource(R.drawable.freedum_button);
+                    opt2.setBackgroundResource(R.drawable.freedum_button);
+                    opt4.setBackgroundResource(R.drawable.freedum_button);
                     continueBtn.setVisibility(View.VISIBLE);
                     selectedOpt = opt3.getText().toString();
                     isOpt3Pressed = true;
+                    isOpt1Pressed = false;
+                    isOpt2Pressed = false;
+                    isOpt4Pressed = false;
                 } else {
-                    opt3.setBackgroundColor(Color.parseColor("#EBEBEB"));
+                    opt3.setBackgroundResource(R.drawable.freedum_button);
                     continueBtn.setVisibility(View.VISIBLE);
                     selectedOpt = opt3.getText().toString();
                     isOpt3Pressed = false;
@@ -187,13 +215,19 @@ public class freedumQs extends AppCompatActivity {
         opt4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (isOpt2Pressed = false){
-                    opt4.setBackgroundColor(Color.parseColor("#CCCCD8"));
+                if (!isOpt2Pressed){
+                    opt4.setBackgroundResource(R.drawable.freedum_button_pressed);
+                    opt1.setBackgroundResource(R.drawable.freedum_button);
+                    opt3.setBackgroundResource(R.drawable.freedum_button);
+                    opt2.setBackgroundResource(R.drawable.freedum_button);
                     continueBtn.setVisibility(View.VISIBLE);
                     selectedOpt = opt4.getText().toString();
                     isOpt4Pressed = true;
+                    isOpt1Pressed = false;
+                    isOpt2Pressed = false;
+                    isOpt3Pressed = false;
                 } else {
-                    opt4.setBackgroundColor(Color.parseColor("#EBEBEB"));
+                    opt4.setBackgroundResource(R.drawable.freedum_button);
                     continueBtn.setVisibility(View.VISIBLE);
                     selectedOpt = opt4.getText().toString();
                     isOpt4Pressed = false;

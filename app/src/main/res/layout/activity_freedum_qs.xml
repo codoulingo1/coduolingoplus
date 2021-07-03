@@ -11,14 +11,14 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:textAllCaps="false"
-        android:layout_alignParentRight="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="125dp"
-        android:layout_marginRight="15dp"
         android:text="ישנם 51 כוכבים בדגל"
         android:textAlignment="textStart"
         android:fontFamily="@font/rubik_light"
-        android:background="#EBEBEB"/>
+        android:background="@drawable/freedum_button"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"/>
 
     <Button
         android:id="@+id/Opt1"
@@ -29,11 +29,11 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="350dp"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="15dp"
         android:textAlignment="textStart"
         android:fontFamily="@font/rubik_light"
-        android:background="#EBEBEB"/>
+        android:background="@drawable/freedum_button"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"/>
 
     <Button
         android:id="@+id/Opt3"
@@ -44,11 +44,11 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="200dp"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="15dp"
         android:textAlignment="textStart"
         android:fontFamily="@font/rubik_light"
-        android:background="#EBEBEB"/>
+        android:background="@drawable/freedum_button"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"/>
 
     <Button
         android:id="@+id/Opt2"
@@ -59,11 +59,11 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="275dp"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="15dp"
         android:textAlignment="textStart"
         android:fontFamily="@font/rubik_light"
-        android:background="#EBEBEB"/>
+        android:background="@drawable/freedum_button"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"/>
 
 
     <ImageButton
@@ -168,7 +168,8 @@
         android:layout_alignParentTop="true"
         android:id="@+id/topBar"
         android:background="@color/white"
-        android:elevation="2dp">
+        android:elevation="2dp"
+        android:layout_margin="-10dp">
 
         <ProgressBar
             android:id="@+id/progressBar"

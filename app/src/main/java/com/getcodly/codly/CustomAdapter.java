@@ -3,6 +3,7 @@ package com.getcodly.codly;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
 import android.media.Image;
 import android.text.Spannable;
 import android.text.SpannableString;
@@ -90,7 +91,7 @@ public class CustomAdapter extends BaseAdapter {
             num.setTextColor(Color.parseColor("#DE302B"));
         }
         else{
-            l.setBackgroundColor(Color.parseColor("#F5F5F5")); //stays the same league
+            //l.setBackgroundColor(Color.parseColor("#F5F5F5")); //stays the same league
         }
         xpp.setTextColor(Color.parseColor("#B4B4B4"));
         xpp.setText(String.valueOf(xp.get(i)) + "XP");

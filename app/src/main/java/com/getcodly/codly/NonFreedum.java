@@ -147,8 +147,8 @@ public class NonFreedum extends AppCompatActivity {
         qs.setText(builder);
         String[] optAns = LessonActivity.shared_hashmap.get("Content").split(",");
         unuateksto = LessonActivity.shared_hashmap.get("additional");
-        final Button dlt = (Button) findViewById(R.id.dlt);
-        final Button dltall = (Button) findViewById(R.id.dltall);
+        final ImageButton dlt = findViewById(R.id.dlt);
+        final ImageButton dltall = findViewById(R.id.dltall);
         Button[] ops = {opt1, opt2, opt3, opt4, opt5, opt6};
         unuateksto = unuateksto.replaceAll("_", "%1$s");
         unuateksto = Text.replace(unuateksto, '%', '£', 0);

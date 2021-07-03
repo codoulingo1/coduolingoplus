@@ -15,15 +15,18 @@
         android:fontFamily="@font/rubik_light"
         android:singleLine="false"
         android:textColor="#0E0C0C"
-        android:textDirection="anyRtl"
-        android:textSize="24sp" />
+        android:gravity="right"
+        android:layout_margin="10dp"
+        android:layout_alignParentRight="true"
+        android:textSize="26dp"
+        android:text="שלום"/>
 
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="match_parent"
         android:layout_height="368dp"
         android:layout_below="@id/Explanation"
-        android:layout_marginTop="-105dp"
+        android:layout_marginTop="5dp"
         android:adjustViewBounds="true"
         android:scaleType="fitCenter" />
 
@@ -48,7 +51,8 @@
         android:layout_alignParentTop="true"
         android:background="@color/white"
         android:elevation="2dp"
-        android:id="@+id/topBar">
+        android:id="@+id/topBar"
+        >
 
         <ProgressBar
             android:id="@+id/progressBar"

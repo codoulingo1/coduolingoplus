@@ -10,6 +10,7 @@ import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.SwitchCompat;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
@@ -25,6 +26,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -73,6 +75,9 @@ public class SettingsFragment extends Fragment {
     changeImageDialog changeImageDialoge = new changeImageDialog();
     public static int isBacking = 0;
 
+    private SwitchCompat switchCompat;
+    private RelativeLayout toPlus;
+
 
 
     @Override
@@ -83,6 +88,8 @@ public class SettingsFragment extends Fragment {
         submitBtn = (Button) v.findViewById(R.id.saveBtnProfile);
         signOutBtn = (TextView) v.findViewById(R.id.sign_outBtnProfile);
         mButtonChooseImage = (TextView) v.findViewById(R.id.changeImageBtn);
+        switchCompat = v.findViewById(R.id.switch1);
+        toPlus = v.findViewById(R.id.toPlus);
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
                 .requestEmail()
@@ -98,6 +105,24 @@ public class SettingsFragment extends Fragment {
             public void onClick(View v) {
                 //checkFilePermissions();
                 changeImageDialoge.show(getParentFragmentManager(), "hi");
+            }
+        });
+
+        toPlus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(), codlyPlusActivity.class));
+            }
+        });
+
+        switchCompat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(switchCompat.isChecked()){
+
+                } else{
+
+                }
             }
         });
 
