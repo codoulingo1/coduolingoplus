@@ -137,7 +137,7 @@
                     android:layout_width="80dp"
                     android:layout_height="match_parent"
                     android:layout_alignParentRight="true"
-                    android:background="@drawable/skill_blue">
+                    android:background="@drawable/skill_purple">
 
                     <ImageView
                         android:layout_width="50dp"
@@ -240,7 +240,7 @@
                     android:layout_width="80dp"
                     android:layout_height="match_parent"
                     android:layout_alignParentRight="true"
-                    android:background="@drawable/skill_blue">
+                    android:background="@drawable/skill_purple">
 
                     <ImageView
                         android:layout_width="50dp"
