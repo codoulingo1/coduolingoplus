@@ -344,7 +344,7 @@ public class DownloadReadlessons {
                         ret.put("email", "0");
                         ret.put("streak freeze", "0");
                         ret.put("imgC", dataSnapshot.child("imgC").getValue().toString());
-                        ret.put("ligaType", "0");
+                        ret.put("ligaType", "-1");
                         ret.put("7streak", "0");
                         ret.put("friends", "0");
                         Log.d("error", e.getLocalizedMessage());
@@ -363,7 +363,7 @@ public class DownloadReadlessons {
                             ret.put("email", "0");
                             ret.put("streak freeze", "0");
                             ret.put("imgC", "0");
-                            ret.put("ligaType", "0");
+                            ret.put("ligaType", "-1");
                             ret.put("7streak", "0");
                             ret.put("friends", "0");
                             Log.d("error", e.getLocalizedMessage());
@@ -506,20 +506,22 @@ public class DownloadReadlessons {
         ArrayList xp = new ArrayList();
         ArrayList imgC = new ArrayList();
         ArrayList type = new ArrayList();
+        ArrayList ligaId = new ArrayList();
+        ArrayList ligaC = new ArrayList();
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("Users");
         FirebaseDatabase database2 = FirebaseDatabase.getInstance();
         DatabaseReference myRef2 = database2.getReference("ligot");
         Log.d("hallo", String.valueOf(myRef2.getParent()));
 
-        myRef2.addValueEventListener(new ValueEventListener() {
+        myRef2.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 Log.d("saluton1", "saluton1");
 
                 // This method is called once with the initial value and again
                 // whenever data at this location is uploaded
-                myRef.addValueEventListener(new ValueEventListener() {
+                myRef.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot2) {
                         for (DataSnapshot liga : dataSnapshot.getChildren()){
@@ -543,6 +545,11 @@ public class DownloadReadlessons {
                                 ret.put("names", names);
                                 type.add(liga.getKey().charAt(0));
                                 ret.put("type", type);
+                                ligaId.add(liga.getKey());
+                                ligaC.add(liga.getValue().toString());
+                                ret.put("imgC", imgC);
+                                ret.put("ligaId", ligaId);
+                                ret.put("ligaC", ligaC);
                                 ret.put("imgC", imgC);
                                 ret.put("xp", xp);
                                 m.onCallback(ret);

@@ -121,6 +121,57 @@
 
 
             </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/skill_8"
+                android:layout_width="270dp"
+                android:layout_height="80dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginTop="32dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.954"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/skill_2">
+
+                <RelativeLayout
+                    android:id="@+id/skill8picture"
+                    android:layout_width="80dp"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentRight="true"
+                    android:background="@drawable/skill_blue">
+
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_centerInParent="true"
+                        app:srcCompat="@drawable/l3" />
+
+                </RelativeLayout>
+
+                <TextView
+                    android:id="@+id/skillName8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:layout_toLeftOf="@id/skill8picture"
+                    android:fontFamily="@font/rubik_light"
+                    android:text="משתנים - פרויקט"
+                    android:textColor="#555555"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:id="@+id/f8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/skillName8"
+                    android:layout_marginRight="10dp"
+                    android:layout_toLeftOf="@id/skill8picture"
+                    android:fontFamily="@font/rubik_light"
+                    android:text="3/3"
+                    android:textColor="#CCCCCC"
+                    android:textSize="16dp" />
+
+
+            </RelativeLayout>
 
             <RelativeLayout
                 android:id="@+id/skill_3"
@@ -131,7 +182,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.954"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/skill_2">
+                app:layout_constraintTop_toBottomOf="@+id/skill_8">
 
                 <RelativeLayout
                     android:id="@+id/skill3picture"
@@ -173,6 +224,57 @@
 
 
             </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/skill_9"
+                android:layout_width="270dp"
+                android:layout_height="80dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.954"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/skill_3">
+
+                <RelativeLayout
+                    android:id="@+id/skill9picture"
+                    android:layout_width="80dp"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentRight="true"
+                    android:background="@drawable/skill_blue">
+
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_centerInParent="true"
+                        app:srcCompat="@drawable/l2" />
+
+                </RelativeLayout>
+
+                <TextView
+                    android:id="@+id/skillName9"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:layout_toLeftOf="@id/skill9picture"
+                    android:fontFamily="@font/rubik_light"
+                    android:text="תנאים - פרויקט"
+                    android:textColor="#555555"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:id="@+id/f9"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/skillName9"
+                    android:layout_marginRight="10dp"
+                    android:layout_toLeftOf="@id/skill9picture"
+                    android:fontFamily="@font/rubik_light"
+                    android:text="3/3"
+                    android:textColor="#CCCCCC"
+                    android:textSize="16dp" />
+
+
+            </RelativeLayout>
 
             <RelativeLayout
                 android:id="@+id/skill_4"
@@ -183,7 +285,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.954"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/skill_3">
+                app:layout_constraintTop_toBottomOf="@+id/skill_9">
 
                 <RelativeLayout
                     android:id="@+id/skill4picture"
@@ -322,6 +424,108 @@
                     android:layout_below="@id/skillName6"
                     android:layout_marginRight="10dp"
                     android:layout_toLeftOf="@id/skill6picture"
+                    android:fontFamily="@font/rubik_light"
+                    android:text="3/3"
+                    android:textColor="#CCCCCC"
+                    android:textSize="16dp" />
+
+
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/skill_7"
+                android:layout_width="270dp"
+                android:layout_height="80dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.954"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/skill_6">
+
+                <RelativeLayout
+                    android:id="@+id/skill7picture"
+                    android:layout_width="80dp"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentRight="true"
+                    android:background="@drawable/skill_blue">
+
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_centerInParent="true"
+                        app:srcCompat="@drawable/l4" />
+
+                </RelativeLayout>
+
+                <TextView
+                    android:id="@+id/skillName7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:layout_toLeftOf="@id/skill7picture"
+                    android:fontFamily="@font/rubik_light"
+                    android:text="פונקציות"
+                    android:textColor="#555555"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:id="@+id/f7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/skillName7"
+                    android:layout_marginRight="10dp"
+                    android:layout_toLeftOf="@id/skill7picture"
+                    android:fontFamily="@font/rubik_light"
+                    android:text="3/3"
+                    android:textColor="#CCCCCC"
+                    android:textSize="16dp" />
+
+
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/skill_10"
+                android:layout_width="270dp"
+                android:layout_height="80dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.954"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/skill_7">
+
+                <RelativeLayout
+                    android:id="@+id/skill10picture"
+                    android:layout_width="80dp"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentRight="true"
+                    android:background="@drawable/skill_blue">
+
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_centerInParent="true"
+                        app:srcCompat="@drawable/l4" />
+
+                </RelativeLayout>
+
+                <TextView
+                    android:id="@+id/skillName10"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:layout_toLeftOf="@id/skill10picture"
+                    android:fontFamily="@font/rubik_light"
+                    android:text="אובייקטים ומחלקות"
+                    android:textColor="#555555"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:id="@+id/f10"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/skillName10"
+                    android:layout_marginRight="10dp"
+                    android:layout_toLeftOf="@id/skill10picture"
                     android:fontFamily="@font/rubik_light"
                     android:text="3/3"
                     android:textColor="#CCCCCC"

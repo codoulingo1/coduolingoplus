@@ -31,12 +31,14 @@ public class CustomAdapter extends BaseAdapter {
     ArrayList<Integer> xp;
     ArrayList<Integer> imgC;
     String n;
+    String type;
     LayoutInflater inflter;
 
-    public CustomAdapter(Context applicationContext, ArrayList<String> names, ArrayList<Integer> xp, String n, ArrayList<Integer> imgC) {
+    public CustomAdapter(Context applicationContext, ArrayList<String> names, ArrayList<Integer> xp, String n, ArrayList<Integer> imgC, String type) {
         this.context = context;
         this.names = names;
         this.xp = xp;
+        this.type = type;
         this.imgC = imgC;
         this.n = n;
         inflter = (LayoutInflater.from(applicationContext));
@@ -79,11 +81,11 @@ public class CustomAdapter extends BaseAdapter {
         }
         Log.d("num", String.valueOf(i));
         num.setText(String.valueOf(i + 1));
-        if (i <= 9){
+        if (i <= 9 && !type.contains("5")){
             //l.setBackgroundColor(Color.parseColor("#98FB98")); //goes up a league
             num.setTextColor(Color.parseColor("#5DAF71"));
         }
-        else if (i >= 20){
+        else if (i >= 20 && !type.contains("1")){
             //l.setBackgroundColor(Color.parseColor("#ffc6c4")); //goes down a league
             num.setTextColor(Color.parseColor("#DE302B"));
         }

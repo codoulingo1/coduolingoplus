@@ -35,18 +35,30 @@ public class tree extends AppCompatActivity {
     RelativeLayout skill4;
     RelativeLayout skill5;
     RelativeLayout skill6;
+    RelativeLayout skill7;
+    RelativeLayout skill8;
+    RelativeLayout skill9;
+    RelativeLayout skill10;
     TextView f1;
     TextView f2;
     TextView f3;
     TextView f4;
     TextView f5;
     TextView f6;
+    TextView f7;
+    TextView f8;
+    TextView f9;
+    TextView f10;
     RelativeLayout LessonStart1;
     RelativeLayout LessonStart2;
     RelativeLayout LessonStart3;
     RelativeLayout LessonStart4;
     RelativeLayout LessonStart5;
     RelativeLayout LessonStart6;
+    RelativeLayout LessonStart7;
+    RelativeLayout LessonStart8;
+    RelativeLayout LessonStart9;
+    RelativeLayout LessonStart10;
 
     RelativeLayout switchToHTML;
 
@@ -77,18 +89,30 @@ public class tree extends AppCompatActivity {
         skill4 = (RelativeLayout) findViewById(R.id.skill_4);
         skill5 = (RelativeLayout) findViewById(R.id.skill_5);
         skill6 = (RelativeLayout) findViewById(R.id.skill_6);
+        skill7 = (RelativeLayout) findViewById(R.id.skill_7);
+        skill8 = (RelativeLayout) findViewById(R.id.skill_8);
+        skill9 = (RelativeLayout) findViewById(R.id.skill_9);
+        skill10 = (RelativeLayout) findViewById(R.id.skill_10);
         f1 = (TextView) findViewById(R.id.f1);
         f2 = (TextView) findViewById(R.id.f2);
         f3 = (TextView) findViewById(R.id.f3);
         f4 = (TextView) findViewById(R.id.f4);
         f5 = (TextView) findViewById(R.id.f5);
         f6 = (TextView) findViewById(R.id.f6);
+        f7 = (TextView) findViewById(R.id.f7);
+        f8 = (TextView) findViewById(R.id.f8);
+        f9 = (TextView) findViewById(R.id.f9);
+        f10 = (TextView) findViewById(R.id.f10);
         LessonStart1 = findViewById(R.id.skill1picture);
         LessonStart2 = findViewById(R.id.skill2picture);
         LessonStart3 = findViewById(R.id.skill3picture);
         LessonStart4 = findViewById(R.id.skill4picture);
         LessonStart5 = findViewById(R.id.skill5picture);
         LessonStart6 = findViewById(R.id.skill6picture);
+        LessonStart7 = findViewById(R.id.skill7picture);
+        LessonStart8 = findViewById(R.id.skill8picture);
+        LessonStart9 = findViewById(R.id.skill9picture);
+        LessonStart10 = findViewById(R.id.skill10picture);
 
         topSheet = findViewById(R.id.topSheet);
         switchCourseBtn = findViewById(R.id.button8);
@@ -167,11 +191,23 @@ public class tree extends AppCompatActivity {
         if (ifHfinished(Arrays.asList("1-4-3", "1-5-4"), Arrays.asList("1-5-3"))){
             LessonStart5.setBackgroundResource(R.drawable.skill);
         }
-        if (ifLfinished(Arrays.asList("1-4-1"))){
+        if (ifLfinished(Arrays.asList("1-7-1"))){
             LessonStart6.setBackgroundResource(R.drawable.skill2);
         }
         if (ifHfinished(Arrays.asList("1-7-1", "1-4-1"), Arrays.asList("1-5-4"))){
             LessonStart6.setBackgroundResource(R.drawable.skill);
+        }
+        if (ifLfinished(Arrays.asList("1-7-3"))){
+            LessonStart7.setBackgroundResource(R.drawable.skill2);
+        }
+        if (ifHfinished(Arrays.asList("1-7-2", "1-7-3"), Arrays.asList("1-7-1"))){
+            LessonStart7.setBackgroundResource(R.drawable.skill);
+        }
+        if (ifLfinished(Arrays.asList("1-8-2"))){
+            LessonStart10.setBackgroundResource(R.drawable.skill2);
+        }
+        if (ifHfinished(Arrays.asList("1-8-1", "1-8-2"), Arrays.asList("1-7-3"))){
+            LessonStart10.setBackgroundResource(R.drawable.skill);
         }
         switchToHTML.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -217,8 +253,36 @@ public class tree extends AppCompatActivity {
         skill6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mainScreen.inLessonName = "חריגים";
+                mainScreen.inLessonName = "פונקציות וחריגים";
                 startLesson(Arrays.asList("1-4-1~שגיאות וחריגים", "1-7-1~פונקציות"), Arrays.asList("1-5-4"));
+            } //savta
+        });
+        skill7.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mainScreen.inLessonName = "פונקציות מתקדמות";
+                startLesson(Arrays.asList("1-7-3~הפקודה return", "1-7-2~פונקציות עם פרמטרים"), Arrays.asList("1-7-1"));
+            } //savta
+        });
+        skill8.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mainScreen.inLessonName = "בניית מחשבון בסיסי";
+                startLesson(Arrays.asList("1-9-2~מחשבון בסיסי 2", "1-9-1~מחשבון בסיסי 1"), Arrays.asList("1-2-3"));
+            } //savta
+        });
+        skill9.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mainScreen.inLessonName = "בניית מחשבון";
+                startLesson(Arrays.asList("1-9-4~מחשבון 2", "1-9-3~מחשבון 1"), Arrays.asList("1-3-2"));
+            } //savta
+        });
+        skill10.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mainScreen.inLessonName = "מחלקות ואובייקטים";
+                startLesson(Arrays.asList("1-8-2~מחלקות", "1-8-1~אובייקטים ומחלקות"), Arrays.asList("1-7-3"));
             } //savta
         });
 

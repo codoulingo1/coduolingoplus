@@ -124,7 +124,7 @@ public class ligaFragment extends Fragment {
                     ii++;
                 }
                 try {
-                    CustomAdapter customAdapter = new CustomAdapter(requireActivity().getApplicationContext(), name, xpp, mainScreen.name, imgC);
+                    CustomAdapter customAdapter = new CustomAdapter(requireActivity().getApplicationContext(), name, xpp, mainScreen.name, imgC, type);
                     simpleList.setAdapter(customAdapter);
                 } catch (Exception e){
 

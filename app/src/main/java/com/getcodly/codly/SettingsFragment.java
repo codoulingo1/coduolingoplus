@@ -40,7 +40,9 @@ import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Objects;
 
 
 /**
@@ -130,16 +132,28 @@ public class SettingsFragment extends Fragment {
                     submitBtn.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            FirebaseDatabase database = FirebaseDatabase.getInstance();
-                            DatabaseReference myRef = database.getReference("Users");
-                            DatabaseReference fireBase = myRef.child(ReadWrite.read(getActivity().getFilesDir()+File.separator + "user"));
+                            DownloadReadlessons.get_liga(mainScreen.uId, new DownloadReadlessons.HashCallback3() {
+                                @Override
+                                public void onCallback(HashMap<String, ArrayList> value) {
+                                    FirebaseDatabase database = FirebaseDatabase.getInstance();
+                                    DatabaseReference myRef = database.getReference("Users");
+                                    DatabaseReference myRef2 = database.getReference("ligot");
+                                    try {
+                                        DatabaseReference fireBase = myRef.child(ReadWrite.read(requireActivity().getFilesDir()+File.separator + "user"));
+                                        fireBase.child("name").setValue(yourNameEditText.getText().toString());
+                                    } catch (Exception e){
 
-                            fireBase.child("name").setValue(yourNameEditText.getText().toString());
-                            mainScreen.name = yourNameEditText.getText().toString();
-                            Toast.makeText(getContext(), "השם השתנה בהצלחה", Toast.LENGTH_SHORT).show();
-                            loadProfileSettings();
-                            isChanged = false;
-                            submitBtn.setVisibility(View.INVISIBLE);
+                                    }
+                                    DatabaseReference fireBase2 = myRef2.child(value.get("ligaId").get(0).toString());
+                                    fireBase2.setValue(value.get("ligaC").get(0).toString().replaceAll(mainScreen.name, yourNameEditText.getText().toString()));
+                                    Log.d("hi", yourNameEditText.getText().toString());
+                                    mainScreen.name = yourNameEditText.getText().toString();
+                                    Toast.makeText(getContext(), "השם השתנה בהצלחה", Toast.LENGTH_SHORT).show();
+                                    loadProfileSettings();
+                                    isChanged = false;
+                                    submitBtn.setVisibility(View.INVISIBLE);
+                                }
+                            });
                         }
                     });
                 }

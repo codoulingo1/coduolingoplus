@@ -138,7 +138,7 @@ public class LigaActivity extends AppCompatActivity {
                     }
                     ii++;
                 }
-                CustomAdapter customAdapter = new CustomAdapter(getApplicationContext(), name, xpp, mainScreen.name, imgC);
+                CustomAdapter customAdapter = new CustomAdapter(getApplicationContext(), name, xpp, mainScreen.name, imgC, "");
 
                 simpleList.setAdapter(customAdapter);
                 Log.d("salvete", String.valueOf(name));
