@@ -346,7 +346,7 @@ public class NonFreedum extends AppCompatActivity {
             List<Integer> first_del = Text.betweenIndex(text, '£', 's');
             SpannableStringBuilder builder = new SpannableStringBuilder();
             SpannableString txtSpannable = new SpannableString(String.valueOf(ch_new_text));
-            txtSpannable.setSpan(new ForegroundColorSpan(Color.rgb(0, 0, 120)), first_del.get(0), first_del.get(0) + add.length(), 0);
+            txtSpannable.setSpan(new ForegroundColorSpan(Color.rgb(232, 209, 95)), first_del.get(0), first_del.get(0) + add.length(), 0);
             builder.append(txtSpannable);
             CodeFramentQS1.setTextB(txtSpannable);//add the input
             end_W.add(first_del.get(0) + add.length() + b);
