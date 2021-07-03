@@ -8,7 +8,6 @@
     android:background="#F3F4F9">
 
 
-
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
@@ -38,6 +37,9 @@
                 android:layout_width="120dp"
                 android:layout_height="50dp"
                 android:text="b1"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:background="@drawable/nonfreedum_button"
                 android:textAllCaps="false"
                 android:textSize="16dp" />
 
@@ -45,6 +47,9 @@
                 android:id="@+id/button2"
                 android:layout_width="120dp"
                 android:layout_height="50dp"
+                android:background="@drawable/nonfreedum_button"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
                 android:text="b2"
                 android:textAllCaps="false"
                 android:textSize="16dp" />
@@ -54,6 +59,9 @@
                 android:layout_width="120dp"
                 android:layout_height="50dp"
                 android:text="b3"
+                android:background="@drawable/nonfreedum_button"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
                 android:textAllCaps="false"
                 android:textSize="16dp" />
 
@@ -62,6 +70,9 @@
                 android:layout_width="120dp"
                 android:layout_height="50dp"
                 android:text="b4"
+                android:background="@drawable/nonfreedum_button"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
                 android:textAllCaps="false"
                 android:textSize="16dp" />
 
@@ -70,6 +81,9 @@
                 android:layout_width="120dp"
                 android:layout_height="50dp"
                 android:text="b5"
+                android:background="@drawable/nonfreedum_button"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
                 android:textAllCaps="false"
                 android:textSize="16dp" />
 
@@ -77,7 +91,10 @@
                 android:id="@+id/button6"
                 android:layout_width="120dp"
                 android:layout_height="50dp"
-                android:text="b6 "
+                android:text="b6"
+                android:background="@drawable/nonfreedum_button"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
                 android:textAllCaps="false"
                 android:textSize="16dp"
                 app:layout_constraintHorizontal_bias="1.0"
@@ -89,41 +106,47 @@
         android:id="@+id/textView3"
         android:layout_width="match_parent"
         android:layout_height="313dp"
-        android:textColor="#FFFFFF"
-        android:fontFamily="@font/veramono"
-        android:textSize="16dp"
-        android:background="@color/codeBackground"
         android:layout_below="@+id/textView2"
-        android:layout_marginTop="5dp"/>
+        android:layout_marginTop="5dp"
+        android:background="@color/codeBackground"
+        android:fontFamily="@font/veramono"
+        android:textColor="#FFFFFF"
+        android:textSize="16dp"
+        android:visibility="gone"/>
 
-    <Button
+    <ImageButton
         android:id="@+id/dlt"
-        android:layout_width="76dp"
-        android:layout_height="42dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:layout_above="@id/horizontalScrollView"
         android:layout_marginStart="148dp"
         android:layout_marginEnd="5dp"
         android:layout_marginBottom="10dp"
         android:layout_toStartOf="@+id/dltall"
-        android:layout_toEndOf="@+id/check"
-        android:text="מחק" />
+        android:background="@drawable/ic_delete2"/>
 
-    <Button
+    <ImageButton
         android:id="@+id/dltall"
-        android:layout_width="104dp"
-        android:layout_height="43dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:background="@drawable/ic_delete"
         android:layout_above="@id/horizontalScrollView"
         android:layout_alignParentRight="true"
         android:layout_marginRight="10dp"
         android:layout_marginBottom="10dp"
-        android:text="מחק הכל" />
+        android:maxWidth="60dp"
+        android:maxHeight="60dp"/>
 
-    <TextView
+
+
+    <WebView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/textView3"
         android:layout_above="@id/check"
-        android:id="@+id/htmlView3"/>
+        android:layout_marginBottom="5dp"
+        android:id="@+id/htmlView3"
+        android:visibility="gone"/>
 
     <ImageButton
         android:id="@+id/check"
@@ -140,50 +163,7 @@
         android:scaleType="fitCenter"
         android:src="@drawable/next3" />
 
-    <RelativeLayout
-        android:id="@+id/popupFalse"
-        android:layout_width="match_parent"
-        android:layout_height="140dp"
-        android:layout_alignParentBottom="true"
-        android:background="#ffc1c2"
-        android:elevation="3dp"
-        android:visibility="gone">
 
-        <Button
-            android:id="@+id/showAns"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:text="הצג תשובה"
-            android:visibility="visible" />
-
-        <ImageButton
-            android:id="@+id/continueBtnFalse"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="35dp"
-            android:adjustViewBounds="true"
-            android:background="#ffc1c2"
-            android:maxHeight="75dp"
-            android:maxWidth="75dp"
-            android:scaleType="fitCenter"
-            app:srcCompat="@drawable/next2" />
-
-        <TextView
-            android:id="@+id/textView6"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="20dp"
-            android:fontFamily="@fonts/rubik_bold"
-            android:text="נסה שוב"
-            android:textColor="#de302b"
-            android:textSize="46sp"
-            android:visibility="gone" />
-    </RelativeLayout>
     <RelativeLayout
         android:id="@+id/PopupTrue"
         android:layout_width="match_parent"
@@ -270,5 +250,76 @@
             android:layout_marginLeft="15dp"/>
 
     </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/popupFalse"
+        android:layout_width="match_parent"
+        android:layout_height="140dp"
+        android:layout_alignParentBottom="true"
+        android:background="#ffc1c2"
+        android:elevation="3dp"
+        android:visibility="gone">
+
+        <Button
+            android:id="@+id/showAns"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:text="הצג תשובה"
+            android:visibility="visible" />
+
+        <ImageButton
+            android:id="@+id/continueBtnFalse"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="35dp"
+            android:adjustViewBounds="true"
+            android:background="#ffc1c2"
+            android:maxHeight="75dp"
+            android:maxWidth="75dp"
+            android:scaleType="fitCenter"
+            app:srcCompat="@drawable/next2" />
+
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="20dp"
+            android:fontFamily="@fonts/rubik_bold"
+            android:text="נסה שוב"
+            android:textColor="#de302b"
+            android:textSize="46sp"
+            android:visibility="gone" />
+    </RelativeLayout>
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/view_pager2"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_below="@id/barlayout"
+        android:layout_marginTop="0dp"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay"
+        android:layout_below="@id/textView2"
+        android:id="@+id/barlayout"
+        android:layout_marginTop="20dp">
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabs2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/codeBackground"
+            app:tabTextAppearance="@style/tab_text">
+        </com.google.android.material.tabs.TabLayout>
+
+    </com.google.android.material.appbar.AppBarLayout>
 
 </RelativeLayout>

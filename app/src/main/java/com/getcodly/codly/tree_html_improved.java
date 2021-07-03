@@ -217,7 +217,7 @@ public class tree_html_improved extends AppCompatActivity {
         if (ifLfinished(Arrays.asList("2-6-1"))){
             LessonStart6.setBackgroundResource(R.drawable.skill2);
         }
-        if (ifHfinished(Arrays.asList("2-6-1"), Arrays.asList("2-4-2"))){
+        if (ifHfinished(Arrays.asList("2-6-1"), Arrays.asList(" 2-5-1"))){
             LessonStart6.setBackgroundResource(R.drawable.skill);
         }
     }
