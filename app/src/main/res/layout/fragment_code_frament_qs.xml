@@ -20,7 +20,7 @@
             android:background="@color/codeBackground"
             android:fontFamily="@font/veramono"
             android:textColor="#FFFFFF"
-            android:textSize="16dp" />
+            android:textSize="14dp" />
     </RelativeLayout>
 
 </RelativeLayout>

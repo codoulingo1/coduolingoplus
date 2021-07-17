@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AboutActivity"
+    android:padding="10dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="אודות"
+        android:textColor="#42445F"
+        android:textSize="38dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:id="@+id/label"
+        android:fontFamily="@font/rubik_bold" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="פותח על ידי נדב ואייל באמצעות Android Studio וAdobe Illustrator, GitHub, Adobe XD"
+        android:layout_below="@+id/label"
+        android:fontFamily="@font/rubik_light"
+        android:textColor="#7F819C"
+        android:textSize="20dp"
+        android:id="@+id/par1"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="10dp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="גיוס כספים ב2020 באמצעות headstart.co.il"
+        android:layout_below="@+id/par1"
+        android:fontFamily="@font/rubik_light"
+        android:textColor="#7F819C"
+        android:textSize="20dp"
+        android:id="@id/par2"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="15dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="הפיתוח של קודלי נתמך על ידי:"
+        android:layout_below="@+id/par2"
+        android:fontFamily="@font/rubik_light"
+        android:textColor="#7F819C"
+        android:id="@+id/par3"
+        android:textSize="20dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="15dp"/>
+
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/reallygood"
+        android:layout_below="@id/par3"
+        android:layout_marginTop="15dp"
+        android:layout_alignParentRight="true"
+        android:clickable="true"
+        android:focusable="true"
+        android:id="@+id/reallyGood"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="תודות"
+        android:layout_above="@id/par5"
+        android:id="@+id/par4"
+        android:textColor="#42445F"
+        android:fontFamily="@font/rubik_medium"
+        android:textSize="20dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="15dp"
+        android:clickable="true"
+        android:focusable="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="מדיניות פרטיות"
+        android:layout_above="@id/par6"
+        android:id="@+id/par5"
+        android:textColor="#42445F"
+        android:fontFamily="@font/rubik_medium"
+        android:textSize="20dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="15dp"
+        android:clickable="true"
+        android:focusable="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Copyright Information"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/par6"
+        android:textColor="#42445F"
+        android:fontFamily="@font/rubik_medium"
+        android:textSize="20dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="15dp"
+        android:clickable="true"
+        android:focusable="true" />
+
+
+</RelativeLayout>

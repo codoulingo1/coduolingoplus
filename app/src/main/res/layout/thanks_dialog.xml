@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="תומכים בheadstart.co.il:"
+        android:layout_alignParentRight="true"
+        android:textColor="#42445F"
+        android:fontFamily="@font/rubik_medium"
+        android:textSize="24dp"
+        android:id="@+id/label"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="גל דרור\nגליה\nיעקב זאוברמן\nאלון בר דוד\nיהודית זאוברמן\nליאורה קמיל\nליאורה יניב\nמשפחת צוער\nקרן ברדוגו\nחני זאוברמן\nיעקב נינודל\nזהב ומשה שלב\nיורם מרון\nזוהר יעקב\nמיכל שור\nReally Good\nרינה באומל"
+        android:layout_alignParentRight="true"
+        android:textColor="#7F819C"
+        android:layout_below="@+id/label"
+        android:fontFamily="@font/rubik_medium"
+        android:textSize="20dp"
+        android:layout_marginTop="10dp"
+        android:id="@+id/list1"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="בקרת איכות:"
+        android:layout_alignParentRight="true"
+        android:textColor="#42445F"
+        android:fontFamily="@font/rubik_medium"
+        android:textSize="24dp"
+        android:id="@+id/label2"
+        android:layout_marginTop="5dp"
+        android:layout_below="@+id/list1"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="dankowiki\ndanasch\nיונתן"
+        android:layout_alignParentRight="true"
+        android:textColor="#7F819C"
+        android:layout_below="@+id/label2"
+        android:fontFamily="@font/rubik_medium"
+        android:textSize="20dp"
+        android:layout_marginTop="10dp"/>
+
+</RelativeLayout>

@@ -29,7 +29,8 @@
             android:cursorVisible="true"
             android:textCursorDrawable="@null"
             android:textDirection="ltr"
-            />
+            android:textSize="16dp"
+            android:layout_above="@id/view2"/>
 
         <!--<com.google.android.material.bottomnavigation.BottomNavigationView
             android:layout_width="match_parent"
@@ -47,7 +48,8 @@
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:background="@color/white"
-            android:layout_alignParentBottom="true"/>
+            android:layout_alignParentBottom="true"
+            android:id="@+id/view2"/>
 
         <ImageButton
             android:id="@+id/submitHTML"

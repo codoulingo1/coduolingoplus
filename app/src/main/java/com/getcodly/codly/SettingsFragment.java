@@ -77,6 +77,7 @@ public class SettingsFragment extends Fragment {
 
     private SwitchCompat switchCompat;
     private RelativeLayout toPlus;
+    private RelativeLayout toAbout;
 
 
 
@@ -90,6 +91,7 @@ public class SettingsFragment extends Fragment {
         mButtonChooseImage = (TextView) v.findViewById(R.id.changeImageBtn);
         switchCompat = v.findViewById(R.id.switch1);
         toPlus = v.findViewById(R.id.toPlus);
+        toAbout = v.findViewById(R.id.toAbout);
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
                 .requestEmail()
@@ -112,6 +114,13 @@ public class SettingsFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(getActivity(), codlyPlusActivity.class));
+            }
+        });
+
+        toAbout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(), AboutActivity.class));
             }
         });
 

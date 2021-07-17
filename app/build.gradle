@@ -10,8 +10,8 @@ android {
         applicationId "com.getcodly.codly"
         minSdkVersion 23
         targetSdkVersion 29
-        versionCode 11
-        versionName "0.88"
+        versionCode 13
+        versionName "0.9"
         sourceSets {
             main {
                 python {

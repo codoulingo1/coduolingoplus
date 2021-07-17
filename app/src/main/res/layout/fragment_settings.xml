@@ -107,12 +107,39 @@
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:text="התראת תזכורת יומית"
-        android:layout_below="@id/toPlus"
+        android:layout_below="@id/toAbout"
         android:layout_marginTop="15dp"
         android:fontFamily="@font/rubik_light"
         android:textSize="21dp"
         android:id="@+id/dailyReminder"
         android:textColor="#42445F" />
+
+    <RelativeLayout
+        android:layout_width="260dp"
+        android:layout_height="28dp"
+        android:layout_below="@id/toPlus"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="15dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:id="@+id/toAbout">
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:src="@drawable/ic_noun_about_3876253"
+            android:id="@+id/about"
+            android:layout_alignParentRight="true"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="אודות האפליקציה"
+            android:layout_centerVertical="true"
+            android:textColor="#42445F"
+            android:fontFamily="@font/rubik_medium"
+            android:textSize="20dp"
+            android:layout_toLeftOf="@id/about"
+            android:layout_marginRight="8dp"/>
+    </RelativeLayout>
 
 
     <!--<ImageButton
@@ -159,7 +186,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toLeftOf="@id/dailyReminder"
-        android:layout_below="@id/toPlus"
+        android:layout_below="@id/toAbout"
         android:layout_marginRight="15dp"
         android:layout_marginTop="13dp"/>
 
