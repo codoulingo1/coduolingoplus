@@ -86,6 +86,10 @@ public class NonFreedum extends AppCompatActivity {
         showAnswer = findViewById(R.id.showAns);
         final TextView wt = (TextView) findViewById(R.id.textView6);
         final Button opt6 = (Button) findViewById(R.id.button6);
+        final Button opt7 = (Button) findViewById(R.id.button7);
+        final Button opt8 = (Button) findViewById(R.id.button8);
+        final Button opt9 = (Button) findViewById(R.id.button9);
+        final Button opt10 = (Button) findViewById(R.id.button10);
         backBtn = (ImageButton) findViewById(R.id.backBtn3);
         check = (ImageButton) findViewById(R.id.check);
         continueBtnFalse = (ImageButton) findViewById(R.id.continueBtnFalse);
@@ -149,7 +153,7 @@ public class NonFreedum extends AppCompatActivity {
         unuateksto = LessonActivity.shared_hashmap.get("additional");
         final ImageButton dlt = findViewById(R.id.dlt);
         final ImageButton dltall = findViewById(R.id.dltall);
-        Button[] ops = {opt1, opt2, opt3, opt4, opt5, opt6};
+        Button[] ops = {opt1, opt2, opt3, opt4, opt5, opt6, opt7, opt8, opt9, opt10};
         unuateksto = unuateksto.replaceAll("_", "%1$s");
         unuateksto = Text.replace(unuateksto, '%', '£', 0);
 
@@ -253,6 +257,38 @@ public class NonFreedum extends AppCompatActivity {
 
             }
         });
+        opt7.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //when play is clicked show stop button and hide play button
+                choice(opt7);
+
+            }
+        });
+        opt8.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //when play is clicked show stop button and hide play button
+                choice(opt8);
+
+            }
+        });
+        opt9.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //when play is clicked show stop button and hide play button
+                choice(opt9);
+
+            }
+        });
+        opt10.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //when play is clicked show stop button and hide play button
+                choice(opt10);
+
+            }
+        });
         dlt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -309,6 +345,10 @@ public class NonFreedum extends AppCompatActivity {
         int opt4txt = opt4.getText().toString().length();
         int opt5txt = opt5.getText().toString().length();
         int opt6txt = opt6.getText().toString().length();
+        int opt7txt = opt7.getText().toString().length();
+        int opt8txt = opt8.getText().toString().length();
+        int opt9txt = opt9.getText().toString().length();
+        int opt10txt = opt10.getText().toString().length();
 
 
         opt1.getLayoutParams().width = opt1txt * 25 + 100;
@@ -317,6 +357,10 @@ public class NonFreedum extends AppCompatActivity {
         opt4.getLayoutParams().width = opt4txt * 25 + 100;
         opt5.getLayoutParams().width = opt5txt * 25 + 100;
         opt6.getLayoutParams().width = opt6txt * 25 + 100;
+        opt7.getLayoutParams().width = opt7txt * 25 + 100;
+        opt8.getLayoutParams().width = opt8txt * 25 + 100;
+        opt9.getLayoutParams().width = opt9txt * 25 + 100;
+        opt10.getLayoutParams().width = opt10txt * 25 + 100;
 
     }
     public void choice(Button opt){
