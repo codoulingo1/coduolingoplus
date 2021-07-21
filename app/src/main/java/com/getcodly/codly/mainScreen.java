@@ -526,12 +526,12 @@ public class mainScreen extends AppCompatActivity {
             startActivity(new Intent(mainScreen.this, Login.class));
         }
     }
-    void startComp(String id) {
+    /*void startComp(String id) {
         LessonType = "comp";
         MainActivity.id = id;
         MainActivity.name = "comp";
         startActivity(new Intent(mainScreen.this, MainActivity.class));
-    }
+    }*/
 
     void setCourseProgressWeb(){
         for(String i : progress.split(",")){

@@ -174,7 +174,8 @@ public class LessonActivity extends AppCompatActivity {
         }
         } catch (Exception e){
             Toast.makeText(LessonActivity.this, "האינטרנט שלך לא יציב. מנסה שוב...", Toast.LENGTH_SHORT).show();
-            startActivity(new Intent(LessonActivity.this, MainActivity.class));
+            //startActivity(new Intent(LessonActivity.this, MainActivity.class));
+            startActivity(new Intent(LessonActivity.this, Login.class));
         }
         }
     public void progress(){
